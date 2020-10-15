@@ -12,14 +12,19 @@ def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
 
     st.write(
         f"""
-        <div class="container">
-            {header}
-            <div>
+        <div class="container row">
+            <div class="col">
+                {header}
                 <span class="hero-container-product primary-span">{title1}</span>
                 <br>
                 <span class="hero-container-product primary-span">{title2}</span>
-                <br>
+                <br><br>
                 <span class="hero-container-subtitle dark-span">{subtitle}</span>
+                <br>
+            </div>
+            <div class="col">
+                <br><br><br>
+                <span class="hero-container-question primary-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
             </div>
         </div>
         """,
@@ -37,100 +42,69 @@ def genSelectBox():
 
     st.write(
         f"""
-        <div class="container container-three-columns main-padding">
-            <p>Selectbox estado</p>
-            <p>Selectbox município</p>
-            <p>Selectbox nível de ensino</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-def genMainContainer():
-    st.write(
-        f"""
-        <div class="container container-two-columns minor-padding">
-            <div class="text-intro">
-                <div class="text-title-section">
-                    Como retomar as aulas na minha cidade?
-                </div>
-                <div class="minor-padding">
-                    <p>Enquanto ainda estamos em situação de crise, é possível uma retomada gradual  de 
-                    momentos presenciais para alunos da sua rede. Mas é preciso priorizar: quero retornar 
-                    o máximo de alunos possível mesmo que só alguns dias por semana cada, ou uma quantidade 
-                    fixa de alunos em séries terminais pelo máximo de tempo por semana possivel?</p>
-                    <p>Explore abaixo diferentes cenários de retomada, calculados <b>usando dados abertos</b> de 
-                    educação da sua cidade. Para isso, adotamos as seguintes restrições sanitárias, apontados 
-                    como boas práticas para reduzir o risco de contágio de Covid-19 no sistema hospitalar:</p>
-                    <ul>
-                    <li>no máximo X alunos por metro quadrado</li>
-                    <li>Cada grupo de alunos ocupa uma sala por vez, com 1 professor responsável</li>
-                    <li>É possível ter dois turnos por dia em cada equipamento escolar</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="vis-intro">
-                 <div>
-                    <img src="https://via.placeholder.com/300">
-                    <b class="text-subdescription">estimativas de casos e subnotificação de Covid-19 + 
-                    distanciamento social no município (todos dados diários)</b>
-                </div>
-                <div class="container-two-columns-nested main-padding bold">
-                    <div>
-                        <span style="font-size: 64px; color:#3E758A">5</span>
-                        <br>
-                        casos por 100k habitantes
-                    </div>
-                    <br><br>
-                    <div>
-                        <span>A situação da doença está estabilizando em moderado no seu município.<span>
-                        <br><br>
-                        <span class = "uppercase bold">
-                            SEU NÍVEL DE ALERTA É <span class = "dark-span" style-"font-size: 42px;">MODERADO</span>
-                        </span>
-                    </div>
-                </div>
+        <div class="container main-padding">
+            <div class="text-title-section"> Selecione sua rede </div>
+            <div class="row"> 
+                <p class="col">Selectbox estado</p>
+                <p class="col">Selectbox município</p>
+                <p class="col">Selectbox nível de ensino</p>
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-def genModelContainer():
+def genPlanContainer():
     st.write(
         f"""
-        <div class="container">
-            <div class="title-section main-padding"> Implementando um modelo híbrido </div>
+        <div class="container main-padding">
+           <div class="title-section">Planeje </div>
+            <div><br></div>
         </div>
         """,
         unsafe_allow_html=True
     )
-
-def genActualSituationContainer():
-    st.write(
-        f"""
-        <div class="container">
-            <div class="title-section main-padding"> Situação atual da rede </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
 def genSimulationContainer():
     st.write(
         f"""
         <div class="container">
-            <div class="title-section main-padding"> Os diferentes cenários para sua retomada </div>
+            <div class="title-section main-padding"> Simule o retorno </div>
+            <div><br></div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-def genReturnContainer():
+def genPrepareContainer():
     st.write(
         f"""
         <div class="container">
-            <div class="title-section main-padding"> Retorno na prática </div>
+            <div class="title-section main-padding"> Prepare </div>
+            <div><br></div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+def genMonitorContainer():
+    st.write(
+        f"""
+        <div class="container">
+            <div class="title-section main-padding"> Monitore </div>
+            <div><br></div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
+
+def genFooterContainer():
+    st.write(
+        f"""
+        <div class="container">
+            <div class="text-title-section main-padding"> Realizado por </div>
+            <br>
         </div>
         """,
         unsafe_allow_html=True
@@ -145,11 +119,11 @@ def main():
         header=True,
     )
     genSelectBox()
-    genMainContainer()
-    genModelContainer()
-    genActualSituationContainer()
+    genPlanContainer()
     genSimulationContainer()
-    genReturnContainer()
+    genPrepareContainer()
+    genMonitorContainer()
+    genFooterContainer()
     
 
 if __name__ == "__main__":
