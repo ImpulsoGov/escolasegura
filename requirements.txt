@@ -5,8 +5,13 @@ plotly==4.5.4
 tqdm
 pyyaml
 pytest
+ipykernel
 requests
 cufflinks
 python-dotenv
 ua-parser
 bs4
+lxml
+mechanize
+flask
+flask-cors
