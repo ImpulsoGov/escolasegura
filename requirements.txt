@@ -1,0 +1,12 @@
+pandas
+numpy
+scipy==1.3.1
+plotly==4.5.4
+tqdm
+pyyaml
+pytest
+requests
+cufflinks
+python-dotenv
+ua-parser
+bs4
