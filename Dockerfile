@@ -42,7 +42,7 @@ ADD . ${USER_HOME}
 USER root
 RUN set -x \
     # Set permissions
-    && chmod +x setup.sh entrypoint.sh
+    && chmod +x entrypoint.sh
 USER ${USER_NAME}
 EXPOSE ${STREAMLIT_SERVER_PORT}
 CMD ["./entrypoint.sh"]
