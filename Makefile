@@ -20,8 +20,8 @@ docker-run:
 	docker run -d \
 		--restart=unless-stopped \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
-		-p 8001:8001 \
-		-p 8002:8002 \
+		-p 8501:8501 \
+		-p 5000:5000 \
 		$(IMAGE_TAG)
 
 # Run development server with file binding from './src'
