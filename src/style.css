@@ -3,6 +3,7 @@
 
 :root {
     --main-header-font-family: 'Oswald', sans-serif;
+    --main-text-font-family: 'IBM Plex Sans', sans-serif;
     --main-primary: #0097A7;
     --main-dark: #3E758A;
     --main-light: #02CEE3;
@@ -119,12 +120,20 @@
 }
 
 .hero-container-subtitle {
+    font-family: var(--main-header-font-family);
     font-weight: lighter;
-    font-size: 36px;
+    font-size: 24px;
     max-lines: 2;
     
 }
 
+.hero-container-question {
+  font-family: var(--main-header-font-family);
+  font-weight: lighter;
+  line-height: 0.5;
+  font-size: 36px;
+  text-align: center;
+}
 .hero-container-image {
     margin-left: auto;
     margin-right: auto;
@@ -133,24 +142,23 @@
 }
 
 /* columns */
-.container-two-columns {
-  -webkit-columns: 2 200px;
-     -moz-columns: 2 200px;
-          columns: 2 200px;
+.row {
+  /*grid-auto-flow: column;
+  display: grid;
+  gap: 5%;*/
+  display: flex;
+  flex-wrap: wrap;
 }
-.container-two-columns-nested {
-  -webkit-columns: 2 100px;
-     -moz-columns: 2 100px;
-          columns: 2 100px;
-}
-.container-three-columns {
-  -webkit-columns: 3 200px;
-     -moz-columns: 3 200px;
-          columns: 3 200px;
+
+.col {
+  border: none;
+  flex: 1 1; /*  Stretching: */
+  /*flex: 0 1 250px;/* /*  No stretching: */
 }
 
 /*sections*/
 .text-title-section{
+  font-family: var(--main-header-font-family);
   font-size: 20px;
   font-weight: bold;
   color: var(--main-primary);
@@ -165,8 +173,27 @@
 }
 
 .title-section{
-  font-size: 36px;
+  font-size: 28px;
+  color: var(--main-white);
+  background-color: var(--main-primary);
+  font-family: var(--main-header-font-family);
+  letter-spacing: 0.7px;
+}
+
+.subtitle-section{
+  font-size: 24px;
+  color: var(--main-primary);
+  font-family: var(--main-header-font-family);
+  letter-spacing: 0.7px;
+  font-weight: bold;
+}
+
+.text-title-footer{
+  display: grid;
+  font-family: var(--main-header-font-family);
+  font-size: 24px;
   font-weight: bold;
   color: var(--main-primary);
+  place-items: center;
 }
 
