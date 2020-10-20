@@ -64,15 +64,15 @@ def genPlanContainer():
     st.write(
         f"""
         <div class="container main-padding">
-           <div class="title-section">Planeje </div>
-           <div class="row">
+            <div class="title-section">Planeje </div>
+            <div class="row">
             <div class="col">
-                <div class="text-title-section  minor-padding">Protocolos</div>
+                <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Protocolos</div>
                 <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
                 que une direcionamentos de referências nacionais e internacionais.</div>
             </div>
             <div class="col">
-                <div class="text-title-section  minor-padding">Passo-a-passo</div>
+                <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo-a-passo</div>
                 <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
                 Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
             </div>
@@ -98,7 +98,7 @@ def genPrepareContainer():
         f"""
         <div class="container main-padding">
             <div class="title-section"> Prepare </div>
-            <div class="text-title-section minor-padding">Ferramenta de verificação</div>
+            <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Ferramenta de verificação</div>
             <div class="minor-padding">Montamos essa ferramenta para reporte do resultado da inspeção da Vigilância Sanitária 
             nas unidades escolares e verifique se é necessário realizar alguma reforma pontual de adequação.</div>
             <div>
@@ -114,13 +114,13 @@ def genMonitorContainer():
         f"""
         <div class="container main-padding">
             <div class="title-section"> Monitore </div>
-            <div class="text-title-section minor-padding">Plano de contigência</div>
+            <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Plano de contigência</div>
             <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
             <div>
             <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
-            <div class="text-title-section minor-padding">Ferramenta de notificação</div>
+            <div class="text-title-section main-padding"> <img src="https://via.placeholder.com/60"> Ferramenta de notificação</div>
             <div class="minor-padding">lorem ipsum.</div>
             <div>
             <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
