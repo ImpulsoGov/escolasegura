@@ -3,6 +3,7 @@
 
 :root {
     --main-header-font-family: 'Oswald', sans-serif;
+    --main-text-font-family: 'IBM Plex Sans', sans-serif;
     --main-primary: #0097A7;
     --main-dark: #3E758A;
     --main-light: #02CEE3;
@@ -142,13 +143,17 @@
 
 /* columns */
 .row {
-  grid-auto-flow: column;
-  /*display: grid;
+  /*grid-auto-flow: column;
+  display: grid;
   gap: 5%;*/
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .col {
   border: none;
+  flex: 1 1; /*  Stretching: */
+  /*flex: 0 1 250px;/* /*  No stretching: */
 }
 
 /*sections*/
@@ -175,4 +180,20 @@
   letter-spacing: 0.7px;
 }
 
+.subtitle-section{
+  font-size: 24px;
+  color: var(--main-primary);
+  font-family: var(--main-header-font-family);
+  letter-spacing: 0.7px;
+  font-weight: bold;
+}
+
+.text-title-footer{
+  display: grid;
+  font-family: var(--main-header-font-family);
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--main-primary);
+  place-items: center;
+}
 

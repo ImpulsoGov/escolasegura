@@ -45,9 +45,15 @@ def genSelectBox():
         <div class="container main-padding">
             <div class="text-title-section"> Selecione sua rede </div>
             <div class="row"> 
-                <p class="col">Selectbox estado</p>
-                <p class="col">Selectbox município</p>
-                <p class="col">Selectbox nível de ensino</p>
+                <div class="col">
+                <div>{"state_name"}</div>
+                </div>
+                <div class="col">
+                <div>{"city_name"}</div>
+                </div>
+                <div class="col">
+                <div>{"teaching_level"}</div>
+                </div>
             </div>
         </div>
         """,
@@ -59,7 +65,19 @@ def genPlanContainer():
         f"""
         <div class="container main-padding">
            <div class="title-section">Planeje </div>
-            <div><br></div>
+           <div class="row">
+            <div class="col">
+                <div class="text-title-section  minor-padding">Protocolos</div>
+                <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
+                que une direcionamentos de referências nacionais e internacionais.</div>
+            </div>
+            <div class="col">
+                <div class="text-title-section  minor-padding">Passo-a-passo</div>
+                <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
+                Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
+            </div>
+           </div>
+            <div class="subtitle-section"> Régua de protocolo </div>
         </div>
         """,
         unsafe_allow_html=True
@@ -67,8 +85,8 @@ def genPlanContainer():
 def genSimulationContainer():
     st.write(
         f"""
-        <div class="container">
-            <div class="title-section main-padding"> Simule o retorno </div>
+        <div class="container main-padding">
+            <div class="title-section"> Simule o retorno </div>
             <div><br></div>
         </div>
         """,
@@ -78,8 +96,11 @@ def genSimulationContainer():
 def genPrepareContainer():
     st.write(
         f"""
-        <div class="container">
-            <div class="title-section main-padding"> Prepare </div>
+        <div class="container main-padding">
+            <div class="title-section"> Prepare </div>
+            <div class="text-title-section minor-padding">Ferramenta de verificação</div>
+            <div class="minor-padding">Montamos essa ferramenta para reporte do resultado da inspeção da Vigilância Sanitária 
+            nas unidades escolares e verifique se é necessário realizar alguma reforma pontual de adequação.</div>
             <div><br></div>
         </div>
         """,
@@ -89,8 +110,14 @@ def genPrepareContainer():
 def genMonitorContainer():
     st.write(
         f"""
-        <div class="container">
-            <div class="title-section main-padding"> Monitore </div>
+        <div class="container main-padding">
+            <div class="title-section"> Monitore </div>
+            <div class="text-title-section minor-padding">Plano de contigência</div>
+            <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
+            da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
+            <div><br></div>
+            <div class="text-title-section minor-padding">Ferramenta de notificação</div>
+            <div class="minor-padding">lorem ipsum.</div>
             <div><br></div>
         </div>
         """,
@@ -98,12 +125,11 @@ def genMonitorContainer():
     )
 
 
-
 def genFooterContainer():
     st.write(
         f"""
         <div class="container">
-            <div class="text-title-section main-padding"> Realizado por </div>
+            <div class="text-title-footer main-padding"> Realizado por </div>
             <br>
         </div>
         """,
@@ -115,7 +141,7 @@ def main():
     genHeroSection(
         title1="Escola",
         title2="Possível",
-        subtitle="{subtítulo}",
+        subtitle="{descrição}",
         header=True,
     )
     genSelectBox()
