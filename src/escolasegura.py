@@ -1,13 +1,13 @@
 #coding=utf-8
 import streamlit as st
-import yaml
+import yaml 
 
-import pages.main as ep
+import pages.main as es
 
 import utils
 
 def main():
-    ep.main()
+    es.main()
 
 if __name__ == "__main__":
     main() 
