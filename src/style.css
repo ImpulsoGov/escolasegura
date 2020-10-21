@@ -171,7 +171,6 @@
   gap: 5%;*/
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 1rem;
 }
 
 .col {
@@ -185,6 +184,14 @@
   grid-template-columns: minmax(120px, 25%) 1fr;
   margin: 0.5em;
   justify-content: space-between;
+}
+
+.two-cols-checkbox {
+  display: grid;
+  grid-template-columns: minmax(15px, 15%) 1fr;
+  margin: 0.5em;
+  justify-content: space-between;
+  place-items: center;
 }
 
 /*sections*/

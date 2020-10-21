@@ -101,7 +101,7 @@ def genSimulationContainer():
                             Uma parte essencial da reabertura é definir 
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
                         </div>
-                        <div class="row main-padding">
+                        <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
@@ -128,10 +128,31 @@ def genSimulationContainer():
                     </div>
                     <div>
                         <div class="subtitle-section minor-padding"> DEFINA SEU MODELO DE RETORNO </div>
-                        <div class="minor-padding">Para qual etapa de ensino você está planejando?</div>
-                        <div><b>[box]</b></div>
-                        <div class="minor-padding">Quais as restrições que deseja para considerar para o retorno?</div>
-                        <div class="minor-padding">[3 cols]</div>
+                        <div class="minor-padding bold">Para qual etapa de ensino você está planejando?</div>
+                        <div>[Caixa de seleção]</div>
+                        <div class="minor-padding bold">Quais as restrições que deseja para considerar para o retorno?</div>
+                        <div class="">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="two-cols-checkbox">
+                                        <input type="checkbox" id="rural_schools">
+                                        <label for="rural_schools"> Somente escolas rurais</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="two-cols-checkbox">
+                                        <input type="checkbox" id="in_water">
+                                        <label for="rural_schools"> Somente escolas com água encanada</label>
+                                    </div>
+                                </div>
+                                <div class = "col">
+                                    <div class="two-cols-checkbox">
+                                        <input type="checkbox" id="one_teacher">
+                                        <label for="rural_schools"> Somente 1 professor por turma</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="minor-padding blue-bg" style="border-radius:10px">
                             <div class="left-margin">
                                 <b> ⚠️ Utilizamos por padrão os dados abertos do Censo Escolar 2019 (INEP).</b>
@@ -139,8 +160,39 @@ def genSimulationContainer():
                                 Você pode alterar esses dados abaixo. 
                             </div>
                         </div>
-                        <div class="minor-padding">[3 cols]</div>
-                        <div>[3 cols]</div>
+                        <div class="main-padding">
+                            <div class="row">
+                                <div class="col">
+                                    <p>Qual total de alunos?</p>
+                                    [input textual]
+                                </div>
+                                <div class="col">
+                                    <p>Qual total de professores?</p>
+                                    [input textual]
+                                </div>
+                                <div class="col">
+                                    <p>Qual total de aulas disponíveis?</p>
+                                    [input textual]
+                                </div>
+                            </div>
+                        </div>
+                        <div class="minor-padding">
+                            <div class="row">
+                                <div class="col">
+                                    <p>% de alunos que retornam:</p>
+                                    [seletor slide]
+                                </div>
+                                <div class="col">
+                                    % de professores que retornam:
+                                    <br>
+                                    [seletor slide]
+                                </div>
+                                <div class="col">
+                                    <p>Máximo de alunos por sala:</p>
+                                    [seletor slide]
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
@@ -163,7 +215,15 @@ def genSimulationContainer():
                             </div>
                         </div>
                     </div>
-                    <div class="minor-padding">[veja mais]</div>
+                    <div class="minor-padding">
+                    <div class="minor-padding blue-bg" style="border-radius:5px;">
+                        <div style="padding:10px;">
+                        <img src="https://via.placeholder.com/40"> <b>Veja mais materiais necessários para compra 
+                        <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0">
+                        aqui</a>.</b>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
