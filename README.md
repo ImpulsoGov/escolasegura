@@ -11,6 +11,6 @@ A **Escola Segura** está disponível [aqui]().
 
 ## Rodando a Escola Segura localmente
 
--> `streamlit run src/escolapossivel.py`
+-> `streamlit run src/escolasegura.py`
 
 [wip rodando com o docker]

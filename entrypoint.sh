@@ -11,4 +11,4 @@ source venv/bin/activate
 # Start server
 cd src/
 python helper-server/main.py &
-/home/ubuntu/venv/bin/streamlit run escolapossivel.py
+/home/ubuntu/venv/bin/streamlit run escolasegura.py
