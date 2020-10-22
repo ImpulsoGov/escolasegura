@@ -129,11 +129,12 @@ def  genSimulationResult():
                 </div>
             </div>
         </div>
-        """
+        """,
+        unsafe_allow_html=True
     )
 
 
-def genSimulationContainer():
+def genSimulationContainer(session_state):
 
     st.write(
         f"""
@@ -229,15 +230,21 @@ def genSimulationContainer():
                                 </div>
                             </div>
                         </div>
-                        <div class="minor-padding">
-                            <a class="info-btn" href=#>SIMULAR RETORNO</a>
-                        </div>
                     </div>             
                 </div>
             </div>
         </div>
         """,
         unsafe_allow_html=True
+    )
+    if st.button("SIMULAR RETORNO"):
+        if st.button("Esconder"):
+            pass
+        genSimulationResult()
+    utils.stylizeButton(
+        name="SIMULAR RETORNO",
+        style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
+        session_state=session_state,
     )
     
 
@@ -294,7 +301,7 @@ def genFooterContainer():
         unsafe_allow_html=True
     )
 
-def main():
+def main(session_state):
     utils.localCSS("src/style.css")
     genHeroSection(
         title1="Escola",
@@ -304,7 +311,7 @@ def main():
     )
     genSelectBox()
     genPlanContainer()
-    genSimulationContainer()
+    genSimulationContainer(session_state)
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()
