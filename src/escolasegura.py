@@ -2,6 +2,7 @@
 import streamlit as st
 import yaml 
 import session
+import time
 
 import pages.main as es
 
@@ -37,7 +38,7 @@ def main():
         continuation_selection=None,
     )
     
-    es.main()
+    es.main(session_state)
 
 if __name__ == "__main__":
     main() 

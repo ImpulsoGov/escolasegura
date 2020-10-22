@@ -302,7 +302,7 @@ def genFooterContainer():
     )
 
 def main(session_state):
-    utils.localCSS("src/style.css")
+    utils.localCSS("style.css")
     genHeroSection(
         title1="Escola",
         title2="Segura",
