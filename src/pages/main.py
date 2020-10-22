@@ -230,7 +230,7 @@ def genSimulationContainer():
                             </div>
                         </div>
                         <div class="minor-padding">
-                            <a class="info-btn" href={genSimulationResult()} style="color:white;">SIMULAR RETORNO</a>
+                            <a class="info-btn" href=#>SIMULAR RETORNO</a>
                         </div>
                     </div>             
                 </div>

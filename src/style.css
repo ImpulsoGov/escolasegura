@@ -252,25 +252,9 @@
 }
 
 /* button */
-/*
-a.button{
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-
-  text-decoration: none;
-  background-color: var(--main-primary);
-  color: var(--main-white);
-  
-  border: none;
-  border-radius: 0.5rem;
-  
-  padding: 5px 5px 5px 5px;
-  
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-}*/
+.reportview-container .markdown-text-container a {
+  color:var(--main-white);
+}
 
 .info-btn{
   border: 1px solid var(--main-white);
@@ -288,11 +272,9 @@ a.button{
   animation-name: fadein;
   animation-duration: 3s;
   margin-top: 1.5em;
-  color: var(--main-white);
 }
 
 .info-btn:hover {
-  color: var(--main-white);
   background-color: var(--main-dark);
   text-decoration: none;
 }
@@ -302,7 +284,6 @@ a.button{
     height:30px;
     position: absolute;
     font-family: var(--main-header-font-family);
-    color: white;
     background-color: var(--main-primary);
     font-weight: bold;
     text-align: center;
