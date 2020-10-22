@@ -78,12 +78,60 @@ def genPlanContainer():
                     Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
                 </div>
             </div>
-           </div>
+            </div>
             <div class="subtitle-section"> Régua de protocolo </div>
+            <div class="minor-padding">
+                <img src="https://via.placeholder.com/300">
+            </div>
         </div>
         """,
         unsafe_allow_html=True
     )
+
+def  genSimulationResult():
+    st.write(
+        f"""
+        <div class="container main-padding">
+            <div>
+                <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
+                <div class="row main-padding">
+                    <div class="col">
+                        <div class="card-simulator blue-bg">
+                            <div class="card-title-section primary-span">EQUITATIVO</div>
+                            <div class="text-small">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <br>
+                        </div>
+                        <div class="card-simulator light-blue-bg minor-padding">
+                            <div class="card-title-section primary-span">Materiais para compra</div>
+                            <br>
+                        </div> 
+                    </div>
+                    <div class="col">
+                        <div class="card-simulator dark-blue-bg light-span">
+                            <div class="card-title-section">PRIORITÁRIO</div>
+                            <div class="text-small">Máximo de alunos retorna 5 vezes por semana.</div>
+                            <br>
+                        </div>
+                        <div class="card-simulator primary-blue-bg minor-padding">
+                            <div class="card-title-section light-span">Materiais para compra</div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="minor-padding">
+                <div class="minor-padding blue-bg" style="border-radius:5px;">
+                    <div style="padding:10px;">
+                        <img src="https://via.placeholder.com/40"> <b>Veja mais materiais necessários para compra 
+                        <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0">
+                        aqui</a>.</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+        """
+    )
+
 
 def genSimulationContainer():
 
@@ -102,7 +150,7 @@ def genSimulationContainer():
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
                         </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
-                            <div class="col blue-bg" style="border-radius:30px;">
+                            <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
                                     <div>
@@ -113,7 +161,7 @@ def genSimulationContainer():
                                     </div>
                                 </div>
                             </div>
-                            <div class="col dark-blue-bg light-span" style="border-radius:30px">
+                            <div class="col dark-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
                                 <div>
@@ -128,54 +176,42 @@ def genSimulationContainer():
                     </div>
                     <div>
                         <div class="subtitle-section minor-padding"> DEFINA SEU MODELO DE RETORNO </div>
-                        <div class="minor-padding bold">Para qual etapa de ensino você está planejando?</div>
-                        <div>[Caixa de seleção]</div>
-                        <div class="minor-padding bold">Quais as restrições que deseja para considerar para o retorno?</div>
-                        <div class="">
+                        <div>
+                            <div class="minor-padding bold">1. Para qual etapa de ensino você está planejando?</div>
+                            <div>[Caixa de seleção]</div>
+                        </div>
+                        <div>
+                        <div class="main-padding bold">2. Utilize os filtros para os dados do Censo Escolar (2019):</div>
+                            <div class="row">
+                                <div class="col minor-padding">
+                                    <input type="checkbox" id="rural_schools">
+                                    <label for="rural_schools"> Apenas escolas rurais</label>
+                                </div>
+                                <div class="col minor-padding">
+                                    <input type="checkbox" id="in_water">
+                                    <label for="rural_schools"> Apenas escolas com água encanada</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-padding bold">3. Ou informe seus dados abaixo:</div>
+                        </div>
+                        <div class="minor-padding">
                             <div class="row">
                                 <div class="col">
-                                    <div class="two-cols-checkbox">
-                                        <input type="checkbox" id="rural_schools">
-                                        <label for="rural_schools"> Somente escolas rurais</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="two-cols-checkbox">
-                                        <input type="checkbox" id="in_water">
-                                        <label for="rural_schools"> Somente escolas com água encanada</label>
-                                    </div>
-                                </div>
-                                <div class = "col">
-                                    <div class="two-cols-checkbox">
-                                        <input type="checkbox" id="one_teacher">
-                                        <label for="rural_schools"> Somente 1 professor por turma</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="minor-padding blue-bg" style="border-radius:10px">
-                            <div class="left-margin">
-                                <b> ⚠️ Utilizamos por padrão os dados abertos do Censo Escolar 2019 (INEP).</b>
-                                <br>
-                                Você pode alterar esses dados abaixo. 
-                            </div>
-                        </div>
-                        <div class="main-padding">
-                            <div class="row">
-                                <div class="col">
-                                    <p>Qual total de alunos?</p>
+                                    <p>Qual total de alunos da sua rede?</p>
                                     [input textual]
                                 </div>
                                 <div class="col">
-                                    <p>Qual total de professores?</p>
+                                    <p>Qual total de professores da sua rede?</p>
                                     [input textual]
                                 </div>
                                 <div class="col">
-                                    <p>Qual total de aulas disponíveis?</p>
+                                    <p>Qual total de sala de aulas na sua rede?</p>
                                     [input textual]
                                 </div>
                             </div>
                         </div>
+                        <div class="main-padding bold">4.Escolha as condições de retorno:</div>
                         <div class="minor-padding">
                             <div class="row">
                                 <div class="col">
@@ -193,43 +229,17 @@ def genSimulationContainer():
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
-                        <div class="row main-padding">
-                            <div class="col blue-bg">
-                               <div class="card-title-section primary-span">EQUITATIVO</div>
-                               <div class="text-small">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
-                            </div>
-                            <div class="col light-blue-bg">
-                               <div class="card-title-section primary-span">Materiais para compra</div>
-                            </div> 
+                        <div class="minor-padding">
+                            <a class="info-btn" href={genSimulationResult()} style="color:white;">SIMULAR RETORNO</a>
                         </div>
-                        <div class="row minor-padding">
-                            <div class="col dark-blue-bg light-span">
-                                <div class="card-title-section">PRIORITÁRIO</div>
-                               <div class="text-small">Máximo de alunos retorna 5 vezes por semana.</div>
-                            </div>
-                            <div class="col primary-blue-bg">
-                               <div class="card-title-section light-span">Materiais para compra</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="minor-padding">
-                    <div class="minor-padding blue-bg" style="border-radius:5px;">
-                        <div style="padding:10px;">
-                        <img src="https://via.placeholder.com/40"> <b>Veja mais materiais necessários para compra 
-                        <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0">
-                        aqui</a>.</b>
-                        </div>
-                    </div>
-                    </div>
+                    </div>             
                 </div>
             </div>
         </div>
         """,
         unsafe_allow_html=True
     )
+    
 
 def genPrepareContainer():
     st.write(
@@ -288,7 +298,7 @@ def main():
     utils.localCSS("src/style.css")
     genHeroSection(
         title1="Escola",
-        title2="Possível",
+        title2="Segura",
         subtitle="{descrição}",
         header=True,
     )
