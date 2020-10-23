@@ -1,7 +1,8 @@
 import streamlit as st
 import yaml
-
 import utils
+import os
+import pandas as pd
 
 def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
 
@@ -29,34 +30,35 @@ def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
         unsafe_allow_html=True,
     )
 
-def genSelectBox():
-    user_input = dict()
-    states = ("Todos","UF1", "UF2")
-    options = list(range(len(states)))
+def read_data(country, config, endpoint):
+    # if os.getenv("IS_LOCAL") == "TRUE":
+        # api_url = config[country]["api"]["local"]
+    # else:
+        # api_url = config[country]["api"]["external"]
+    api_url = config[country]["api"]["local"]
+    url = api_url + endpoint
+    df = pd.read_csv(url)
+    return df
 
-    #user_input["state_name"] = st.selectbox("Estado", options, format_func=lambda x: states[x])
-    #user_input["city_name"] = st.selectbox("Município", [])
-    #user_input["teaching_level"] = st.selectbox("Nível de ensino", [])
+@st.cache(suppress_st_warning=True)
+def get_data(config):
+    df = read_data("br", config, "br/cities/safeschools/main")
+    return df
 
+def genSelectBox(df, config):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="text-title-section"> Selecione sua rede de ensino: </div>
-            <div class="row"> 
-                <div class="col">
-                <div>{"state_name"}</div>
-                </div>
-                <div class="col">
-                <div>{"city_name"}</div>
-                </div>
-                <div class="col">
-                <div>{"teaching_level"}</div>
-                </div>
-            </div>
+            <div class="text-title-section"> Selecione sua rede </div>
         </div>
         """,
         unsafe_allow_html=True
     )
+    user_input = dict()
+    user_input["state_id"] = st.selectbox("Estado", utils.filter_place(df, "state"))
+    user_input["city_name"] = st.selectbox("Município", utils.filter_place(df, "city", state_id=user_input["state_id"]))
+    user_input["administrative_level"] = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=user_input["state_id"]))    
+
 
 def genPlanContainer():
     st.write(
@@ -329,7 +331,9 @@ def main(session_state):
         subtitle="{descrição}",
         header=True,
     )
-    genSelectBox()
+    config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
+    data = get_data(config)
+    genSelectBox(data, config)
     genPlanContainer()
     genSimulationContainer(session_state)
     genPrepareContainer()

@@ -19,8 +19,9 @@ docker-build:
 docker-run:
 	docker run -d \
 		--restart=unless-stopped \
+		--name escolasegura \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
-		-p 8501:8501 \
+		-p 8001:8001 \
 		-p 5000:5000 \
 		$(IMAGE_TAG)
 
@@ -35,7 +36,7 @@ docker-dev:
 	
 	docker run --rm -it \
 		--name escolapossivel-dev \
-		-p 8501:8501 \
+		-p 8001:8001 \
 		-p 5000:5000 \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
 		-v $(PWD)/src:/home/ubuntu/src:ro \
@@ -55,6 +56,7 @@ docker-shell:
 # DEBUGING for staging environment
 docker-heroku-test: docker-build
 	docker run -it --rm \
+		--name escolasegura-dev \
 		-e PORT=8080 \
 		-p 8080:8080 \
 		-p 5000:5000 \
