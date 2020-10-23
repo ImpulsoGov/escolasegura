@@ -20,7 +20,7 @@ docker-run:
 	docker run -d \
 		--restart=unless-stopped \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
-		-p 8501:8501 \
+		-p 8001:8001 \
 		-p 5000:5000 \
 		$(IMAGE_TAG)
 
@@ -35,7 +35,7 @@ docker-dev:
 	
 	docker run --rm -it \
 		--name escolapossivel-dev \
-		-p 8501:8501 \
+		-p 8001:8001 \
 		-p 5000:5000 \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
 		-v $(PWD)/src:/home/ubuntu/src:ro \

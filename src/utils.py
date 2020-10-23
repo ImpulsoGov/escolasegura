@@ -31,3 +31,15 @@ def applyButtonStyles(session_state):
         <iframe src="../resources/redo-button.html?name={name}&{parts}&{other_args}" style="height:0px;width:0px;">
         </iframe>"""
     st.write(html, unsafe_allow_html=True)
+
+def filter_place(df, level, state_id=None, administrative_level=None, city_name=None):
+    if level == "state":
+        return df["state_id"].sort_values().unique()
+    elif level == "city":
+        data = df[df["state_id"] == state_id]
+        return data["city_name"].sort_values().unique()
+    else:
+        data = df[df["state_id"] == state_id]
+        if city_name != None and city_name != "Todos":
+            data = df[df["city_name"] == city_name]
+        return data["administrative_level"].sort_values().unique()
