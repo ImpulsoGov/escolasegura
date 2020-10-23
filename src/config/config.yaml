@@ -4,8 +4,7 @@ br:
     api:
         external: http://datasource.coronacidades.org/
         local: http://45.55.43.231:7000/
-        mapserver_external: https://helper.coronacidades.org/
-        mapserver_local: http://45.55.43.231:5000/
         endpoints:
-            utilities:
-                place_ids: "br/places/ids"
+            escolasegura:
+                city: "br/cities/safeschools/main"
+                students: "br/cities/safeschools/students"
