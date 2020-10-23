@@ -176,32 +176,28 @@ def genSimulationContainer(session_state):
         <div class="container main-padding">
             <div class="subtitle-section"> Simule o retorno </div>
                 <div class="left-margin">
-                    <div class="bold minor-padding">Como calcular os recursos necessários para a retomada?</div>
-                    <div class="minor-padding">Uma parte essencial da reabertura é contabilizar 
-                    quais materiais devem ser providenciados para as escolas.</div>
+                        <div>
+                            Uma parte essencial da reabertura é definir <b>quem pode retornar e como</b> - trazemos abaixo 2 modelos possíveis.
+                        </div>
                     <div class="minor-padding">
                         <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
-                        <div>
-                            Uma parte essencial da reabertura é definir 
-                            <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
-                        </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
-                                    <div>
+                                    <div class="text-subdescription">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
-                                        que somente 1 dia. Atividades podem ser de reforço ou conteúdo.
+                                        que por 1 dia. Atividades podem ser de reforço ou conteúdo.
                                     </div>
                                 </div>
                             </div>
                             <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
-                                <div>
-                                    <b>Máximo de alunos retorna 5 vezes por semana.</b>
+                                <div class="text-subdescription">
+                                    <b>Máximo de alunos têm aula presencial 5 vezes por semana.</b>
                                     <p></p>
                                     Prioriza-se o fechamento do ciclo escolar, com maior tempo na escola para 
                                     esses alunos. Atividades podem ser de reforço ou conteúdo.
