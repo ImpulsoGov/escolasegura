@@ -3,6 +3,7 @@ import yaml
 import utils
 import os
 import pandas as pd
+from ipywidgets import AppLayout, GridspecLayout
 
 def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
 
@@ -45,7 +46,7 @@ def get_data(config):
     df = read_data("br", config, "br/cities/safeschools/main")
     return df
 
-def genSelectBox(df, config):
+def genSelectBox(df, config, session_state):
     st.write(
         f"""
         <div class="container main-padding">
@@ -54,10 +55,9 @@ def genSelectBox(df, config):
         """,
         unsafe_allow_html=True
     )
-    user_input = dict()
-    user_input["state_id"] = st.selectbox("Estado", utils.filter_place(df, "state"))
-    user_input["city_name"] = st.selectbox("Município", utils.filter_place(df, "city", state_id=user_input["state_id"]))
-    user_input["administrative_level"] = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=user_input["state_id"]))    
+    session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+    session_state.city_name = st.selectbox("Município", utils.filter_place(df, "city", state_id=session_state.state_id))
+    session_state.administrative_level = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=session_state.state_id))    
 
 
 def genPlanContainer():
@@ -333,7 +333,7 @@ def main(session_state):
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
-    genSelectBox(data, config)
+    genSelectBox(data, config, session_state)
     genPlanContainer()
     genSimulationContainer(session_state)
     genPrepareContainer()
