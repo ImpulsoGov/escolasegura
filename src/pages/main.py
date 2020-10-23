@@ -4,7 +4,8 @@ import utils
 import os
 import pandas as pd
 
-def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
+
+def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
         header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span></a>"""
@@ -32,34 +33,47 @@ def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
         unsafe_allow_html=True,
     )
 
+
 def read_data(country, config, endpoint):
-    # if os.getenv("IS_LOCAL") == "TRUE":
-        # api_url = config[country]["api"]["local"]
-    # else:
-        # api_url = config[country]["api"]["external"]
-    api_url = config[country]["api"]["local"]
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
     url = api_url + endpoint
     df = pd.read_csv(url)
     return df
+
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
     df = read_data("br", config, "br/cities/safeschools/main")
     return df
 
-def genSelectBox(df, config):
+
+def genSelectBox(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
             <div class="text-title-section"> Selecione sua rede </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
-    user_input = dict()
-    user_input["state_id"] = st.selectbox("Estado", utils.filter_place(df, "state"))
-    user_input["city_name"] = st.selectbox("Município", utils.filter_place(df, "city", state_id=user_input["state_id"]))
-    user_input["administrative_level"] = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=user_input["state_id"]))    
+
+    session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+    session_state.city_name = st.selectbox(
+        "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+    )
+    session_state.administrative_level = st.selectbox(
+        "Nível de Administração",
+        utils.filter_place(
+            df,
+            "administrative_level",
+            city_name=session_state.city_name,
+            state_id=session_state.state_id,
+        ),
+    )
 
 
 def genPlanContainer():
@@ -87,11 +101,11 @@ def genPlanContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
-def  genSimulationResult():
+def genSimulationResult():
     st.write(
         f"""
         <div class="container main-padding">
@@ -133,7 +147,7 @@ def  genSimulationResult():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -238,19 +252,20 @@ def genSimulationContainer(session_state):
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
     if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
     utils.stylizeButton(
         name="SIMULAR RETORNO",
-        #style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
+        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )
-    
+
 
 def genPrepareContainer():
     st.write(
@@ -267,8 +282,9 @@ def genPrepareContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def genMonitorContainer():
     st.write(
@@ -290,7 +306,7 @@ def genMonitorContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -302,26 +318,24 @@ def genFooterContainer():
             <br>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola",
-        title2="Segura",
-        subtitle="{descrição}",
-        header=True,
+        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
-    genSelectBox(data, config)
+    genSelectBox(data, session_state)
     genPlanContainer()
     genSimulationContainer(session_state)
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()
-    
+
 
 if __name__ == "__main__":
     main()
