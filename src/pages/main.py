@@ -17,16 +17,14 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
         <div class="container row">
             <div class="col">
                 {header}
-                <span class="hero-container-product primary-span">{title1}</span>
+                <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
-                <span class="hero-container-product primary-span">{title2}</span>
+                <span class="hero-container-product main-blue-span">{title2}</span>
                 <br><br>
-                <span class="hero-container-subtitle dark-span">{subtitle}</span>
-                <br>
             </div>
             <div class="col">
                 <br><br><br>
-                <span class="hero-container-question primary-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
+                <span class="hero-container-question main-grey-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
             </div>
         </div>
         """,
@@ -89,7 +87,7 @@ def genPlanContainer():
                     que une direcionamentos de referências nacionais e internacionais.</div>
                 </div>
                 <div class="col">
-                    <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo-a-passo</div>
+                    <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo a passo</div>
                     <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
                     Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
                 </div>
@@ -116,11 +114,31 @@ def genSimulationResult():
                         <div class="card-simulator blue-bg">
                             <div class="card-title-section primary-span">EQUITATIVO</div>
                             <div class="text-small">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">250</span> alunos retonam às aulas
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">100</span> professores retornam
+                            </div>
                             <br>
                         </div>
-                        <div class="card-simulator light-blue-bg minor-padding">
+                        <div class="card-simulator blue-bg minor-padding">
                             <div class="card-title-section primary-span">Materiais para compra</div>
                             <br>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">350</span> máscaras
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">3</span> termômetros
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">4.2</span> litros de álcool em gel
+                            </div>
                         </div> 
                     </div>
                     <div class="col">
@@ -156,13 +174,13 @@ def genSimulationContainer(session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Simule o retorno </div>
+            <div class="subtitle-section"> Simule o retorno </div>
                 <div class="left-margin">
                     <div class="bold minor-padding">Como calcular os recursos necessários para a retomada?</div>
                     <div class="minor-padding">Uma parte essencial da reabertura é contabilizar 
                     quais materiais devem ser providenciados para as escolas.</div>
                     <div class="minor-padding">
-                        <div class="subtitle-section minor-padding"> ENTENDA OS MODELOS DE RETORNO </div>
+                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
                         <div>
                             Uma parte essencial da reabertura é definir 
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
@@ -179,7 +197,7 @@ def genSimulationContainer(session_state):
                                     </div>
                                 </div>
                             </div>
-                            <div class="col dark-blue-bg light-span card-simulator" style="border-radius:30px">
+                            <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
                                 <div>
@@ -193,7 +211,7 @@ def genSimulationContainer(session_state):
                         </div>
                     </div>
                     <div>
-                        <div class="subtitle-section minor-padding"> DEFINA SEU MODELO DE RETORNO </div>
+                        <div class="text-title-section minor-padding"> Defina seu modelo de retorno </div>
                         <div>
                             <div class="minor-padding bold">1. Para qual etapa de ensino você está planejando?</div>
                             <div>[Caixa de seleção]</div>

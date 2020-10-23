@@ -5,19 +5,22 @@
         var x = window.parent.matchMedia("only screen and (max-width: 425px)")
         function changeStyle() {
             var button = findButt(urlParams.get("name"));
+            console.log(findButt(urlParams.get("name")));
             if (["1", "2", "3", "4"].includes(urlParams.get("ui_binSelect"))) {
                 makeItQuadSelection(button, urlParams.get("ui_binSelect"))
             }
             for (let key of urlParams.keys()) {
+                console.log(button);
                 if (key != "name" && !key.includes("ui_")) {
                     button.style[key] = urlParams.get(key);
                 }
             }
-        }
-        console.log('here!')
+        }  
         function findButt(buttonName) {
             buttons = window.parent.document.getElementsByClassName("st-dg st-aj st-ak st-b0 st-dh st-di st-dj st-dk st-cs st-ct st-cu st-cv st-b5 st-dl st-ay st-dm st-dn st-do st-b9 st-dp st-ai st-dq st-dr st-ds st-dt st-d5 st-al st-cw st-am st-bm st-bn st-bo st-bp st-aq st-as st-ap st-ar st-du st-dv st-dw st-dx st-bl st-br st-dy st-dz st-e0 st-e1 st-e2 st-e3 st-e4 st-e5 st-e6 st-e7 st-e8 st-e9 st-ea st-eb");
+            console.log(buttons);
             for (var i = 0; i < buttons.length; i++) {
+                console.log(buttons[i].textContent);
                 if (buttons[i].textContent == buttonName) {
                     return buttons[i];
                 }
