@@ -4,7 +4,8 @@ import utils
 import os
 import pandas as pd
 
-def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
+
+def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
         header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span></a>"""
@@ -16,50 +17,61 @@ def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
         <div class="container row">
             <div class="col">
                 {header}
-                <span class="hero-container-product primary-span">{title1}</span>
+                <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
-                <span class="hero-container-product primary-span">{title2}</span>
+                <span class="hero-container-product main-blue-span">{title2}</span>
                 <br><br>
-                <span class="hero-container-subtitle dark-span">{subtitle}</span>
-                <br>
             </div>
             <div class="col">
                 <br><br><br>
-                <span class="hero-container-question primary-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
+                <span class="hero-container-question main-grey-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
+
 def read_data(country, config, endpoint):
-    # if os.getenv("IS_LOCAL") == "TRUE":
-        # api_url = config[country]["api"]["local"]
-    # else:
-        # api_url = config[country]["api"]["external"]
-    api_url = config[country]["api"]["local"]
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
     url = api_url + endpoint
     df = pd.read_csv(url)
     return df
+
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
     df = read_data("br", config, "br/cities/safeschools/main")
     return df
 
-def genSelectBox(df, config):
+
+def genSelectBox(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
             <div class="text-title-section"> Selecione sua rede </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
-    user_input = dict()
-    user_input["state_id"] = st.selectbox("Estado", utils.filter_place(df, "state"))
-    user_input["city_name"] = st.selectbox("Município", utils.filter_place(df, "city", state_id=user_input["state_id"]))
-    user_input["administrative_level"] = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=user_input["state_id"]))    
+
+    session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+    session_state.city_name = st.selectbox(
+        "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+    )
+    session_state.administrative_level = st.selectbox(
+        "Nível de Administração",
+        utils.filter_place(
+            df,
+            "administrative_level",
+            city_name=session_state.city_name,
+            state_id=session_state.state_id,
+        ),
+    )
 
 
 def genPlanContainer():
@@ -75,7 +87,7 @@ def genPlanContainer():
                     que une direcionamentos de referências nacionais e internacionais.</div>
                 </div>
                 <div class="col">
-                    <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo-a-passo</div>
+                    <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo a passo</div>
                     <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
                     Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
                 </div>
@@ -87,11 +99,11 @@ def genPlanContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
-def  genSimulationResult():
+def genSimulationResult():
     st.write(
         f"""
         <div class="container main-padding">
@@ -102,11 +114,31 @@ def  genSimulationResult():
                         <div class="card-simulator blue-bg">
                             <div class="card-title-section primary-span">EQUITATIVO</div>
                             <div class="text-small">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">250</span> alunos retonam às aulas
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">100</span> professores retornam
+                            </div>
                             <br>
                         </div>
-                        <div class="card-simulator light-blue-bg minor-padding">
+                        <div class="card-simulator blue-bg minor-padding">
                             <div class="card-title-section primary-span">Materiais para compra</div>
                             <br>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">350</span> máscaras
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">3</span> termômetros
+                            </div>
+                            <div class="bold">
+                                <img src="https://via.placeholder.com/30">
+                                <span class="card-number">4.2</span> litros de álcool em gel
+                            </div>
                         </div> 
                     </div>
                     <div class="col">
@@ -133,7 +165,7 @@ def  genSimulationResult():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -142,34 +174,30 @@ def genSimulationContainer(session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Simule o retorno </div>
+            <div class="subtitle-section"> Simule o retorno </div>
                 <div class="left-margin">
-                    <div class="bold minor-padding">Como calcular os recursos necessários para a retomada?</div>
-                    <div class="minor-padding">Uma parte essencial da reabertura é contabilizar 
-                    quais materiais devem ser providenciados para as escolas.</div>
-                    <div class="minor-padding">
-                        <div class="subtitle-section minor-padding"> ENTENDA OS MODELOS DE RETORNO </div>
                         <div>
-                            Uma parte essencial da reabertura é definir 
-                            <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
+                            Uma parte essencial da reabertura é definir <b>quem pode retornar e como</b> - trazemos abaixo 2 modelos possíveis.
                         </div>
+                    <div class="minor-padding">
+                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
-                                    <div>
+                                    <div class="text-subdescription">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
-                                        que somente 1 dia. Atividades podem ser de reforço ou conteúdo.
+                                        que por 1 dia. Atividades podem ser de reforço ou conteúdo.
                                     </div>
                                 </div>
                             </div>
-                            <div class="col dark-blue-bg light-span card-simulator" style="border-radius:30px">
+                            <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
-                                <div>
-                                    <b>Máximo de alunos retorna 5 vezes por semana.</b>
+                                <div class="text-subdescription">
+                                    <b>Máximo de alunos têm aula presencial 5 vezes por semana.</b>
                                     <p></p>
                                     Prioriza-se o fechamento do ciclo escolar, com maior tempo na escola para 
                                     esses alunos. Atividades podem ser de reforço ou conteúdo.
@@ -179,7 +207,7 @@ def genSimulationContainer(session_state):
                         </div>
                     </div>
                     <div>
-                        <div class="subtitle-section minor-padding"> DEFINA SEU MODELO DE RETORNO </div>
+                        <div class="text-title-section minor-padding"> Defina seu modelo de retorno </div>
                         <div>
                             <div class="minor-padding bold">1. Para qual etapa de ensino você está planejando?</div>
                             <div>[Caixa de seleção]</div>
@@ -238,19 +266,20 @@ def genSimulationContainer(session_state):
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
     if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
     utils.stylizeButton(
         name="SIMULAR RETORNO",
-        #style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
+        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )
-    
+
 
 def genPrepareContainer():
     st.write(
@@ -267,8 +296,9 @@ def genPrepareContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def genMonitorContainer():
     st.write(
@@ -290,7 +320,7 @@ def genMonitorContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -302,26 +332,24 @@ def genFooterContainer():
             <br>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola",
-        title2="Segura",
-        subtitle="{descrição}",
-        header=True,
+        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
-    genSelectBox(data, config)
+    genSelectBox(data, session_state)
     genPlanContainer()
     genSimulationContainer(session_state)
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()
-    
+
 
 if __name__ == "__main__":
     main()
