@@ -31,6 +31,7 @@ def main():
     )
     
     es.main(session_state)
+    utils.applyButtonStyles(session_state)
 
 if __name__ == "__main__":
     main() 

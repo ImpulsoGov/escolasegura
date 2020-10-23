@@ -28,6 +28,6 @@ def applyButtonStyles(session_state):
             [str(key) + "=" + str(value) for key, value in style[1].items()]
         )
         html += f"""
-        <iframe src="../resources/redo-button.html?name={name}&{parts}&{other_args}" style="height:0px;width:0px;">
+        <iframe src="resources/redo-button.html?name={name}&{parts}&{other_args}" style="height:0px;width:0px;">
         </iframe>"""
     st.write(html, unsafe_allow_html=True)
