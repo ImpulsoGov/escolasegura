@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
+
 /* import for each component*/
 
 :root {
-    --main-title-header-family: 'Poppings', sans-serif;
+    --main-title-font-family: 'Poppings', sans-serif;
+    --main-subtitle-font-family: 'Roboto Condesed', sans-serif;
+    --main-text-font-family: 'Roboto Condesed', sans-serif;
     --main-blue: #2b14ff;
     --main-orange: #ff9147;
     --main-light-blue: #99ffd4;
     --main-grey: #5a5a5a;
 
-    --main-text-font-family: 'IBM Plex Sans', sans-serif;
     --main-primary: #0097A7;
     --main-dark: #3E758A;
     --main-light: #02CEE3;
@@ -106,6 +109,7 @@
     padding-left: 0px;
     margin-right: 0;
     margin-left: 0;
+    font-family: var(--main-text-font-family);
   }
   
   @media (min-width: 576px) {
@@ -140,6 +144,7 @@
 
 .logo-header{
     font-size: 24px;
+    font-family: var(--main-title-font-family);
     color: var(--main-primary);
 }
 
@@ -151,16 +156,16 @@
 }
 
 .hero-container-product {
-    font-family: var(--main-header-font-family);
+    font-family: var(--main-title-font-family);
     font-size: 80px;
     font-weight: bold;
-    line-height: 70px;
+    line-height: 4rem;
     animation-name: fadein;
     animation-duration: 4s;
 }
 
 .hero-container-subtitle {
-    font-family: var(--main-header-font-family);
+    font-family: var(--main-subtitle-font-family);
     font-weight: lighter;
     font-size: 24px;
     max-lines: 2;
@@ -168,7 +173,7 @@
 }
 
 .hero-container-question {
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-subtitle-font-family);
   font-weight: lighter;
   line-height: 0.5;
   font-size: 24px;
@@ -198,7 +203,7 @@
 
 .two-cols-icon-text {
   display: grid;
-  grid-template-columns: minmax(120px, 25%) 1fr;
+  grid-template-columns: minmax(120px, 50%) 1fr;
   margin: 0.5em;
   justify-content: space-between;
 }
@@ -246,9 +251,20 @@
   align-items: center;
 }
 
+/*icons*/
+.icon{
+  width:3rem;
+  height:3rem;
+}
+
+.icon-cards{
+  width:2rem;
+  height:2rem;
+}
+
 /*sections*/
 .text-title-section{
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-title-font-family);
   font-size: 20px;
   color: var(--main-orange);
 }
@@ -266,14 +282,14 @@
   font-weight: bold;
   color: var(--main-white);
   background-color: var(--main-light-blue);
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-title-font-family);
   padding: 5px 10px 5px 10px;
 }
 
 .subtitle-section{
   font-size: 24px;
   color: var(--main-orange);
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-subtitle-font-family);
   letter-spacing: 0.7px;
   font-weight: bold;
   padding: 5px 10px 5px 0px;
@@ -281,7 +297,7 @@
 
 .text-title-footer{
   display: grid;
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-title-font-family);
   font-size: 24px;
   font-weight: bold;
   color: var(--main-orange);
@@ -290,7 +306,7 @@
 
 .card-title-section{
   font-size: 20px;
-  /*font-family: var(--main-header-font-family);*/
+  /*font-family: var(--main-title-font-family);*/
   font-weight: bold;
 }
 .text-small{
@@ -321,7 +337,7 @@
   width: 150px;
   padding: 0.5em;
   text-transform: uppercase;
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-subtitle-font-family);
   background-color: var(--main-primary);
   font-weight: bold;
   text-align: center;

@@ -68,14 +68,14 @@ def genPlanContainer():
             <div class="left-margin">
                 <div class="row">
                 <div class="col">
-                    <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Protocolos</div>
-                    <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
-                    que une direcionamentos de referências nacionais e internacionais.</div>
-                </div>
-                <div class="col">
-                    <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo a passo</div>
+                    <div class="text-title-section  minor-padding"> <img class="icon" src="https://i.imgur.com/y5hUwaG.png"> Passo a passo</div>
                     <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
                     Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
+                </div>
+                <div class="col">
+                    <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/RaaOZjA.png"> Protocolos</div>
+                    <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
+                    que une direcionamentos de referências nacionais e internacionais.</div>
                 </div>
             </div>
             </div>
@@ -101,7 +101,7 @@ def  genSimulationResult():
                             <div class="card-title-section primary-span uppercase">EQUITATIVO</div>
                             <div class="text-small bold">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/8Ih89nm.png"> </div>
                                 <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -109,29 +109,28 @@ def  genSimulationResult():
                                 <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/DKFwj7Z.png"> </div>
                                 <div class="div2"> <span class="card-number">100</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
                                 <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
                                 <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
-                            <br>
                         </div>
                         <div class="card-simulator blue-bg minor-padding">
                             <div class="card-title-section primary-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 350 </div>
                                 <div class="div3 bold"> máscaras </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 4.2 </div>
                                 <div class="div3 bold"> litros de álcool em gel </div>
                             </div>
@@ -142,7 +141,7 @@ def  genSimulationResult():
                             <div class="card-title-section">PRIORITÁRIO</div>
                             <div class="text-small">Máximo de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/8Ih89nm.png"> </div>
                                 <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -150,7 +149,7 @@ def  genSimulationResult():
                                 <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/DKFwj7Z.png"> </div>
                                 <div class="div2"> <span class="card-number">100</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
@@ -161,17 +160,17 @@ def  genSimulationResult():
                         <div class="card-simulator primary-blue-bg minor-padding">
                             <div class="card-title-section light-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 350 </div>
                                 <div class="div3 bold"> máscaras </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
                                 <div class="div2 card-number"> 4.2 </div>
                                 <div class="div3 bold"> litros de álcool em gel </div>
                             </div>
@@ -315,7 +314,7 @@ def genPrepareContainer():
         <div class="container main-padding">
             <div class="title-section"> Prepare </div>
                 <div class="left-margin">
-                <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Ferramenta de verificação</div>
+                <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de verificação</div>
                 <div class="minor-padding">Montamos essa ferramenta para reporte do resultado da inspeção da Vigilância Sanitária 
                 nas unidades escolares e verifique se é necessário realizar alguma reforma pontual de adequação.</div>
                 <div>
@@ -333,13 +332,13 @@ def genMonitorContainer():
         <div class="container main-padding">
             <div class="title-section"> Monitore </div>
             <div class="left-margin">
-                <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Plano de contigência</div>
+                <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/RsEH5W0.png"> Plano de contigência</div>
                 <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
                 <div>
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
-                <div class="text-title-section main-padding"> <img src="https://via.placeholder.com/60"> Ferramenta de notificação</div>
+                <div class="text-title-section main-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de notificação</div>
                 <div class="minor-padding">lorem ipsum.</div>
                 <div>
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
