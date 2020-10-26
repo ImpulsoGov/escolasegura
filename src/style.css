@@ -143,6 +143,9 @@
     color: var(--main-primary);
 }
 
+.text-padding{
+    padding-bottom: 10px;
+}
 
 .hero-container-content {
     margin-left: 3em;
