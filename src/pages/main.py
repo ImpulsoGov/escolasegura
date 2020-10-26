@@ -3,6 +3,7 @@ import yaml
 import utils
 import os
 import pandas as pd
+from ipywidgets import AppLayout, GridspecLayout
 
 
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
@@ -33,11 +34,11 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
 
 def read_data(country, config, endpoint):
-    if os.getenv("IS_LOCAL") == "TRUE":
-        api_url = config[country]["api"]["local"]
-    else:
-        api_url = config[country]["api"]["external"]
-
+    # if os.getenv("IS_LOCAL") == "TRUE":
+    #     api_url = config[country]["api"]["local"]
+    # else:
+    #     api_url = config[country]["api"]["external"]
+    api_url = config[country]["api"]["local"]
     url = api_url + endpoint
     df = pd.read_csv(url)
     return df
@@ -58,19 +59,13 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-
     session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     session_state.city_name = st.selectbox(
         "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
     )
     session_state.administrative_level = st.selectbox(
         "Nível de Administração",
-        utils.filter_place(
-            df,
-            "administrative_level",
-            city_name=session_state.city_name,
-            state_id=session_state.state_id,
-        ),
+        utils.filter_place(df, "administrative_level", state_id=session_state.state_id),
     )
 
 
@@ -103,7 +98,8 @@ def genPlanContainer():
     )
 
 
-def genSimulationResult():
+def genSimulationResult(number_students, number_teachers, number_classroms):
+
     st.write(
         f"""
         <div class="container main-padding">
@@ -169,8 +165,7 @@ def genSimulationResult():
     )
 
 
-def genSimulationContainer(session_state):
-
+def genSimulationContainer(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
@@ -180,7 +175,7 @@ def genSimulationContainer(session_state):
                             Uma parte essencial da reabertura é definir <b>quem pode retornar e como</b> - trazemos abaixo 2 modelos possíveis.
                         </div>
                     <div class="minor-padding">
-                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
+                        <div class="text-title-section minor-padding">Entenda os modelos de retorno </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
@@ -206,76 +201,121 @@ def genSimulationContainer(session_state):
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="text-title-section minor-padding"> Defina seu modelo de retorno </div>
-                        <div>
-                            <div class="minor-padding bold">1. Para qual etapa de ensino você está planejando?</div>
-                            <div>[Caixa de seleção]</div>
-                        </div>
-                        <div>
-                        <div class="main-padding bold">2. Utilize os filtros para os dados do Censo Escolar (2019):</div>
-                            <div class="row">
-                                <div class="col minor-padding">
-                                    <input type="checkbox" id="rural_schools">
-                                    <label for="rural_schools"> Apenas escolas rurais</label>
-                                </div>
-                                <div class="col minor-padding">
-                                    <input type="checkbox" id="in_water">
-                                    <label for="rural_schools"> Apenas escolas com água encanada</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="main-padding bold">3. Ou informe seus dados abaixo:</div>
-                        </div>
-                        <div class="minor-padding">
-                            <div class="row">
-                                <div class="col">
-                                    <p>Qual total de alunos da sua rede?</p>
-                                    [input textual]
-                                </div>
-                                <div class="col">
-                                    <p>Qual total de professores da sua rede?</p>
-                                    [input textual]
-                                </div>
-                                <div class="col">
-                                    <p>Qual total de sala de aulas na sua rede?</p>
-                                    [input textual]
-                                </div>
-                            </div>
-                        </div>
-                        <div class="main-padding bold">4.Escolha as condições de retorno:</div>
-                        <div class="minor-padding">
-                            <div class="row">
-                                <div class="col">
-                                    <p>% de alunos que retornam:</p>
-                                    [seletor slide]
-                                </div>
-                                <div class="col">
-                                    % de professores que retornam:
-                                    <br>
-                                    [seletor slide]
-                                </div>
-                                <div class="col">
-                                    <p>Máximo de alunos por sala:</p>
-                                    [seletor slide]
-                                </div>
-                            </div>
-                        </div>
-                    </div>             
-                </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.write(
+        f"""<br>
+            <div class="text-title-section minor-padding">Defina seu modelo de retorno</div><br>
+            <div>
+                <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # TODO: colocar por estado somente também
+    # if city_name:
+    data = df[
+        (df["city_name"] == session_state.city_name)
+        & (df["administrative_level"] == session_state.administrative_level)
+    ]
+
+    education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
+
+    data = data[data["education_phase"] == education_phase]
+
+    st.write(
+        f"""
+            <br><div class="text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    if "Sim" in data["school_location"].drop_duplicates().values:
+        rural = ["Sim" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
+
+        data = data[(data["school_location"] == rural)]
+
+    if "Sim" in data["school_public_water_supply"].drop_duplicates().values:
+        water_supply = [
+            "Sim" if st.checkbox("Apenas escolas com água encanada") else "Todos"
+        ][0]
+
+        data = data[(data["school_public_water_supply"] == water_supply)]
+
+    st.write(
+        f"""
+        <div class="main-padding bold">3) Ou informe seus dados abaixo:</div><br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    number_students = st.number_input(
+        "Qual total de alunos da sua rede?",
+        format="%d",
+        value=data["number_students"].values[0],
+        step=1,
+    )
+
+    number_teachers = st.number_input(
+        "Qual total de professores da sua rede?",
+        format="%d",
+        value=data["number_teachers"].values[0],
+        step=1,
+    )
+
+    number_classroms = st.number_input(
+        "Qual total de sala de aulas na sua rede?",
+        format="%d",
+        value=data["number_classroms"].values[0],
+        step=1,
+    )
+
+    st.write(
+        f"""
+        <div class="main-padding bold">4) Escolha as condições de retorno:</div><br>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
+    perc_students = st.slider(
+        "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
+    )
+    number_students = int(perc_students * number_students / 100)
+
+    st.write(
+        f"<i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>",
+        unsafe_allow_html=True,
+    )
+
+    perc_teachers = st.slider(
+        "Percentual de professores realizando atividades presenciais:", 0, 100, 100, 10
+    )
+    number_teachers = int(perc_teachers * number_teachers / 100)
+
+    st.write(
+        f"<i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>",
+        unsafe_allow_html=True,
+    )
+
+    max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+
+    st.write(
+        f"<i>Valor selecionado: {max_students} alunos por sala</i><br>",
+        unsafe_allow_html=True,
+    )
+
     if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
-        genSimulationResult()
+        genSimulationResult(number_students, number_teachers, number_classroms)
+
     utils.stylizeButton(
         name="SIMULAR RETORNO",
-        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )
@@ -345,7 +385,7 @@ def main(session_state):
     data = get_data(config)
     genSelectBox(data, session_state)
     genPlanContainer()
-    genSimulationContainer(session_state)
+    genSimulationContainer(data, session_state)
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()

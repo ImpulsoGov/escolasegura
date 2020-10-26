@@ -143,6 +143,9 @@
     color: var(--main-primary);
 }
 
+.text-padding{
+    padding-bottom: 10px;
+}
 
 .hero-container-content {
     margin-left: 3em;
@@ -198,7 +201,7 @@
 
 .two-cols-icon-text {
   display: grid;
-  grid-template-columns: minmax(120px, 25%) 1fr;
+  grid-template-columns: minmax(140px, 25%) 1fr;
   margin: 0.5em;
   justify-content: space-between;
 }
