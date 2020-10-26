@@ -58,7 +58,7 @@ def genSelectBox(df, config):
     user_input["state_id"] = st.selectbox("Estado", utils.filter_place(df, "state"))
     user_input["city_name"] = st.selectbox("Município", utils.filter_place(df, "city", state_id=user_input["state_id"]))
     user_input["administrative_level"] = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=user_input["state_id"]))    
-
+ 
 
 def genPlanContainer():
     st.write(
@@ -98,32 +98,42 @@ def  genSimulationResult():
                 <div class="row main-padding">
                     <div class="col">
                         <div class="card-simulator blue-bg">
-                            <div class="card-title-section primary-span">EQUITATIVO</div>
-                            <div class="text-small">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
-                            <div class="bold">
-                                <img src="https://via.placeholder.com/30">
-                                <span class="card-number">250</span> alunos retonam às aulas
+                            <div class="card-title-section primary-span uppercase">EQUITATIVO</div>
+                            <div class="text-small bold">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <div class="grid-container-simulation-type minor-padding">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number">250 </div>
+                                <div class="div3 bold"> alunos retornam às aulas </div>
+                                <div class="div4"> </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana </div>
                             </div>
-                            <div class="bold">
-                                <img src="https://via.placeholder.com/30">
-                                <span class="card-number">100</span> professores retornam
+                            <div class="grid-container-simulation-type">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2"> <span class="card-number">100</span> </div>
+                                <div class="div3 bold">  professores retornam </div>
+                                <div class="div4"> </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                             <br>
                         </div>
                         <div class="card-simulator blue-bg minor-padding">
-                            <div class="card-title-section primary-span">Materiais para compra</div>
-                            <br>
-                            <div class="bold">
-                                <img src="https://via.placeholder.com/30">
-                                <span class="card-number">350</span> máscaras
+                            <div class="card-title-section primary-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
+                            <div class="grid-container-simulation-material minor-padding">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 350 </div>
+                                <div class="div3 bold"> máscaras </div>
                             </div>
-                            <div class="bold">
-                                <img src="https://via.placeholder.com/30">
-                                <span class="card-number">3</span> termômetros
+                            <div class="grid-container-simulation-material">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 3 </div>
+                                <div class="div3 bold"> termômetros </div>
                             </div>
-                            <div class="bold">
-                                <img src="https://via.placeholder.com/30">
-                                <span class="card-number">4.2</span> litros de álcool em gel
+                            <div class="grid-container-simulation-material">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 4.2 </div>
+                                <div class="div3 bold"> litros de álcool em gel </div>
                             </div>
                         </div> 
                     </div>
@@ -131,11 +141,40 @@ def  genSimulationResult():
                         <div class="card-simulator dark-blue-bg light-span">
                             <div class="card-title-section">PRIORITÁRIO</div>
                             <div class="text-small">Máximo de alunos retorna 5 vezes por semana.</div>
-                            <br>
+                            <div class="grid-container-simulation-type minor-padding">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number">250 </div>
+                                <div class="div3 bold"> alunos retornam às aulas </div>
+                                <div class="div4"> </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana </div>
+                            </div>
+                            <div class="grid-container-simulation-type">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2"> <span class="card-number">100</span> </div>
+                                <div class="div3 bold">  professores retornam </div>
+                                <div class="div4"> </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana (6 horas/dia) </div>
+                            </div>
                         </div>
                         <div class="card-simulator primary-blue-bg minor-padding">
-                            <div class="card-title-section light-span">Materiais para compra</div>
-                            <br>
+                            <div class="card-title-section light-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
+                            <div class="grid-container-simulation-material minor-padding">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 350 </div>
+                                <div class="div3 bold"> máscaras </div>
+                            </div>
+                            <div class="grid-container-simulation-material">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 3 </div>
+                                <div class="div3 bold"> termômetros </div>
+                            </div>
+                            <div class="grid-container-simulation-material">
+                                <div class="div1"> <img src="https://via.placeholder.com/30"> </div>
+                                <div class="div2 card-number"> 4.2 </div>
+                                <div class="div3 bold"> litros de álcool em gel </div>
+                            </div>
                         </div>
                     </div>
                 </div>
