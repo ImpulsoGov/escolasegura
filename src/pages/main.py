@@ -5,7 +5,8 @@ import os
 import pandas as pd
 from ipywidgets import AppLayout, GridspecLayout
 
-def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
+
+def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
         header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span></a>"""
@@ -31,15 +32,17 @@ def genHeroSection(title1: str, title2: str, subtitle: str,header: bool):
         unsafe_allow_html=True,
     )
 
+
 def read_data(country, config, endpoint):
-    # if os.getenv("IS_LOCAL") == "TRUE":
-        # api_url = config[country]["api"]["local"]
-    # else:
-        # api_url = config[country]["api"]["external"]
-    api_url = config[country]["api"]["local"]
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
     url = api_url + endpoint
     df = pd.read_csv(url)
     return df
+
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
@@ -53,11 +56,12 @@ def genSelectBox(df, session_state):
             <div class="text-title-section"> Selecione sua rede </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     session_state.city_name = st.selectbox("Município", utils.filter_place(df, "city", state_id=session_state.state_id))
-    session_state.administrative_level = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=session_state.state_id))    
+    session_state.administrative_level = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=session_state.state_id)) 
+  
 
 
 def genPlanContainer():
@@ -85,11 +89,11 @@ def genPlanContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
-def  genSimulationResult():
+def genSimulationResult():
     st.write(
         f"""
         <div class="container main-padding">
@@ -151,7 +155,7 @@ def  genSimulationResult():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -161,32 +165,28 @@ def genSimulationContainer(df, session_state):
         <div class="container main-padding">
             <div class="subtitle-section"> Simule o retorno </div>
                 <div class="left-margin">
-                    <div class="bold minor-padding">Como calcular os recursos necessários para a retomada?</div>
-                    <div class="minor-padding">Uma parte essencial da reabertura é contabilizar 
-                    quais materiais devem ser providenciados para as escolas.</div>
+                        <div>
+                            Uma parte essencial da reabertura é definir <b>quem pode retornar e como</b> - trazemos abaixo 2 modelos possíveis.
+                        </div>
                     <div class="minor-padding">
                         <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
-                        <div>
-                            Uma parte essencial da reabertura é definir 
-                            <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
-                        </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
-                                    <div>
+                                    <div class="text-subdescription">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
-                                        que somente 1 dia. Atividades podem ser de reforço ou conteúdo.
+                                        que por 1 dia. Atividades podem ser de reforço ou conteúdo.
                                     </div>
                                 </div>
                             </div>
                             <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
-                                <div>
-                                    <b>Máximo de alunos retorna 5 vezes por semana.</b>
+                                <div class="text-subdescription">
+                                    <b>Máximo de alunos têm aula presencial 5 vezes por semana.</b>
                                     <p></p>
                                     Prioriza-se o fechamento do ciclo escolar, com maior tempo na escola para 
                                     esses alunos. Atividades podem ser de reforço ou conteúdo.
@@ -223,7 +223,7 @@ def genSimulationContainer(df, session_state):
         <div class="main-padding bold">3. Ou informe seus dados abaixo:</div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     total_alunos = st.number_input('Qual total de alunos da sua rede?', format='%d', value=0, step=1)
     total_professores = st.number_input('Qual total de professores da sua rede?', format='%d', value=0, step=1)
@@ -245,18 +245,18 @@ def genSimulationContainer(df, session_state):
 
     alunos_sala = st.slider('Máximo de alunos na sala de aula:', 0, 30)
     st.write(alunos_sala, ' alunos por sala')
-
     if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
     utils.stylizeButton(
         name="SIMULAR RETORNO",
-        #style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
+        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )
-    
+
+
 
 def genPrepareContainer():
     st.write(
@@ -273,8 +273,9 @@ def genPrepareContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def genMonitorContainer():
     st.write(
@@ -296,7 +297,7 @@ def genMonitorContainer():
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
 
@@ -308,16 +309,14 @@ def genFooterContainer():
             <br>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
+
 
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola",
-        title2="Segura",
-        subtitle="{descrição}",
-        header=True,
+        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
@@ -327,7 +326,7 @@ def main(session_state):
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()
-    
+
 
 if __name__ == "__main__":
     main()
