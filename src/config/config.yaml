@@ -1,0 +1,11 @@
+refresh_rate: 999999 # minutes
+
+br:
+    api:
+        external: http://datasource.coronacidades.org/
+        local: http://45.55.43.231:7000/
+        endpoints:
+            escolasegura:
+                city: "br/cities/safeschools/main"
+                students: "br/cities/safeschools/students"
+
