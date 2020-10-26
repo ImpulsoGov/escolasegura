@@ -201,7 +201,7 @@
 
 .two-cols-icon-text {
   display: grid;
-  grid-template-columns: minmax(120px, 25%) 1fr;
+  grid-template-columns: minmax(140px, 25%) 1fr;
   margin: 0.5em;
   justify-content: space-between;
 }
