@@ -245,8 +245,17 @@ def genSimulationContainer(df, session_state):
         """,
         unsafe_allow_html=True
     )
-    rural = st.checkbox('Apenas escolas rurais')
-    water_supply = st.checkbox('Apenas escolas com água encanada')
+    if "Rural" in data["school_location"].drop_duplicates().values:
+        rural = ["Rural" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
+
+        data = data[(data["school_location"] == rural)]
+
+    if "Sim" in data["school_public_water_supply"].drop_duplicates().values:
+        water_supply = [
+            "Sim" if st.checkbox("Apenas escolas com água encanada") else "Todos"
+        ][0]
+
+        data = data[(data["school_public_water_supply"] == water_supply)]
     st.write(
         f"""
         <div class="main-padding bold">3. Ou informe seus dados abaixo:</div>
