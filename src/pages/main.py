@@ -222,7 +222,7 @@ def genSimulationContainer(df, session_state):
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
-                                    <div>
+                                    <div class="text-subdescription">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
@@ -233,7 +233,7 @@ def genSimulationContainer(df, session_state):
                             <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
-                                <div>
+                                <div class="text-subdescription">
                                     <b>Número limitado de alunos retorna 5 vezes por semana.</b>
                                 <p></p>
                                 O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
