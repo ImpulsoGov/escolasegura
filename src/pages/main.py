@@ -84,7 +84,7 @@ def genPlanContainer():
                 </div>
                 <div class="col">
                     <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo a passo</div>
-                    <div class="minor-padding"><b>O que é?</b> Saiba quais etapas seguir para retomar as atividades presenciais na escola de sua rede.</div>
+                    <div class="minor-padding"><b>O que é?</b> Saiba quais etapas seguir para retomar as atividades presenciais na sua rede escolar.</div>
                 </div>
             </div>
             </div><br>
