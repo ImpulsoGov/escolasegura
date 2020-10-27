@@ -232,8 +232,8 @@ def genSimulationContainer(df, session_state):
         unsafe_allow_html=True,
     )
 
-    if "Sim" in data["school_location"].drop_duplicates().values:
-        rural = ["Sim" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
+    if "Rural" in data["school_location"].drop_duplicates().values:
+        rural = ["Rural" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
 
         data = data[(data["school_location"] == rural)]
 
