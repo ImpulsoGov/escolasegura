@@ -25,7 +25,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             </div>
             <div class="col">
                 <br><br><br>
-                <span class="hero-container-question main-grey-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
+                <span class="hero-container-question main-grey-span">Controle a Covid-19 e promova aulas presenciais seguras na rede pública.</span>
             </div>
         </div>
         """,
@@ -73,22 +73,23 @@ def genPlanContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">Planeje </div>
+            <div class="title-section">Planeje                
+                <p>Acesse ferramentas e conteúdos para planejar uma reabertura organizada e segura.</p>
+            </div><br>
             <div class="left-margin">
                 <div class="row">
                 <div class="col">
                     <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Protocolos</div>
-                    <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
-                    que une direcionamentos de referências nacionais e internacionais.</div>
+                    <div class="minor-padding"><b>O que é?</b> Lista de orientações para preparar sua estrutura sanitária e planejar rotinas seguras dentro e fora da sala de aula.</div>
                 </div>
                 <div class="col">
                     <div class="text-title-section  minor-padding"> <img src="https://via.placeholder.com/60"> Passo a passo</div>
-                    <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
-                    Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
+                    <div class="minor-padding"><b>O que é?</b> Saiba quais etapas seguir para retomar as atividades presenciais na escola de sua rede.</div>
                 </div>
             </div>
-            </div>
+            </div><br>
             <div class="subtitle-section"> Régua de protocolo </div>
+                <div class="minor-padding">Entenda quais protocolos adotar de acordo com o nível de alerta da Covid-19 em seu local.</div>
             <div class="minor-padding">
                 <img src="https://via.placeholder.com/300">
             </div>
@@ -170,35 +171,32 @@ def genSimulationContainer(df, session_state):
         f"""
         <div class="container main-padding">
             <div class="subtitle-section"> Simule o retorno </div>
-                <div class="left-margin">
-                        <div>
-                            Uma parte essencial da reabertura é definir <b>quem pode retornar e como</b> - trazemos abaixo 2 modelos possíveis.
-                        </div>
-                    <div class="minor-padding">
-                        <div class="text-title-section minor-padding">Entenda os modelos de retorno </div>
-                        <div class="row main-padding" style="grid-gap: 1rem;">
-                            <div class="col blue-bg card-simulator" style="border-radius:30px;">
-                                <div class="two-cols-icon-text">
-                                    <div class="card-title-section">EQUITATIVO</div>
-                                    <div class="text-subdescription">
-                                        <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
-                                        <p></p>
-                                        Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
-                                        que por 1 dia. Atividades podem ser de reforço ou conteúdo.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
+                <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada. 
+                Abaixo trazemos 2 possíveis modelos:</div>
+                <div class="minor-padding">
+                    <div class="text-title-section minor-padding">Entenda os modelos de retorno </div>
+                    <br><div class="row" style="grid-gap: 1rem; padding: 0rem 1rem 0rem;">
+                        <div class="col blue-bg card-simulator" style="border-radius:30px;">
                             <div class="two-cols-icon-text">
-                                <div class="card-title-section">PRIORITÁRIO</div>
+                                <div class="card-title-section">EQUITATIVO</div>
                                 <div class="text-subdescription">
-                                    <b>Máximo de alunos têm aula presencial 5 vezes por semana.</b>
+                                    <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                     <p></p>
-                                    Prioriza-se o fechamento do ciclo escolar, com maior tempo na escola para 
-                                    esses alunos. Atividades podem ser de reforço ou conteúdo.
+                                    O modelo prioriza que os alunos voltem para a escola de forma igualitária, 
+                                    mesmo que somente um dia na semana. Atividades podem ser de reforço ou conteúdo.
                                 </div>
                             </div>
+                        </div>
+                        <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
+                        <div class="two-cols-icon-text">
+                            <div class="card-title-section">PRIORITÁRIO</div>
+                            <div class="text-subdescription">
+                                <b>Número limitado de alunos retorna 5 vezes por semana.</b>
+                                <p></p>
+                                O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
+                                Atividades podem ser de reforço ou conteúdo.
                             </div>
+                        </div>
                         </div>
                     </div>
         """,
@@ -325,11 +323,12 @@ def genPrepareContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Prepare </div>
+            <div class="title-section">Prepare 
+            <p>Durante a reabertura, avalie se a sua unidade escolar está cumprindo todos os protocolos.</p>
+            </div>
                 <div class="left-margin">
                 <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Ferramenta de verificação</div>
-                <div class="minor-padding">Montamos essa ferramenta para reporte do resultado da inspeção da Vigilância Sanitária 
-                nas unidades escolares e verifique se é necessário realizar alguma reforma pontual de adequação.</div>
+                <div class="minor-padding"><b>O que é?</b> Preencha o formulário para conferir a adequação da sua unidade aos protocolos e receber orientações.</div>
                 <div>
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
@@ -344,11 +343,12 @@ def genMonitorContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Monitore </div>
+            <div class="title-section">Monitore
+                <p>Após a reabertura, monitore a Covid-19 e saiba o que fazer com o sugrimento de casos.</p>
+            </div>
             <div class="left-margin">
                 <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Plano de contigência</div>
-                <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
-                da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
+                <div class="minor-padding"><b>Há casos de Covid na escola?</b> Monte seu plano de ação a partir do fluxograma abaixo e implemente um sistema de monitoramento a partir da ferramenta.</div>
                 <div>
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
