@@ -112,7 +112,7 @@ def genPlanContainer(df, session_state):
     st.write(
         f"""
         <div class="container minor-padding">
-            <div class="text-title-section">{caption}</div>
+            {caption}
         </div>
         <div class="minor-padding">
             <img src={url}> 
