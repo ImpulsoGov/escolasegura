@@ -32,13 +32,13 @@ RUN set -x \
     # Create virtualenv
     && virtualenv -p python3 venv \
     #Downloads the hacked streamlit
-    && wget https://github.com/ImpulsoGov/streamlitlastversion/blob/main/builds/streamlit-0.69.2-py2.py3-none-any.whl?raw=true \
+    && wget https://github.com/ImpulsoGov/streamlitlastversion/raw/main/builds/streamlit-0.69.2-py2.py3-none-any.whl \
     # Install Python libs
     && . venv/bin/activate \
     && pip install --default-timeout=100 future \
     && pip install --upgrade -r requirements.txt \
     # Install streamlit
-    && pip install --no-cache-dir streamlit-0.69.2-py2.py3-none-any.whl?raw=true\
+    && pip install --no-cache-dir streamlit-0.69.2-py2.py3-none-any.whl\
     && python -m ipykernel install --user --name=venv
 ADD . ${USER_HOME}
 USER root
