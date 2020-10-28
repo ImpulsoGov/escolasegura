@@ -18,6 +18,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
         <div class="container row">
             <div class="col">
                 {header}
+                <br>
                 <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
                 <span class="hero-container-product main-blue-span">{title2}</span>
@@ -206,9 +207,11 @@ def genSimulationContainer(df, session_state):
     )
     st.write(
         f"""<br>
-            <div class="text-title-section minor-padding">Defina seu modelo de retorno</div><br>
-            <div>
-                <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
+            <div class="container">
+                <div class="text-title-section minor-padding">Defina seu modelo de retorno</div><br>
+                <div>
+                    <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
+                </div>
             </div>
         """,
         unsafe_allow_html=True,
@@ -227,7 +230,7 @@ def genSimulationContainer(df, session_state):
 
     st.write(
         f"""
-            <br><div class="text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
+            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
         """,
         unsafe_allow_html=True,
     )
@@ -246,7 +249,7 @@ def genSimulationContainer(df, session_state):
 
     st.write(
         f"""
-        <div class="main-padding bold">3) Ou informe seus dados abaixo:</div><br>
+        <div class="container main-padding bold">3) Ou informe seus dados abaixo:</div><br>
         </div>
         """,
         unsafe_allow_html=True,
@@ -275,7 +278,7 @@ def genSimulationContainer(df, session_state):
 
     st.write(
         f"""
-        <div class="main-padding bold">4) Escolha as condições de retorno:</div><br>
+        <div class="container main-padding bold">4) Escolha as condições de retorno:</div><br>
             </div>
         </div>
         """,
@@ -288,7 +291,10 @@ def genSimulationContainer(df, session_state):
     number_students = int(perc_students * number_students / 100)
 
     st.write(
-        f"<i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>",
+        f"""<div class="container">
+            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>
+            </div>
+        """,
         unsafe_allow_html=True,
     )
 
@@ -298,14 +304,20 @@ def genSimulationContainer(df, session_state):
     number_teachers = int(perc_teachers * number_teachers / 100)
 
     st.write(
-        f"<i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>",
-        unsafe_allow_html=True,
+        f"""<div class="container">
+        <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
+        </div>
+        """,unsafe_allow_html=True,
     )
 
     max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
 
     st.write(
-        f"<i>Valor selecionado: {max_students} alunos por sala</i><br>",
+        f"""<div class="container">
+            <i>Valor selecionado: {max_students} alunos por sala</i><br>
+            </div>
+            <br>
+        """,
         unsafe_allow_html=True,
     )
 

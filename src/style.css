@@ -131,7 +131,13 @@
       max-width: 1140px;
     }
   }
-
+  .reportview-container .main .block-container{
+    flex: 1 1;
+    max-width: 730px;
+    width: 100%;
+    padding: 1rem 1rem 1rem;
+    box-sizing: border-box;
+  }
 /*HEAD SECTION*/
 
 .logo-link {
