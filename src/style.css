@@ -254,6 +254,11 @@
   align-items: center;
 }
 
+/*images*/
+.images{
+  width:100%;
+}
+
 /*icons*/
 .icon{
   width:3rem;
