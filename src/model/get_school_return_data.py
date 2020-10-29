@@ -1,20 +1,16 @@
 from math import floor, ceil
 
-def get_school_return_projections(total_students, total_teachers, perc_students_returning, perc_teachers_returning, 
-                                  num_classrooms, selected_mode_return, max_students_per_class, config):
+def get_school_return_projections(num_students, num_teachers, num_classrooms, selected_mode_return, 
+                                  max_students_per_class, config):
     """ 
     Calculates projected number of students and teachers returning to school.
     
     Parameters
     ----------
-        total_students : int or float
-            Total number of students in the school system.
-        total_teachers : int or float
-            Total number of teachers in the school system.
-        perc_students_returning : int or float
-            Percentage of students allowed to return. Range 0-100.
-        perc_teachers_returning: int or float
-            Percentage of teachers allowed to return. Range 0-100.
+        num_students : int or float
+            Number of students allowed to return to school.
+        num_teachers : int or float
+            Number of teachers allowed to return to school.
         num_classrooms : int or float
             Number of classrooms available.
         selected_mode_return : string
@@ -39,10 +35,6 @@ def get_school_return_projections(total_students, total_teachers, perc_students_
     # Select Mode of Return
     modes = config["simule"]["class"]["lectures_per_student"]
     lectures_per_student = modes[selected_mode_return]
-    
-    # Determine number of students and faculty allowed to return
-    num_students = (total_students*perc_students_returning) // 100
-    num_teachers = (total_teachers*perc_teachers_returning) // 100
     
     # Calculate total number of lectures per week
     num_lectures = floor(hours_per_week / hours_per_lecture)
@@ -127,3 +119,44 @@ def get_school_return_supplies(num_returning_students, num_returning_teachers, s
     total_thermometers = ceil(num_returning_students / people_per_thermometer)
     
     return total_masks, total_sanitizer, total_thermometers
+
+def entrypoint(params, config):
+    """ 
+    Entrypoint to school return data.
+    
+    Parameters
+    ----------
+        params : dict
+            Dictionary with user input from frontend.
+        config : dict
+            Dictionary with fixed parameters.
+    
+    Returns
+    -------
+        school_return_data : dict
+            Dictionary with numbers of returning teachers, students and 
+            necessary protective equipment.
+
+    """
+
+    # Calculate Number of Returning Students and Teachers 
+    num_returning_students, num_returning_teachers = get_school_return_projections(params["num_returning_students"], 
+                                                                                   params["num_returning_teachers"],
+                                                                                   params["num_classrooms"], 
+                                                                                   params["selected_mode_return"], 
+                                                                                   params["max_students_per_class"], config)
+    # Calculate Amount of Required Protection Equipment 
+    total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(params["num_returning_students"], 
+                                                                                  params["num_returning_teachers"], 
+                                                                                  params["selected_mode_return"], 
+                                                                                  params["max_students_per_class"], config)
+    # Build School Return Data Dictionary
+    school_return_data = {
+        "num_returning_students" : num_returning_students,
+        "num_returning_teachers" : num_returning_teachers,
+        "total_masks" : total_masks,
+        "total_sanitizer" : total_sanitizer,
+        "total_thermometers" : total_thermometers
+    }
+
+    return school_return_data
