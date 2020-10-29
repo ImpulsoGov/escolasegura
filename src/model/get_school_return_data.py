@@ -122,7 +122,7 @@ def get_school_return_supplies(num_returning_students, num_returning_teachers, s
 
 def entrypoint(params, config):
     """ 
-    Entrypoint to school return data.
+    Entrypoint for school return data.
     
     Parameters
     ----------
@@ -134,7 +134,7 @@ def entrypoint(params, config):
     Returns
     -------
         school_return_data : dict
-            Dictionary with numbers of returning teachers, students and 
+            Dictionary with numbers of returning teachers, students, and 
             necessary protective equipment.
 
     """
