@@ -18,6 +18,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
         <div class="container row">
             <div class="col">
                 {header}
+                <br>
                 <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
                 <span class="hero-container-product main-blue-span">{title2}</span>
@@ -58,10 +59,29 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
-    session_state.city_name = st.selectbox("Município", utils.filter_place(df, "city", state_id=session_state.state_id))
-    session_state.administrative_level = st.selectbox("Nível de Administração",utils.filter_place(df,"administrative_level",state_id=session_state.state_id), index=2) 
-  
+    col1, col2, col3, col4 = st.beta_columns([0.25,0.5,.5,1])
+
+    with col1:
+        session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+    with col2:
+        session_state.city_name = st.selectbox(
+            "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+        )
+    with col3:
+        session_state.administrative_level = st.selectbox(
+            "Nível de Administração",
+            utils.filter_place(df, "administrative_level", state_id=session_state.state_id),
+        )
+    with col4:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
 
 
 def genPlanContainer(df, session_state):
@@ -92,36 +112,42 @@ def genPlanContainer(df, session_state):
         & (df["administrative_level"] == session_state.administrative_level)
     ]
     alert = data["overall_alert"].values[0]
-    if alert == "altíssimo":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
-    elif alert == "alto":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
-    elif alert == "moderado":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
-    elif alert == "novo normal":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+    if alert == 3.0:
+        href = "https://imgur.com/CYkwogu"
+        url = "https://i.imgur.com/CYkwogu.jpg"
+        caption = f"Seu nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+    elif alert == 2.0:
+        href = "https://imgur.com/tDJfCji"
+        url = "https://i.imgur.com/tDJfCji.jpg"
+        caption = f"Seu nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+    elif alert == 1.0:
+        href = "https://imgur.com/Oc6NzxW"
+        url = "https://i.imgur.com/Oc6NzxW.jpg"
+        caption = f"Seu nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+    elif alert == 0.0:
+        href = "https://imgur.com/bQwNgo7"
+        url = "https://i.imgur.com/bQwNgo7.jpg"
+        caption = f"Seu nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
-        url = "https://via.placeholder.com/300"
+        href = "https://imgur.com/tDJfCji.jpg"
+        url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
-
     st.write(
         f"""
         <div class="container minor-padding">
             {caption}
         </div>
         <div class="minor-padding">
-            <img src={url}> 
+            <a href={href}>
+                <img class="images" src={url}> 
+            </a>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def genSimulationResult():
+def genSimulationResult(number_students, number_teachers, number_classroms):
     st.write(
         f"""
         <div class="container main-padding">
@@ -269,20 +295,42 @@ def genSimulationContainer(df, session_state):
         unsafe_allow_html=True
     )
     st.write(
-        f"""
-            <div class="text-title-section minor-padding"> Defina seu modelo de retorno </div>
-            <div>
-                <div class="text-padding bold">1. Para qual etapa de ensino você está planejando?</div>
+        f"""<br>
+            <div class="container">
+                <div class="text-title-section minor-padding">Defina seu modelo de retorno</div><br>
+                <div>
+                    <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
+                </div>
             </div>
         """,
         unsafe_allow_html=True
     )
-    data = df[df["city_name"] == session_state.city_name]
-    data = df[df["administrative_level"] == session_state.administrative_level]
-    education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
+
+    # TODO: colocar por estado somente também
+    # if city_name:
+    data = df[
+        (df["city_name"] == session_state.city_name)
+        & (df["administrative_level"] == session_state.administrative_level)
+    ]
+    col1_1, col1_2= st.beta_columns([0.25,1])
+
+    with col1_1: 
+        education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
+
+        data = data[data["education_phase"] == education_phase]
+    with col1_2:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+
     st.write(
         f"""
-            <div class="text-padding bold">2. Utilize os filtros para os dados do Censo Escolar (2019):</div>
+            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
         """,
         unsafe_allow_html=True
     )
@@ -299,32 +347,125 @@ def genSimulationContainer(df, session_state):
         data = data[(data["school_public_water_supply"] == water_supply)]
     st.write(
         f"""
-        <div class="main-padding bold">3. Ou informe seus dados abaixo:</div>
+        <div class="container main-padding bold">3) Ou informe seus dados abaixo:</div><br>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    total_alunos = st.number_input('Qual total de alunos da sua rede?', format='%d', value=0, step=1)
-    total_professores = st.number_input('Qual total de professores da sua rede?', format='%d', value=0, step=1)
-    total_salas = st.number_input('Qual total de sala de aulas na sua rede?', format='%d', value=0, step=1)
+    col2_1, col2_2, col2_3, col2_4= st.beta_columns([0.4,0.4,0.4,0.5])
+
+    with col2_1:
+        number_students = st.number_input(
+            "Qual total de alunos da sua rede?",
+            format="%d",
+            value=data["number_students"].values[0],
+            step=1,
+        )
+
+    with col2_2:
+        number_teachers = st.number_input(
+            "Qual total de professores da sua rede?",
+            format="%d",
+            value=data["number_teachers"].values[0],
+            step=1,
+        )
+    
+    with col2_3:
+        number_classroms = st.number_input(
+            "Qual total de sala de aulas na sua rede?",
+            format="%d",
+            value=data["number_classroms"].values[0],
+            step=1,
+        )
+
+    with col2_4:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+
     st.write(
         f"""
-                <div class="main-padding bold">4.Escolha as condições de retorno:</div>
+        <div class="container main-padding bold">4) Escolha as condições de retorno:</div><br>
             </div>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
-    
-    alunos_porcentagem = st.slider('Alunos:', 0, 100)
-    st.write(alunos_porcentagem, '% dos alunos retornando')
-    
-    professores_porcentagem = st.slider('Professores:', 0, 100)
-    st.write(professores_porcentagem, '% dos professores retornando')
+    col3_1, col3_2, col3_3, col3_4, col3_5,col3_6= st.beta_columns([0.35,0.05,0.4,0.05,0.4,0.3])
 
-    alunos_sala = st.slider('Máximo de alunos na sala de aula:', 0, 30)
-    st.write(alunos_sala, ' alunos por sala')
-    if st.button("SIMULAR RETORNO"):
+    with col3_1:
+        perc_students = st.slider(
+            "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
+        )
+        number_students = int(perc_students * number_students / 100)
+
+        st.write(
+        f"""<div class="container">
+            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>
+            </div>
+        """,
+        unsafe_allow_html=True,
+        )
+    
+    with col3_2:
+        st.write(
+            f"""
+            <div class="container main-padding">
+                <br>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col3_3:
+        perc_teachers = st.slider(
+            "Percentual de professores realizando atividades presenciais:", 0, 100, 100, 10
+        )
+        number_teachers = int(perc_teachers * number_teachers / 100)
+
+        st.write(
+            f"""<div class="container">
+            <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
+            </div>
+            """,unsafe_allow_html=True,
+        )
+    
+    col3_4 = col3_2
+
+    with col3_5:
+        st.write(f"""<div class="minor-padding"> </div>""",unsafe_allow_html=True,)
+
+        max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+
+        st.write(
+            f"""<div class="container">
+                <i>Valor selecionado: {max_students} alunos por sala</i><br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    with col3_6:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with st.beta_expander("SIMULAR RETORNO"):
+        genSimulationResult(number_students, number_teachers, number_classroms)
+        
+
+    '''if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
@@ -333,7 +474,7 @@ def genSimulationContainer(df, session_state):
         # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
-    )
+    )'''
 
 
 
@@ -347,8 +488,9 @@ def genPrepareContainer():
                 <div class="left-margin">
                     <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de verificação</div>
                     <div class="minor-padding"><b>O que é?</b> Preencha o formulário para conferir a adequação da sua unidade aos protocolos e receber orientações.</div>
+                    <br>
                 <div>
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform?usp=sf_link" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform?usp=sf_link" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
             </div>
         </div>
@@ -365,19 +507,19 @@ def genMonitorContainer():
                 <p>Após a reabertura, monitore a Covid-19 e saiba o que fazer com o sugrimento de casos.</p>
             </div>
             <div class="left-margin">
-                <div class="text-title-section minor-padding"> <img src="https://via.placeholder.com/60"> Plano de contigência</div>
+                <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/RsEH5W0.png"> Plano de contigência</div>
                 <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
                 <div class="minor-padding">
                 <img src="https://via.placeholder.com/300">
                 </div>
-                <div>
+                <div class="minor-padding">
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
                 <div class="text-title-section main-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de notificação</div>
                 <div class="minor-padding">lorem ipsum.</div>
                 <div>
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
             </div>
         </div>
