@@ -26,7 +26,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             </div>
             <div class="col">
                 <br><br><br>
-                <span class="hero-container-question main-grey-span">Como preparar a minha rede escolar para um retorno presencial seguro?</span>
+                <span class="hero-container-question main-grey-span">Controle a Covid-19 e promova aulas presenciais seguras na rede pública.</span>
             </div>
         </div>
         """,
@@ -49,7 +49,6 @@ def read_data(country, config, endpoint):
 def get_data(config):
     df = read_data("br", config, "br/cities/safeschools/main")
     return df
-
 
 def genSelectBox(df, session_state):
     st.write(
@@ -85,29 +84,57 @@ def genSelectBox(df, session_state):
         
 
 
-def genPlanContainer():
+def genPlanContainer(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">Planeje </div>
+            <div class="title-section">Planeje                
+                <p>Acesse ferramentas e conteúdos para planejar uma reabertura organizada e segura.</p>
+            </div><br>
             <div class="left-margin">
                 <div class="row">
                 <div class="col">
                     <div class="text-title-section  minor-padding"> <img class="icon" src="https://i.imgur.com/y5hUwaG.png"> Passo a passo</div>
-                    <div class="minor-padding">Quais são as etapas para retomada de atividades presenciais nas escolas da sua rede? 
-                    Preparamos uma lista a partir da experiência de redes que já estão retornando suas atividades.</div>
+                    <div class="minor-padding"><b>O que é?</b> Saiba quais etapas seguir para retomar as atividades presenciais na sua rede escolar.</div>
                 </div>
                 <div class="col">
                     <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/RaaOZjA.png"> Protocolos</div>
-                    <div class="minor-padding">Encontre uma planilha de procedimentos e adaptações estruturais sanitárias, 
-                    que une direcionamentos de referências nacionais e internacionais.</div>
+                    <div class="minor-padding"><b>O que é?</b> Lista de orientações para preparar sua estrutura sanitária e planejar rotinas seguras dentro e fora da sala de aula.</div>
                 </div>
             </div>
-            </div>
+            </div><br>
             <div class="subtitle-section"> Régua de protocolo </div>
-            <div class="minor-padding">
-                <img src="https://via.placeholder.com/300">
-            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    data = df[
+        (df["city_name"] == session_state.city_name)
+        & (df["administrative_level"] == session_state.administrative_level)
+    ]
+    alert = data["overall_alert"].values[0]
+    if alert == "altíssimo":
+        url = "https://via.placeholder.com/300"
+        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+    elif alert == "alto":
+        url = "https://via.placeholder.com/300"
+        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+    elif alert == "moderado":
+        url = "https://via.placeholder.com/300"
+        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+    elif alert == "novo normal":
+        url = "https://via.placeholder.com/300"
+        caption = f"Seu nível de alerta é: <b>{alert}</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+    else:
+        url = "https://via.placeholder.com/300"
+        caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
+
+    st.write(
+        f"""
+        <div class="container minor-padding">
+            {caption}
+        </div>
+        <div class="minor-padding">
+            <img src={url}> 
         </div>
         """,
         unsafe_allow_html=True,
@@ -115,7 +142,6 @@ def genPlanContainer():
 
 
 def genSimulationResult(number_students, number_teachers, number_classroms):
-
     st.write(
         f"""
         <div class="container main-padding">
@@ -225,20 +251,21 @@ def genSimulationContainer(df, session_state):
         <div class="container main-padding">
             <div class="subtitle-section"> Simule o retorno </div>
                 <div class="left-margin">
-                    <div class="bold minor-padding">Como calcular os recursos necessários para a retomada?</div>
-                    <div class="minor-padding">Uma parte essencial da reabertura é contabilizar 
-                    quais materiais devem ser providenciados para as escolas.</div>
+                    <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
+                    Abaixo trazemos 2 possíveis modelos:</div>
                     <div class="minor-padding">
                         <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
                         <div>
                             Uma parte essencial da reabertura é definir 
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
                         </div>
+                    <div class="minor-padding">
+                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col blue-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
-                                    <div>
+                                    <div class="text-subdescription">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
@@ -249,18 +276,17 @@ def genSimulationContainer(df, session_state):
                             <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
-                                <div>
-                                    <b>Máximo de alunos retorna 5 vezes por semana.</b>
-                                    <p></p>
-                                    Prioriza-se o fechamento do ciclo escolar, com maior tempo na escola para 
-                                    esses alunos. Atividades podem ser de reforço ou conteúdo.
-                                </div>
+                                <div class="text-subdescription">
+                                    <b>Número limitado de alunos retorna 5 vezes por semana.</b>
+                                <p></p>
+                                O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
+                                Atividades podem ser de reforço ou conteúdo.
                             </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
         """,
-        unsafe_allow_html=True,
+        unsafe_allow_html=True
     )
     st.write(
         f"""<br>
@@ -271,7 +297,7 @@ def genSimulationContainer(df, session_state):
                 </div>
             </div>
         """,
-        unsafe_allow_html=True,
+        unsafe_allow_html=True
     )
 
     # TODO: colocar por estado somente também
@@ -300,9 +326,8 @@ def genSimulationContainer(df, session_state):
         f"""
             <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
         """,
-        unsafe_allow_html=True,
+        unsafe_allow_html=True
     )
-
     if "Rural" in data["school_location"].drop_duplicates().values:
         rural = ["Rural" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
 
@@ -314,7 +339,6 @@ def genSimulationContainer(df, session_state):
         ][0]
 
         data = data[(data["school_public_water_supply"] == water_supply)]
-
     st.write(
         f"""
         <div class="container main-padding bold">3) Ou informe seus dados abaixo:</div><br>
@@ -438,26 +462,29 @@ def genSimulationContainer(df, session_state):
     '''if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
-        genSimulationResult(number_students, number_teachers, number_classroms)
-
+        genSimulationResult()
     utils.stylizeButton(
         name="SIMULAR RETORNO",
+        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )'''
+
 
 
 def genPrepareContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Prepare </div>
+            <div class="title-section">Prepare 
+            <p>Durante a reabertura, avalie se a sua unidade escolar está cumprindo todos os protocolos.</p>
+            </div>
                 <div class="left-margin">
-                <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de verificação</div>
-                <div class="minor-padding">Montamos essa ferramenta para reporte do resultado da inspeção da Vigilância Sanitária 
-                nas unidades escolares e verifique se é necessário realizar alguma reforma pontual de adequação.</div>
+                    <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de verificação</div>
+                    <div class="minor-padding"><b>O que é?</b> Preencha o formulário para conferir a adequação da sua unidade aos protocolos e receber orientações.</div>
+                    <br>
                 <div>
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform?usp=sf_link" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
             </div>
         </div>
@@ -470,18 +497,23 @@ def genMonitorContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> Monitore </div>
+            <div class="title-section">Monitore
+                <p>Após a reabertura, monitore a Covid-19 e saiba o que fazer com o sugrimento de casos.</p>
+            </div>
             <div class="left-margin">
                 <div class="text-title-section minor-padding"> <img class="icon" src="https://i.imgur.com/RsEH5W0.png"> Plano de contigência</div>
                 <div class="minor-padding">É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
-                <div>
+                <div class="minor-padding">
+                <img src="https://via.placeholder.com/300">
+                </div>
+                <div class="minor-padding">
                 <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
                 <div class="text-title-section main-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de notificação</div>
                 <div class="minor-padding">lorem ipsum.</div>
                 <div>
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
             </div>
         </div>
@@ -510,7 +542,7 @@ def main(session_state):
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
     genSelectBox(data, session_state)
-    genPlanContainer()
+    genPlanContainer(data, session_state)
     genSimulationContainer(data, session_state)
     genPrepareContainer()
     genMonitorContainer()
