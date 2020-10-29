@@ -112,29 +112,35 @@ def genPlanContainer(df, session_state):
         & (df["administrative_level"] == session_state.administrative_level)
     ]
     alert = data["overall_alert"].values[0]
-    if alert == "altíssimo":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
-    elif alert == "alto":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
-    elif alert == "moderado":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
-    elif alert == "novo normal":
-        url = "https://via.placeholder.com/300"
-        caption = f"Seu nível de alerta é: <b>{alert}</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+    if alert == 3.0:
+        href = "https://imgur.com/CYkwogu"
+        url = "https://i.imgur.com/CYkwogu.jpg"
+        caption = f"Seu nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+    elif alert == 2.0:
+        href = "https://imgur.com/tDJfCji"
+        url = "https://i.imgur.com/tDJfCji.jpg"
+        caption = f"Seu nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+    elif alert == 1.0:
+        href = "https://imgur.com/Oc6NzxW"
+        url = "https://i.imgur.com/Oc6NzxW.jpg"
+        caption = f"Seu nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+    elif alert == 0.0:
+        href = "https://imgur.com/bQwNgo7"
+        url = "https://i.imgur.com/bQwNgo7.jpg"
+        caption = f"Seu nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
-        url = "https://via.placeholder.com/300"
+        href = "https://imgur.com/tDJfCji.jpg"
+        url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
-
     st.write(
         f"""
         <div class="container minor-padding">
             {caption}
         </div>
         <div class="minor-padding">
-            <img src={url}> 
+            <a href={href}>
+                <img class="images" src={url}> 
+            </a>
         </div>
         """,
         unsafe_allow_html=True,
