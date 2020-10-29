@@ -158,7 +158,8 @@
   }
 
   .streamlit-expanderHeader{
-    color:var(--main-orange);
+    background-color:var(--main-orange);
+    color: var(--main-white);
     font-weight: bold;
     width: 200px;
     border: solid;
@@ -171,15 +172,36 @@
 
   .st-cq{
     border-top-style: none;
-    color: var(--main-orange);
   }
-
+  
   .st-cl{
     -webkit-box-align: center;
     align-items: center;
   }
 
+  .st-cw:hover {
+    border-bottom-color: var(--main-light-blue);
+  }
+  
+.st-cv:hover {
+  color: var(--main-white);
+}
 
+.st-ea:hover {
+  border-bottom-color: var(--main-light-blue);
+}
+.st-e9:hover {
+  color:  var(--main-white);
+}
+
+.streamlit-expanderHeader:hover{
+  color:  var(--main-white);
+  fill: var(--main-light-blue);
+}
+
+.st-cm:hover {
+  border-bottom-color:  var(--main-light-blue);
+}
 /*HEAD SECTION*/
 
 .logo-link {
