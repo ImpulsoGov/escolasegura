@@ -8,6 +8,8 @@ import pages.main as es
 
 import utils
 
+st.beta_set_page_config(layout="wide")
+
 def main():
     # SESSION STATE
     time.sleep(
