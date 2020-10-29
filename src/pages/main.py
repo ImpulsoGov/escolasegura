@@ -421,12 +421,21 @@ def genSimulationContainer(df, session_state):
             unsafe_allow_html=True,
         )
     
-    col3_6 = col3_2
+    with col3_6:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
 
+    with st.beta_expander("SIMULAR RETORNO"):
+        genSimulationResult(number_students, number_teachers, number_classroms)
+        
 
-    
-
-    if st.button("SIMULAR RETORNO"):
+    '''if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
             pass
         genSimulationResult(number_students, number_teachers, number_classroms)
@@ -435,7 +444,7 @@ def genSimulationContainer(df, session_state):
         name="SIMULAR RETORNO",
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
-    )
+    )'''
 
 
 def genPrepareContainer():
