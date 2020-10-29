@@ -138,6 +138,10 @@
     padding: 1rem 1rem 1rem;
     box-sizing: border-box;
   }
+
+  .stSelectbox{
+    width:150px;
+  }
 /*HEAD SECTION*/
 
 .logo-link {

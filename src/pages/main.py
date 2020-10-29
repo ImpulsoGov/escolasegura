@@ -60,14 +60,29 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
-    session_state.city_name = st.selectbox(
-        "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
-    )
-    session_state.administrative_level = st.selectbox(
-        "Nível de Administração",
-        utils.filter_place(df, "administrative_level", state_id=session_state.state_id),
-    )
+    col1, col2, col3, col4 = st.beta_columns([0.25,0.5,.5,1])
+
+    with col1:
+        session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+    with col2:
+        session_state.city_name = st.selectbox(
+            "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+        )
+    with col3:
+        session_state.administrative_level = st.selectbox(
+            "Nível de Administração",
+            utils.filter_place(df, "administrative_level", state_id=session_state.state_id),
+        )
+    with col4:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
+        
 
 
 def genPlanContainer():
@@ -223,10 +238,21 @@ def genSimulationContainer(df, session_state):
         (df["city_name"] == session_state.city_name)
         & (df["administrative_level"] == session_state.administrative_level)
     ]
+    col1_1, col1_2= st.beta_columns([0.25,1])
 
-    education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
+    with col1_1: 
+        education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
 
-    data = data[data["education_phase"] == education_phase]
+        data = data[data["education_phase"] == education_phase]
+    with col1_2:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
 
     st.write(
         f"""
@@ -254,27 +280,41 @@ def genSimulationContainer(df, session_state):
         """,
         unsafe_allow_html=True,
     )
+    col2_1, col2_2, col2_3, col2_4= st.beta_columns([0.4,0.4,0.4,0.5])
 
-    number_students = st.number_input(
-        "Qual total de alunos da sua rede?",
-        format="%d",
-        value=data["number_students"].values[0],
-        step=1,
-    )
+    with col2_1:
+        number_students = st.number_input(
+            "Qual total de alunos da sua rede?",
+            format="%d",
+            value=data["number_students"].values[0],
+            step=1,
+        )
 
-    number_teachers = st.number_input(
-        "Qual total de professores da sua rede?",
-        format="%d",
-        value=data["number_teachers"].values[0],
-        step=1,
-    )
+    with col2_2:
+        number_teachers = st.number_input(
+            "Qual total de professores da sua rede?",
+            format="%d",
+            value=data["number_teachers"].values[0],
+            step=1,
+        )
+    
+    with col2_3:
+        number_classroms = st.number_input(
+            "Qual total de sala de aulas na sua rede?",
+            format="%d",
+            value=data["number_classroms"].values[0],
+            step=1,
+        )
 
-    number_classroms = st.number_input(
-        "Qual total de sala de aulas na sua rede?",
-        format="%d",
-        value=data["number_classroms"].values[0],
-        step=1,
-    )
+    with col2_4:
+        st.write(
+        f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+        )
 
     st.write(
         f"""
@@ -284,42 +324,65 @@ def genSimulationContainer(df, session_state):
         """,
         unsafe_allow_html=True,
     )
+    col3_1, col3_2, col3_3, col3_4, col3_5,col3_6= st.beta_columns([0.35,0.05,0.4,0.05,0.4,0.3])
 
-    perc_students = st.slider(
-        "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
-    )
-    number_students = int(perc_students * number_students / 100)
+    with col3_1:
+        perc_students = st.slider(
+            "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
+        )
+        number_students = int(perc_students * number_students / 100)
 
-    st.write(
+        st.write(
         f"""<div class="container">
             <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>
             </div>
         """,
         unsafe_allow_html=True,
-    )
-
-    perc_teachers = st.slider(
-        "Percentual de professores realizando atividades presenciais:", 0, 100, 100, 10
-    )
-    number_teachers = int(perc_teachers * number_teachers / 100)
-
-    st.write(
-        f"""<div class="container">
-        <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
-        </div>
-        """,unsafe_allow_html=True,
-    )
-
-    max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
-
-    st.write(
-        f"""<div class="container">
-            <i>Valor selecionado: {max_students} alunos por sala</i><br>
+        )
+    
+    with col3_2:
+        st.write(
+            f"""
+            <div class="container main-padding">
+                <br>
             </div>
-            <br>
-        """,
-        unsafe_allow_html=True,
-    )
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col3_3:
+        perc_teachers = st.slider(
+            "Percentual de professores realizando atividades presenciais:", 0, 100, 100, 10
+        )
+        number_teachers = int(perc_teachers * number_teachers / 100)
+
+        st.write(
+            f"""<div class="container">
+            <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
+            </div>
+            """,unsafe_allow_html=True,
+        )
+    
+    col3_4 = col3_2
+
+    with col3_5:
+        st.write(f"""<div class="minor-padding"> </div>""",unsafe_allow_html=True,)
+
+        max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+
+        st.write(
+            f"""<div class="container">
+                <i>Valor selecionado: {max_students} alunos por sala</i><br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
+    
+    col3_6 = col3_2
+
+
+    
 
     if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
