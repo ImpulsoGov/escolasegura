@@ -166,8 +166,8 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
         <div class="container main-padding">
                 <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
                 <div class="bold"> Metodologia </div>
-                <div class="row main-padding">
-                    <div class="col">
+                <div class="row">
+                    <div class="col main-padding">
                         <div class="card-simulator lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
                             <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
@@ -211,7 +211,7 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                             </div>
                         </div> 
                     </div>
-                    <div class="col">
+                    <div class="col main-padding">
                         <div class="card-simulator lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
                             <div>Máximo de alunos retorna 5 vezes por semana.</div>
@@ -583,7 +583,28 @@ def genFooterContainer():
         f"""
         <div class="container">
             <div class="text-title-footer main-padding"> Realizado por </div>
-            <br>
+            <div class="div-logo-footer row">
+                <div class="col main-padding">
+                <a href="https://www.impulsogov.com.br/">
+                    <img class="logo-footer"
+                    src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
+                    title="logo Impulso"/>
+                </a>
+                </div>
+                <div class="col main-padding">
+                <a href="https://fundacaolemann.org.br/">
+                    <img class="logo-footer"
+                    src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"
+                    tile="logo Lemann">
+                </a>            
+                <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral">
+                    <img class="logo-footer"
+                    src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
+                    title="logo BID">
+                </a>
+                </div>
+            </div>
+
         </div>
         """,
         unsafe_allow_html=True,
