@@ -11,28 +11,31 @@ from model.get_school_return_data import entrypoint
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
-        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span></a>"""
+        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
     else:
         header = """<br>"""
 
     st.write(
         f"""
-        <div class="container row">
-            <div class="col">
-                {header}
+        <div class="container">
+            {header}
+        <div class="grid-container-header">
+            <div class="div1-head">
+                <img class="img-logo-header" src="https://i.imgur.com/SJHwG4Z.png">
+            </div>
+            <div class="div2-head">
+                <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
-                <div>
-                    <img class="logo-image" src="https://i.imgur.com/9Mq2b7m.png" title="Freepik"> 
-                </div>
+                <span class="hero-container-product main-blue-span">{title2}</span>
                 <br><br>
             </div>
-            <div class="col">
-                <br><br><br>
-                <span class="hero-container-question main-grey-span">
+            <div class="div3-head">
+                <span class="hero-container-question">
                 Controle a Covid-19 e promova aulas presenciais seguras na rede pública.
                 </span>
             </div>
             <br>
+        </div>
         </div>
         """,
         unsafe_allow_html=True,
