@@ -120,7 +120,7 @@ def get_school_return_supplies(num_returning_students, num_returning_teachers, s
     
     return total_masks, total_sanitizer, total_thermometers
 
-def entrypoint(params, config):
+def entrypoint(params, config, modes=["equitative", "priority"]):
     """ 
     Entrypoint for school return data.
     
@@ -139,24 +139,28 @@ def entrypoint(params, config):
 
     """
 
-    # Calculate Number of Returning Students and Teachers 
-    num_returning_students, num_returning_teachers = get_school_return_projections(params["num_returning_students"], 
-                                                                                   params["num_returning_teachers"],
-                                                                                   params["num_classrooms"], 
-                                                                                   params["selected_mode_return"], 
-                                                                                   params["max_students_per_class"], config)
-    # Calculate Amount of Required Protection Equipment 
-    total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(params["num_returning_students"], 
-                                                                                  params["num_returning_teachers"], 
-                                                                                  params["selected_mode_return"], 
-                                                                                  params["max_students_per_class"], config)
-    # Build School Return Data Dictionary
-    school_return_data = {
-        "num_returning_students" : num_returning_students,
-        "num_returning_teachers" : num_returning_teachers,
-        "total_masks" : total_masks,
-        "total_sanitizer" : total_sanitizer,
-        "total_thermometers" : total_thermometers
-    }
+    school_return_data = dict()
+    for mode in modes:
+        # Calculate Number of Returning Students and Teachers 
+        num_returning_students, num_returning_teachers = get_school_return_projections(params["number_students"], 
+                                                                                    params["number_teachers"],
+                                                                                    params["number_classrooms"], 
+                                                                                    mode, 
+                                                                                    params["max_students_per_class"], 
+                                                                                    config)
+        # Calculate Amount of Required Protection Equipment 
+        total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(params["number_students"], 
+                                                                                    params["number_teachers"], 
+                                                                                    mode, 
+                                                                                    params["max_students_per_class"], 
+                                                                                    config)
+        # Build School Return Data Dictionary
+        school_return_data[mode] = {
+            "num_returning_students" : num_returning_students,
+            "num_returning_teachers" : num_returning_teachers,
+            "total_masks" : round(total_masks, 0),
+            "total_sanitizer" : round(total_sanitizer, 0),
+            "total_thermometers" : round(total_thermometers, 1)
+        }
 
     return school_return_data
