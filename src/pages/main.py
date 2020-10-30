@@ -288,7 +288,7 @@ def genSimulationContainer(df, config, session_state):
             <div class="text-title-section"> Simule o retorno </div>
                 <div >
                     <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
-                    Abaixo trazemos 2 possíveis modelos:</div>
+                    </div>
                     <div class="minor-padding">
                         <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
                             <div>
