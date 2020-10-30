@@ -352,6 +352,10 @@
   margin-right: 0.3em;
 }
 
+.logo-footer{
+  width:10rem;
+}
+
 /*sections*/
 .text-title-section{
   font-family: var(--main-title-font-family);
@@ -400,7 +404,7 @@
   font-weight: bold;
 }
 .text-small{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* cards */
@@ -415,30 +419,44 @@
   color: var(--main-orange);
 }
 
+.div-logo-footer{
+  display: grid;
+  place-items: center;
+}
+
 /* button */
 .reportview-container .markdown-text-container a {
   color:var(--main-orange);
 }
 
-.info-btn{
-  border: 1px solid var(--main-white);
-  box-sizing: border-box;
-  border-radius: 15px;
-  width: 150px;
-  padding: 0.5em;
-  text-transform: uppercase;
-  font-family: var(--main-subtitle-font-family);
-  background-color: var(--main-primary);
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  animation-name: fadein;
-  animation-duration: 3s;
-  margin-top: 1.5em;
+/*img*/
+.img-forms{
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  background: transparent no-repeat center;
+  background-size: cover;
 }
 
-.info-btn:hover {
-  background-color: var(--main-dark);
-  text-decoration: none;
-}
+.info-btn{	/*img*/
+  border: 1px solid var(--main-white);	.img-forms{
+  box-sizing: border-box;	  max-height: 100%;
+  border-radius: 15px;	  width: auto;
+  width: 150px;	  max-width: 100%;
+  padding: 0.5em;	  background: transparent no-repeat center;
+  text-transform: uppercase;	  background-size: cover;
+  font-family: var(--main-subtitle-font-family);	
+  background-color: var(--main-primary);	
+  font-weight: bold;	
+  text-align: center;	
+  text-decoration: none;	
+  font-size: 18px;	
+  animation-name: fadein;	
+  animation-duration: 3s;	
+  margin-top: 1.5em;	
+}	
+
+.info-btn:hover {	
+  background-color: var(--main-dark);	
+  text-decoration: none;	
+} 
