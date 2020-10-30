@@ -10,11 +10,9 @@
     --main-text-font-family: 'Roboto Condensed', sans-serif;
     --main-blue: #2b14ff;
     --main-orange: #ff9147;
-    --main-light-blue-green: #99ffd4;
-    --main-lighter-blue-green: #c1ffe5;
-    --main-grey: #5a5a5a;
-
     --main-light-blue: #99ffd4;
+    --main-blue-green: #4aeba8;
+    --main-grey: #5a5a5a;
     --main-primary: #0097A7;
     --main-dark: #3E758A;
     --main-light: #3b4e50;
@@ -23,7 +21,6 @@
     --main-white: #fff;
     --main-black: #252729;
     --main-primary-bg: #0096a70c;
-
     --main-margin: 2em;
     --main-item-margin: 1em;
     --main-padding: 2em;
@@ -41,7 +38,7 @@
   color: var(--main-grey);
 }
 .main-light-blue-green-span{
-  color: var(--main-light-blue-green);
+  color: var(--main-light-blue);
 }
 
 
@@ -65,10 +62,10 @@
   background: #AAE0EB;
 }
 .light-blue-green-bg{
-  background: var(--main-light-blue-green);
+  background: var(--main-blue-green);
 }
 .lighter-blue-green-bg{
-  background: var(--main-lighter-blue-green);
+  background: var(--main-light-blue);
 
 }
 
@@ -341,8 +338,9 @@
 }
 
 .square{
-  width:1.5rem;
-  height:1rem;
+  width:3rem;
+  height:2rem;
+  margin-right: 0.3em;
 }
 
 /*sections*/
