@@ -1,6 +1,11 @@
 import streamlit as st
 import time
 import os
+import yaml
+import requests
+
+def get_config(url=os.getenv("CONFIG_URL")):
+    return yaml.load(requests.get(url).text, Loader=yaml.FullLoader)
 
 def localCSS(filename):
     with open(filename) as f:

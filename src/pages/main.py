@@ -91,7 +91,7 @@ def genSelectBox(df, session_state):
         )
 
 
-def genPlanContainer(df, session_state):
+def genPlanContainer(df, config, session_state):
 
     data = df[
         (df["city_name"] == session_state.city_name)
@@ -122,6 +122,93 @@ def genPlanContainer(df, session_state):
         href = "https://imgur.com/CYkwogu"
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
+
+
+    farol_covid = utils.get_config(config["br"]["farolcovid"]["config"])["br"]["farolcovid"]
+    
+    situation_classification = farol_covid["rules"]["situation_classification"]["cuts"]
+    control_classification = farol_covid["rules"]["control_classification"]["cuts"]
+    capacity_classification = farol_covid["rules"]["capacity_classification"]["cuts"]
+    trust_classification = farol_covid["rules"]["trust_classification"]["cuts"]
+
+    date_update = farol_covid["date_update"]
+
+    modal = f"""
+    <a href="#entenda-mais" class="info-btn">Entenda a classificação dos níveis</a>
+    <div id="entenda-mais" class="info-modal-window">
+        <div>
+            <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+            <div style="margin: 10px 15px 15px 15px;">
+            <h1 class="primary-span">Valores de referência</h1>
+            <div style="font-size: 12px">
+                <b>Atualizado em</b>: {date_update}<br>
+            </div>
+            <div class="info-div-table">
+            <table class="info-table">
+            <tbody>
+                <tr>
+                    <td class="grey-bg"><strong>Dimensão</strong></td>
+                    <td class="grey-bg"><strong>Indicador</strong></td>
+                    <td class="grey-bg"><strong>Novo Normal</strong></td>
+                    <td class="grey-bg"><strong>Risco Moderado</strong></td>
+                    <td class="grey-bg"><strong>Risco Alto</strong></td>
+                    <td class="grey-bg"><strong>Risco Altíssimo</strong></td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                    <p><span>Situação da doença</span></p><br/>
+                    </td>
+                    <td><span>Novos casos diários (Média móvel 7 dias)</span></td>
+                    <td class="light-blue-bg bold"><span>x&lt;={situation_classification[1]}</span></td>
+                    <td class="light-yellow-bg bold"><span>{situation_classification[1]}&lt;x&lt;={situation_classification[2]}</span></td>
+                    <td class="light-orange-bg bold"><span>{situation_classification[2]}&lt;=x&lt;={situation_classification[3]}</span></td>
+                    <td class="light-red-bg bold"><span>x &gt;= {situation_classification[3]} </span></td>
+                </tr>
+                <tr>
+                    <td><span>Tendência de novos casos diários</span></td>
+                    <td class="lightgrey-bg" colspan="4"><span>Se crescendo*, mover para o nível mais alto</span></td>
+                </tr>
+                <tr>
+                    <td><span>Controle da doença</span></td>
+                    <td><span>Número de reprodução efetiva</span></td>
+                    <td class="light-blue-bg bold"><span>&lt;{control_classification[1]}</span></td>
+                    <td class="light-yellow-bg bold"><span>&lt;{control_classification[1]} - {control_classification[2]}&gt;</span></td>
+                    <td class="light-orange-bg bold"><span>&lt;{control_classification[2]} - {control_classification[3]}&gt;</span>&nbsp;</td>
+                    <td class="light-red-bg bold"><span>&gt;{control_classification[3]}</span></td>
+                </tr>
+                <tr>
+                    <td><span>Capacidade de respostas do sistema de saúde</span></td>
+                    <td><span>Projeção de tempo para ocupação total de leitos UTI</span></td>
+                    <td class="light-blue-bg bold">{capacity_classification[3]} - 90 dias</td>
+                    <td class="light-yellow-bg bold"><span>{capacity_classification[2]} - {capacity_classification[3]} dias</span></td>
+                    <td class="light-orange-bg bold"><span>{capacity_classification[1]} - {capacity_classification[2]} dias</span></td>
+                    <td class="light-red-bg bold"><span>{capacity_classification[0]} - {capacity_classification[1]} dias</span></td>
+                </tr>
+                <tr>
+                    <td><span>Confiança dos dados</span></td>
+                    <td><span>Subnotificação (casos <b>não</b> diagnosticados a cada 10 infectados)</span></td>
+                    <td class="light-blue-bg bold"><span>{int(trust_classification[0]*10)}&lt;=x&lt;{int(trust_classification[1]*10)}</span></td>
+                    <td class="light-yellow-bg bold"><span>{int(trust_classification[1]*10)}&lt;=x&lt;{int(trust_classification[2]*10)}</span></td>
+                    <td class="light-orange-bg bold"><span>{int(trust_classification[2]*10)}&lt;=x&lt;{int(trust_classification[3]*10)}</span></td>
+                    <td class="light-red-bg bold"><span>{int(trust_classification[3]*10)}&lt;=x&lt;=10</span></td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+            <div style="font-size: 12px">
+                * Como determinamos a tendência:
+                <ul class="sub"> 
+                    <li> Crescendo: caso o aumento de novos casos esteja acontecendo por pelo menos 5 dias. </li>
+                    <li> Descrescendo: caso a diminuição de novos casos esteja acontecendo por pelo menos 14 dias. </li>
+                    <li> Estabilizando: qualquer outra mudança. </li>
+                </ul>
+            </div>
+            <div style="font-size: 14px">
+                Para mais detalhes confira nossa página de Metodologia no FarolCovid</a>.
+            </div>
+            </div>
+        </div>
+    </div>"""
 
     st.write(
         f"""
@@ -167,7 +254,7 @@ def genPlanContainer(df, session_state):
                 <div class="minor-padding">
                     <b><i>O que é?</i> Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
                 </div>
-                <p>{caption}</p>
+                <p>{caption}</p>{modal}
                 </div>
                 <div class="minor-padding">
                     <a href={href}>
@@ -180,7 +267,6 @@ def genPlanContainer(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-
 
 def genSimulationResult(params, config):
 
@@ -675,7 +761,7 @@ def main(session_state):
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
     genSelectBox(data, session_state)
-    genPlanContainer(data, session_state)
+    genPlanContainer(data, config, session_state)
     genSimulationContainer(data, config, session_state)
     genPrepareContainer()
     genMonitorContainer()
