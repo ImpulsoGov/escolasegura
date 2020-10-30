@@ -19,7 +19,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             {header}
         <div class="grid-container-header">
             <div class="div1-head">
-                <img src="https://via.placeholder.com/100">
+                <img class="img-logo-header" src="https://via.placeholder.com/100">
             </div>
             <div class="div2-head">
                 <span class="hero-container-product main-blue-span">{title1}</span>

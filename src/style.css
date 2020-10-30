@@ -454,3 +454,8 @@
   background: transparent no-repeat center;
   background-size: cover;
 }
+
+.img-logo-header{
+  height: 100px;
+  width: 100px;
+}
