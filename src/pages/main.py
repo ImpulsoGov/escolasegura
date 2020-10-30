@@ -5,8 +5,6 @@ import os
 import pandas as pd
 from ipywidgets import AppLayout, GridspecLayout
 
-from model.get_school_return_data import entrypoint
-
 
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
@@ -68,15 +66,18 @@ def genSelectBox(df, session_state):
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     with col2:
+        options_city_name = utils.filter_place(df, "city", state_id=session_state.state_id)
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0]) 
         session_state.city_name = st.selectbox(
-            "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+            "Município", options_city_name, index=x
         )
     with col3:
+        options_adiminlevel = utils.filter_place(df, "administrative_level", state_id=session_state.state_id, city_name=session_state.city_name)
+        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
+        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0]) 
         session_state.administrative_level = st.selectbox(
-            "Nível de Administração",
-            utils.filter_place(
-                df, "administrative_level", state_id=session_state.state_id
-            ),
+            "Nível de Administração", options_adiminlevel, index=y
         )
     with col4:
         st.write(
@@ -96,26 +97,31 @@ def genPlanContainer(df, session_state):
         & (df["administrative_level"] == session_state.administrative_level)
     ]
 
-    alert = data["overall_alert"].values[0]
-    if alert == 3.0:
-        href = "https://imgur.com/CYkwogu"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+    if len(data["overall_alert"]) > 0:
+        alert = data["overall_alert"].values[0]
+        if session_state.city_name != "Todos":
+            cidade = session_state.city_name
+        else:
+            cidade = session_state.state_id
+        if alert == 3.0:
+            href = "https://imgur.com/CYkwogu"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, o nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
 
-    elif alert == 2.0:
-        href = "https://imgur.com/tDJfCji"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+        elif alert == 2.0:
+            href = "https://imgur.com/tDJfCji"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
 
-    elif alert == 1.0:
-        href = "https://imgur.com/Oc6NzxW"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+        elif alert == 1.0:
+            href = "https://imgur.com/Oc6NzxW"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
 
-    elif alert == 0.0:
-        href = "https://imgur.com/bQwNgo7"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+        elif alert == 0.0:
+            href = "https://imgur.com/bQwNgo7"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
         href = "https://imgur.com/CYkwogu"
         url = ""
@@ -162,10 +168,7 @@ def genPlanContainer(df, session_state):
     )
 
 
-def genSimulationResult(params, config):
-
-    result = entrypoint(params, config)
-
+def genSimulationResult(number_students, number_teachers, number_classroms):
     st.write(
         f"""
         <div class="container main-padding">
@@ -178,19 +181,19 @@ def genSimulationResult(params, config):
                             <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
-                                <div class="div2 card-number">{result["equitative"]["num_returning_students"]} </div>
+                                <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
-                                <div class="div5 card-number" style="font-size: 1.5rem"> 1x </div>
-                                <div class="div6"> por semana (2 horas/dia)</div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
-                                <div class="div2"> <span class="card-number">{result["equitative"]["num_returning_teachers"]}</span> </div>
-                                <div class="div3 bold"> professores retornam </div>
+                                <div class="div2"> <span class="card-number">100</span> </div>
+                                <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
-                                <div class="div5 card-number" style="font-size: 1.5rem"> 1x </div>
-                                <div class="div6"> por semana (8 horas/dia) </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                         </div>
                         <div class="card-simulator light-blue-green-bg minor-padding">
@@ -199,21 +202,20 @@ def genSimulationResult(params, config):
                             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
                             title="Freepik" />
                             </div>
-                            <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"></div>
-                                <div class="div2 card-number"> {result["equitative"]["total_masks"]} </div>
-                                <div class="div3 bold"> máscaras por semana</div>
+                                <div class="div2 card-number"> 350 </div>
+                                <div class="div3 bold"> máscaras (por semana) </div>
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> {result["equitative"]["total_thermometers"]} </div>
+                                <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> {result["equitative"]["total_sanitizer"]} </div>
-                                <div class="div3 bold"> litros de álcool em gel por semana</div>
+                                <div class="div2 card-number"> 4.2 </div>
+                                <div class="div3 bold"> litros de álcool em gel (por semana)</div>
                             </div>
                         </div> 
                     </div>
@@ -223,19 +225,19 @@ def genSimulationResult(params, config):
                             <div>Máximo de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
-                                <div class="div2 card-number">{result["priority"]["num_returning_students"]} </div>
+                                <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
-                                <div class="div5 card-number" style="font-size: 1.5rem"> 5x </div>
-                                <div class="div6"> por semana (2 horas/dia)</div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
-                                <div class="div2"> <span class="card-number">{result["priority"]["num_returning_teachers"]}</span> </div>
+                                <div class="div2"> <span class="card-number">100</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
-                                <div class="div5 card-number" style="font-size: 1.5rem"> 5x </div>
-                                <div class="div6"> por semana (8 horas/dia) </div>
+                                <div class="div5 card-number" style="font-size: 1.5rem"> 2x </div>
+                                <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                         </div>
                         <div class="card-simulator light-blue-green-bg minor-padding">
@@ -243,21 +245,20 @@ def genSimulationResult(params, config):
                             <img style="width:1rem;"
                             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
                             title="Freepik" /></div>
-                            <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> {result["priority"]["total_masks"]} </div>
-                                <div class="div3 bold" > máscaras por semana </div>
+                                <div class="div2 card-number"> 350 </div>
+                                <div class="div3 bold" > máscaras (por semana) </div>
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> {result["priority"]["total_thermometers"]} </div>
+                                <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> {result["priority"]["total_sanitizer"]} </div>
-                                <div class="div3 bold"> litros de álcool em gel por semana </div>
+                                <div class="div2 card-number"> 4.2 </div>
+                                <div class="div3 bold"> litros de álcool em gel (por semana) </div>
                             </div>
                         </div>
                     </div>
@@ -279,7 +280,7 @@ def genSimulationResult(params, config):
     )
 
 
-def genSimulationContainer(df, config, session_state):
+def genSimulationContainer(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
@@ -382,9 +383,8 @@ def genSimulationContainer(df, config, session_state):
     )
     col2_1, col2_2, col2_3, col2_4 = st.beta_columns([0.4, 0.4, 0.4, 0.5])
 
-    params = dict()
     with col2_1:
-        params["number_students"] = st.number_input(
+        number_students = st.number_input(
             "Qual total de alunos da sua rede?",
             format="%d",
             value=data["number_students"].values[0],
@@ -392,7 +392,7 @@ def genSimulationContainer(df, config, session_state):
         )
 
     with col2_2:
-        params["number_teachers"] = st.number_input(
+        number_teachers = st.number_input(
             "Qual total de professores da sua rede?",
             format="%d",
             value=data["number_teachers"].values[0],
@@ -400,7 +400,7 @@ def genSimulationContainer(df, config, session_state):
         )
 
     with col2_3:
-        params["number_classrooms"] = st.number_input(
+        number_classroms = st.number_input(
             "Qual total de sala de aulas na sua rede?",
             format="%d",
             value=data["number_classroms"].values[0],
@@ -433,11 +433,11 @@ def genSimulationContainer(df, config, session_state):
         perc_students = st.slider(
             "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
         )
-        params["number_students"] = int(perc_students * params["number_students"] / 100)
+        number_students = int(perc_students * number_students / 100)
 
         st.write(
             f"""<div class="container">
-            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(params["number_students"])} alunos no total.<br><hr>
+            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>
             </div>
         """,
             unsafe_allow_html=True,
@@ -461,11 +461,11 @@ def genSimulationContainer(df, config, session_state):
             100,
             10,
         )
-        params["number_teachers"] = int(perc_teachers * params["number_teachers"] / 100)
+        number_teachers = int(perc_teachers * number_teachers / 100)
 
         st.write(
             f"""<div class="container">
-            <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(params["number_teachers"])} professores no total.<br><hr>
+            <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
             </div>
             """,
             unsafe_allow_html=True,
@@ -478,11 +478,11 @@ def genSimulationContainer(df, config, session_state):
             f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
         )
 
-        params["max_students_per_class"] = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+        max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
 
         st.write(
             f"""<div class="container">
-                <i>Valor selecionado: {params["max_students_per_class"]} alunos por sala</i><br>
+                <i>Valor selecionado: {max_students} alunos por sala</i><br>
                 </div>
                 <br>
             """,
@@ -500,7 +500,7 @@ def genSimulationContainer(df, config, session_state):
         )
 
     with st.beta_expander("SIMULAR RETORNO"):
-        genSimulationResult(params, config)
+        genSimulationResult(number_students, number_teachers, number_classroms)
 
     '''if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
@@ -607,7 +607,7 @@ def main(session_state):
     data = get_data(config)
     genSelectBox(data, session_state)
     genPlanContainer(data, session_state)
-    genSimulationContainer(data, config, session_state)
+    genSimulationContainer(data, session_state)
     genPrepareContainer()
     genMonitorContainer()
     genFooterContainer()
