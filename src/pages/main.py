@@ -511,11 +511,23 @@ def genPrepareContainer():
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0zNTQuNjY5LDE2NC4wNTVjLTY1LjMyNiwwLTUwLjIyOC0yOS43NDMtOTguNjY5LTI5Ljc0M3MtMzMuMzQzLDI5Ljc0My05OC42NjksMjkuNzQzICBsMzAuNjQ5LDExMi4wNDloMTM2LjAzOEwzNTQuNjY5LDE2NC4wNTV6IiBmaWxsPSIjM2M0NzRkIiBkYXRhLW9yaWdpbmFsPSIjM2M0NzRkIiBjbGFzcz0iIj48L3BhdGg+CjxjaXJjbGUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBjeD0iMTExLjY4MiIgY3k9IjI2Ni4wMDciIHI9IjExMS42ODIiIGZpbGw9IiM1YTVhNWEiIGRhdGEtb3JpZ2luYWw9IiM0NjUwNTkiIGNsYXNzPSIiPjwvY2lyY2xlPgo8Y2lyY2xlIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgY3g9IjExMS42ODIiIGN5PSIyNjYuMDA3IiByPSI3Ni4yOTUiIGZpbGw9IiM5OWZmZDQiIGRhdGEtb3JpZ2luYWw9IiMzYWM3YjQiIGNsYXNzPSIiPjwvY2lyY2xlPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0xMzIuMjg5LDMyMS43MDRjLTQyLjEzNywwLTc2LjI5Ni0zNC4xNTktNzYuMjk2LTc2LjI5NmMwLTE1LjgwMiw0LjgwNS0zMC40ODMsMTMuMDMyLTQyLjY2MSAgYy0yMC4yOTQsMTMuNzEyLTMzLjYzNSwzNi45My0zMy42MzUsNjMuMjY0YzAsNDIuMTM3LDM0LjE1OSw3Ni4yOTYsNzYuMjk2LDc2LjI5NmMyNi4zMzUsMCw0OS41NTMtMTMuMzQyLDYzLjI2NC0zMy42MzUgIEMxNjIuNzcyLDMxNi45LDE0OC4wOTEsMzIxLjcwNCwxMzIuMjg5LDMyMS43MDR6IiBmaWxsPSIjMDBhZDk0IiBkYXRhLW9yaWdpbmFsPSIjMDBhZDk0IiBjbGFzcz0iIj48L3BhdGg+CjxjaXJjbGUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBjeD0iNDAwLjMxOCIgY3k9IjI2Ni4wMDciIHI9IjExMS42ODIiIGZpbGw9IiM1YTVhNWEiIGRhdGEtb3JpZ2luYWw9IiM0NjUwNTkiIGNsYXNzPSIiPjwvY2lyY2xlPgo8Y2lyY2xlIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgY3g9IjQwMC4zMTgiIGN5PSIyNjYuMDA3IiByPSI3Ni4yOTUiIGZpbGw9IiM5OWZmZDQiIGRhdGEtb3JpZ2luYWw9IiMzYWM3YjQiIGNsYXNzPSIiPjwvY2lyY2xlPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik00MjAuOTE5LDMyMS43MDRjLTQyLjEzNywwLTc2LjI5Ni0zNC4xNTktNzYuMjk2LTc2LjI5NmMwLTE1LjgwMiw0LjgwNS0zMC40ODMsMTMuMDMyLTQyLjY2MSAgYy0yMC4yOTQsMTMuNzEyLTMzLjYzNSwzNi45My0zMy42MzUsNjMuMjY0YzAsNDIuMTM3LDM0LjE1OSw3Ni4yOTYsNzYuMjk2LDc2LjI5NmMyNi4zMzUsMCw0OS41NTMtMTMuMzQyLDYzLjI2NC0zMy42MzUgIEM0NTEuNDAyLDMxNi45LDQzNi43MjIsMzIxLjcwNCw0MjAuOTE5LDMyMS43MDR6IiBmaWxsPSIjMDBhZDk0IiBkYXRhLW9yaWdpbmFsPSIjMDBhZDk0IiBjbGFzcz0iIj48L3BhdGg+CjxjaXJjbGUgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBjeD0iMjU2IiBjeT0iMTg2LjE5OSIgcj0iMTYuMzE1IiBmaWxsPSIjZmY5MTQ3IiBkYXRhLW9yaWdpbmFsPSIjZGE1YjY1IiBjbGFzcz0iIj48L2NpcmNsZT4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPC9nPjwvc3ZnPg=="
                     title="Freepik" />
                      Ferramenta de verificação</div>
-                    <div class="minor-padding"><b>O que é?</b> Preencha o formulário para conferir a adequação da sua unidade aos protocolos e receber orientações.</div>
                     <br>
-                <div>
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform?usp=sf_link" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
-                </div>
+                    <div class="grid-container-verification">
+                        <div class="div1-verification">
+                            <div>
+                            <span class="bold">O que é?</span> Preencha o formulário para conferir a adequação da sua unidade aos protocolos e receber orientações.
+                            <br>
+                            <span class="bold">Quem usa?</span>
+                            </div>
+                        </div>
+                        <div class="div2-verification">
+                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform">
+                            <img style="height: 100%; width: 100%;" src="https://i.imgur.com/gRSIBoh.png"> 
+                            <br>
+                            Clique
+                            </a>
+                        </div>
+                    </div>
             </div>
         </div>
         """,
