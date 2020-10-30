@@ -530,9 +530,7 @@ def genPrepareContainer():
                         </div>
                         <div class="div2-verification">
                             <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform">
-                            <img style="height: 100%; width: 100%;" src="https://i.imgur.com/gRSIBoh.png"> 
-                            <br>
-                            Clique
+                            <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
                             </a>
                         </div>
                     </div>
