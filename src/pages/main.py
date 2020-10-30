@@ -21,14 +21,16 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             <div class="col">
                 {header}
                 <br>
-                <span class="hero-container-product main-blue-span">{title1}</span>
-                <br>
-                <span class="hero-container-product main-blue-span">{title2}</span>
+                <div>
+                    <img class="logo-image" src="https://i.imgur.com/9Mq2b7m.png" title="Freepik"> 
+                </div>
                 <br><br>
             </div>
             <div class="col">
                 <br><br><br>
-                <span class="hero-container-question main-grey-span">Controle a Covid-19 e promova aulas presenciais seguras na rede pública.</span>
+                <span class="hero-container-question main-grey-span">
+                Controle a Covid-19 e promova aulas presenciais seguras na rede pública.
+                </span>
             </div>
             <br>
         </div>

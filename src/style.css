@@ -203,8 +203,12 @@
     text-decoration: none  !important;
 }
 
+.logo-image{
+  width: 30rem;
+}
+
 .logo-header{
-    font-size: 24px;
+    font-size: 28px;
     font-family: var(--main-title-font-family);
     color: var(--main-orange);
 }
@@ -239,8 +243,8 @@
 .hero-container-question {
   font-family: var(--main-subtitle-font-family);
   font-weight: lighter;
-  line-height: 0.5;
-  font-size: 24px;
+  line-height: 1.6;
+  font-size: 30px;
   text-align: center;
 }
 .hero-container-image {
@@ -352,6 +356,7 @@
 .text-title-section{
   font-family: var(--main-title-font-family);
   font-size: 24px;
+  font-weight: bold;
   color: var(--main-orange);
 }
 
