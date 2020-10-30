@@ -604,7 +604,9 @@ def genFooterContainer():
                 </a>
                 </div>
             </div>
-
+            <div class="container text-small main-padding">
+                Todo os ícones são do <a href="https://www.freepik.com/">Freepik </a> com permissão de uso mediante créditos.
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
