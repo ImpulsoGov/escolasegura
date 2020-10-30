@@ -28,6 +28,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
                 <br><br><br>
                 <span class="hero-container-question main-grey-span">Controle a Covid-19 e promova aulas presenciais seguras na rede pública.</span>
             </div>
+            <br>
         </div>
         """,
         unsafe_allow_html=True,
@@ -88,9 +89,9 @@ def genPlanContainer(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">Planeje                
-                <p>Acesse ferramentas e conteúdos para planejar uma reabertura organizada e segura.</p>
-            </div><br>
+            <div class="title-section"> <img class="square" src="https://i.imgur.com/gGIFS5N.png">Planeje  
+             <p>Acesse ferramentas e conteúdos para planejar uma reabertura organizada e segura.</p>              
+            </div>
             <div class="left-margin">
                 <div class="row">
                 <div class="col">
@@ -103,7 +104,7 @@ def genPlanContainer(df, session_state):
                 </div>
             </div>
             </div><br>
-            <div class="subtitle-section"> Régua de protocolo </div>
+            <div class="text-title-section"> Régua de protocolo </div>
         """,
         unsafe_allow_html=True,
     )
@@ -145,15 +146,15 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
     st.write(
         f"""
         <div class="container main-padding">
-            <div>
                 <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
+                <div class="bold"> Metodologia </div>
                 <div class="row main-padding">
                     <div class="col">
-                        <div class="card-simulator blue-bg">
-                            <div class="card-title-section primary-span uppercase">EQUITATIVO</div>
-                            <div class="text-small bold">Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                        <div class="card-simulator lighter-blue-green-bg">
+                            <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
+                            <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/8Ih89nm.png"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -161,7 +162,7 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                                 <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/DKFwj7Z.png"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
                                 <div class="div2"> <span class="card-number">100</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
@@ -169,31 +170,35 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                                 <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator blue-bg minor-padding">
-                            <div class="card-title-section primary-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
+                        <div class="card-simulator lighter-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
+                            <img style="width:1rem;"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                            title="Freepik" />
+                            </div>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"></div>
                                 <div class="div2 card-number"> 350 </div>
-                                <div class="div3 bold"> máscaras </div>
+                                <div class="div3 bold"> máscaras (por semana) </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
                                 <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
                                 <div class="div2 card-number"> 4.2 </div>
-                                <div class="div3 bold"> litros de álcool em gel </div>
+                                <div class="div3 bold"> litros de álcool em gel (por semana)</div>
                             </div>
                         </div> 
                     </div>
                     <div class="col">
-                        <div class="card-simulator dark-blue-bg light-span">
-                            <div class="card-title-section">PRIORITÁRIO</div>
-                            <div class="text-small">Máximo de alunos retorna 5 vezes por semana.</div>
+                        <div class="card-simulator light-blue-green-bg">
+                            <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
+                            <div>Máximo de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/8Ih89nm.png"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">250 </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -201,7 +206,7 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                                 <div class="div6"> por semana </div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img class="icon-cards" src="https://i.imgur.com/DKFwj7Z.png"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
                                 <div class="div2"> <span class="card-number">100</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
@@ -209,37 +214,41 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                                 <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator primary-blue-bg minor-padding">
-                            <div class="card-title-section light-span uppercase">Materiais para compra <img src="https://via.placeholder.com/20"></div>
+                        <div class="card-simulator light-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
+                            <img style="width:1rem;"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                            title="Freepik" /></div>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"> </div>
                                 <div class="div2 card-number"> 350 </div>
-                                <div class="div3 bold"> máscaras </div>
+                                <div class="div3 bold" > máscaras (por semana) </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
                                 <div class="div2 card-number"> 3 </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://via.placeholder.com/30"> </div>
+                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
                                 <div class="div2 card-number"> 4.2 </div>
-                                <div class="div3 bold"> litros de álcool em gel </div>
+                                <div class="div3 bold"> litros de álcool em gel (por semana) </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>               
             <div class="minor-padding">
-                <div class="minor-padding blue-bg" style="border-radius:5px;">
+                <div class="minor-padding lighter-blue-green-bg" style="border-radius:5px;">
                     <div style="padding:10px;">
-                        <img src="https://via.placeholder.com/40"> <b>Veja mais materiais necessários para compra 
+                        <img class = "icon-cards"
+                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                         title="Freepik" /> <b>Veja mais materiais necessários para compra 
                         <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0">
                         aqui</a>.</b>
                     </div>
                 </div>
             </div>
-        </div>
         """,
         unsafe_allow_html=True,
     )
@@ -249,20 +258,18 @@ def genSimulationContainer(df, session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="subtitle-section"> Simule o retorno </div>
-                <div class="left-margin">
+            <div class="text-title-section"> Simule o retorno </div>
+                <div >
                     <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
                     Abaixo trazemos 2 possíveis modelos:</div>
                     <div class="minor-padding">
-                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
-                        <div>
-                            Uma parte essencial da reabertura é definir 
-                            <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
-                        </div>
-                    <div class="minor-padding">
-                        <div class="text-title-section minor-padding"> Entenda os modelos de retorno </div>
+                        <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
+                            <div>
+                                Uma parte essencial da reabertura é definir 
+                                <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
+                            </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
-                            <div class="col blue-bg card-simulator" style="border-radius:30px;">
+                            <div class="col lighter-blue-green-bg card-simulator" style="border-radius:30px;">
                                 <div class="two-cols-icon-text">
                                     <div class="card-title-section">EQUITATIVO</div>
                                     <div class="text-subdescription">
@@ -273,7 +280,7 @@ def genSimulationContainer(df, session_state):
                                     </div>
                                 </div>
                             </div>
-                            <div class="col light-blue-bg light-span card-simulator" style="border-radius:30px">
+                            <div class="col light-blue-green-bg card-simulator" style="border-radius:30px">
                             <div class="two-cols-icon-text">
                                 <div class="card-title-section">PRIORITÁRIO</div>
                                 <div class="text-subdescription">
@@ -291,7 +298,7 @@ def genSimulationContainer(df, session_state):
     st.write(
         f"""<br>
             <div class="container">
-                <div class="text-title-section minor-padding">Defina seu modelo de retorno</div><br>
+                <div class="text-title-section minor-padding" style="font-size:20px">Defina seu modelo de retorno</div><br>
                 <div>
                     <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
                 </div>
@@ -476,7 +483,7 @@ def genPrepareContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">Prepare 
+            <div class="title-section"><img class="square" src="https://i.imgur.com/gGIFS5N.png">Prepare 
             <p>Durante a reabertura, avalie se a sua unidade escolar está cumprindo todos os protocolos.</p>
             </div>
                 <div class="left-margin">
@@ -497,7 +504,7 @@ def genMonitorContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">Monitore
+            <div class="title-section"><img class="square" src="https://i.imgur.com/gGIFS5N.png">Monitore
                 <p>Após a reabertura, monitore a Covid-19 e saiba o que fazer com o sugrimento de casos.</p>
             </div>
             <div class="left-margin">
@@ -506,9 +513,6 @@ def genMonitorContainer():
                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.</div>
                 <div class="minor-padding">
                 <img src="https://via.placeholder.com/300">
-                </div>
-                <div class="minor-padding">
-                <iframe class="container" src="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform?embedded=true" width="700" height="520" frameborder="0" marginheight="0" marginwidth="0">Carregando...</iframe>
                 </div>
                 <div class="text-title-section main-padding"> <img class="icon" src="https://i.imgur.com/goLh8rm.png"> Ferramenta de notificação</div>
                 <div class="minor-padding">lorem ipsum.</div>
