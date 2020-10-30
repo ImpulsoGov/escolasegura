@@ -70,15 +70,18 @@ def genSelectBox(df, session_state):
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     with col2:
+        options_city_name = utils.filter_place(df, "city", state_id=session_state.state_id)
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0]) 
         session_state.city_name = st.selectbox(
-            "Município", utils.filter_place(df, "city", state_id=session_state.state_id)
+            "Município", options_city_name, index=x
         )
     with col3:
+        options_adiminlevel = utils.filter_place(df, "administrative_level", state_id=session_state.state_id, city_name=session_state.city_name)
+        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
+        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0]) 
         session_state.administrative_level = st.selectbox(
-            "Nível de Administração",
-            utils.filter_place(
-                df, "administrative_level", state_id=session_state.state_id
-            ),
+            "Nível de Administração", options_adiminlevel, index=y
         )
     with col4:
         st.write(
@@ -91,6 +94,7 @@ def genSelectBox(df, session_state):
         )
 
 
+
 def genPlanContainer(df, session_state):
 
     data = df[
@@ -98,30 +102,36 @@ def genPlanContainer(df, session_state):
         & (df["administrative_level"] == session_state.administrative_level)
     ]
 
-    alert = data["overall_alert"].values[0]
-    if alert == 3.0:
-        href = "https://imgur.com/CYkwogu"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+    if len(data["overall_alert"]) > 0:
+        alert = data["overall_alert"].values[0]
+        if session_state.city_name != "Todos":
+            cidade = session_state.city_name
+        else:
+            cidade = session_state.state_id
+        if alert == 3.0:
+            href = "https://imgur.com/CYkwogu"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, o nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
 
-    elif alert == 2.0:
-        href = "https://imgur.com/tDJfCji"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+        elif alert == 2.0:
+            href = "https://imgur.com/tDJfCji"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
 
-    elif alert == 1.0:
-        href = "https://imgur.com/Oc6NzxW"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+        elif alert == 1.0:
+            href = "https://imgur.com/Oc6NzxW"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
 
-    elif alert == 0.0:
-        href = "https://imgur.com/bQwNgo7"
-        url = href + ".jpg"
-        caption = f"Seu nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+        elif alert == 0.0:
+            href = "https://imgur.com/bQwNgo7"
+            url = href + ".jpg"
+            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
         href = "https://imgur.com/CYkwogu"
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
+
 
     st.write(
         f"""
