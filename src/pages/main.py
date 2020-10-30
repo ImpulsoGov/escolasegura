@@ -9,26 +9,31 @@ from ipywidgets import AppLayout, GridspecLayout
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
-        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span></a>"""
+        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
     else:
         header = """<br>"""
 
     st.write(
         f"""
-        <div class="container row">
-            <div class="col">
-                {header}
-                <br>
+        <div class="container">
+            {header}
+        <div class="grid-container-header">
+            <div class="div1-head">
+                <img src="https://via.placeholder.com/100">
+            </div>
+            <div class="div2-head">
                 <span class="hero-container-product main-blue-span">{title1}</span>
                 <br>
                 <span class="hero-container-product main-blue-span">{title2}</span>
                 <br><br>
             </div>
-            <div class="col">
-                <br><br><br>
-                <span class="hero-container-question main-grey-span">Controle a Covid-19 e promova aulas presenciais seguras na rede pública.</span>
+            <div class="div3-head">
+                <span class="hero-container-question">
+                Controle a Covid-19 e promova aulas presenciais seguras na rede pública.
+                </span>
             </div>
             <br>
+        </div>
         </div>
         """,
         unsafe_allow_html=True,
