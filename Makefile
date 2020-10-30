@@ -35,7 +35,7 @@ docker-dev:
 	touch $(PWD)/.env
 	
 	docker run --rm -it \
-		--name escolapossivel-dev \
+		--name escolasegura \
 		-p 8001:8001 \
 		-p 5000:5000 \
 		-v $(PWD)/.env:/home/ubuntu/.env:ro \
@@ -56,7 +56,7 @@ docker-shell:
 # DEBUGING for staging environment
 docker-heroku-test: docker-build
 	docker run -it --rm \
-		--name escolasegura-dev \
+		--name escolasegura \
 		-e PORT=8080 \
 		-p 8080:8080 \
 		-p 5000:5000 \
