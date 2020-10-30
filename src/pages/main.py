@@ -51,6 +51,7 @@ def get_data(config):
     df = read_data("br", config, "br/cities/safeschools/main")
     return df
 
+
 def genSelectBox(df, session_state):
     st.write(
         f"""
@@ -60,7 +61,7 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col1, col2, col3, col4 = st.beta_columns([0.25,0.5,.5,1])
+    col1, col2, col3, col4 = st.beta_columns([0.25, 0.5, 0.5, 1])
 
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
@@ -71,18 +72,19 @@ def genSelectBox(df, session_state):
     with col3:
         session_state.administrative_level = st.selectbox(
             "Nível de Administração",
-            utils.filter_place(df, "administrative_level", state_id=session_state.state_id),
+            utils.filter_place(
+                df, "administrative_level", state_id=session_state.state_id
+            ),
         )
     with col4:
         st.write(
-        f"""
+            f"""
         <div class="container main-padding">
             <br>
         </div>
         """,
-        unsafe_allow_html=True,
+            unsafe_allow_html=True,
         )
-        
 
 
 def genPlanContainer(df, session_state):
@@ -178,7 +180,7 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                                 <div class="div6"> por semana (6 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator lighter-blue-green-bg minor-padding">
+                        <div class="card-simulator light-blue-green-bg minor-padding">
                             <div class="card-title-section main-blue-span uppercase">Materiais para compra 
                             <img style="width:1rem;"
                             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
@@ -202,7 +204,7 @@ def genSimulationResult(number_students, number_teachers, number_classroms):
                         </div> 
                     </div>
                     <div class="col">
-                        <div class="card-simulator light-blue-green-bg">
+                        <div class="card-simulator lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
                             <div>Máximo de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
@@ -301,7 +303,7 @@ def genSimulationContainer(df, session_state):
                         </div>
                     </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     st.write(
         f"""<br>
@@ -312,7 +314,7 @@ def genSimulationContainer(df, session_state):
                 </div>
             </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
 
     # TODO: colocar por estado somente também
@@ -321,27 +323,29 @@ def genSimulationContainer(df, session_state):
         (df["city_name"] == session_state.city_name)
         & (df["administrative_level"] == session_state.administrative_level)
     ]
-    col1_1, col1_2= st.beta_columns([0.25,1])
+    col1_1, col1_2 = st.beta_columns([0.25, 1])
 
-    with col1_1: 
-        education_phase = st.selectbox("", data["education_phase"].sort_values().unique())
+    with col1_1:
+        education_phase = st.selectbox(
+            "", data["education_phase"].sort_values().unique()
+        )
 
         data = data[data["education_phase"] == education_phase]
     with col1_2:
         st.write(
-        f"""
+            f"""
         <div class="container main-padding">
             <br>
         </div>
         """,
-        unsafe_allow_html=True,
+            unsafe_allow_html=True,
         )
 
     st.write(
         f"""
             <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True,
     )
     if "Rural" in data["school_location"].drop_duplicates().values:
         rural = ["Rural" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
@@ -361,7 +365,7 @@ def genSimulationContainer(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col2_1, col2_2, col2_3, col2_4= st.beta_columns([0.4,0.4,0.4,0.5])
+    col2_1, col2_2, col2_3, col2_4 = st.beta_columns([0.4, 0.4, 0.4, 0.5])
 
     with col2_1:
         number_students = st.number_input(
@@ -378,7 +382,7 @@ def genSimulationContainer(df, session_state):
             value=data["number_teachers"].values[0],
             step=1,
         )
-    
+
     with col2_3:
         number_classroms = st.number_input(
             "Qual total de sala de aulas na sua rede?",
@@ -389,12 +393,12 @@ def genSimulationContainer(df, session_state):
 
     with col2_4:
         st.write(
-        f"""
+            f"""
         <div class="container main-padding">
             <br>
         </div>
         """,
-        unsafe_allow_html=True,
+            unsafe_allow_html=True,
         )
 
     st.write(
@@ -405,7 +409,9 @@ def genSimulationContainer(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col3_1, col3_2, col3_3, col3_4, col3_5,col3_6= st.beta_columns([0.35,0.05,0.4,0.05,0.4,0.3])
+    col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
+        [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
+    )
 
     with col3_1:
         perc_students = st.slider(
@@ -414,13 +420,13 @@ def genSimulationContainer(df, session_state):
         number_students = int(perc_students * number_students / 100)
 
         st.write(
-        f"""<div class="container">
+            f"""<div class="container">
             <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(number_students)} alunos no total.<br><hr>
             </div>
         """,
-        unsafe_allow_html=True,
+            unsafe_allow_html=True,
         )
-    
+
     with col3_2:
         st.write(
             f"""
@@ -433,7 +439,11 @@ def genSimulationContainer(df, session_state):
 
     with col3_3:
         perc_teachers = st.slider(
-            "Percentual de professores realizando atividades presenciais:", 0, 100, 100, 10
+            "Percentual de professores realizando atividades presenciais:",
+            0,
+            100,
+            100,
+            10,
         )
         number_teachers = int(perc_teachers * number_teachers / 100)
 
@@ -441,13 +451,16 @@ def genSimulationContainer(df, session_state):
             f"""<div class="container">
             <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(number_teachers)} professores no total.<br><hr>
             </div>
-            """,unsafe_allow_html=True,
+            """,
+            unsafe_allow_html=True,
         )
-    
+
     col3_4 = col3_2
 
     with col3_5:
-        st.write(f"""<div class="minor-padding"> </div>""",unsafe_allow_html=True,)
+        st.write(
+            f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
+        )
 
         max_students = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
 
@@ -459,7 +472,7 @@ def genSimulationContainer(df, session_state):
             """,
             unsafe_allow_html=True,
         )
-    
+
     with col3_6:
         st.write(
             f"""<div class="container">
@@ -472,7 +485,6 @@ def genSimulationContainer(df, session_state):
 
     with st.beta_expander("SIMULAR RETORNO"):
         genSimulationResult(number_students, number_teachers, number_classroms)
-        
 
     '''if st.button("SIMULAR RETORNO"):
         if st.button("Esconder"):
@@ -484,7 +496,6 @@ def genSimulationContainer(df, session_state):
         style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
         session_state=session_state,
     )'''
-
 
 
 def genPrepareContainer():
