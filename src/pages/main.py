@@ -112,26 +112,26 @@ def genPlanContainer(df, session_state):
         else:
             cidade = session_state.state_id
         if alert == 3.0:
-            href = "https://i.imgur.com/CYkwogu.jpeg"
-            url = href + ".jpg"
+            href = "https://imgur.com/LJVEtmB"
+            url = href + ".png"
             caption = f"Em <b>{cidade}</b>, o nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
 
         elif alert == 2.0:
-            href = "https://i.imgur.com/tDJfCji.jpg"
-            url = href + ".jpg"
+            href = "https://imgur.com/onZbg2W"
+            url = href + ".png"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
 
         elif alert == 1.0:
-            href = "https://i.imgur.com/Oc6NzxW.jpeg"
-            url = href + ".jpg"
+            href = "https://imgur.com/QYYCMXz"
+            url = href + ".png"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
 
         elif alert == 0.0:
-            href = "https://i.imgur.com/bQwNgo7.jpg"
-            url = href + ".jpg"
+            href = "https://imgur.com/Y9tnAg4"
+            url = href + ".png"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
-        href = "https://i.imgur.com/CYkwogu.jpeg"
+        href = ""
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
 
@@ -183,7 +183,7 @@ def genPlanContainer(df, session_state):
                 <p>{caption}</p>
                 </div>
                 <div class="minor-padding">
-                    <a href={href} target="_blank">
+                    <a href={url} target="_blank">
                         <img class="images" src={href}> 
                     </a>
                 </div>
