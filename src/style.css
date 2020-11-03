@@ -184,9 +184,6 @@
 .st-ea:hover {
   border-bottom-color: var(--main-light-blue);
 }
-.st-e9:hover {
-  color:  var(--main-white);
-}
 
 .streamlit-expanderHeader:hover{
   color:  var(--main-white);
