@@ -112,26 +112,26 @@ def genPlanContainer(df, session_state):
         else:
             cidade = session_state.state_id
         if alert == 3.0:
-            href = "https://imgur.com/CYkwogu"
+            href = "https://i.imgur.com/CYkwogu.jpeg"
             url = href + ".jpg"
             caption = f"Em <b>{cidade}</b>, o nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
 
         elif alert == 2.0:
-            href = "https://imgur.com/tDJfCji"
+            href = "https://i.imgur.com/tDJfCji.jpg"
             url = href + ".jpg"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
 
         elif alert == 1.0:
-            href = "https://imgur.com/Oc6NzxW"
+            href = "https://i.imgur.com/Oc6NzxW.jpeg"
             url = href + ".jpg"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
 
         elif alert == 0.0:
-            href = "https://imgur.com/bQwNgo7"
+            href = "https://i.imgur.com/bQwNgo7.jpg"
             url = href + ".jpg"
             caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
     else:
-        href = "https://imgur.com/CYkwogu"
+        href = "https://i.imgur.com/CYkwogu.jpeg"
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
 
@@ -183,8 +183,8 @@ def genPlanContainer(df, session_state):
                 <p>{caption}</p>
                 </div>
                 <div class="minor-padding">
-                    <a href={href}>
-                        <img class="images" src={url}> 
+                    <a href={href} target="_blank">
+                        <img class="images" src={href}> 
                     </a>
                 </div>
                 </div>
@@ -302,7 +302,7 @@ def genSimulationResult(params, config):
                         <img class = "icon-cards"
                          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
                          title="Freepik" /> <b>Veja mais materiais necessários para compra 
-                        <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0">
+                        <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0" target="_blank">
                         aqui</a>.</b>
                     </div>
                 </div>
@@ -564,8 +564,8 @@ def genPrepareContainer():
                     title="Freepik" />
                      Ferramenta de verificação</div>
                     <br>
-                    <div class="grid-container-verification">
-                        <div class="div1-verification">
+                    <div class="row">
+                        <div class="col">
                             <div>
                             <b><i>O que é?</b></i><br>
                             Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
@@ -575,8 +575,8 @@ def genPrepareContainer():
                             <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.
                             </div>
                         </div>
-                        <div class="div2-verification">
-                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform">
+                        <div class="col">
+                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform" target="_blank">
                             <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
                             </a>
                         </div>
@@ -619,8 +619,8 @@ def genMonitorContainer():
                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI5OC42Njc5NjkgNDI2LjY2Nzk2OWMwIDQ3LjEyODkwNi0zOC4yMDcwMzEgODUuMzMyMDMxLTg1LjMzNTkzOCA4NS4zMzIwMzEtNDcuMTI4OTA2IDAtODUuMzMyMDMxLTM4LjIwMzEyNS04NS4zMzIwMzEtODUuMzMyMDMxIDAtNDcuMTI4OTA3IDM4LjIwMzEyNS04NS4zMzU5MzggODUuMzMyMDMxLTg1LjMzNTkzOCA0Ny4xMjg5MDcgMCA4NS4zMzU5MzggMzguMjA3MDMxIDg1LjMzNTkzOCA4NS4zMzU5Mzh6bTAgMCIgZmlsbD0iIzJiMTRmMCIgZGF0YS1vcmlnaW5hbD0iI2ZmYTAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2Mi44MzU5MzggMjU0LjMxNjQwNmMtNzIuMzIwMzEzLTEwLjMyODEyNS0xMjguMTY3OTY5LTcyLjUxNTYyNS0xMjguMTY3OTY5LTE0Ny42NDg0MzcgMC0yMS4zMzU5MzggNC41NjI1LTQxLjU3ODEyNSAxMi42NDg0MzctNTkuOTQ5MjE5LTEwLjkyMTg3NS0yLjU1ODU5NC0yMi4yNjk1MzEtNC4wNTA3ODEtMzMuOTg0Mzc1LTQuMDUwNzgxLTgyLjM0Mzc1IDAtMTQ5LjMzMjAzMSA2Ni45ODQzNzUtMTQ5LjMzMjAzMSAxNDkuMzMyMDMxdjU5LjQ3NjU2MmMwIDQyLjIxODc1LTE4LjQ5NjA5NCA4Mi4wNzAzMTMtNTAuOTQ1MzEyIDEwOS41MDM5MDctOC4yOTY4NzYgNy4wODIwMzEtMTMuMDU0Njg4IDE3LjQyOTY4Ny0xMy4wNTQ2ODggMjguMzUxNTYyIDAgMjAuNTg5ODQ0IDE2Ljc0NjA5NCAzNy4zMzU5MzggMzcuMzMyMDMxIDM3LjMzNTkzOGgzNTJjMjAuNTg5ODQ0IDAgMzcuMzM1OTM4LTE2Ljc0NjA5NCAzNy4zMzU5MzgtMzcuMzM1OTM4IDAtMTAuOTIxODc1LTQuNzU3ODEzLTIxLjI2OTUzMS0xMy4yNjk1MzEtMjguNTQyOTY5LTMxLjQ4ODI4Mi0yNi42NDQ1MzEtNDkuNzUtNjUuMzI0MjE4LTUwLjU2MjUtMTA2LjQ3MjY1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjZmZjMTA3IiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtNDkwLjY2Nzk2OSAxMDYuNjY3OTY5YzAgNTguOTEwMTU2LTQ3Ljc1NzgxMyAxMDYuNjY0MDYyLTEwNi42Njc5NjkgMTA2LjY2NDA2MnMtMTA2LjY2Nzk2OS00Ny43NTM5MDYtMTA2LjY2Nzk2OS0xMDYuNjY0MDYyYzAtNTguOTEwMTU3IDQ3Ljc1NzgxMy0xMDYuNjY3OTY5IDEwNi42Njc5NjktMTA2LjY2Nzk2OXMxMDYuNjY3OTY5IDQ3Ljc1NzgxMiAxMDYuNjY3OTY5IDEwNi42Njc5Njl6bTAgMCIgZmlsbD0iI2ZmOTE0NyIgZGF0YS1vcmlnaW5hbD0iI2Y0NDMzNiIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
                 title= "Freepik" />
                 Ferramenta de notificação</div>
-                <div class="grid-container-verification">
-                    <div class="div1-verification">
+                <div class="row">
+                    <div class="col">
                         <div><br>
                         <b><i>O que é?</b></i><br>
                         Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
@@ -631,11 +631,10 @@ def genMonitorContainer():
                         </ol>
                         </div>
                     </div>
-                    <div class="div2-verification"><br>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform">
+                    <div class="col"><br>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
                         <img style="height: 100%; width: 100%;" src="https://i.imgur.com/aNml5YI.png"> 
                         <br>
-                        Clique
                         </a>
                     </div>
                 </div>
@@ -652,19 +651,19 @@ def genFooterContainer():
             <div class="text-title-footer main-padding"> Realizado por </div>
             <div class="div-logo-footer row">
                 <div class="col main-padding">
-                <a href="https://www.impulsogov.com.br/">
+                <a href="https://www.impulsogov.com.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
                     title="logo Impulso"/>
                 </a>
                 </div>
                 <div class="col main-padding">
-                <a href="https://fundacaolemann.org.br/">
+                <a href="https://fundacaolemann.org.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"
                     tile="logo Lemann">
                 </a>            
-                <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral">
+                <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
                     <img class="logo-footer"
                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
                     title="logo BID">
@@ -672,7 +671,7 @@ def genFooterContainer():
                 </div>
             </div>
             <div class="container text-small main-padding">
-                Todo os ícones são do <a href="https://www.freepik.com/">Freepik </a> com permissão de uso mediante créditos.
+                Todo os ícones são do <a href="https://www.freepik.com/" target="_blank">Freepik </a> com permissão de uso mediante créditos.
             </div>
         </div>
         """,
