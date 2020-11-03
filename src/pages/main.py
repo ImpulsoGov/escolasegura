@@ -68,7 +68,7 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col1, col2, col3, col4 = st.beta_columns([0.25, 0.5, 0.5, 1])
+    col1, col2, col3, col4 = st.beta_columns([0.3, 0.5, 0.5, 1])
 
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
