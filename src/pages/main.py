@@ -182,7 +182,8 @@ def genPlanContainer(df, session_state):
                 </div><br>
                 <div class="text-title-section"> Régua de protocolo </div>
                 <div class="minor-padding">
-                    <b><i>O que é?</i> Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
+                    <b><i>O que é?</i><br>
+                    Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
                 </div>
                 <p>{caption}</p>
                 </div>
@@ -607,15 +608,15 @@ def genMonitorContainer():
                     title="Freepik" />
                     Plano de contigência</div>
                     <br>
-                    <div class="grid-container-verification">
-                        <div class="minor-padding">
+                    <div class="row">
+                        <div class="col">
                             <b><i>O que é?</b></i><br>É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
                         </div>
-                        <div class="minor-padding">
-                            <img src="https://via.placeholder.com/300">
+                        <div class="col">
+                            <img class="img-forms" src="https://via.placeholder.com/300">
                         </div>
                     </div>
                 <div class="text-title-section main-padding"> 
@@ -637,7 +638,7 @@ def genMonitorContainer():
                     </div>
                     <div class="col"><br>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
-                        <img style="height: 100%; width: 100%;" src="https://i.imgur.com/aNml5YI.png"> 
+                        <img class="img-forms" src="https://i.imgur.com/aNml5YI.png"> 
                         <br>
                         </a>
                     </div>
@@ -654,14 +655,14 @@ def genFooterContainer():
         <div class="container">
             <div class="text-title-footer main-padding"> Realizado por </div>
             <div class="div-logo-footer row">
-                <div class="col main-padding">
+                <div class="col main-padding img-center">
                 <a href="https://www.impulsogov.com.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
                     title="logo Impulso"/>
                 </a>
                 </div>
-                <div class="col main-padding">
+                <div class="col main-padding img-center">
                 <a href="https://fundacaolemann.org.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"

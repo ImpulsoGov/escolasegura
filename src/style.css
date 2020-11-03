@@ -476,3 +476,8 @@
   width: 100px;
 }
 
+.img-center{
+  display: grid;
+  place-items: center;
+}
+
