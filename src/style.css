@@ -40,7 +40,9 @@
 .main-light-blue-green-span{
   color: var(--main-light-blue);
 }
-
+.main-black-span{
+  color: var(--main-black);
+}
 
 .primary-span{
   color: var(--main-primary);
@@ -163,7 +165,7 @@
   }
 
   .stSelectbox{
-    width:150px;
+    min-width:150px;
   }
 
   .st-cq{
@@ -441,6 +443,12 @@
   color: var(--main-orange);
 }
 
+.card-plan{
+  box-shadow: 2px 2px 2px 2px var(--main-blue-green);
+  border-radius:1rem;
+  text-decoration: none;
+}
+
 .div-logo-footer{
   display: grid;
   place-items: center;
@@ -466,26 +474,9 @@
   width: 100px;
 }
 
-.info-btn{	/*img*/
-  border: 1px solid var(--main-white);
-  box-sizing: border-box;	  max-height: 100%;
-  border-radius: 15px;	  width: auto;
-  width: 150px;	  max-width: 100%;
-  padding: 0.5em;	  background: transparent no-repeat center;
-  text-transform: uppercase;	  background-size: cover;
-  font-family: var(--main-subtitle-font-family);	
-  background-color: var(--main-primary);	
-  font-weight: bold;	
-  text-align: center;	
-  text-decoration: none;	
-  font-size: 18px;	
-  animation-name: fadein;	
-  animation-duration: 3s;	
-  margin-top: 1.5em;	
-}	
 
-.info-btn:hover {	
-  background-color: var(--main-dark);	
-  text-decoration: none;	
-} 
+.img-center{
+  display: grid;
+  place-items: center;
+}
 
