@@ -447,8 +447,9 @@
 }
 
 .card-plan{
-  box-shadow: 2px 2px 2px 2px;
+  box-shadow: 2px 2px 2px 2px var(--main-blue-green);
   border-radius:1rem;
+  text-decoration: none;
 }
 
 .div-logo-footer{
