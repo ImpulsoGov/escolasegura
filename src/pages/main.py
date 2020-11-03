@@ -43,12 +43,15 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
 
 def read_data(country, config, endpoint):
-    # if os.getenv("IS_LOCAL") == "TRUE":
-    #     api_url = config[country]["api"]["local"]
-    # else:
-    #     api_url = config[country]["api"]["external"]
-    api_url = config[country]["api"]["local"]
+
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
     url = api_url + endpoint
+
+    print("\nLoad data from:", url)
     df = pd.read_csv(url)
     return df
 
