@@ -81,7 +81,7 @@
 
 /*images*/
 .images{
-  width:50%;
+  width:100%;
 }
 
 /*padding*/
@@ -185,9 +185,6 @@
 
 .st-ea:hover {
   border-bottom-color: var(--main-light-blue);
-}
-.st-e9:hover {
-  color:  var(--main-white);
 }
 
 .streamlit-expanderHeader:hover{
@@ -476,6 +473,7 @@
   height: 100px;
   width: 100px;
 }
+
 
 .img-center{
   display: grid;
