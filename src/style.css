@@ -41,6 +41,10 @@
   color: var(--main-light-blue);
 }
 
+
+.primary-span{
+  color: var(--main-primary);
+}
 .dark-span{
   color: var(--main-dark);
 }
@@ -75,7 +79,7 @@
 
 /*images*/
 .images{
-  width:50%;
+  width:100%;
 }
 
 /*padding*/
@@ -179,9 +183,6 @@
 
 .st-ea:hover {
   border-bottom-color: var(--main-light-blue);
-}
-.st-e9:hover {
-  color:  var(--main-white);
 }
 
 .streamlit-expanderHeader:hover{
@@ -448,6 +449,15 @@
 /* button */
 .reportview-container .markdown-text-container a {
   color:var(--main-orange);
+}
+
+/*img*/
+.img-forms{
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  background: transparent no-repeat center;
+  background-size: cover;
 }
 
 /*img*/
