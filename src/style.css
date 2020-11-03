@@ -432,10 +432,16 @@
 }
 
 /* cards */
-.card-simulator{
-  border-radius: 1rem;
+.card-simulator-up{
+  border-radius: 1rem 1rem 0rem 0rem;
   padding: 10px 10px 10px 10px;
 }
+
+.card-simulator-bottom{
+  border-radius: 0rem 0rem 1rem 1rem;
+  padding: 10px 10px 10px 10px;
+}
+
 
 .card-number{
   font-size: 2rem;
