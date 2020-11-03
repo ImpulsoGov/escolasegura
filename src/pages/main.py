@@ -611,8 +611,11 @@ def genMonitorContainer():
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
                         </div>
-                        <div class="minor-padding">
-                            <img src="https://via.placeholder.com/300">
+                        <div class="col"><br>
+                        <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="_blank">
+                        <img style="height: 100%; width: 100%;" src="https://i.imgur.com/aNml5YI.png"> 
+                        <br>
+                        </a>
                         </div>
                     </div>
                 <div class="text-title-section main-padding"> 
@@ -633,8 +636,8 @@ def genMonitorContainer():
                         </div>
                     </div>
                     <div class="col"><br>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
-                        <img style="height: 100%; width: 100%;" src="https://i.imgur.com/aNml5YI.png"> 
+                        <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
+                        <img style="height: 100%; width: 100%;" src="https://i.imgur.com/CpdWHXb.png"> 
                         <br>
                         </a>
                     </div>
