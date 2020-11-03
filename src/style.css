@@ -79,7 +79,7 @@
 
 /*images*/
 .images{
-  width:50%;
+  width:100%;
 }
 
 /*padding*/
@@ -470,7 +470,7 @@
 }
 
 .info-btn{	/*img*/
-  border: 1px solid var(--main-white);	.img-forms{
+  border: 1px solid var(--main-white);
   box-sizing: border-box;	  max-height: 100%;
   border-radius: 15px;	  width: auto;
   width: 150px;	  max-width: 100%;
