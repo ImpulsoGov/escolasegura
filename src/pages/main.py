@@ -147,7 +147,7 @@ def genPlanContainer(df, session_state):
             para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
-                    <a class="col card-plan" href="https://docs.google.com/document/d/1PBbnwFcKWxMopv-ezaNm1UNCwQYJTYE-vG_YAJ91Er8/edit?usp=sharing" target="blank_">
+                    <a class="col card-plan container" href="https://docs.google.com/document/d/1PBbnwFcKWxMopv-ezaNm1UNCwQYJTYE-vG_YAJ91Er8/edit?usp=sharing" target="blank_">
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
@@ -162,7 +162,7 @@ def genPlanContainer(df, session_state):
                         </div>
                     </div>
                     </a>
-                    <a class="col card-plan" href="">
+                    <a class="col card-plan container" href="">
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
@@ -333,9 +333,9 @@ def genSimulationContainer(df, config, session_state):
                             </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col lighter-blue-green-bg card-simulator" style="border-radius:30px;">
-                                <div class="two-cols-icon-text">
-                                    <div class="card-title-section">EQUITATIVO</div>
-                                    <div class="text-subdescription">
+                                <div class="row">
+                                    <div class="col card-title-section">EQUITATIVO</div>
+                                    <div class="col text-subdescription container">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
@@ -344,9 +344,9 @@ def genSimulationContainer(df, config, session_state):
                                 </div>
                             </div>
                             <div class="col light-blue-green-bg card-simulator" style="border-radius:30px">
-                            <div class="two-cols-icon-text">
-                                <div class="card-title-section">PRIORITÁRIO</div>
-                                <div class="text-subdescription">
+                            <div class="row">
+                                <div class="col card-title-section">PRIORITÁRIO</div>
+                                <div class="col text-subdescription container">
                                     <b>Número limitado de alunos retorna 5 vezes por semana.</b>
                                 <p></p>
                                 O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
