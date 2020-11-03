@@ -447,7 +447,7 @@
 }
 
 .card-plan{
-  border:solid; 
+  box-shadow: 2px 2px 2px 2px;
   border-radius:1rem;
 }
 
