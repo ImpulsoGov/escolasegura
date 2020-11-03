@@ -150,7 +150,7 @@ def genPlanContainer(df, config, session_state):
         <div>
             <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
             <div style="margin: 10px 15px 15px 15px;">
-            <h1 class="primary-span">Valores de referência</h1>
+            <h1 class="main-orange-span">Valores de referência</h1>
             <div style="font-size: 12px">
                 <b>Atualizado em</b>: {date_update}<br>
             </div>
