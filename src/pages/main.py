@@ -214,7 +214,7 @@ def genSimulationResult(params, config):
                     <div class="col main-padding">
                         <div class="card-simulator-up lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
-                            <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <div>Todos os alunos retornam ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["equitative"]["num_returning_students"]} </div>
@@ -255,7 +255,7 @@ def genSimulationResult(params, config):
                     <div class="col main-padding">
                         <div class="card-simulator-up lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
-                            <div>Máximo de alunos retorna 5 vezes por semana.</div>
+                            <div>Número limitado de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["priority"]["num_returning_students"]} </div>
