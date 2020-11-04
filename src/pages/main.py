@@ -76,31 +76,16 @@ def genSelectBox(df, session_state):
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     with col2:
-        options_city_name = utils.filter_place(
-            df, "city", state_id=session_state.state_id
-        )
+        options_city_name = utils.filter_place(df, "city", state_id=session_state.state_id)
         options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
-        x = int(
-            options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[
-                0
-            ]
+        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0]) 
+        session_state.city_name = st.selectbox(
+            "Município", options_city_name, index=x
         )
-        session_state.city_name = st.selectbox("Município", options_city_name, index=x)
     with col3:
-        options_adiminlevel = utils.filter_place(
-            df,
-            "administrative_level",
-            state_id=session_state.state_id,
-            city_name=session_state.city_name,
-        )
-        options_adiminlevel = pd.DataFrame(
-            data=options_adiminlevel, columns=["adiminlevel"]
-        )
-        y = int(
-            options_adiminlevel[
-                options_adiminlevel["adiminlevel"] == "Todos"
-            ].index.tolist()[0]
-        )
+        options_adiminlevel = utils.filter_place(df, "administrative_level", state_id=session_state.state_id, city_name=session_state.city_name)
+        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
+        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0]) 
         session_state.administrative_level = st.selectbox(
             "Nível de Administração", options_adiminlevel, index=y
         )
@@ -113,6 +98,7 @@ def genSelectBox(df, session_state):
         """,
             unsafe_allow_html=True,
         )
+
 
 
 def genPlanContainer(df, session_state):
@@ -154,6 +140,7 @@ def genPlanContainer(df, session_state):
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
 
+
     st.write(
         f"""
         <div class="container main-padding">
@@ -165,8 +152,7 @@ def genPlanContainer(df, session_state):
             para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
-                    <a class="col card-plan container" 
-                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/copy" target="blank_">
+                    <a class="col card-plan container" href="https://docs.google.com/document/d/1PBbnwFcKWxMopv-ezaNm1UNCwQYJTYE-vG_YAJ91Er8/edit?usp=sharing" target="blank_">
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
@@ -222,7 +208,7 @@ def genPlanContainer(df, session_state):
 def genSimulationResult(params, config):
 
     result = entrypoint(params, config)
-
+    
     st.write(
         f"""
         <div class="container main-padding">
@@ -230,9 +216,9 @@ def genSimulationResult(params, config):
                 <div class="bold"> Metodologia </div>
                 <div class="row">
                     <div class="col main-padding">
-                        <div class="card-simulator-up lighter-blue-green-bg">
+                        <div class="card-simulator lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
-                            <div>Todos os alunos retornam ao menos 1 vez por semana.</div>
+                            <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["equitative"]["num_returning_students"]} </div>
@@ -250,8 +236,12 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (8 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator-bottom light-blue-green-bg minor-padding">
-                            <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
+                        <div class="card-simulator light-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
+                            <img style="width:1rem;"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                            title="Freepik" />
+                            </div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"></div>
@@ -271,9 +261,9 @@ def genSimulationResult(params, config):
                         </div> 
                     </div>
                     <div class="col main-padding">
-                        <div class="card-simulator-up lighter-blue-green-bg">
+                        <div class="card-simulator lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
-                            <div>Número limitado de alunos retorna 5 vezes por semana.</div>
+                            <div>Máximo de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["priority"]["num_returning_students"]} </div>
@@ -291,8 +281,11 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (8 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator-bottom light-blue-green-bg minor-padding">
-                            <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
+                        <div class="card-simulator light-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
+                            <img style="width:1rem;"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
+                            title="Freepik" /></div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"> </div>
@@ -526,13 +519,10 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_5:
         st.write(
-            f"""<div class="minor-padding"> </div>""",
-            unsafe_allow_html=True,
+            f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
         )
 
-        params["max_students_per_class"] = st.slider(
-            "Máximo de alunos por sala:", 0, 20, 20, 1
-        )
+        params["max_students_per_class"] = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
 
         st.write(
             f"""<div class="container">
@@ -567,6 +557,86 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
+    methodology_text = """## Metodologia Simule o retorno
+### O que é?
+
+O simulador é uma ferramenta para auxiliar o gestor nos cálculos de quantos alunos conseguem retornar às atividades escolares dadas as restrições de quantidade de professores e salas de aulas. 
+
+#### O que o simulador calcula?
+
+A partir dos valores inseridos pelo usuário, o simulador calcula as seguintes quantidades:
+
+- número de alunos que podem retornar às atividades escolares
+- número de professores que podem retornar às atividades escolares
+- número de maścaras descartáveis necessárias
+- número de termômetros necessários
+- número de litros de álcool em gel necessários
+
+#### O que o usuário seleciona no simulador?
+
+Ao acessar a ferramenta, o usuário encontrará os seguintes campos para preenchimento.
+- **Quantidade total de alunos:** O usuário fornece o número total de alunos inscritos no sistema local de ensino. O sistema automaticamente fornece como sugestão a quantidade que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
+- **Quantidade total de professores:** O usuário fornece o número de professores disponíveis para dar aula no sistema local de ensino. O sistema automaticamente fornece como sugestão a quantidade de professores que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
+- **Porcentagem de alunos que o gestor contempla retornar:** O usuário escolhe a porcentagem de alunos que gostaria de tentar retornar na simulação.
+- **Porcentagem de professores que o gestor contempla retornar:** O usuário escolhe a porcentagem de professores que gostaria de retornar na simulação.
+- **Número máximo de alunos por sala:** O usuário fornece o limite de alunos por sala determinado pelo gestor a fim de limitar a transmissibilidade da doença.
+- **Modelo de retorno:** O usuário pode escolher um de dois modelos de retorno:  equitativo ou prioritário. Eles definem a quantidade de aulas presenciais que cada aluno terá. Apenas um modelo pode ser escolhido.
+    - **Equitativo:** uma aula por semana por aluno
+    - **Prioritario:** cinco aulas por semana por aluno
+- **Tipos de escolas:** O usuário pode também aplicar filtros a sua simulação. Apenas um filtro pode ser selecionado. Os seguintes filtros estão disponíveis:
+    - Apenas escolas rurais
+    - Apenas escolas com água encanada.
+
+
+### Como calculamos as quantidades de alunos e professores retornando?
+
+O simulador recebe as seguintes informações: 
+- quantidade total de alunos 
+- quantidade total de professores
+- número de salas de aula disponíveis
+- máximo de alunos permitidos por sala 
+- modelo de retorno desejado
+- porcentagem de alunos que o gestor contempla retornar.
+- porcentagem de professores que o gestor contempla retornar.
+
+Além dessas quantidades, alguns valores importantes são fixados, como: 
+- horas semanais disponíveis para aulas (**H**)
+- a duração de cada aula em horas (**D**) 
+
+Assim, a quantidade máxima de aulas por semana (**Q**) é
+
+$$ 
+Q = \left\lfloor \\frac{ H }{ D } \\right\\rfloor 
+$$
+
+Contudo, a oferta dessas aulas depende da disponibilidade de professores e salas. Com uma quantidade de salas disponíveis **S** e uma quantidade de professores que podem retornar **P**, a oferta possível de aulas **O** é dada pela fórmula:
+
+$$
+O = Q \\times \min{ ( S, P ) } 
+$$
+
+Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos  o conceito de oportunidade. Dentro desse contexto, uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até **K** alunos, a quantidade de oportunidades que a escola pode oferecer (**U**) é:
+
+$$
+U = K \\times O
+$$
+
+Quantas oportunidades cada aluno recebe depende do modelo de retorno escolhido. Se **N** representa a quantidade de aulas por semana que cada aluno tem, a capacidade de retorno de alunos **C** da escola é:
+
+$$
+C = \\frac{U}{N}
+$$
+
+Note que a capacidade de atendimento da escola pode exceder o seu número convencional de alunos. Uma escola que oferece apenas uma aula por semana por aluno pode atender muito mais alunos do que uma escola operando de maneira convencional. Portanto, o número de alunos que de fato retornam **R** é o mínimo entre a quantidade de alunos que têm permissão para retornar **A** e a capacidade de retorno da escola **C**. Expresso como uma fórmula:
+
+$$
+R = \min{ ( A,C ) }
+$$
+
+Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**."""
+    with st.beta_expander("METODOLOGIA"):
+        st.write(methodology_text)
+
 
 def genPrepareContainer():
     st.write(
@@ -594,11 +664,10 @@ def genPrepareContainer():
                             <b><i>Quem usa?</b></i>
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).
                             <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.
-                            <br><br><b>Para acessar, clique na imagem.</b>
                             </div>
                         </div>
                         <div class="col">
-                            <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
+                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform" target="_blank">
                             <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
                             </a>
                         </div>
@@ -631,12 +700,9 @@ def genMonitorContainer():
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
-                            <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
                         <div class="col">
-                            <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
-                                <img class="img-forms" src="https://via.placeholder.com/300">
-                            </a>
+                            <img class="img-forms" src="https://via.placeholder.com/300">
                         </div>
                     </div>
                 <div class="text-title-section main-padding"> 
@@ -654,11 +720,10 @@ def genMonitorContainer():
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;
                             <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.
                         </ol>
-                        <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
                     </div>
                     <div class="col"><br>
-                        <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
                         <img class="img-forms" src="https://i.imgur.com/aNml5YI.png"> 
                         <br>
                         </a>
@@ -669,112 +734,32 @@ def genMonitorContainer():
         unsafe_allow_html=True,
     )
 
-def  genReferencesContainer():
-    st.write(
-        f"""
-        <div class="container main-padding">
-            <div class="title-section">
-                <img class="square" src="https://i.imgur.com/gGIFS5N.png">Fontes e Referências
-            </div>
-            <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Fonte</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> Orientações para Retomada Segura das Atividades Presenciais nas Escolas de Educação Básica no Contexto da Pandemia da COVID-19 </td>
-                        <td> <a href="http://antigo.saude.gov.br/images/pdf/2020/September/18/doc-orientador-para-retomada-segura-das-escolas-no-contexto-da-covid-19.pdf">
-                            Ministério da Saúde
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Manual sobre Biossegurança para Reabertura de Escolas no Contexto da COVID-19 </td>
-                        <td> <a href="https://portal.fiocruz.br/sites/portal.fiocruz.br/files/documentos/manualreabertura.pdf">
-                            Fiocruz
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Guia de Implementação de Protocolos de Retorno das Atividades Presenciais nas Escolas de Educação Básica </td>
-                        <td> <a href="https://www.gov.br/mec/pt-br/assuntos/GuiaderetornodasAtividadesPresenciaisnaEducaoBsica.pdf">
-                            Ministério da Educação
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Considerations for school-related public health measures in the context of COVID-19 </td>
-                        <td> <a href="https://www.who.int/publications/i/item/considerations-for-school-related-public-health-measures-in-the-context-of-covid-19">
-                            Organização Mundial da Saúde
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Manual de Protocolos de Saúde </td>
-                        <td> <a href="http://www.educacao.am.gov.br/wp-content/uploads/2020/07/PROTOCOLOS-DE-SAuDE02.pdf">
-                            Governo do Estado do Amazonas
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Ferramenta de Planejamento e Cálculo de Custos de Preparações Alcoólicas para a Higiene das Mãos </td>
-                        <td> <a href="https://proqualis.net/sites/proqualis.net/files/FerramentadePlanejamentoeClculodeCustosgrfica.pdf">
-                            Proqualis
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Segurança do paciente em serviços de saúde: limpeza e desinfecção de superfícies </td>
-                        <td> <a href="https://www20.anvisa.gov.br/segurancadopaciente/images/documentos/ManualLimpezaeDesinfeccaofinal.pdf">
-                            ANVISA
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> NOTA TÉCNICA Nº 47/2020/SEI/GIALI/GGFIS/DIRE4/ANVISA <br> Uso de luvas e máscaras em estabelecimentos da área de alimentos no contexto do enfrentamento ao COVID-19 </td>
-                        <td> <a href="https://www.gov.br/anvisa/pt-br/arquivos-noticias-anvisa/310json-file-1">
-                            ANVISA
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Appendix A – Risk-assessment for determining environmental cleaning method and frequency </td>
-                        <td> <a href="https://www.cdc.gov/hai/prevent/resource-limited/risk-assessment.html">
-                            Centers for Disease Control and Prevention
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html = True,
-    )
+
 def genFooterContainer():
     st.write(
         f"""
-        <div class="container main-padding">
+        <div class="container">
             <div class="text-title-footer main-padding"> Realizado por </div>
-            <div class="div-logo-footer main-padding img-center">
-            <ul style="list-style-type: none;">
-                <li style="display: inline;">
-                <a class="logo-footer" href="https://www.impulsogov.com.br/" target="_blank">
+            <div class="div-logo-footer row">
+                <div class="col main-padding img-center">
+                <a href="https://www.impulsogov.com.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
                     title="logo Impulso"/>
-                </a></li>
-                <li style="display: inline;">
+                </a>
+                </div>
+                <div class="col main-padding img-center">
                 <a href="https://fundacaolemann.org.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"
                     tile="logo Lemann">
-                </a></li>
-            </ul>          
+                </a>            
+                <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
+                    <img class="logo-footer"
+                    src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
+                    title="logo BID">
+                </a>
+                </div>
             </div>
             <div class="container text-small main-padding">
                 Todo os ícones são do <a href="https://www.freepik.com/" target="_blank">Freepik </a> com permissão de uso mediante créditos.
@@ -785,20 +770,10 @@ def genFooterContainer():
     )
 
 
-#  <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
-#                     <img class="logo-footer"
-#                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
-#                     title="logo BID">
-#                 </a>
-
-
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola",
-        title2="Segura",
-        subtitle="{descrição}",
-        header=True,
+        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
@@ -815,7 +790,6 @@ def main(session_state):
     genSimulationContainer(data, config, session_state)
     genPrepareContainer()
     genMonitorContainer()
-    genReferencesContainer()
     genFooterContainer()
 
 
