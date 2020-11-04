@@ -634,7 +634,7 @@ R = \min{ ( A,C ) }
 $$
 
 Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**."""
-    with st.beta_expander("METODOLOGIA"):
+    with st.beta_expander("LER A METODOLOGIA"):
         st.write(methodology_text)
 
 
