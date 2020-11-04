@@ -1,6 +1,6 @@
-#coding=utf-8
+# coding=utf-8
 import streamlit as st
-import yaml 
+import yaml
 import session
 import time
 
@@ -9,6 +9,7 @@ import pages.main as es
 import utils
 
 st.beta_set_page_config(layout="wide")
+
 
 def main():
     # SESSION STATE
@@ -29,11 +30,12 @@ def main():
         amplitude_events=None,
         button_styles=dict(),
         continuation_selection=None,
-        button_simule = 0,
+        button_simule=0,
     )
-    
+
     es.main(session_state)
     utils.applyButtonStyles(session_state)
 
+
 if __name__ == "__main__":
-    main() 
+    main()

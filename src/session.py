@@ -133,7 +133,10 @@ class SessionState(object):
                 (not hasattr(s, "_main_dg") and s.enqueue == ctx.enqueue)
                 or
                 # Streamlit >= 0.65.2
-                (not hasattr(s, '_main_dg') and s._uploaded_file_mgr == ctx.uploaded_file_mgr)
+                (
+                    not hasattr(s, "_main_dg")
+                    and s._uploaded_file_mgr == ctx.uploaded_file_mgr
+                )
             ):
                 this_session = s
 
@@ -191,7 +194,7 @@ def _get_session_raw():
             (not hasattr(s, "_main_dg") and s.session.enqueue == ctx.enqueue)
             or
             # Streamlit >= 0.65.2
-            (not hasattr(s, '_main_dg') and s.session.id == ctx.session_id)
+            (not hasattr(s, "_main_dg") and s.session.id == ctx.session_id)
         ):
             this_session = s
 
