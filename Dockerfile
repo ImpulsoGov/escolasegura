@@ -13,7 +13,7 @@ ENV USER_NAME=ubuntu \
     STREAMLIT_SERVER_PORT=8001 \
     AMPLITUDE_KEY="" \
     # Data API - set TRUE if running local
-    IS_LOCAL="TRUE"
+    IS_LOCAL="FALSE"
 
 WORKDIR ${USER_HOME}
 
