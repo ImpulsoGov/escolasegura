@@ -557,7 +557,7 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
-    methodology_text = """## Metodologia Simule o retorno
+    methodology_text = """## Metodologia de Simule o Retorno
 ### O que é?
 
 O simulador é uma ferramenta para auxiliar o gestor nos cálculos de quantos alunos conseguem retornar às atividades escolares dadas as restrições de quantidade de professores e salas de aulas. 
