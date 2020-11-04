@@ -466,6 +466,11 @@
   color:var(--main-orange);
 }
 
+/* button expander */
+.streamlit-expanderHeader{
+  padding: 8px;
+}
+
 /*img*/
 .img-forms{
   max-height: 100%;
