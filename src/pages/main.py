@@ -73,16 +73,31 @@ def genSelectBox(df, session_state):
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     with col2:
-        options_city_name = utils.filter_place(df, "city", state_id=session_state.state_id)
-        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
-        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0]) 
-        session_state.city_name = st.selectbox(
-            "Município", options_city_name, index=x
+        options_city_name = utils.filter_place(
+            df, "city", state_id=session_state.state_id
         )
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        x = int(
+            options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[
+                0
+            ]
+        )
+        session_state.city_name = st.selectbox("Município", options_city_name, index=x)
     with col3:
-        options_adiminlevel = utils.filter_place(df, "administrative_level", state_id=session_state.state_id, city_name=session_state.city_name)
-        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
-        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0]) 
+        options_adiminlevel = utils.filter_place(
+            df,
+            "administrative_level",
+            state_id=session_state.state_id,
+            city_name=session_state.city_name,
+        )
+        options_adiminlevel = pd.DataFrame(
+            data=options_adiminlevel, columns=["adiminlevel"]
+        )
+        y = int(
+            options_adiminlevel[
+                options_adiminlevel["adiminlevel"] == "Todos"
+            ].index.tolist()[0]
+        )
         session_state.administrative_level = st.selectbox(
             "Nível de Administração", options_adiminlevel, index=y
         )
@@ -95,7 +110,6 @@ def genSelectBox(df, session_state):
         """,
             unsafe_allow_html=True,
         )
-
 
 
 def genPlanContainer(df, session_state):
@@ -134,7 +148,6 @@ def genPlanContainer(df, session_state):
         href = ""
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
-
 
     st.write(
         f"""
@@ -508,10 +521,13 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_5:
         st.write(
-            f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
+            f"""<div class="minor-padding"> </div>""",
+            unsafe_allow_html=True,
         )
 
-        params["max_students_per_class"] = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+        params["max_students_per_class"] = st.slider(
+            "Máximo de alunos por sala:", 0, 20, 20, 1
+        )
 
         st.write(
             f"""<div class="container">
@@ -648,11 +664,101 @@ def genMonitorContainer():
         unsafe_allow_html=True,
     )
 
-
+def  genReferencesContainer():
+    st.write(
+        f"""
+        <div class="container main-padding">
+            <div class="title-section">
+                <img class="square" src="https://i.imgur.com/gGIFS5N.png">Referências
+            </div>
+            <div class="text-title-section minor-padding"> Fontes para o Protocolo </div>
+            <div class="minor-padding">
+                <b>Título:</b> Orientações para Retomada Segura das Atividades Presenciais nas Escolas de Educação Básica no Contexto da Pandemia da COVID-19
+                <br>
+                <b>Fonte:</b> Ministério da Saúde
+                <br>
+                <b>URL:</b> <a href="http://antigo.saude.gov.br/images/pdf/2020/September/18/doc-orientador-para-retomada-segura-das-escolas-no-contexto-da-covid-19.pdf">
+                    http://antigo.saude.gov.br/images/pdf/2020/September/18/doc-orientador-para-retomada-segura-das-escolas-no-contexto-da-covid-19.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Manual sobre Biossegurança para Reabertura de Escolas no Contexto da COVID-19
+                <br>
+                <b>Fonte:</b> Fiocruz
+                <br>
+                <b>URL:</b> <a href="https://portal.fiocruz.br/sites/portal.fiocruz.br/files/documentos/manualreabertura.pdf">
+                    https://portal.fiocruz.br/sites/portal.fiocruz.br/files/documentos/manualreabertura.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Guia de Implementação de Protocolos de Retorno das Atividades Presenciais nas Escolas de Educação Básica
+                <br>
+                <b>Fonte:</b> Ministério da Educação
+                <br>
+                <b>URL:</b> <a href="https://www.gov.br/mec/pt-br/assuntos/GuiaderetornodasAtividadesPresenciaisnaEducaoBsica.pdf">
+                    https://www.gov.br/mec/pt-br/assuntos/GuiaderetornodasAtividadesPresenciaisnaEducaoBsica.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Considerations for school-related public health measures in the context of COVID-19
+                <br>
+                <b>Fonte:</b> Organização Mundial da Saúde
+                <br>
+                <b>URL:</b> <a href="https://www.who.int/publications/i/item/considerations-for-school-related-public-health-measures-in-the-context-of-covid-19">
+                    https://www.who.int/publications/i/item/considerations-for-school-related-public-health-measures-in-the-context-of-covid-19
+                </a>
+            </div>
+            <div class="text-title-section minor-padding"> Fontes para os Materiais Necessários </div>
+            <div class="minor-padding">
+                <b>Título:</b> Manual de Protocolos de Saúde
+                <br>
+                <b>Fonte:</b> Governo do Estado do Amazonas
+                <br>
+                <b>URL:</b> <a href="http://www.educacao.am.gov.br/wp-content/uploads/2020/07/PROTOCOLOS-DE-SAuDE02.pdf">
+                    http://www.educacao.am.gov.br/wp-content/uploads/2020/07/PROTOCOLOS-DE-SAuDE02.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Ferramenta de Planejamento e Cálculo de Custos de Preparações Alcoólicas para a Higiene das Mãos
+                <br>
+                <b>Fonte:</b> Proqualis
+                <br>
+                <b>URL:</b> <a href="https://proqualis.net/sites/proqualis.net/files/FerramentadePlanejamentoeClculodeCustosgrfica.pdf">
+                    https://proqualis.net/sites/proqualis.net/files/FerramentadePlanejamentoeClculodeCustosgrfica.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Segurança do paciente em serviços de saúde: limpeza e desinfecção de superfícies
+                <b>Fonte:</b> ANVISA
+                <br>
+                <b>URL:</b> <a href="https://www20.anvisa.gov.br/segurancadopaciente/images/documentos/ManualLimpezaeDesinfeccaofinal.pdf">
+                    https://www20.anvisa.gov.br/segurancadopaciente/images/documentos/ManualLimpezaeDesinfeccaofinal.pdf
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> NOTA TÉCNICA Nº 47/2020/SEI/GIALI/GGFIS/DIRE4/ANVISA Uso de luvas e máscaras em estabelecimentos da área de alimentos no contexto do enfrentamento ao COVID-19
+                <b>Fonte:</b> ANVISA
+                <br>
+                <b>URL:</b> <a href="https://www.gov.br/anvisa/pt-br/arquivos-noticias-anvisa/310json-file-1">
+                    https://www.gov.br/anvisa/pt-br/arquivos-noticias-anvisa/310json-file-1
+                </a>
+            </div>
+            <div class="minor-padding">
+                <b>Título:</b> Appendix A – Risk-assessment for determining environmental cleaning method and frequency
+                <b>Fonte:</b> Centers for Disease Control and Prevention
+                <br>
+                <b>URL:</b> <a href="https://www.cdc.gov/hai/prevent/resource-limited/risk-assessment.html">
+                    https://www.cdc.gov/hai/prevent/resource-limited/risk-assessment.html
+                </a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html = True,
+    )
 def genFooterContainer():
     st.write(
         f"""
-        <div class="container">
+        <div class="container main-padding">
             <div class="text-title-footer main-padding"> Realizado por </div>
             <div class="div-logo-footer main-padding img-center">
             <ul style="list-style-type: none;">
@@ -678,16 +784,21 @@ def genFooterContainer():
         unsafe_allow_html=True,
     )
 
+
 #  <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
 #                     <img class="logo-footer"
 #                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
 #                     title="logo BID">
 #                 </a>
 
+
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
+        title1="Escola",
+        title2="Segura",
+        subtitle="{descrição}",
+        header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
@@ -696,6 +807,7 @@ def main(session_state):
     genSimulationContainer(data, config, session_state)
     genPrepareContainer()
     genMonitorContainer()
+    genReferencesContainer()
     genFooterContainer()
 
 
