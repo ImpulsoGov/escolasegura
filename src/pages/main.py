@@ -104,12 +104,14 @@ def genSelectBox(df, session_state):
 def genPlanContainer(df, session_state):
 
     data = df[
-        (df["city_name"] == session_state.city_name)
+        (df["state_id"] == session_state.state_id)
+        & (df["city_name"] == session_state.city_name)
         & (df["administrative_level"] == session_state.administrative_level)
     ]
 
     if len(data["overall_alert"]) > 0:
         alert = data["overall_alert"].values[0]
+
         if session_state.city_name != "Todos":
             cidade = session_state.city_name
         else:
@@ -696,6 +698,14 @@ def main(session_state):
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
     genSelectBox(data, session_state)
+
+    # to keep track on dev
+    print("PLACE SELECTION: \n", 
+        "\n=> UF: ", session_state.state_id,
+        "\n=> CITY: ", session_state.city_name,
+        "\n=> ADM: ", session_state.administrative_level, 
+    )
+
     genPlanContainer(data, session_state)
     genSimulationContainer(data, config, session_state)
     genPrepareContainer()
