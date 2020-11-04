@@ -599,7 +599,7 @@ def genPrepareContainer():
                         </div>
                         <div class="col">
                             <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
-                            <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
+                            <img class="img-forms" src="https://i.imgur.com/oZoaayW.png"> 
                             </a>
                         </div>
                     </div>
@@ -635,7 +635,7 @@ def genMonitorContainer():
                         </div>
                         <div class="col">
                             <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
-                                <img class="img-forms" src="https://via.placeholder.com/300">
+                                <img class="img-forms" src="https://i.imgur.com/aU1IBmU.png">
                             </a>
                         </div>
                     </div>
@@ -659,7 +659,7 @@ def genMonitorContainer():
                     </div>
                     <div class="col"><br>
                         <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
-                        <img class="img-forms" src="https://i.imgur.com/aNml5YI.png"> 
+                        <img class="img-forms" src="https://i.imgur.com/k9pX66f.png"> 
                         <br>
                         </a>
                     </div>
