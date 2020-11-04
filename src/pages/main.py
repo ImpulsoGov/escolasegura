@@ -147,7 +147,8 @@ def genPlanContainer(df, session_state):
             para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
-                    <a class="col card-plan container" href="https://docs.google.com/document/d/1PBbnwFcKWxMopv-ezaNm1UNCwQYJTYE-vG_YAJ91Er8/edit?usp=sharing" target="blank_">
+                    <a class="col card-plan container" 
+                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/copy" target="blank_">
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
@@ -572,10 +573,11 @@ def genPrepareContainer():
                             <b><i>Quem usa?</b></i>
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).
                             <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.
+                            <br><br><b>Para acessar, clique na imagem.</b>
                             </div>
                         </div>
                         <div class="col">
-                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform" target="_blank">
+                            <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
                             <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
                             </a>
                         </div>
@@ -608,9 +610,12 @@ def genMonitorContainer():
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
+                            <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
                         <div class="col">
-                            <img class="img-forms" src="https://via.placeholder.com/300">
+                            <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
+                                <img class="img-forms" src="https://via.placeholder.com/300">
+                            </a>
                         </div>
                     </div>
                 <div class="text-title-section main-padding"> 
@@ -628,10 +633,11 @@ def genMonitorContainer():
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;
                             <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.
                         </ol>
+                        <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
                     </div>
                     <div class="col"><br>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
+                        <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
                         <img class="img-forms" src="https://i.imgur.com/aNml5YI.png"> 
                         <br>
                         </a>
