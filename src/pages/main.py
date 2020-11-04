@@ -737,6 +737,7 @@ def  genReferencesContainer():
             </div>
             <div class="minor-padding">
                 <b>Título:</b> NOTA TÉCNICA Nº 47/2020/SEI/GIALI/GGFIS/DIRE4/ANVISA Uso de luvas e máscaras em estabelecimentos da área de alimentos no contexto do enfrentamento ao COVID-19
+                <br>
                 <b>Fonte:</b> ANVISA
                 <br>
                 <b>URL:</b> <a href="https://www.gov.br/anvisa/pt-br/arquivos-noticias-anvisa/310json-file-1">
@@ -745,6 +746,7 @@ def  genReferencesContainer():
             </div>
             <div class="minor-padding">
                 <b>Título:</b> Appendix A – Risk-assessment for determining environmental cleaning method and frequency
+                <br>
                 <b>Fonte:</b> Centers for Disease Control and Prevention
                 <br>
                 <b>URL:</b> <a href="https://www.cdc.gov/hai/prevent/resource-limited/risk-assessment.html">
