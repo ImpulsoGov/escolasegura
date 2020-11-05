@@ -636,10 +636,10 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
 
-    with st.beta_expander("SIMULAR RETORNO"):
+    with st.beta_expander("Simular retorno"):
         genSimulationResult(params, config)
 
-    '''if st.button("SIMULAR RETORNO"):
+    '''if st.button("Simular retorno"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
@@ -650,84 +650,110 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
-    methodology_text = """## Metodologia de Simule o Retorno
-### O que é?
+    with st.beta_expander("Ler metodologia"):
 
-O simulador é uma ferramenta para auxiliar o gestor nos cálculos de quantos alunos conseguem retornar às atividades escolares dadas as restrições de quantidade de professores e salas de aulas. 
+        methodology_text = """
+    ## Metodologia de Simule o Retorno
+    ### O que é?
 
-#### O que o simulador calcula?
+    O simulador é uma ferramenta de cálculo para o gestor planejar o retorno das atividades 
+    escolares definindo restriçõers e seguindo os protocolos sanitários indicados. 
 
-A partir dos valores inseridos pelo usuário, o simulador calcula as seguintes quantidades:
+    A partir dos valores e restrições inseridos pelo gestor, o simulador calcula o 
+    **número de alunos e professores que podem retornar** às atividades escolares e 
+    **os materiais necessários para compra**, incluindo maścaras descartáveis, termômetros e
+    litros de álcool em gel (mais materiais podem ser acessados na planilha que disponibilizamos).
 
-- número de alunos que podem retornar às atividades escolares
-- número de professores que podem retornar às atividades escolares
-- número de maścaras descartáveis necessárias
-- número de termômetros necessários
-- número de litros de álcool em gel necessários
+    ### Como fazer a simulação?
 
-#### O que o usuário seleciona no simulador?
+    Ao acessar a ferramenta, o gestor encontrará os seguintes campos para preenchimento:
 
-Ao acessar a ferramenta, o usuário encontrará os seguintes campos para preenchimento.
-- **Quantidade total de alunos:** O usuário fornece o número total de alunos inscritos no sistema local de ensino. O sistema automaticamente fornece como sugestão a quantidade que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
-- **Quantidade total de professores:** O usuário fornece o número de professores disponíveis para dar aula no sistema local de ensino. O sistema automaticamente fornece como sugestão a quantidade de professores que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
-- **Porcentagem de alunos que o gestor contempla retornar:** O usuário escolhe a porcentagem de alunos que gostaria de tentar retornar na simulação.
-- **Porcentagem de professores que o gestor contempla retornar:** O usuário escolhe a porcentagem de professores que gostaria de retornar na simulação.
-- **Número máximo de alunos por sala:** O usuário fornece o limite de alunos por sala determinado pelo gestor a fim de limitar a transmissibilidade da doença.
-- **Modelo de retorno:** O usuário pode escolher um de dois modelos de retorno:  equitativo ou prioritário. Eles definem a quantidade de aulas presenciais que cada aluno terá. Apenas um modelo pode ser escolhido.
-    - **Equitativo:** uma aula por semana por aluno
-    - **Prioritario:** cinco aulas por semana por aluno
-- **Tipos de escolas:** O usuário pode também aplicar filtros a sua simulação. Apenas um filtro pode ser selecionado. Os seguintes filtros estão disponíveis:
-    - Apenas escolas rurais
-    - Apenas escolas com água encanada.
+    - **Total de alunos:** O gestor pode informar aqui número total de alunos 
+    inscritos no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Total de professores:** O gestor pode informar aqui número de professores disponíveis 
+    para dar aula no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Total de salas de aula:** O gestor pode informar aqui o total de salas de aula disponíveis 
+    para retorno no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Percentual de alunos realizando atividades presenciais:** O gestor deve informar aqui o percentual de alunos
+    dentre o **Total de alunos** indicado que estão previstos para retornar as atividades.
+
+    - **Percentual de professores realizando atividades presenciais:**  O gestor deve informar aqui o percentual de professores 
+    dentre o **Total de professores** indicado que estão previstos para retornar as atividades.
+
+    - **Máximo de alunos por sala:** 
+    O gestor deve indicar aqui o limite de alunos por sala de aula. 
+    Por padrão, este valor é de 20 alunos por sala, que também é o máximo que permitimos ser escolhido a fim tentar limitar a transmissão da doença.
+
+    - **Filtros da simulação**: (se aplicam aos valores padrões do Censo Escolar 2019)
+    - *Apenas escolas rurais*: escolhe-se para retorno apenas escolas em regiões rurais com base no Censo 2019. Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
+    - *Apenas escolas com água encanada*: escolhe-se para retorno apenas escolas com água encanada (escolas com fornecimento de água da rede pública no Censo 2019). Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
 
 
-### Como calculamos as quantidades de alunos e professores retornando?
+    ### Como calculamos o resultado?
 
-O simulador recebe as seguintes informações: 
-- quantidade total de alunos 
-- quantidade total de professores
-- número de salas de aula disponíveis
-- máximo de alunos permitidos por sala 
-- modelo de retorno desejado
-- porcentagem de alunos que o gestor contempla retornar.
-- porcentagem de professores que o gestor contempla retornar.
+    O simulador utiliza as informações passadas acima: 
+    - **A**: total de alunos x percentual alunos que retornam
+    - **P**: total de professores x percentual professores que retornam
+    - **S**: número de salas de aula disponíveis
+    - **K**: máximo de alunos permitidos por sala 
 
-Além dessas quantidades, alguns valores importantes são fixados, como: 
-- horas semanais disponíveis para aulas (**H**)
-- a duração de cada aula em horas (**D**) 
+    Além desses, são fixados valores para cada modelo de retorno:
+    - **H**: horas semanais disponíveis de professores e salas para aulas (H = 40 horas por semana)
+    - **D**: duração de cada aula em horas (D = 2 horas)
+    - **N**: quantidade mínima de aulas por semana por aluno (equitativo: N = 1; prioritário: N = 5)
 
-Assim, a quantidade máxima de aulas por semana (**Q**) é
+    ℹ️ *Cada professor é alocado para uma única turma, a fim de reduzir o risco de transmissão e 
+    facilitar o reastreamento de casos.*
 
-$$ 
-Q = \left\lfloor \\frac{ H }{ D } \\right\\rfloor 
-$$
+    Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos o conceito de **oportunidade**: 
+    uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até **K** alunos 
+    (máximo por turma), a **quantidade de oportunidades de aulas na rede** é dada por 
+    $K \\times O$, onde **O** corresponde à oferta total de aulas na rede.
 
-Contudo, a oferta dessas aulas depende da disponibilidade de professores e salas. Com uma quantidade de salas disponíveis **S** e uma quantidade de professores que podem retornar **P**, a oferta possível de aulas **O** é dada pela fórmula:
+    A oferta de aulas na rede (**O**) depende diretamente da disponibilidade de professores e salas. 
+    Dado o total de horas disponíveis na semana (**H**) e a duração definida de uma aula (**D**), 
+    o máximo de aulas que podem ser oferecidas por professor/sala 
+    é dado por $Q = \left\lfloor \\frac{ H }{ D } \\right\\rfloor$.
 
-$$
-O = Q \\times \min{ ( S, P ) } 
-$$
+    Assim, a oferta total de aulas (**O**) é dada por:
 
-Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos  o conceito de oportunidade. Dentro desse contexto, uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até **K** alunos, a quantidade de oportunidades que a escola pode oferecer (**U**) é:
+    $$ 
+    O = Q \\times \min{ ( S, P ) } 
+    $$
 
-$$
-U = K \\times O
-$$
+    Ao mesmo tempo, cada aluno deve ter um número mínimo de aulas por semana (**N**), que é dado pelo modelo de retorno escolhido. 
+    Assim, a capacidade efetiva de retorno de alunos(**C**) é dada por:
 
-Quantas oportunidades cada aluno recebe depende do modelo de retorno escolhido. Se **N** representa a quantidade de aulas por semana que cada aluno tem, a capacidade de retorno de alunos **C** da escola é:
+    $$
+    C = \\frac{K \\times O}{N}
+    $$
 
-$$
-C = \\frac{U}{N}
-$$
+    O número de alunos que de fato retornam (**R**) depende da capacidade da rede 
+    de fornecer hroários de aula dadas as restrições de professores, salas e turmas. 
+    Logo, **R** é o mínimo entre a quantidade de alunos que têm 
+    permissão para retornar **A** e a capacidade de retorno da rede **C**:
 
-Note que a capacidade de atendimento da escola pode exceder o seu número convencional de alunos. Uma escola que oferece apenas uma aula por semana por aluno pode atender muito mais alunos do que uma escola operando de maneira convencional. Portanto, o número de alunos que de fato retornam **R** é o mínimo entre a quantidade de alunos que têm permissão para retornar **A** e a capacidade de retorno da escola **C**. Expresso como uma fórmula:
+    $$
+    R = \min{ ( A,C ) }
+    $$
 
-$$
-R = \min{ ( A,C ) }
-$$
+    E, finalmente, o número de professores que retornam é dado pelo total de turmas que retornam ($\lceil{ R/K } \\rceil$):
 
-Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**."""
-    with st.beta_expander("LER A METODOLOGIA"):
+    $$
+    P  = \lceil{ R/K } \\rceil
+    $$
+
+    ℹ️ *Note que **a capacidade total da rede pode ser maior que o número de alunos que se deseja retornar**. 
+    Isso ocorre pois, uma vez selecionada a etapa de ensino, alocamos todos as 40 horas de professores/salas 
+    das escolas que possuem essa etapa.*
+
+    *Além disso, no modelo equitativo, no qual a rede oferece apenas uma aula por semana para cada aluno, esta pode atender muito mais 
+    alunos do que uma rede operando de maneira convencional.*
+        """
+        
         st.write(methodology_text)
 
 
