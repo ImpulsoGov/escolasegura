@@ -40,7 +40,9 @@
 .main-light-blue-green-span{
   color: var(--main-light-blue);
 }
-
+.main-black-span{
+  color: var(--main-black);
+}
 
 .primary-span{
   color: var(--main-primary);
@@ -163,7 +165,7 @@
   }
 
   .stSelectbox{
-    width:150px;
+    min-width:100px;
   }
 
   .st-cq{
@@ -261,6 +263,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 5%;
+  margin: 1em;
 }
 
 .col {
@@ -430,15 +433,27 @@
 }
 
 /* cards */
-.card-simulator{
-  border-radius: 1rem;
-  padding: 10px 10px 10px 10px;
+.card-simulator-up{
+  border-radius: 1rem 1rem 0rem 0rem;
+  padding: 1em;
 }
+
+.card-simulator-bottom{
+  border-radius: 0rem 0rem 1rem 1rem;
+  padding: 1em;
+}
+
 
 .card-number{
   font-size: 2rem;
   font-weight: bold;
   color: var(--main-orange);
+}
+
+.card-plan{
+  box-shadow: 2px 2px 2px 2px var(--main-blue-green);
+  border-radius:1rem;
+  text-decoration: none;
 }
 
 .div-logo-footer{
@@ -460,20 +475,18 @@
   background-size: cover;
 }
 
-/*img*/
-.img-forms{
-  max-height: 100%;
-  width: auto;
-  max-width: 100%;
-  background: transparent no-repeat center;
-  background-size: cover;
-}
-
 
 .img-logo-header{
   height: 100px;
   width: 100px;
 }
+
+
+.img-center{
+  display: grid;
+  place-items: center;
+}
+
 
 /*modal*/
 
@@ -609,4 +622,3 @@
   width: 70%;
   height: auto;
 } 
-

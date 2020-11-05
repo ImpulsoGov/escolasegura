@@ -7,9 +7,11 @@ import requests
 def get_config(url=os.getenv("CONFIG_URL")):
     return yaml.load(requests.get(url).text, Loader=yaml.FullLoader)
 
+
 def localCSS(filename):
     with open(filename) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 def stylizeButton(name, style_string, session_state, others=dict()):
     """ adds a css option to a button you made """
@@ -36,6 +38,7 @@ def applyButtonStyles(session_state):
         <iframe src="resources/redo-button.html?name={name}&{parts}&{other_args}" style="height:0px;width:0px;">
         </iframe>"""
     st.write(html, unsafe_allow_html=True)
+
 
 def filter_place(df, level, state_id=None, administrative_level=None, city_name=None):
     if level == "state":

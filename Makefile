@@ -31,7 +31,10 @@ start-redis:
 destroy-redis:
 	docker rm -f redis
 
-docker-dev:
+docker-remove:
+	docker rm -f escolasegura 2>/dev/null || true
+
+docker-dev: docker-remove
 	touch $(PWD)/.env
 	
 	docker run --rm -it \

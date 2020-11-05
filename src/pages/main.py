@@ -43,12 +43,15 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
 
 def read_data(country, config, endpoint):
-    # if os.getenv("IS_LOCAL") == "TRUE":
-    #     api_url = config[country]["api"]["local"]
-    # else:
-    #     api_url = config[country]["api"]["external"]
-    api_url = config[country]["api"]["local"]
+
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
     url = api_url + endpoint
+
+    print("\nLoad data from:", url)
     df = pd.read_csv(url)
     return df
 
@@ -68,21 +71,36 @@ def genSelectBox(df, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col1, col2, col3, col4 = st.beta_columns([0.25, 0.5, 0.5, 1])
+    col1, col2, col3, col4 = st.beta_columns([0.3, 0.5, 0.5, 1])
 
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
     with col2:
-        options_city_name = utils.filter_place(df, "city", state_id=session_state.state_id)
-        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
-        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0]) 
-        session_state.city_name = st.selectbox(
-            "Município", options_city_name, index=x
+        options_city_name = utils.filter_place(
+            df, "city", state_id=session_state.state_id
         )
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        x = int(
+            options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[
+                0
+            ]
+        )
+        session_state.city_name = st.selectbox("Município", options_city_name, index=x)
     with col3:
-        options_adiminlevel = utils.filter_place(df, "administrative_level", state_id=session_state.state_id, city_name=session_state.city_name)
-        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
-        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0]) 
+        options_adiminlevel = utils.filter_place(
+            df,
+            "administrative_level",
+            state_id=session_state.state_id,
+            city_name=session_state.city_name,
+        )
+        options_adiminlevel = pd.DataFrame(
+            data=options_adiminlevel, columns=["adiminlevel"]
+        )
+        y = int(
+            options_adiminlevel[
+                options_adiminlevel["adiminlevel"] == "Todos"
+            ].index.tolist()[0]
+        )
         session_state.administrative_level = st.selectbox(
             "Nível de Administração", options_adiminlevel, index=y
         )
@@ -98,14 +116,15 @@ def genSelectBox(df, session_state):
 
 
 def genPlanContainer(df, config, session_state):
-
     data = df[
-        (df["city_name"] == session_state.city_name)
+        (df["state_id"] == session_state.state_id)
+        & (df["city_name"] == session_state.city_name)
         & (df["administrative_level"] == session_state.administrative_level)
     ]
 
     if len(data["overall_alert"]) > 0:
         alert = data["overall_alert"].values[0]
+
         if session_state.city_name != "Todos":
             cidade = session_state.city_name
         else:
@@ -133,8 +152,6 @@ def genPlanContainer(df, config, session_state):
         href = ""
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
-
-
     farol_covid = utils.get_config(config["br"]["farolcovid"]["config"])["br"]["farolcovid"]
     
     situation_classification = farol_covid["rules"]["situation_classification"]["cuts"]
@@ -232,26 +249,30 @@ def genPlanContainer(df, config, session_state):
             para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
-                    <div class="col">
+                    <a class="col card-plan container" 
+                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/copy" target="blank_">
+                    <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0zOTUuMTMzLDIwMC4zNDhjLTkuMjIzLDAtMTYuNjk2LTcuNDczLTE2LjY5Ni0xNi42OTZWMTE2Ljg3YzAtOS4yMjMsNy40NzMtMTYuNjk2LDE2LjY5Ni0xNi42OTYgIHMxNi42OTYsNy40NzMsMTYuNjk2LDE2LjY5NnY2Ni43ODNDNDExLjgyOCwxOTIuODc1LDQwNC4zNTYsMjAwLjM0OCwzOTUuMTMzLDIwMC4zNDh6IiBmaWxsPSIjMDAwMDAwIiBkYXRhLW9yaWdpbmFsPSIjNWM1ZjY2Ij48L3BhdGg+CjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgZD0iTTQxMS44MjgsMTgzLjY1MlYxMTYuODdjMC05LjIyMy03LjQ3My0xNi42OTYtMTYuNjk2LTE2LjY5NnYxMDAuMTc0ICBDNDA0LjM1NiwyMDAuMzQ4LDQxMS44MjgsMTkyLjg3NSw0MTEuODI4LDE4My42NTJ6IiBmaWxsPSIjNTM1NjVjIiBkYXRhLW9yaWdpbmFsPSIjNTM1NjVjIiBjbGFzcz0iIj48L3BhdGg+CjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgZD0iTTQ0NS4yMiwxMzMuNTY1SDMyOC4zNWMtOS4yMjMsMC0xNi42OTYtNy40NzMtMTYuNjk2LTE2LjY5NlYxNi42OTYgIEMzMTEuNjU0LDcuNDczLDMxOS4xMjcsMCwzMjguMzUsMGgxMTYuODdjMzYuODIxLDAsNjYuNzc3LDI5Ljk1Niw2Ni43NzcsNjYuNzgzUzQ4Mi4wNCwxMzMuNTY1LDQ0NS4yMiwxMzMuNTY1eiIgZmlsbD0iIzVhNWE1ZiIgZGF0YS1vcmlnaW5hbD0iI2ZmZGUzMyIgY2xhc3M9IiI+PC9wYXRoPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik00NDUuMjIsMGgtNTAuMDg3djEzMy41NjVoNTAuMDg3YzM2LjgyMSwwLDY2Ljc3Ny0yOS45NTYsNjYuNzc3LTY2Ljc4M1M0ODIuMDQsMCw0NDUuMjIsMHoiIGZpbGw9IiM1YTVhNWEiIGRhdGEtb3JpZ2luYWw9IiNmZmJjMzMiIGNsYXNzPSIiPjwvcGF0aD4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0yOTQuOTU5LDI2Ny4xM0gxODMuNjU0Yy05LjIyMywwLTE2LjY5Ni03LjQ3My0xNi42OTYtMTYuNjk2czcuNDczLTE2LjY5NiwxNi42OTYtMTYuNjk2aDExMS4zMDQgICBjOS4yMjMsMCwxNi42OTYsNy40NzMsMTYuNjk2LDE2LjY5NlMzMDQuMTgzLDI2Ny4xMywyOTQuOTU5LDI2Ny4xM3oiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiM1YzVmNjYiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0xMDAuMTc2LDIwMC4zNDhjLTkuMjIzLDAtMTYuNjk2LTcuNDczLTE2LjY5Ni0xNi42OTZWMTE2Ljg3YzAtOS4yMjMsNy40NzMtMTYuNjk2LDE2LjY5Ni0xNi42OTYgICBzMTYuNjk2LDcuNDczLDE2LjY5NiwxNi42OTZ2NjYuNzgzQzExNi44NzIsMTkyLjg3NSwxMDkuNCwyMDAuMzQ4LDEwMC4xNzYsMjAwLjM0OHoiIGZpbGw9IiMwMDAwMDAiIGRhdGEtb3JpZ2luYWw9IiM1YzVmNjYiPjwvcGF0aD4KPC9nPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0xMTYuODcyLDE4My42NTJWMTE2Ljg3YzAtOS4yMjMtNy40NzMtMTYuNjk2LTE2LjY5Ni0xNi42OTZ2MTAwLjE3NCAgQzEwOS40LDIwMC4zNDgsMTE2Ljg3MiwxOTIuODc1LDExNi44NzIsMTgzLjY1MnoiIGZpbGw9IiM1MzU2NWMiIGRhdGEtb3JpZ2luYWw9IiM1MzU2NWMiIGNsYXNzPSIiPjwvcGF0aD4KPHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBkPSJNMTAwLjE3Niw0MzQuMDg3Yy05LjIyMywwLTE2LjY5Ni03LjQ3My0xNi42OTYtMTYuNjk2di02Ni43ODNjMC05LjIyMyw3LjQ3My0xNi42OTYsMTYuNjk2LTE2LjY5NiAgczE2LjY5Niw3LjQ3MywxNi42OTYsMTYuNjk2djY2Ljc4M0MxMTYuODcyLDQyNi42MTQsMTA5LjQsNDM0LjA4NywxMDAuMTc2LDQzNC4wODd6IiBmaWxsPSIjMDAwMDAwIiBkYXRhLW9yaWdpbmFsPSIjNWM1ZjY2Ij48L3BhdGg+CjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgZD0iTTExNi44NzIsNDE3LjM5MXYtNjYuNzgzYzAtOS4yMjMtNy40NzMtMTYuNjk2LTE2LjY5Ni0xNi42OTZ2MTAwLjE3NCAgQzEwOS40LDQzNC4wODcsMTE2Ljg3Miw0MjYuNjE0LDExNi44NzIsNDE3LjM5MXoiIGZpbGw9IiM1MzU2NWMiIGRhdGEtb3JpZ2luYWw9IiM1MzU2NWMiIGNsYXNzPSIiPjwvcGF0aD4KPHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBkPSJNMTgzLjY1NCwxMzMuNTY1SDE2LjY5OGMtOS4yMjMsMC0xNi42OTYtNy40NzMtMTYuNjk2LTE2LjY5NlYxNi42OTZDMC4wMDIsNy40NzMsNy40NzUsMCwxNi42OTgsMCAgaDE2Ni45NTdjOS4yMjMsMCwxNi42OTYsNy40NzMsMTYuNjk2LDE2LjY5NlYxMTYuODdDMjAwLjM1LDEyNi4wOTIsMTkyLjg3OCwxMzMuNTY1LDE4My42NTQsMTMzLjU2NXoiIGZpbGw9IiMyYjE0ZjAiIGRhdGEtb3JpZ2luYWw9IiM1MGI5ZmYiIGNsYXNzPSIiPjwvcGF0aD4KPHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBkPSJNMTAwLjE3NiwzNjcuMzA0Yy01NS4yMzQsMC0xMDAuMTc0LTQ0Ljk0LTEwMC4xNzQtMTAwLjE3NHM0NC45NC0xMDAuMTc0LDEwMC4xNzQtMTAwLjE3NCAgUzIwMC4zNSwyMTEuODk3LDIwMC4zNSwyNjcuMTNTMTU1LjQxLDM2Ny4zMDQsMTAwLjE3NiwzNjcuMzA0eiIgZmlsbD0iI2ZmOTE0MCIgZGF0YS1vcmlnaW5hbD0iI2VjNzgzOCIgY2xhc3M9IiI+PC9wYXRoPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0xODMuNjU0LDUxMkgxNi42OThjLTkuMjIzLDAtMTYuNjk2LTcuNDczLTE2LjY5Ni0xNi42OTZ2LTc3LjkxMyAgYzAtOS4yMjMsNy40NzMtMTYuNjk2LDE2LjY5Ni0xNi42OTZoMTY2Ljk1N2M5LjIyMywwLDE2LjY5Niw3LjQ3MywxNi42OTYsMTYuNjk2djc3LjkxM0MyMDAuMzUsNTA0LjUyNywxOTIuODc4LDUxMiwxODMuNjU0LDUxMnoiIGZpbGw9IiMyYjE0ZjAiIGRhdGEtb3JpZ2luYWw9IiM1MGI5ZmYiIGNsYXNzPSIiPjwvcGF0aD4KPHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iIiBkPSJNMTgzLjY1NCw0MDAuNjk2aC04My40NzhWNTEyaDgzLjQ3OGM5LjIyMywwLDE2LjY5Ni03LjQ3MywxNi42OTYtMTYuNjk2di03Ny45MTMgIEMyMDAuMzUsNDA4LjE2OSwxOTIuODc4LDQwMC42OTYsMTgzLjY1NCw0MDAuNjk2eiIgZmlsbD0iIzJiMTRmZiIgZGF0YS1vcmlnaW5hbD0iIzQ4YTdlNiIgY2xhc3M9IiI+PC9wYXRoPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0yMDAuMzUsMjY3LjEzYzAtNTUuMjM0LTQ0Ljk0LTEwMC4xNzQtMTAwLjE3NC0xMDAuMTc0djIwMC4zNDggIEMxNTUuNDEsMzY3LjMwNCwyMDAuMzUsMzIyLjM2NCwyMDAuMzUsMjY3LjEzeiIgZmlsbD0iI2ZmOTE0NyIgZGF0YS1vcmlnaW5hbD0iI2RiNjMyYyIgY2xhc3M9IiI+PC9wYXRoPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0xODMuNjU0LDBoLTgzLjQ3OHYxMzMuNTY1aDgzLjQ3OGM5LjIyMywwLDE2LjY5Ni03LjQ3MywxNi42OTYtMTYuNjk2VjE2LjY5NiAgQzIwMC4zNSw3LjQ3MywxOTIuODc4LDAsMTgzLjY1NCwweiIgZmlsbD0iIzJiMTRmZiIgZGF0YS1vcmlnaW5hbD0iIzQ4YTdlNiIgY2xhc3M9IiI+PC9wYXRoPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik0zOTUuMTMzLDMzMy45MTNjLTMuMjI4LDAtNi40NTctMC45MzUtOS4yNjEtMi44MDVsLTEwMC4xNzQtNjYuNzgzICBjLTQuNjQ3LTMuMDk4LTcuNDM1LTguMzEtNy40MzUtMTMuODkxYzAtNS41ODEsMi43ODgtMTAuNzkzLDcuNDM1LTEzLjg5MWwxMDAuMTc0LTY2Ljc4M2M1LjYwOS0zLjczOSwxMi45MTQtMy43MzksMTguNTIyLDAgIGwxMDAuMTY4LDY2Ljc4M2M0LjY0MSwzLjA5OCw3LjQzNSw4LjMxLDcuNDM1LDEzLjg5MWMwLDUuNTgxLTIuNzk0LDEwLjc5My03LjQzNSwxMy44OTFsLTEwMC4xNjgsNjYuNzgzICBDNDAxLjU4OSwzMzIuOTc4LDM5OC4zNjIsMzMzLjkxMywzOTUuMTMzLDMzMy45MTN6IiBmaWxsPSIjOTlmZmRmIiBkYXRhLW9yaWdpbmFsPSIjN2JjYzI5IiBjbGFzcz0iIj48L3BhdGg+CjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3R5bGU9IiIgZD0iTTQwNC4zOTQsMzMxLjEwOGwxMDAuMTY4LTY2Ljc4M2M0LjY0MS0zLjA5OCw3LjQzNS04LjMxLDcuNDM1LTEzLjg5MSAgYzAtNS41ODEtMi43OTQtMTAuNzkzLTcuNDM1LTEzLjg5MWwtMTAwLjE2OC02Ni43ODNjLTIuODA1LTEuODctNi4wMzMtMi44MDUtOS4yNjEtMi44MDV2MTY2Ljk1NiAgQzM5OC4zNjIsMzMzLjkxMyw0MDEuNTg5LDMzMi45NzgsNDA0LjM5NCwzMzEuMTA4eiIgZmlsbD0iIzk5ZmZkNCIgZGF0YS1vcmlnaW5hbD0iIzZlYjgyNSIgY2xhc3M9IiI+PC9wYXRoPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+" 
                         title="Freepik" />
                          Passo a passo</div>
-                        <div class="minor-padding"><br>
+                        <div class="minor-padding main-black-span"><br>
                         <b><i>O que é?</i><br>
                         Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
                         <b><i>Quem usa?</i></b>
                         <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
                         </div>
                     </div>
-                    <div class="col">
+                    </a>
+                    <a class="col card-plan container" href="">
+                    <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ2NCA0NjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik00MjAuNDc0LDEyNC44bC00Mi40LTIwLjh2MzUybDU5LjItMjk2QzQ0MC40NzQsMTQ1LjYsNDMzLjI3NCwxMzEuMiw0MjAuNDc0LDEyNC44eiIgZmlsbD0iIzk5ZmZkNCIgZGF0YS1vcmlnaW5hbD0iIzAwZjJhOSIgY2xhc3M9IiI+PC9wYXRoPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPHBhdGggc3R5bGU9IiIgZD0iTTQyMy42NzQsODUuNmwtMzguNC0xOS4yYy0yLjQtMTkuMi0xOS4yLTM0LjQtMzkuMi0zNC40aC0xODQuOGMtNC0xOC40LTIwLTMyLTM5LjItMzJoLTMyICAgYy0xOS4yLDAtMzYsMTQuNC0zOS4yLDMyLjhjLTE4LjQsMy4yLTMyLjgsMjAtMzIuOCwzOS4ydjM1MmMwLDIyLjQsMTcuNiw0MCw0MCw0MGgyODhjMjEuNiwwLDQwLTE2LjgsNDAtMzguNGwwLDBsNTkuMi0yOTYgICBDNDQ4LjQ3NCwxMTIsNDM5LjY3NCw5My42LDQyMy42NzQsODUuNnogTTkwLjA3NCwxNmgzMmMxMC40LDAsMTkuMiw2LjQsMjIuNCwxNmgtNzYuOEM3MC44NzQsMjIuNCw3OS42NzQsMTYsOTAuMDc0LDE2eiAgICBNMzcwLjA3NCw0MjRjMCwxMy42LTEwLjQsMjQtMjQsMjRoLTg4di0yNGMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYyNGgtMTZ2LTU2YzAtNC44LTMuMi04LTgtOHMtOCwzLjItOCw4djU2aC0xNnYtMjQgICBjMC00LjgtMy4yLTgtOC04cy04LDMuMi04LDh2MjRoLTgwdi0yNGMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYyNGgtMjRjLTEzLjYsMC0yNC0xMC40LTI0LTI0VjcyYzAtMTMuNiwxMC40LTI0LDI0LTI0aDg4djE1MiAgIGMwLDEzLjYtMTAuNCwyNC0yNCwyNHMtMjQtMTAuNC0yNC0yNFY3MmMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYxMjhjMCwyMi40LDE3LjYsNDAsNDAsNDBzNDAtMTcuNiw0MC00MFY0OGgxODQgICBjMTMuNiwwLDI0LDEwLjQsMjQsMjRWNDI0eiBNNDI5LjI3NCwxMjYuNGwtNDMuMiwyMTYuOFY4NC44bDMwLjQsMTUuMkM0MjYuMDc0LDEwNC44LDQzMS42NzQsMTE2LDQyOS4yNzQsMTI2LjR6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCw5NmgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsOTYsMzE0LjA3NCw5NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0zMTQuMDc0LDE2MGgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsMTYwLDMxNC4wNzQsMTYweiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTIxOC4wNzQsMjQwaDMyYzQuOCwwLDgtMy4yLDgtOHMtMy4yLTgtOC04aC0zMmMtNC44LDAtOCwzLjItOCw4ICAgQzIxMC4wNzQsMjM2LjgsMjEzLjI3NCwyNDAsMjE4LjA3NCwyNDB6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwyMjRoLTMyYy00LjgsMC04LDMuMi04LDhjMCw0LjgsMy4yLDgsOCw4aDMyYzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDIyNCwzMTQuMDc0LDIyNHoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0xODYuMDc0LDMyMGgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzE5MC44NzQsMzIwLDE4Ni4wNzQsMzIweiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTMxNC4wNzQsMzIwaC05NmMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGg5NmM0LjgsMCw4LTMuMiw4LThTMzE4Ljg3NCwzMjAsMzE0LjA3NCwzMjB6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwxOTJoLTk2Yy00LjgsMC04LDMuMi04LDhzMy4yLDgsOCw4aDk2YzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDE5MiwzMTQuMDc0LDE5MnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0yNTguMDc0LDI5NmMwLTQuOC0zLjItOC04LThoLTE2MGMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGgxNjAgICBDMjU0Ljg3NCwzMDQsMjU4LjA3NCwzMDAuOCwyNTguMDc0LDI5NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0zMTQuMDc0LDI4OGgtMzJjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoMzJjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsMjg4LDMxNC4wNzQsMjg4eiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTIxOC4wNzQsMTQ0aDMyYzQuOCwwLDgtMy4yLDgtOHMtMy4yLTgtOC04aC0zMmMtNC44LDAtOCwzLjItOCw4UzIxMy4yNzQsMTQ0LDIxOC4wNzQsMTQ0eiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTMxNC4wNzQsMTI4aC0zMmMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGgzMmM0LjgsMCw4LTMuMiw4LThTMzE4Ljg3NCwxMjgsMzE0LjA3NCwxMjh6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwyNTZoLTk2Yy00LjgsMC04LDMuMi04LDhzMy4yLDgsOCw4aDk2YzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDI1NiwzMTQuMDc0LDI1NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"
                         title="Freepik" />
                          Protocolos</div>
-                        <div class="minor-padding"><br>
+                        <div class="minor-padding main-black-span"><br>
                             <b><i>O que é?</i><br>
                             Listas de orientações para planejar a estrutura sanitária nas escolas</b>
                             A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
@@ -260,10 +281,12 @@ def genPlanContainer(df, config, session_state):
                             <li> Diretores(as) de escolas.
                         </div>
                     </div>
+                    </a>
                 </div><br>
                 <div class="text-title-section"> Régua de protocolo </div>
                 <div class="minor-padding">
-                    <b><i>O que é?</i> Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
+                    <b><i>O que é?</i><br>
+                    Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
                 </div>
                 <p>{caption}</p>{modal}
                 </div>
@@ -290,9 +313,9 @@ def genSimulationResult(params, config):
                 <div class="bold"> Metodologia </div>
                 <div class="row">
                     <div class="col main-padding">
-                        <div class="card-simulator lighter-blue-green-bg">
+                        <div class="card-simulator-up lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
-                            <div>Todos os alunos têm aula presencial ao menos 1 vez por semana.</div>
+                            <div>Todos os alunos retornam ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["equitative"]["num_returning_students"]} </div>
@@ -310,12 +333,8 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (8 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator light-blue-green-bg minor-padding">
-                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
-                            <img style="width:1rem;"
-                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
-                            title="Freepik" />
-                            </div>
+                        <div class="card-simulator-bottom light-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"></div>
@@ -335,9 +354,9 @@ def genSimulationResult(params, config):
                         </div> 
                     </div>
                     <div class="col main-padding">
-                        <div class="card-simulator lighter-blue-green-bg">
+                        <div class="card-simulator-up lighter-blue-green-bg">
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
-                            <div>Máximo de alunos retorna 5 vezes por semana.</div>
+                            <div>Número limitado de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
                                 <div class="div2 card-number">{result["priority"]["num_returning_students"]} </div>
@@ -355,11 +374,8 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (8 horas/dia) </div>
                             </div>
                         </div>
-                        <div class="card-simulator light-blue-green-bg minor-padding">
-                            <div class="card-title-section main-blue-span uppercase">Materiais para compra 
-                            <img style="width:1rem;"
-                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTI1NiAwYy0xNDEuMTY0MDYyIDAtMjU2IDExNC44MzU5MzgtMjU2IDI1NnMxMTQuODM1OTM4IDI1NiAyNTYgMjU2IDI1Ni0xMTQuODM1OTM4IDI1Ni0yNTYtMTE0LjgzNTkzOC0yNTYtMjU2LTI1NnptMCAwIiBmaWxsPSIjMmIxNGZmIiBkYXRhLW9yaWdpbmFsPSIjMjE5NmYzIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBkPSJtMzY4IDI3Ny4zMzIwMzFoLTkwLjY2Nzk2OXY5MC42Njc5NjljMCAxMS43NzczNDQtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzFzLTIxLjMzMjAzMS05LjU1NDY4Ny0yMS4zMzIwMzEtMjEuMzMyMDMxdi05MC42Njc5NjloLTkwLjY2Nzk2OWMtMTEuNzc3MzQ0IDAtMjEuMzMyMDMxLTkuNTU0Njg3LTIxLjMzMjAzMS0yMS4zMzIwMzFzOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFoOTAuNjY3OTY5di05MC42Njc5NjljMC0xMS43NzczNDQgOS41NTQ2ODctMjEuMzMyMDMxIDIxLjMzMjAzMS0yMS4zMzIwMzFzMjEuMzMyMDMxIDkuNTU0Njg3IDIxLjMzMjAzMSAyMS4zMzIwMzF2OTAuNjY3OTY5aDkwLjY2Nzk2OWMxMS43NzczNDQgMCAyMS4zMzIwMzEgOS41NTQ2ODcgMjEuMzMyMDMxIDIxLjMzMjAzMXMtOS41NTQ2ODcgMjEuMzMyMDMxLTIxLjMzMjAzMSAyMS4zMzIwMzF6bTAgMCIgZmlsbD0iI2ZhZmFmYSIgZGF0YS1vcmlnaW5hbD0iI2ZhZmFmYSIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L3N2Zz4="
-                            title="Freepik" /></div>
+                        <div class="card-simulator-bottom light-blue-green-bg minor-padding">
+                            <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"> </div>
@@ -413,9 +429,9 @@ def genSimulationContainer(df, config, session_state):
                             </div>
                         <div class="row main-padding" style="grid-gap: 1rem;">
                             <div class="col lighter-blue-green-bg card-simulator" style="border-radius:30px;">
-                                <div class="two-cols-icon-text">
-                                    <div class="card-title-section">EQUITATIVO</div>
-                                    <div class="text-subdescription">
+                                <div class="row">
+                                    <div class="col card-title-section">EQUITATIVO</div>
+                                    <div class="col text-subdescription container">
                                         <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
                                         <p></p>
                                         Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
@@ -424,9 +440,9 @@ def genSimulationContainer(df, config, session_state):
                                 </div>
                             </div>
                             <div class="col light-blue-green-bg card-simulator" style="border-radius:30px">
-                            <div class="two-cols-icon-text">
-                                <div class="card-title-section">PRIORITÁRIO</div>
-                                <div class="text-subdescription">
+                            <div class="row">
+                                <div class="col card-title-section">PRIORITÁRIO</div>
+                                <div class="col text-subdescription container">
                                     <b>Número limitado de alunos retorna 5 vezes por semana.</b>
                                 <p></p>
                                 O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
@@ -593,10 +609,13 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_5:
         st.write(
-            f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
+            f"""<div class="minor-padding"> </div>""",
+            unsafe_allow_html=True,
         )
 
-        params["max_students_per_class"] = st.slider("Máximo de alunos por sala:", 0, 20, 20, 1)
+        params["max_students_per_class"] = st.slider(
+            "Máximo de alunos por sala:", 0, 20, 20, 1
+        )
 
         st.write(
             f"""<div class="container">
@@ -658,10 +677,11 @@ def genPrepareContainer():
                             <b><i>Quem usa?</b></i>
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).
                             <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.
+                            <br><br><b>Para acessar, clique na imagem.</b>
                             </div>
                         </div>
                         <div class="col">
-                            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSer8JIT3wZ5r5FD8vUao1cR8VrnR1cq60iPZfuvqwKENnEhCg/viewform" target="_blank">
+                            <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
                             <img class="img-forms" src="https://i.imgur.com/gRSIBoh.png"> 
                             </a>
                         </div>
@@ -688,15 +708,18 @@ def genMonitorContainer():
                     title="Freepik" />
                     Plano de contingência</div>
                     <br>
-                    <div class="grid-container-verification">
-                        <div class="minor-padding">
+                    <div class="row">
+                        <div class="col">
                             <b><i>O que é?</b></i><br>É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
+                            <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
-                        <div class="minor-padding">
-                            <img src="https://via.placeholder.com/300">
+                        <div class="col">
+                            <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
+                                <img class="img-forms" src="https://via.placeholder.com/300">
+                            </a>
                         </div>
                     </div>
                 <div class="text-title-section main-padding"> 
@@ -714,11 +737,12 @@ def genMonitorContainer():
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;
                             <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.
                         </ol>
+                        <br><br><b>Para acessar, clique na imagem.</b>
                         </div>
                     </div>
                     <div class="col"><br>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
-                        <img style="height: 100%; width: 100%;" src="https://i.imgur.com/aNml5YI.png"> 
+                        <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
+                        <img class="img-forms" src="https://i.imgur.com/aNml5YI.png"> 
                         <br>
                         </a>
                     </div>
@@ -728,32 +752,112 @@ def genMonitorContainer():
         unsafe_allow_html=True,
     )
 
-
+def  genReferencesContainer():
+    st.write(
+        f"""
+        <div class="container main-padding">
+            <div class="title-section">
+                <img class="square" src="https://i.imgur.com/gGIFS5N.png">Fontes e Referências
+            </div>
+            <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Fonte</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> Orientações para Retomada Segura das Atividades Presenciais nas Escolas de Educação Básica no Contexto da Pandemia da COVID-19 </td>
+                        <td> <a href="http://antigo.saude.gov.br/images/pdf/2020/September/18/doc-orientador-para-retomada-segura-das-escolas-no-contexto-da-covid-19.pdf">
+                            Ministério da Saúde
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Manual sobre Biossegurança para Reabertura de Escolas no Contexto da COVID-19 </td>
+                        <td> <a href="https://portal.fiocruz.br/sites/portal.fiocruz.br/files/documentos/manualreabertura.pdf">
+                            Fiocruz
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Guia de Implementação de Protocolos de Retorno das Atividades Presenciais nas Escolas de Educação Básica </td>
+                        <td> <a href="https://www.gov.br/mec/pt-br/assuntos/GuiaderetornodasAtividadesPresenciaisnaEducaoBsica.pdf">
+                            Ministério da Educação
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Considerations for school-related public health measures in the context of COVID-19 </td>
+                        <td> <a href="https://www.who.int/publications/i/item/considerations-for-school-related-public-health-measures-in-the-context-of-covid-19">
+                            Organização Mundial da Saúde
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Manual de Protocolos de Saúde </td>
+                        <td> <a href="http://www.educacao.am.gov.br/wp-content/uploads/2020/07/PROTOCOLOS-DE-SAuDE02.pdf">
+                            Governo do Estado do Amazonas
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Ferramenta de Planejamento e Cálculo de Custos de Preparações Alcoólicas para a Higiene das Mãos </td>
+                        <td> <a href="https://proqualis.net/sites/proqualis.net/files/FerramentadePlanejamentoeClculodeCustosgrfica.pdf">
+                            Proqualis
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Segurança do paciente em serviços de saúde: limpeza e desinfecção de superfícies </td>
+                        <td> <a href="https://www20.anvisa.gov.br/segurancadopaciente/images/documentos/ManualLimpezaeDesinfeccaofinal.pdf">
+                            ANVISA
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> NOTA TÉCNICA Nº 47/2020/SEI/GIALI/GGFIS/DIRE4/ANVISA <br> Uso de luvas e máscaras em estabelecimentos da área de alimentos no contexto do enfrentamento ao COVID-19 </td>
+                        <td> <a href="https://www.gov.br/anvisa/pt-br/arquivos-noticias-anvisa/310json-file-1">
+                            ANVISA
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Appendix A – Risk-assessment for determining environmental cleaning method and frequency </td>
+                        <td> <a href="https://www.cdc.gov/hai/prevent/resource-limited/risk-assessment.html">
+                            Centers for Disease Control and Prevention
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html = True,
+    )
 def genFooterContainer():
     st.write(
         f"""
-        <div class="container">
+        <div class="container main-padding">
             <div class="text-title-footer main-padding"> Realizado por </div>
-            <div class="div-logo-footer row">
-                <div class="col main-padding">
-                <a href="https://www.impulsogov.com.br/" target="_blank">
+            <div class="div-logo-footer main-padding img-center">
+            <ul style="list-style-type: none;">
+                <li style="display: inline;">
+                <a class="logo-footer" href="https://www.impulsogov.com.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
                     title="logo Impulso"/>
-                </a>
-                </div>
-                <div class="col main-padding">
+                </a></li>
+                <li style="display: inline;">
                 <a href="https://fundacaolemann.org.br/" target="_blank">
                     <img class="logo-footer"
                     src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"
                     tile="logo Lemann">
-                </a>            
-                <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
-                    <img class="logo-footer"
-                    src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
-                    title="logo BID">
-                </a>
-                </div>
+                </a></li>
+            </ul>          
             </div>
             <div class="container text-small main-padding">
                 Todo os ícones são do <a href="https://www.freepik.com/" target="_blank">Freepik </a> com permissão de uso mediante créditos.
@@ -764,18 +868,37 @@ def genFooterContainer():
     )
 
 
+#  <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
+#                     <img class="logo-footer"
+#                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
+#                     title="logo BID">
+#                 </a>
+
+
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
+        title1="Escola",
+        title2="Segura",
+        subtitle="{descrição}",
+        header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
     genSelectBox(data, session_state)
+
+    # to keep track on dev
+    print("PLACE SELECTION: \n", 
+        "\n=> UF: ", session_state.state_id,
+        "\n=> CITY: ", session_state.city_name,
+        "\n=> ADM: ", session_state.administrative_level, 
+    )
+
     genPlanContainer(data, config, session_state)
     genSimulationContainer(data, config, session_state)
     genPrepareContainer()
     genMonitorContainer()
+    genReferencesContainer()
     genFooterContainer()
 
 

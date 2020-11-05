@@ -9,8 +9,27 @@ Todos os dados utilizados na ferramenta são abertos e estão disponíveis na no
 A **Escola Segura** está disponível [aqui]().
 
 
-## Rodando a Escola Segura localmente
+## Desenvolvimento
 
--> `streamlit run src/escolasegura.py`
+Instruções para rodar a aplicação localmente:
+
+### Streamlit
+
+```bash
+# roda em localhost:8001
+pip install -r requirements.txt
+streamlit run src/escolasegura.py
+```
+### Docker
+
+- Linux/Mac:
+
+```bash
+# antes instale o docker
+# roda em localhost:8001 com shell aberto
+make docker-build-dev
+```
+
+- Windows:
 
 [wip rodando com o docker]
