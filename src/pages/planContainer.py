@@ -137,7 +137,7 @@ def genPlanContainer(df, config, session_state):
             <div class="left-margin">
                 <div class="row">
                     <a class="col card-plan container" 
-                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/copy" target="blank_">
+                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 

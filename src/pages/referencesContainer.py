@@ -6,7 +6,7 @@ def  genReferencesContainer():
         <div class="container main-padding">
             <div class="title-section">
                 <img class="square" src="https://i.imgur.com/gGIFS5N.png">Fontes e Referências
-            </div>
+            </div><br>
             <div class="table-responsive">
             <table>
                 <thead>
