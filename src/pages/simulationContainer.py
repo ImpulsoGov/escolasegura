@@ -11,7 +11,7 @@ def genSimulationResult(params, config):
         f"""
         <div class="container main-padding">
                 <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
-                <div class="bold"> Metodologia </div>
+                <p>Com os valores selecionados acima, os resultados da sua rede para os 2 modelos de retorno:</p>
                 <div class="row">
                     <div class="col main-padding">
                         <div class="card-simulator-up lighter-blue-green-bg">
@@ -108,6 +108,9 @@ def genSimulationResult(params, config):
                         aqui</a>.</b>
                     </div>
                 </div>
+            </div>
+            <div class="minor-padding" style="margin-left:0.5em;">
+                <br><p>ℹ️<i> Para entender como realizamos os cálculos, leia abaixo a metodologia.</p></i>
             </div>
         """,
         unsafe_allow_html=True,

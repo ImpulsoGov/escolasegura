@@ -20,8 +20,8 @@ def genMonitorContainer():
                             <b><i>O que é?</b></i><br>É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
-                            <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
-                            <br><br><b>Clique na imagem para acessar a ferramenta online ou baixe o documento <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy">aqui</a>.</b>
+                            <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>
+                            <br><br><b>➡️ Clique na imagem para acessar a ferramenta online ou <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy">baixe aqui</a></b>
                         </div>
                         <div class="col">
                             <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
@@ -41,10 +41,10 @@ def genMonitorContainer():
                         Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
                         <br><br><b><i>Como usa?</b></i>
                         <ol>
-                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;
-                            <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.
+                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;</li>
+                            <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.</li>
                         </ol>
-                        <br><br><b>Clique na imagem para acessar a ferramenta online ou baixe o documento</b> <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">aqui</a> .</b>
+                        <br><br><b>➡️ Clique na imagem para acessar a ferramenta online ou </b><a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">baixe aqui</a></b>
                         </div>
                     </div>
                     <div class="col"><br>

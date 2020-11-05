@@ -24,9 +24,9 @@ def genPrepareContainer():
                             Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
                             <br><br>
                             <b><i>Quem usa?</b></i>
-                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).
-                            <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.
-                            <br><br><b>Para acessar, clique na imagem.</b>
+                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).</li>
+                            <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.</li>
+                            <br><br><b>➡️ Clique na imagem para acessar a ferramenta online</b>
                             </div>
                         </div>
                         <div class="col">
