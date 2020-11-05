@@ -265,7 +265,7 @@ def genSimulationResult(params, config):
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> int({result["equitative"]["total_sanitizer"]}) </div>
+                                <div class="div2 card-number"> {int(result["equitative"]["total_sanitizer"])} </div>
                                 <div class="div3 bold"> litros de álcool em gel por semana</div>
                             </div>
                         </div> 
@@ -306,7 +306,7 @@ def genSimulationResult(params, config):
                             </div>
                             <div class="grid-container-simulation-material">
                                 <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
-                                <div class="div2 card-number"> int({result["priority"]["total_sanitizer"]}) </div>
+                                <div class="div2 card-number"> {int(result["priority"]["total_sanitizer"])} </div>
                                 <div class="div3 bold"> litros de álcool em gel por semana </div>
                             </div>
                         </div>
