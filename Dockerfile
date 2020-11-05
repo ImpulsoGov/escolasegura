@@ -32,7 +32,7 @@ RUN set -x \
     # Create virtualenv
     && virtualenv -p python3 venv \
     #Downloads the hacked streamlit
-    && wget https://github.com/ImpulsoGov/streamlitlastversion/raw/main/builds/streamlit-0.69.2-py2.py3-none-any.whl \
+    && wget https://github.com/ImpulsoGov/streamlitlastversion/raw/main/builds/streamlit-0.70.0-py2.py3-none-any.whl \
     # Install Python libs
     && . venv/bin/activate \
     && pip install --default-timeout=100 future \
