@@ -21,7 +21,7 @@ def genMonitorContainer():
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
-                            <br><br><b>Para acessar, clique na imagem.</b>
+                            <br><br><b>Clique na imagem para acessar a ferramenta online ou baixe o documento <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy">aqui</a>.</b>
                         </div>
                         <div class="col">
                             <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
@@ -44,7 +44,7 @@ def genMonitorContainer():
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;
                             <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.
                         </ol>
-                        <br><br><b>Para acessar, clique na imagem.</b>
+                        <br><br><b>Clique na imagem para acessar a ferramenta online ou baixe o documento</b> <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">aqui</a> .</b>
                         </div>
                     </div>
                     <div class="col"><br>
