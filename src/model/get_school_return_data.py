@@ -34,8 +34,8 @@ def get_school_return_projections(
         num_returning_teachers : int
             Project number of teachers returning to school.
     """
-    hours_per_week = config["simule"]["class"]["hours_per_week"]
-    hours_per_lecture = config["simule"]["class"]["hours_per_lecture"]
+    hours_per_week = config["br"]["simule"]["class"]["hours_per_week"]
+    hours_per_lecture = config["br"]["simule"]["class"]["hours_per_lecture"]
 
     # Select Mode of Return
     modes = config["br"]["simule"]["class"]["lectures_per_student"]
