@@ -636,19 +636,136 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
 
-    with st.beta_expander("SIMULAR RETORNO"):
+    with st.beta_expander("Simular retorno"):
         genSimulationResult(params, config)
 
-    '''if st.button("SIMULAR RETORNO"):
+    '''if st.button("Simular retorno"):
         if st.button("Esconder"):
             pass
         genSimulationResult()
     utils.stylizeButton(
         name="SIMULAR RETORNO",
-        # style_string="""border: 1px solid var(--main-white);box-sizing: border-box;border-radius: 15px; width: auto;padding: 0.5em;text-transform: uppercase;font-family: var(--main-header-font-family);color: var(--main-white);background-color: var(--main-primary);font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1em;""",
-        style_string="""box-sizing: border-box;border-radius: 15px; width: 150px;padding: 0.5em;text-transform: uppercase;font-family: 'Oswald', sans-serif;background-color:  #0097A7;font-weight: bold;text-align: center;text-decoration: none;font-size: 18px;animation-name: fadein;animation-duration: 3s;margin-top: 1.5em;""",
+        style_string="""
+        box-sizing: border-box;
+        border-radius: 15px; 
+        width: 150px;padding: 0.5em;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif;
+        background-color: #0097A7;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;font-size: 18px;
+        animation-name: fadein;
+        animation-duration: 3s;
+        margin-top: 1.5em;""",
         session_state=session_state,
     )'''
+
+    with st.beta_expander("Ler metodologia"):
+
+        methodology_text = """
+    ## Metodologia de Simule o Retorno
+    ### O que é?
+
+    O simulador é uma ferramenta de cálculo para o gestor planejar o retorno das atividades 
+    escolares definindo restriçõers e seguindo os protocolos sanitários indicados. 
+
+    A partir dos valores e restrições inseridos pelo gestor, o simulador calcula o 
+    **número de alunos e professores que podem retornar** às atividades escolares e 
+    **os materiais necessários para compra**, incluindo maścaras descartáveis, termômetros e
+    litros de álcool em gel (mais materiais podem ser acessados na planilha que disponibilizamos).
+
+    ### Como fazer a simulação?
+
+    Ao acessar a ferramenta, o gestor encontrará os seguintes campos para preenchimento:
+
+    - **Total de alunos:** O gestor pode informar aqui número total de alunos 
+    inscritos no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Total de professores:** O gestor pode informar aqui número de professores disponíveis 
+    para dar aula no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Total de salas de aula:** O gestor pode informar aqui o total de salas de aula disponíveis 
+    para retorno no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
+
+    - **Percentual de alunos realizando atividades presenciais:** O gestor deve informar aqui o percentual de alunos
+    dentre o **Total de alunos** indicado que estão previstos para retornar as atividades.
+
+    - **Percentual de professores realizando atividades presenciais:**  O gestor deve informar aqui o percentual de professores 
+    dentre o **Total de professores** indicado que estão previstos para retornar as atividades.
+
+    - **Máximo de alunos por sala:** 
+    O gestor deve indicar aqui o limite de alunos por sala de aula. 
+    Por padrão, este valor é de 20 alunos por sala, que também é o máximo que permitimos ser escolhido a fim tentar limitar a transmissão da doença.
+
+    - **Filtros da simulação**: (se aplicam aos valores padrões do Censo Escolar 2019)
+    - *Apenas escolas rurais*: escolhe-se para retorno apenas escolas em regiões rurais com base no Censo 2019. Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
+    - *Apenas escolas com água encanada*: escolhe-se para retorno apenas escolas com água encanada (escolas com fornecimento de água da rede pública no Censo 2019). Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
+
+
+    ### Como calculamos o resultado?
+
+    O simulador utiliza as informações passadas acima: 
+    - **A**: total de alunos x percentual alunos que retornam
+    - **P**: total de professores x percentual professores que retornam
+    - **S**: número de salas de aula disponíveis
+    - **K**: máximo de alunos permitidos por sala 
+
+    Além desses, são fixados valores para cada modelo de retorno:
+    - **H**: horas semanais disponíveis de professores e salas para aulas (H = 40 horas por semana)
+    - **D**: duração de cada aula em horas (D = 2 horas)
+    - **N**: quantidade mínima de aulas por semana por aluno (equitativo: N = 1; prioritário: N = 5)
+
+    ℹ️ *Cada professor é alocado para uma única turma, a fim de reduzir o risco de transmissão e 
+    facilitar o reastreamento de casos.*
+
+    Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos o conceito de **oportunidade**: 
+    uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até **K** alunos 
+    (máximo por turma), a **quantidade de oportunidades de aulas na rede** é dada por 
+    $K \\times O$, onde **O** corresponde à oferta total de aulas na rede.
+
+    A oferta de aulas na rede (**O**) depende diretamente da disponibilidade de professores e salas. 
+    Dado o total de horas disponíveis na semana (**H**) e a duração definida de uma aula (**D**), 
+    o máximo de aulas que podem ser oferecidas por professor/sala 
+    é dado por $Q = \left\lfloor \\frac{ H }{ D } \\right\\rfloor$.
+
+    Assim, a oferta total de aulas (**O**) é dada por:
+
+    $$ 
+    O = Q \\times \min{ ( S, P ) } 
+    $$
+
+    Ao mesmo tempo, cada aluno deve ter um número mínimo de aulas por semana (**N**), que é dado pelo modelo de retorno escolhido. 
+    Assim, a capacidade efetiva de retorno de alunos(**C**) é dada por:
+
+    $$
+    C = \\frac{K \\times O}{N}
+    $$
+
+    O número de alunos que de fato retornam (**R**) depende da capacidade da rede 
+    de fornecer hroários de aula dadas as restrições de professores, salas e turmas. 
+    Logo, **R** é o mínimo entre a quantidade de alunos que têm 
+    permissão para retornar **A** e a capacidade de retorno da rede **C**:
+
+    $$
+    R = \min{ ( A,C ) }
+    $$
+
+    E, finalmente, o número de professores que retornam é dado pelo total de turmas que retornam ($\lceil{ R/K } \\rceil$):
+
+    $$
+    P  = \lceil{ R/K } \\rceil
+    $$
+
+    ℹ️ *Note que **a capacidade total da rede pode ser maior que o número de alunos que se deseja retornar**. 
+    Isso ocorre pois, uma vez selecionada a etapa de ensino, alocamos todos as 40 horas de professores/salas 
+    das escolas que possuem essa etapa.*
+
+    *Além disso, no modelo equitativo, no qual a rede oferece apenas uma aula por semana para cada aluno, esta pode atender muito mais 
+    alunos do que uma rede operando de maneira convencional.*
+        """
+        
+        st.write(methodology_text)
 
 
 def genPrepareContainer():
