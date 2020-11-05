@@ -34,13 +34,11 @@ def get_school_return_projections(
         num_returning_teachers : int
             Project number of teachers returning to school.
     """
-
-    # Load Fixed Parameters
     hours_per_week = config["simule"]["class"]["hours_per_week"]
     hours_per_lecture = config["simule"]["class"]["hours_per_lecture"]
 
     # Select Mode of Return
-    modes = config["simule"]["class"]["lectures_per_student"]
+    modes = config["br"]["simule"]["class"]["lectures_per_student"]
     lectures_per_student = modes[selected_mode_return]
 
     # Calculate total number of lectures per week
@@ -97,18 +95,14 @@ def get_school_return_supplies(
     # Load Fixed Parameters
 
     # Protection Equipment and Cleaning Supplies
-    mask_time_limit = config["simule"]["supplies"]["mask_time_limit"]
-    sanitizer_per_person_per_hour = config["simule"]["supplies"][
-        "sanitizer_per_person_per_hour"
-    ]
-    people_per_thermometer = config["simule"]["supplies"]["people_per_thermometer"]
-
+    mask_time_limit = config["br"]["simule"]["supplies"]["mask_time_limit"]
+    sanitizer_per_person_per_hour = config["br"]["simule"]["supplies"]["sanitizer_per_person_per_hour"]
+    people_per_thermometer = config["br"]["simule"]["supplies"]["people_per_thermometer"]
+    
     # Class Hours and Composition
-    hours_per_lecture = config["simule"]["class"]["hours_per_lecture"]
-    lectures_per_student = config["simule"]["class"]["lectures_per_student"][
-        selected_mode_return
-    ]
-
+    hours_per_lecture = config["br"]["simule"]["class"]["hours_per_lecture"]
+    lectures_per_student = config["br"]["simule"]["class"]["lectures_per_student"][selected_mode_return]
+    
     # Determine Masks and Hand Sanitizer for Students
     hours_per_student = lectures_per_student * hours_per_lecture
 
