@@ -38,7 +38,7 @@ RUN set -x \
     && pip install --default-timeout=100 future \
     && pip install --upgrade -r requirements.txt \
     # Install streamlit
-    && pip install --no-cache-dir streamlit-0.69.2-py2.py3-none-any.whl\
+    && pip install --no-cache-dir streamlit-0.70.0-py2.py3-none-any.whl\
     && python -m ipykernel install --user --name=venv
 ADD . ${USER_HOME}
 USER root
