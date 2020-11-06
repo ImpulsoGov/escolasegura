@@ -68,7 +68,7 @@ def genPlanContainer(df, config, session_state):
                 </tr>
                 <tr>
                     <td rowspan="2">
-                    <p><span>Situação da doença</span></p><br/>
+                    <t><span>Situação da doença</span></t><br/>
                     </td>
                     <td><span>Novos casos diários (Média móvel 7 dias)</span></td>
                     <td class="light-blue-bg bold"><span>x&lt;={situation_classification[1]}</span></td>
