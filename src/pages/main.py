@@ -140,11 +140,55 @@ def main(session_state):
         "\n=> CITY: ", session_state.city_name,
         "\n=> ADM: ", session_state.administrative_level, 
     )
-
-    pc.genPlanContainer(data, config, session_state)
-    sc.genSimulationContainer(data, config, session_state)
-    prc.genPrepareContainer()
-    mc.genMonitorContainer()
+    Planeje = False
+    Prepare = False
+    Monitore = False
+    coluna1, coluna2, coluna3 = st.beta_columns([0.5, 0.5, 0.5])
+    with coluna1:
+        st.write(
+            f"""
+            <div class="text-title-section">Planeje</div><br>
+            <div class="minor-padding">
+Minha rede está preparada para a reabertura?<br><br>
+Quais as recomendações sanitárias para retomada?<br><br>
+Qual modelo de retorno híbrido mais indicado para mim?<br><br>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Veja Planeje"):
+            Planeje = True
+    with coluna2:
+        st.write(
+            f"""
+            <div class="text-title-section">Prepare</div><br>
+            <div class="minor-padding">
+Quais das minhas unidades escolares estão adequadas para o retorno presencial?<br><br>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Veja Prepare"):
+            Prepare = True
+    with coluna3:
+        st.write(
+            f"""
+            <div class="text-title-section">Monitore</div><br>
+            <div class="minor-padding">
+O que fazer se eu tiver um caso de Covid confirmado em uma das minhas unidades?<br><br>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        if st.button("Veja Monitore"):
+            Monitore = True
+    if Planeje == True:
+        pc.genPlanContainer(data, config, session_state)
+    if Prepare == True:
+        prc.genPrepareContainer()
+        sc.genSimulationContainer(data, config, session_state)
+    if Monitore == True:
+        mc.genMonitorContainer()
     rc.genReferencesContainer()
     fc.genFooterContainer()
 
