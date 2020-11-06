@@ -21,4 +21,25 @@ br:
             people_per_thermometer: 100
     farolcovid:
         config: https://raw.githubusercontent.com/ImpulsoGov/farolcovid/stable/src/configs/config.yaml
+        elements:
+            altíssimo:
+                href: "https://i.imgur.com/LJVEtmB.png"
+                url: href + ".png"
+                color: "red-text"
+                description: "Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
+            alto:
+                href: "https://i.imgur.com/onZbg2W.png"
+                url: href + ".png"
+                color: "orange-text"
+                description: "Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+            moderado:
+                href: "https://i.imgur.com/QYYCMXz.png"
+                url: href + ".png"
+                color: "yellow-text"
+                description: "Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+            "novo normal":
+                href: "https://i.imgur.com/Y9tnAg4.png"
+                url: href + ".png"
+                color: "blue-text"
+                description: "Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
         

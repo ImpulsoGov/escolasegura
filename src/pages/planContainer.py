@@ -10,36 +10,30 @@ def genPlanContainer(df, config, session_state):
     ]
 
     if len(data["overall_alert"]) > 0:
-        alert = data["overall_alert"].values[0]
 
         if session_state.city_name != "Todos":
             cidade = session_state.city_name
         else:
             cidade = session_state.state_id
-        if alert == 3.0:
-            href = "https://i.imgur.com/LJVEtmB.png"
-            url = href + ".png"
-            caption = f"Em <b>{cidade}</b>, o nível de alerta é: <b>ALTÍSSIMO</b>. Há um crescente número de casos de Covid-19 e grande parte deles não são detectados."
 
-        elif alert == 2.0:
-            href = "https://i.imgur.com/onZbg2W.png"
-            url = href + ".png"
-            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>ALTO</b>. Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável."
+        # resgata nome do alerta no config do Farol
+        farol_covid = utils.get_config(config["br"]["farolcovid"]["config"])["br"]["farolcovid"]
+        alert = farol_covid["categories"][data["overall_alert"].values[0]]
 
-        elif alert == 1.0:
-            href = "https://i.imgur.com/QYYCMXz.png"
-            url = href + ".png"
-            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>MODERADO</b>. Há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida."
+        elements = config["br"]["farolcovid"]["elements"][alert]
+            
+        caption = f"""
+        Hoje em <b>{cidade}</b>, segundo o FarolCovid, o nível de alerta é: 
+        <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
+        {elements["description"]}"""
 
-        elif alert == 0.0:
-            href = "https://i.imgur.com/Y9tnAg4.png"
-            url = href + ".png"
-            caption = f"Em <b>{cidade}</b>, nível de alerta é: <b>NOVO NORMAL</b>. Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+        href = elements["href"]
+        url = href + ".png"
+
     else:
         href = ""
         url = ""
         caption = "Não há nível de alerta na sua cidade. Sugerimos que confira o nível de risco de seu estado."
-    farol_covid = utils.get_config(config["br"]["farolcovid"]["config"])["br"]["farolcovid"]
     
     situation_classification = farol_covid["rules"]["situation_classification"]["cuts"]
     control_classification = farol_covid["rules"]["control_classification"]["cuts"]
@@ -49,12 +43,15 @@ def genPlanContainer(df, config, session_state):
     date_update = farol_covid["date_update"]
 
     modal = f"""
-    <a href="#entenda-mais" class="info-btn">Entenda a classificação dos níveis</a>
+    <a href="#entenda-mais" class="info-btn">Entenda os níveis do FarolCovid</a>
     <div id="entenda-mais" class="info-modal-window">
         <div>
             <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
             <div style="margin: 10px 15px 15px 15px;">
-            <h1 class="main-orange-span">Valores de referência</h1>
+            <h1 class="main-orange-span bold">Valores de referência</h1>
+            <div style="font-size: 14px">
+                Para mais detalhes confira nossa página de Metodologia no <a href="http://farolcovid.coronacidades.org">FarolCovid</a>.</b></a>
+            </div><br>
             <div style="font-size: 12px">
                 <b>Atualizado em</b>: {date_update}<br>
             </div>
@@ -64,10 +61,10 @@ def genPlanContainer(df, config, session_state):
                 <tr>
                     <td class="grey-bg"><strong>Dimensão</strong></td>
                     <td class="grey-bg"><strong>Indicador</strong></td>
-                    <td class="grey-bg"><strong>Novo Normal</strong></td>
-                    <td class="grey-bg"><strong>Risco Moderado</strong></td>
-                    <td class="grey-bg"><strong>Risco Alto</strong></td>
-                    <td class="grey-bg"><strong>Risco Altíssimo</strong></td>
+                    <td class="grey-bg"><strong><p class="blue-text">Novo Normal</p></strong></td>
+                    <td class="grey-bg"><strong>Risco <p class="yellow-text">Moderado</p></strong></td>
+                    <td class="grey-bg"><strong>Risco <p class="orange-text">Alto</p></strong></td>
+                    <td class="grey-bg"><strong>Risco <p class="red-text">Altíssimo</p></strong></td>
                 </tr>
                 <tr>
                     <td rowspan="2">
@@ -110,17 +107,14 @@ def genPlanContainer(df, config, session_state):
             </tbody>
             </table>
             </div>
-            <div style="font-size: 12px">
-                * Como determinamos a tendência:
-                <ul class="sub"> 
-                    <li> Crescendo: caso o aumento de novos casos esteja acontecendo por pelo menos 5 dias. </li>
-                    <li> Descrescendo: caso a diminuição de novos casos esteja acontecendo por pelo menos 14 dias. </li>
-                    <li> Estabilizando: qualquer outra mudança. </li>
-                </ul>
-            </div>
-            <div style="font-size: 14px">
-                Para mais detalhes confira nossa página de Metodologia no FarolCovid</a>.
-            </div>
+                <div style="font-size: 12px">
+                    * Como determinamos a tendência:
+                    <ul class="sub"> 
+                        <li> Crescendo: caso o aumento de novos casos esteja acontecendo por pelo menos 5 dias. </li>
+                        <li> Descrescendo: caso a diminuição de novos casos esteja acontecendo por pelo menos 14 dias. </li>
+                        <li> Estabilizando: qualquer outra mudança. </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>"""
@@ -172,10 +166,9 @@ def genPlanContainer(df, config, session_state):
                 </div><br>
                 <div class="text-title-section"> Régua de protocolo </div>
                 <div class="minor-padding">
-                    <b><i>O que é?</i><br>
-                    Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
+                    <b><i>O que é?</i><br></b>  Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
                 </div>
-                <p>{caption}</p>{modal}
+                <div class="minor-padding">{caption}</div><br>{modal}
                 </div>
                 <div class="minor-padding">
                     <a href={href} target="_blank">
