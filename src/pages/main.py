@@ -143,15 +143,18 @@ def main(session_state):
     Planeje = False
     Prepare = False
     Monitore = False
-    coluna1, coluna2, coluna3 = st.beta_columns([0.5, 0.5, 0.5])
+ 
+    coluna1, coluna2, coluna3, espaco = st.beta_columns([0.5, 0.5, 0.5,0.1])
     with coluna1:
         st.write(
             f"""
-            <div class="text-title-section">Planeje</div><br>
+            <div class="container" style="min-height: 150px;">
+            <div class="text-title-section minor-padding left-margin">Planeje</div>
             <div class="minor-padding">
-Minha rede está preparada para a reabertura?<br><br>
-Quais as recomendações sanitárias para retomada?<br><br>
-Qual modelo de retorno híbrido mais indicado para mim?<br><br>
+                Minha rede está preparada para a reabertura?<br>
+                Quais as recomendações sanitárias para retomada?<br>
+                Qual modelo de retorno híbrido mais indicado para mim?<br>
+            </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -161,9 +164,11 @@ Qual modelo de retorno híbrido mais indicado para mim?<br><br>
     with coluna2:
         st.write(
             f"""
-            <div class="text-title-section">Prepare</div><br>
+            <div class="container" style="min-height: 150px;">
+            <div class="text-title-section minor-padding">Prepare</div>
             <div class="minor-padding">
-Quais das minhas unidades escolares estão adequadas para o retorno presencial?<br><br>
+                Quais das minhas unidades escolares estão adequadas para o retorno presencial?<br>
+            </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -173,15 +178,26 @@ Quais das minhas unidades escolares estão adequadas para o retorno presencial?<
     with coluna3:
         st.write(
             f"""
-            <div class="text-title-section">Monitore</div><br>
+            <div class="container" style="min-height: 150px;">
+            <div class="text-title-section minor-padding">Monitore</div>
             <div class="minor-padding">
-O que fazer se eu tiver um caso de Covid confirmado em uma das minhas unidades?<br><br>
+            O que fazer se eu tiver um caso de Covid confirmado em uma das minhas unidades?<br>
+            </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
         if st.button("Veja Monitore"):
             Monitore = True
+    with espaco:
+        st.write(
+            f"""
+        <div class="container main-padding">
+            <br>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
     if Planeje == True:
         pc.genPlanContainer(data, config, session_state)
     if Prepare == True:
