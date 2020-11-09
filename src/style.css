@@ -204,6 +204,33 @@
   border-bottom-color:  var(--main-light-blue-green);
 }
 
+.streamlit-button.primary-button{
+  background-color: var(--main-light-blue-green);
+  border: 1px solid #e6eaf1;
+  color: var(--main-blue);
+  font-weight: bold;
+}
+
+.streamlit-button.primary-button:hover{
+  border-color:  var(--main-orange);
+  color:  var(--main-orange);
+}
+.streamlit-button.primary-button:active {
+  color: #fff;
+  border-color: var(--main-blue);
+  background-color: var(--main-blue);
+}
+
+.streamlit-button.primary-button:focus:not(:active) {
+  border-color: var(--main-blue);
+  color: var(--main-blue);
+}
+
+.streamlit-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(39,20,255, 0.8);
+  outline: none;
+}
+
 /*HEAD SECTION*/
 
 .logo-link {
@@ -617,6 +644,8 @@
   width: 70%;
   height: auto;
 } 
+
+
 
 /* bkgrd colors */
 .light-blue-bg{
