@@ -140,55 +140,42 @@ def main(session_state):
         "\n=> CITY: ", session_state.city_name,
         "\n=> ADM: ", session_state.administrative_level, 
     )
-    Planeje = False
-    Prepare = False
-    Monitore = False
+    Botao1 = False
+    Botao2 = False
  
-    coluna1, coluna2, coluna3, espaco = st.beta_columns([0.5, 0.5, 0.5,0.1])
+    coluna1, coluna2, espaco = st.beta_columns([0.4, 0.4, 0.1])
     with coluna1:
         st.write(
             f"""
             <div class="container" style="min-height: 150px;">
-            <div class="text-title-section minor-padding left-margin">Planeje</div>
+            <div class="text-title-section minor-padding ">Como organizo a reabertura da minha rede escolar?</div>
             <div class="minor-padding">
-                Minha rede está preparada para a reabertura?<br>
-                Quais as recomendações sanitárias para retomada?<br>
-                Qual modelo de retorno híbrido mais indicado para mim?<br>
-            </div>
+                1.0 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
+                2.0 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
+                3.0 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
+            </div></br>
             </div>
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Veja Planeje"):
-            Planeje = True
+        if st.button("Veja como orientar reabertura"):
+            Botao1 = True
     with coluna2:
         st.write(
             f"""
             <div class="container" style="min-height: 150px;">
-            <div class="text-title-section minor-padding">Prepare</div>
+            <div class="text-title-section minor-padding">Como faço a gestão das unidades escolares?</div>
             <div class="minor-padding">
-                Quais das minhas unidades escolares estão adequadas para o retorno presencial?<br>
-            </div>
+                1.0 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?<br>
+                2.0 - O que fazer quando um caso for confirmado em uma unidade escolar?<br>
+                3.0 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?<br>
+            </div></br>
             </div>
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Veja Prepare"):
-            Prepare = True
-    with coluna3:
-        st.write(
-            f"""
-            <div class="container" style="min-height: 150px;">
-            <div class="text-title-section minor-padding">Monitore</div>
-            <div class="minor-padding">
-            O que fazer se eu tiver um caso de Covid confirmado em uma das minhas unidades?<br>
-            </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        if st.button("Veja Monitore"):
-            Monitore = True
+        if st.button("Veja como gerenciar unidades escolares"):
+            Botao2 = True
     with espaco:
         st.write(
             f"""
@@ -198,13 +185,19 @@ def main(session_state):
         """,
             unsafe_allow_html=True,
         )
-    if Planeje == True:
+    if Botao1 == True:
         pc.genPlanContainer(data, config, session_state)
-    if Prepare == True:
+    if Botao2 == True:
         prc.genPrepareContainer()
-        sc.genSimulationContainer(data, config, session_state)
-    if Monitore == True:
         mc.genMonitorContainer()
+    st.write(
+            f"""
+    <div class="container main-padding">
+        <br>
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
     rc.genReferencesContainer()
     fc.genFooterContainer()
 
