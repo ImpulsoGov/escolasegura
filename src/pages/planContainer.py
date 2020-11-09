@@ -142,8 +142,9 @@ def genPlanContainer(df, config, session_state):
                         <b><i>O que é?</i><br>
                         Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
                         <b><i>Quem usa?</i></b>
-                        <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br>
+                        <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                         </div>
+                        <br><br><b>➡️ Clique  aqui para acessar a ferramenta online</b><br>
                     </div>
                     </a>
                     <a class="col card-plan container" href="">
@@ -161,6 +162,8 @@ def genPlanContainer(df, config, session_state):
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
                             <li> Diretores(as) de escolas.
                         </div>
+                        <br><b>➡️ Clique  aqui para acessar a ferramenta online</b><br>
+                        <br>
                     </div>
                     </a>
                 </div><br>
