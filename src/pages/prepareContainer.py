@@ -4,12 +4,14 @@ def genPrepareContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"><img class="square" src="https://i.imgur.com/gGIFS5N.png">Prepare 
-            <p>Prepare os protocolos de segurança, de acompanhamento e canais de comunicação para a reabertura das escolas.</p>
+            <div class="title-section"><img class="square" src="https://i.imgur.com/gGIFS5N.png">Como faço a gestão das unidades escolares? 
             </div>
             <p><b>A fase de preparação é onde os protocolos de segurança das escolas são discutidas e pactuadas.</b> 
             Durante a reabertura, é importante que seja estabelecida uma rotina de verificação das unidades escolares 
             para acompanhar o cumprimento dos protocolos estabelecidos.</p>
+            <div class="title-section">
+            <p style="color:#2b14ff; font-size:21px;"><b>1.0 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?</b></p>
+            </div>
                 <div class="left-margin">
                     <div class="row">
                         <div class="col">
