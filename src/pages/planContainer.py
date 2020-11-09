@@ -122,8 +122,7 @@ def genPlanContainer(df, config, session_state):
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section"> <img class="square" src="https://i.imgur.com/gGIFS5N.png">Planeje  
-             <p>Planeje antecipadamente os principais passos para a reabertura da rede escolar.</p>              
+            <div class="title-section"> <img class="square" src="https://i.imgur.com/gGIFS5N.png">Como organizo a reabertura da minha rede escolar? 
             </div>
             <p><b>A fase de planejamento é essencial para uma reabertura segura.</b>
             Devem ser incluídos os diversos atores do dia-a-dia das escolas 
@@ -132,6 +131,9 @@ def genPlanContainer(df, config, session_state):
                 <div class="row">
                     <a class="col card-plan container" 
                     href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
+                    <div>
+                        <p style="color:#2b14ff; font-size:21px;"> <b>1.0 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?</b></p>              
+                    </div>
                     <div class="left-margin">
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
@@ -143,12 +145,15 @@ def genPlanContainer(df, config, session_state):
                         Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
                         <b><i>Quem usa?</i></b>
                         <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
+                        </div><br>
+                        <div align="center" style="padding-bottom: 10px;">
+                            <button class="button">Veja Aqui</button><br>
                         </div>
-                        <br><br><b>➡️ Clique  aqui para acessar a ferramenta online</b><br>
                     </div>
                     </a>
-                    <a class="col card-plan container" href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_>
+                    <a class="col card-plan container" href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_>              
                     <div class="left-margin">
+                        <p style="color:#2b14ff; font-size:21px;"> <b>2.0 - Quais são as principais recomendações sanitárias e protocolos para retomada?</b></p>
                         <div class="text-title-section minor-padding"> 
                         <img class="icon" 
                         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ2NCA0NjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSIiIGQ9Ik00MjAuNDc0LDEyNC44bC00Mi40LTIwLjh2MzUybDU5LjItMjk2QzQ0MC40NzQsMTQ1LjYsNDMzLjI3NCwxMzEuMiw0MjAuNDc0LDEyNC44eiIgZmlsbD0iIzk5ZmZkNCIgZGF0YS1vcmlnaW5hbD0iIzAwZjJhOSIgY2xhc3M9IiI+PC9wYXRoPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPHBhdGggc3R5bGU9IiIgZD0iTTQyMy42NzQsODUuNmwtMzguNC0xOS4yYy0yLjQtMTkuMi0xOS4yLTM0LjQtMzkuMi0zNC40aC0xODQuOGMtNC0xOC40LTIwLTMyLTM5LjItMzJoLTMyICAgYy0xOS4yLDAtMzYsMTQuNC0zOS4yLDMyLjhjLTE4LjQsMy4yLTMyLjgsMjAtMzIuOCwzOS4ydjM1MmMwLDIyLjQsMTcuNiw0MCw0MCw0MGgyODhjMjEuNiwwLDQwLTE2LjgsNDAtMzguNGwwLDBsNTkuMi0yOTYgICBDNDQ4LjQ3NCwxMTIsNDM5LjY3NCw5My42LDQyMy42NzQsODUuNnogTTkwLjA3NCwxNmgzMmMxMC40LDAsMTkuMiw2LjQsMjIuNCwxNmgtNzYuOEM3MC44NzQsMjIuNCw3OS42NzQsMTYsOTAuMDc0LDE2eiAgICBNMzcwLjA3NCw0MjRjMCwxMy42LTEwLjQsMjQtMjQsMjRoLTg4di0yNGMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYyNGgtMTZ2LTU2YzAtNC44LTMuMi04LTgtOHMtOCwzLjItOCw4djU2aC0xNnYtMjQgICBjMC00LjgtMy4yLTgtOC04cy04LDMuMi04LDh2MjRoLTgwdi0yNGMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYyNGgtMjRjLTEzLjYsMC0yNC0xMC40LTI0LTI0VjcyYzAtMTMuNiwxMC40LTI0LDI0LTI0aDg4djE1MiAgIGMwLDEzLjYtMTAuNCwyNC0yNCwyNHMtMjQtMTAuNC0yNC0yNFY3MmMwLTQuOC0zLjItOC04LThzLTgsMy4yLTgsOHYxMjhjMCwyMi40LDE3LjYsNDAsNDAsNDBzNDAtMTcuNiw0MC00MFY0OGgxODQgICBjMTMuNiwwLDI0LDEwLjQsMjQsMjRWNDI0eiBNNDI5LjI3NCwxMjYuNGwtNDMuMiwyMTYuOFY4NC44bDMwLjQsMTUuMkM0MjYuMDc0LDEwNC44LDQzMS42NzQsMTE2LDQyOS4yNzQsMTI2LjR6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCw5NmgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsOTYsMzE0LjA3NCw5NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0zMTQuMDc0LDE2MGgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsMTYwLDMxNC4wNzQsMTYweiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTIxOC4wNzQsMjQwaDMyYzQuOCwwLDgtMy4yLDgtOHMtMy4yLTgtOC04aC0zMmMtNC44LDAtOCwzLjItOCw4ICAgQzIxMC4wNzQsMjM2LjgsMjEzLjI3NCwyNDAsMjE4LjA3NCwyNDB6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwyMjRoLTMyYy00LjgsMC04LDMuMi04LDhjMCw0LjgsMy4yLDgsOCw4aDMyYzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDIyNCwzMTQuMDc0LDIyNHoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0xODYuMDc0LDMyMGgtOTZjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoOTZjNC44LDAsOC0zLjIsOC04UzE5MC44NzQsMzIwLDE4Ni4wNzQsMzIweiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTMxNC4wNzQsMzIwaC05NmMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGg5NmM0LjgsMCw4LTMuMiw4LThTMzE4Ljg3NCwzMjAsMzE0LjA3NCwzMjB6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwxOTJoLTk2Yy00LjgsMC04LDMuMi04LDhzMy4yLDgsOCw4aDk2YzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDE5MiwzMTQuMDc0LDE5MnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0yNTguMDc0LDI5NmMwLTQuOC0zLjItOC04LThoLTE2MGMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGgxNjAgICBDMjU0Ljg3NCwzMDQsMjU4LjA3NCwzMDAuOCwyNTguMDc0LDI5NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KCTxwYXRoIHN0eWxlPSIiIGQ9Ik0zMTQuMDc0LDI4OGgtMzJjLTQuOCwwLTgsMy4yLTgsOHMzLjIsOCw4LDhoMzJjNC44LDAsOC0zLjIsOC04UzMxOC44NzQsMjg4LDMxNC4wNzQsMjg4eiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTIxOC4wNzQsMTQ0aDMyYzQuOCwwLDgtMy4yLDgtOHMtMy4yLTgtOC04aC0zMmMtNC44LDAtOCwzLjItOCw4UzIxMy4yNzQsMTQ0LDIxOC4wNzQsMTQ0eiIgZmlsbD0iIzMyMjE1MyIgZGF0YS1vcmlnaW5hbD0iIzMyMjE1MyIgY2xhc3M9IiI+PC9wYXRoPgoJPHBhdGggc3R5bGU9IiIgZD0iTTMxNC4wNzQsMTI4aC0zMmMtNC44LDAtOCwzLjItOCw4czMuMiw4LDgsOGgzMmM0LjgsMCw4LTMuMiw4LThTMzE4Ljg3NCwxMjgsMzE0LjA3NCwxMjh6IiBmaWxsPSIjMzIyMTUzIiBkYXRhLW9yaWdpbmFsPSIjMzIyMTUzIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBzdHlsZT0iIiBkPSJNMzE0LjA3NCwyNTZoLTk2Yy00LjgsMC04LDMuMi04LDhzMy4yLDgsOCw4aDk2YzQuOCwwLDgtMy4yLDgtOFMzMTguODc0LDI1NiwzMTQuMDc0LDI1NnoiIGZpbGw9IiMzMjIxNTMiIGRhdGEtb3JpZ2luYWw9IiMzMjIxNTMiIGNsYXNzPSIiPjwvcGF0aD4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"
@@ -161,12 +166,16 @@ def genPlanContainer(df, config, session_state):
                             <b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
                             <li> Diretores(as) de escolas.
+                        </div><br>
+                        <div align="center" style="padding-bottom: 10px;">
+                            <button class="button">Veja Aqui</button><br>
                         </div>
-                        <br><b>➡️ Clique  aqui para acessar a ferramenta online</b><br>
-                        <br>
-                    </div>
+                    </div><br>
                     </a>
                 </div><br>
+                <div class="title-section">
+                 <p style="font-size:21px;"> <b>3.0 - Quais protocolos seguir de acordo com o nível de alerta da minha região?</b></p>              
+                </div>
                 <div class="text-title-section"> Régua de protocolo </div>
                 <div class="minor-padding">
                     <b><i>O que é?</i><br></b>  Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
