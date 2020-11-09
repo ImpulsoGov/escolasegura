@@ -205,15 +205,15 @@
 }
 
 .streamlit-button.primary-button{
-  background-color: var(--main-light-blue-green);
+  background-color: var(--main-orange);
   border: 1px solid #e6eaf1;
-  color: var(--main-blue);
+  color: #e6eaf1;
   font-weight: bold;
 }
 
 .streamlit-button.primary-button:hover{
-  border-color:  var(--main-orange);
-  color:  var(--main-orange);
+  border-color:  var(--main-blue);
+  color:  var(--main-blue);
 }
 .streamlit-button.primary-button:active {
   color: #fff;
