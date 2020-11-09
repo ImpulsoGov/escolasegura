@@ -319,7 +319,6 @@ def genSimulationContainer(session_state):
         """,
         unsafe_allow_html=True,
     )
-    st.checkbox("Quero considerar todas as escolas", value=True)
     if "Rural" in data["school_location"].drop_duplicates().values:
         rural = ["Rural" if st.checkbox("Apenas escolas rurais") else "Todos"][0]
 
