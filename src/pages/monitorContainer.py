@@ -4,9 +4,8 @@ def genMonitorContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div class="title-section">
-            <img class="square" src="https://i.imgur.com/gGIFS5N.png">Monitore
-                <p>Após a reabertura, monitore a Covid-19 nas escolas e saiba o que fazer com o surgimento de algum caso.</p>
+            <div>
+                <p style="color:#2b14ff; font-size:21px;"><b>2.0 - O que fazer quando um caso for confirmado em uma unidade escolar?</b></p>
             </div>
             <div class="left-margin">
                     <div class="row">
@@ -31,6 +30,9 @@ def genMonitorContainer():
                             </div>
                         </div>
                     </div>
+                <div>
+                    <p style="color:#2b14ff; font-size:21px;"><b>3.0 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?</b></p>
+                </div>
                 <div class="row">
                     <div class="col">
                         <div class="text-title-section main-padding"> 
