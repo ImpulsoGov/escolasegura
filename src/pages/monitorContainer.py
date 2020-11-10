@@ -1,7 +1,15 @@
 import streamlit as st
-
+import base64
+from os import getcwd
+from pathlib import Path
 
 def genMonitorContainer():
+    # Load 'Monitor' Image and obtain Base64 encoding
+    monitor_img_path = f"{getcwd()}/imgs/monitor.png"
+    monitor_img_bytecode = Path(monitor_img_path).read_bytes()
+    monitor_img = base64.b64encode(monitor_img_bytecode).decode()
+
+    # Add Container Contents
     st.write(
         f"""
         <div class="container main-padding">
@@ -21,12 +29,12 @@ def genMonitorContainer():
                             da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                             <br><br><b><i>Quem usa?</i></b>
                             <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>
-                            <br><b>➡️ Clique na imagem para acessar a ferramenta online ou <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy">baixe aqui</a></b><br>
+                            <br><b>➡️ Clique na imagem para acessar a ferramenta online ou <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view">baixe aqui</a></b><br>
                         </div>
                         <div class="col"><br>
                             <div class="minor-padding">
-                                <a href="https://docs.google.com/forms/d/1h5IxGK5S5dlMjiQKSI4e_6mxI_vk6DiXTJLV1C1Yh-0/copy" target="blank_">
-                                    <img class="img-forms" src="https://i.imgur.com/oaFgwzQ.png">
+                                <a href="https://docs.google.com/forms/d/1BunWrThhRcVl564AZDKlut2t1d5ugM9W5YtGnQmwo6Y/copy" target="blank_">
+                                    <img class="img-forms" src='data:image/png;base64,{monitor_img}'>
                                 </a>
                             </div>
                         </div>
@@ -50,7 +58,7 @@ def genMonitorContainer():
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;</li>
                             <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.</li>
                         </ol>
-                        <br><b>➡️ Clique na imagem para acessar a ferramenta online ou </b><a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">baixe aqui</a></b><br>
+                        <br><b>➡️ Clique na imagem para acessar a ferramenta online ou </b><a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view">baixe aqui</a></b><br>
                     </div>
                     <div class="col"><br>
                         <div class="main-padding">
