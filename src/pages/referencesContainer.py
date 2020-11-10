@@ -1,7 +1,8 @@
 import streamlit as st
 
 def  genReferencesContainer():
-    st.write(
+    with st.beta_expander("Fontes e Referências"):
+        st.write(
         f"""
         <div class="container main-padding">
             <div class="title-section">

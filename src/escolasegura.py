@@ -7,6 +7,7 @@ import time
 import pages.main as es
 
 import utils
+import pages.simulationContainer as sc
 
 st.set_page_config(layout="wide")
 
@@ -32,9 +33,19 @@ def main():
         continuation_selection=None,
         button_simule=0,
     )
+    # MENU
+    page = st.sidebar.radio(
+        "Menu", ["Escola Segura", "Simulador"],
+    )
+    if page == "Escola Segura":
+        if __name__ == "__main__":
+            es.main(session_state)
+            utils.applyButtonStyles(session_state)
 
-    es.main(session_state)
-    utils.applyButtonStyles(session_state)
+    elif page == "Simulador":
+        if __name__ == "__main__":
+            sc.genSimulationContainer(session_state)
+    
 
 
 if __name__ == "__main__":
