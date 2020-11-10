@@ -72,7 +72,7 @@ def get_data(config):
 def genSelectBox(df, session_state):
     st.write(
         f"""
-        <div class="container main-padding">
+        <div class="main-padding">
             <div class="text-title-section"> Selecione sua rede </div>
         </div>
         """,
@@ -115,7 +115,7 @@ def genSelectBox(df, session_state):
         st.write(
             f"""
         <div class="container main-padding">
-            <br>
+            <br><br>
         </div>
         """,
             unsafe_allow_html=True,
@@ -148,13 +148,13 @@ def main(session_state):
     with coluna1:
         st.write(
             f"""
-            <div class="container" style="min-height: 150px;">
-            <div class="text-title-section minor-padding ">Como organizo a reabertura da minha rede escolar?</div>
-            <div class="minor-padding">
-                1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
-                2 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
-                3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
-            </div></br>
+            <div class="container" style="min-height: 150px;"><br>
+                <div class="text-title-section minor-padding ">Como organizo a reabertura da minha rede escolar?</div>
+                    <div class="minor-padding">
+                        1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
+                        2 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
+                        3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
+                    </div></br>
             </div>
             """,
             unsafe_allow_html=True,
@@ -164,7 +164,7 @@ def main(session_state):
     with coluna2:
         st.write(
             f"""
-            <div class="container" style="min-height: 150px;">
+            <div class="container" style="min-height: 150px;"><br>
             <div class="text-title-section minor-padding">Como faço a gestão das unidades escolares?</div>
             <div class="minor-padding">
                 1 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?<br>
