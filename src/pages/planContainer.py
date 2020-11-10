@@ -25,7 +25,7 @@ def genPlanContainer(df, config, session_state):
         elements = config["br"]["farolcovid"]["elements"][alert]
 
         caption = f"""
-        Hoje em <b>{cidade}</b>, segundo o FarolCovid, o nível de alerta é: 
+        Hoje em <b>{cidade}</b>, segundo o <a href="http://farolcovid.coronacidades.org">FarolCovid</a>, o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
         {elements["description"]}"""
 
