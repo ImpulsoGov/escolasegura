@@ -32,13 +32,12 @@ def main():
         button_styles=dict(),
         continuation_selection=None,
         button_simule=0,
-        Botao1=False,
-        Botao2=False
+        section1_organize=False,
+        section2_manage=False,
     )
-    
+
     es.main(session_state)
     utils.applyButtonStyles(session_state)
-    
 
 
 if __name__ == "__main__":

@@ -159,8 +159,8 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("Veja como orientar reabertura"):
-            session_state.Botao1 = True
-            session_state.Botao2 = False
+            session_state.section1_organize = True
+            session_state.section2_manage = False
     with coluna2:
         st.write(
             f"""
@@ -176,8 +176,8 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("Veja como gerenciar unidades escolares"):
-            session_state.Botao2 = True
-            session_state.Botao1 = False
+            session_state.section2_manage = True
+            session_state.section1_organize = False
     with espaco:
         st.write(
             f"""
@@ -187,11 +187,11 @@ def main(session_state):
         """,
             unsafe_allow_html=True,
         )
-    if session_state.Botao1 == True:
+    if session_state.section1_organize == True:
         pc.genPlanContainer(data, config, session_state)
         sc.genSimulationContainer(data, config, session_state)
 
-    if session_state.Botao2 == True:
+    if session_state.section2_manage == True:
         prc.genPrepareContainer()
         mc.genMonitorContainer()
     st.write(
