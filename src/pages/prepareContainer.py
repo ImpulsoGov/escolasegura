@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def genPrepareContainer():
     st.write(
         f"""
@@ -10,7 +11,7 @@ def genPrepareContainer():
             Durante a reabertura, é importante que seja estabelecida uma rotina de verificação das unidades escolares 
             para acompanhar o cumprimento dos protocolos estabelecidos.</p>
             <div class="title-section">
-            <p style="color:#2b14ff; font-size:21px;"><b>1.0 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?</b></p>
+            <p style="color:#2b14ff; font-size:21px;"><b>1 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?</b></p>
             </div>
                 <div class="left-margin">
                     <div class="row">

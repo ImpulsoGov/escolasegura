@@ -125,24 +125,25 @@ def genSelectBox(df, session_state):
 def main(session_state):
     utils.localCSS("style.css")
     genHeroSection(
-        title1="Escola",
-        title2="Segura",
-        subtitle="{descrição}",
-        header=True,
+        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
     genSelectBox(data, session_state)
 
     # to keep track on dev
-    print("PLACE SELECTION: \n", 
-        "\n=> UF: ", session_state.state_id,
-        "\n=> CITY: ", session_state.city_name,
-        "\n=> ADM: ", session_state.administrative_level, 
+    print(
+        "PLACE SELECTION: \n",
+        "\n=> UF: ",
+        session_state.state_id,
+        "\n=> CITY: ",
+        session_state.city_name,
+        "\n=> ADM: ",
+        session_state.administrative_level,
     )
     Botao1 = False
     Botao2 = False
- 
+
     coluna1, coluna2, espaco = st.beta_columns([0.4, 0.4, 0.1])
     with coluna1:
         st.write(
@@ -150,9 +151,9 @@ def main(session_state):
             <div class="container" style="min-height: 150px;">
             <div class="text-title-section minor-padding ">Como organizo a reabertura da minha rede escolar?</div>
             <div class="minor-padding">
-                1.0 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
-                2.0 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
-                3.0 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
+                1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
+                2 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
+                3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
             </div></br>
             </div>
             """,
@@ -166,9 +167,9 @@ def main(session_state):
             <div class="container" style="min-height: 150px;">
             <div class="text-title-section minor-padding">Como faço a gestão das unidades escolares?</div>
             <div class="minor-padding">
-                1.0 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?<br>
-                2.0 - O que fazer quando um caso for confirmado em uma unidade escolar?<br>
-                3.0 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?<br>
+                1 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?<br>
+                2 - O que fazer quando um caso for confirmado em uma unidade escolar?<br>
+                3 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?<br>
             </div></br>
             </div>
             """,
@@ -191,7 +192,7 @@ def main(session_state):
         prc.genPrepareContainer()
         mc.genMonitorContainer()
     st.write(
-            f"""
+        f"""
     <div class="container main-padding">
         <br>
     </div>
