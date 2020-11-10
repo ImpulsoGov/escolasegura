@@ -141,8 +141,6 @@ def main(session_state):
         "\n=> ADM: ",
         session_state.administrative_level,
     )
-    Botao1 = False
-    Botao2 = False
 
     coluna1, coluna2, espaco = st.beta_columns([0.4, 0.4, 0.1])
     with coluna1:
@@ -154,13 +152,15 @@ def main(session_state):
                         1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
                         2 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
                         3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
+                        4 - Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?<br>
                     </div></br>
             </div>
             """,
             unsafe_allow_html=True,
         )
         if st.button("Veja como orientar reabertura"):
-            Botao1 = True
+            session_state.section1_organize = True
+            session_state.section2_manage = False
     with coluna2:
         st.write(
             f"""
@@ -176,7 +176,8 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("Veja como gerenciar unidades escolares"):
-            Botao2 = True
+            session_state.section2_manage = True
+            session_state.section1_organize = False
     with espaco:
         st.write(
             f"""
@@ -186,9 +187,11 @@ def main(session_state):
         """,
             unsafe_allow_html=True,
         )
-    if Botao1 == True:
+    if session_state.section1_organize == True:
         pc.genPlanContainer(data, config, session_state)
-    if Botao2 == True:
+        sc.genSimulationContainer(data, config, session_state)
+
+    if session_state.section2_manage == True:
         prc.genPrepareContainer()
         mc.genMonitorContainer()
     st.write(
