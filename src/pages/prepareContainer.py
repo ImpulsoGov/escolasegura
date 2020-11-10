@@ -28,7 +28,7 @@ def genPrepareContainer():
                             <b><i>Quem usa?</b></i>
                             <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).</li>
                             <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.</li>
-                            <br><b>➡️ Clique na imagem para acessar a ferramenta online</b><br>
+                            <br><b>➡️ Clique na imagem para acessar a ferramenta online ou <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view">baixe aqui</a></b><br>
                         </div>
                         <div class="col"><br>
                             <div class="minor-padding">
