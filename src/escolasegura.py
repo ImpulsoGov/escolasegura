@@ -32,19 +32,12 @@ def main():
         button_styles=dict(),
         continuation_selection=None,
         button_simule=0,
+        Botao1=False,
+        Botao2=False
     )
-    # MENU
-    page = st.sidebar.radio(
-        "Menu", ["Escola Segura", "Simulador"],
-    )
-    if page == "Escola Segura":
-        if __name__ == "__main__":
-            es.main(session_state)
-            utils.applyButtonStyles(session_state)
-
-    elif page == "Simulador":
-        if __name__ == "__main__":
-            sc.genSimulationContainer(session_state)
+    
+    es.main(session_state)
+    utils.applyButtonStyles(session_state)
     
 
 
