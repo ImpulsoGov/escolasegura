@@ -5,7 +5,7 @@ def genMonitorContainer():
     st.write(
         f"""
         <div class="container main-padding">
-            <div>
+            <div class="title-section">
                 <p style="color:#2b14ff; font-size:21px;"><b>2 - O que fazer quando um caso for confirmado em uma unidade escolar?</b></p>
             </div>
             <div class="left-margin">
@@ -31,7 +31,7 @@ def genMonitorContainer():
                             </div>
                         </div>
                     </div>
-                <div>
+                <div class="title-section">
                     <p style="color:#2b14ff; font-size:21px;"><b>3 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?</b></p>
                 </div>
                 <div class="row">
