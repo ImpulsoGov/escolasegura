@@ -209,7 +209,7 @@
 .streamlit-button.primary-button{
   background-color: var(--main-orange);
   border: 1px solid #e6eaf1;
-  color: #e6eaf1;
+  color: var(--main-white);
   font-weight: bold;
 }
 
