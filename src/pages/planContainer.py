@@ -1,6 +1,5 @@
 import streamlit as st
 import utils
-from utils import load_image
 
 
 def genPlanContainer(df, config, session_state):
@@ -122,8 +121,9 @@ def genPlanContainer(df, config, session_state):
         </div>
     </div>"""
 
-    protocol_icon = load_image("imgs/plan_protocol_icon.png")
-    steps_icon = load_image("imgs/plan_steps_icon.png")
+    protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
+    steps_icon = utils.load_image("imgs/plan_steps_icon.png")
+    ruler_icon = utils.load_image("imgs/plan_ruler_icon.png")
 
     st.write(
         f"""
@@ -183,7 +183,9 @@ def genPlanContainer(df, config, session_state):
                 <div class="title-section">
                  <p style="font-size:21px;"> <b>3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?</b></p>              
                 </div>
-                <div class="text-title-section"> Régua de protocolo </div>
+                <div class="text-title-section minor-padding"> 
+                    <img class="icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
+                    Régua de protocolo</div>
                 <div class="minor-padding">
                     <b><i>O que é?</i><br></b>  Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
                 </div>

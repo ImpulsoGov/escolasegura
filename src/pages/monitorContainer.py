@@ -1,13 +1,13 @@
 import streamlit as st
 import base64
-from utils import load_image
+import utils
 
 
 def genMonitorContainer():
 
-    notification_icon = load_image("imgs/monitor_notification_icon.png")
-    plan_icon = load_image("imgs/monitor_plan_icon.png")
-    plan_image = load_image("imgs/monitor_plan_forms.png")
+    notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
+    plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
+    plan_image = utils.load_image("imgs/monitor_plan_forms.png")
 
     # Add Container Contents
     st.write(
@@ -43,7 +43,7 @@ def genMonitorContainer():
                 <div class="row">
                     <div class="col">
                         <div class="text-title-section main-padding"> 
-                            <img class="icon" src="data:image/png;base64,{notification_icon}" alt="Fonte: Flaticon">
+                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
                             Ferramenta de notificação
                         </div>
                         <br>

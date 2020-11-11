@@ -1,10 +1,10 @@
 import streamlit as st
-from utils import load_image
+import utils
 
 
 def genPrepareContainer():
 
-    verify_icon = load_image("imgs/prepare_verify_icon.png")
+    verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
 
     st.write(
         f"""
