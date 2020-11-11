@@ -42,4 +42,17 @@ br:
                 url: href + ".png"
                 color: "blue-text"
                 description: "Casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação."
+    imgs_source:
+        monitor_notify_icon: "https://www.flaticon.com/free-icon/promote_3437346"
+        monitor_plan_icon: "https://www.flaticon.com/free-icon/whiteboard_1205484"
+        plan_protocol_icon: "https://www.flaticon.com/free-icon/seo_1055689"
+        plan_ruler_icon: "https://www.flaticon.com/free-icon/drawing_335233"
+        plan_steps_icon: "https://www.flaticon.com/free-icon/timeline_1205528"
+        prepare_verify_icon: "https://www.flaticon.com/free-icon/test_1039328"
+        simulation_main_icon: "https://www.flaticon.com/free-icon/blackboard_501431"
+        simulation_mask_icon: "https://www.flaticon.com/free-icon/medical-mask_1535223"
+        simulation_sanitizer_icon: "https://www.flaticon.com/free-icon/hand-sanitizer_2840254"
+        simulation_student_icon: "https://www.flaticon.com/free-icon/asking_538924"
+        simulation_teacher_icon: "https://www.flaticon.com/free-icon/class_538899"
+        simulation_thermometer_icon: "https://www.flaticon.com/free-icon/thermometer_615576"
         
