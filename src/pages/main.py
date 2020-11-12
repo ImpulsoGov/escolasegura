@@ -13,7 +13,7 @@ import pages.prepareContainer as prc
 import pages.monitorContainer as mc
 import pages.referencesContainer as rc
 import pages.footerContainer as fc
-
+import pages.specialistContainer as spc
 
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
@@ -202,6 +202,7 @@ def main(session_state):
     """,
         unsafe_allow_html=True,
     )
+    spc.genSpecialistContainer()
     rc.genReferencesContainer()
     fc.genFooterContainer()
 
