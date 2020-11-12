@@ -12,19 +12,19 @@ def genFooterContainer():
                 <ul style="list-style-type: none;">
                     <li style="display: inline; margin-right: 2em;">
                     <a href="https://fundacaolemann.org.br/" target="_blank">
-                        <img class="logo-footer"
+                        <img class="logo-footer" style="margin-bottom:2em;"
                         src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png"
                         tile="logo Lemann">
                     </a></li>
                     <li style="display: inline; margin-right: 2em;">
                     <a class="logo-footer" href="https://www.impulsogov.com.br/" target="_blank">
-                        <img class="logo-footer"
+                        <img class="logo-footer" style="margin-bottom:2em;"
                         src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
                         title="logo Impulso"/>
                     </a></li>
                     <li style="display: inline;">
                     <a class="logo-footer" href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
-                        <img class="logo-footer"
+                        <img class="logo-footer" style="margin-bottom:2em;"
                         src="data:image/png;base64,{bidicon}"
                         title="logo BID"/>
                     </a>
