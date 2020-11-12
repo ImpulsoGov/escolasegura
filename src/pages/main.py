@@ -65,7 +65,9 @@ def read_data(country, config, endpoint):
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
-    df = read_data("br", config, "br/cities/safeschools/main")
+    df = read_data("br", config, "br/cities/safeschools/main").replace(
+        {"Fundamental I": "Fund. I", "Fundamental II": "Fund. II"}
+    )
     return df
 
 

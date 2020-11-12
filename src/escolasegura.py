@@ -13,6 +13,17 @@ st.set_page_config(layout="wide")
 
 
 def main():
+
+    # Remove menu da visualizacao
+    hide_streamlit_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+
+        """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
     # SESSION STATE
     time.sleep(
         0.05

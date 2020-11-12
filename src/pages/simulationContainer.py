@@ -14,6 +14,12 @@ def genSimulationResult(params, config):
 
     result = entrypoint(params, config)
 
+    teacher_icon = utils.load_image("imgs/simulation_teacher_icon.png")
+    student_icon = utils.load_image("imgs/simulation_student_icon.png")
+    mask_icon = utils.load_image("imgs/simulation_mask_icon.png")
+    sanitizer_icon = utils.load_image("imgs/simulation_sanitizer_icon.png")
+    thermometer_icon = utils.load_image("imgs/simulation_thermometer_icon.png")
+
     st.write(
         f"""
         <div class="container main-padding">
@@ -25,7 +31,7 @@ def genSimulationResult(params, config):
                             <div class="card-title-section main-blue-span uppercase">EQUITATIVO</div>
                             <div>Todos os alunos retornam ao menos 1 vez por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{student_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number">{result["equitative"]["num_returning_students"]} </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -33,7 +39,7 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (2 horas/dia)</div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{teacher_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2"> <span class="card-number">{result["equitative"]["num_returning_teachers"]}</span> </div>
                                 <div class="div3 bold"> professores retornam </div>
                                 <div class="div4"> </div>
@@ -45,17 +51,17 @@ def genSimulationResult(params, config):
                             <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"></div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{mask_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {result["equitative"]["total_masks"]} </div>
                                 <div class="div3 bold"> máscaras por semana</div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{thermometer_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {result["equitative"]["total_thermometers"]} </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{sanitizer_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {int(result["equitative"]["total_sanitizer"])} </div>
                                 <div class="div3 bold"> litros de álcool em gel por semana</div>
                             </div>
@@ -66,7 +72,7 @@ def genSimulationResult(params, config):
                             <div class="card-title-section main-blue-span">PRIORITÁRIO</div>
                             <div>Número limitado de alunos retorna 5 vezes por semana.</div>
                             <div class="grid-container-simulation-type minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087166.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{student_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number">{result["priority"]["num_returning_students"]} </div>
                                 <div class="div3 bold"> alunos retornam às aulas </div>
                                 <div class="div4"> </div>
@@ -74,7 +80,7 @@ def genSimulationResult(params, config):
                                 <div class="div6"> por semana (2 horas/dia)</div>
                             </div>
                             <div class="grid-container-simulation-type">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/1087/1087177.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{teacher_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2"> <span class="card-number">{result["priority"]["num_returning_teachers"]}</span> </div>
                                 <div class="div3 bold">  professores retornam </div>
                                 <div class="div4"> </div>
@@ -86,17 +92,17 @@ def genSimulationResult(params, config):
                             <div class="card-title-section main-blue-span uppercase">Materiais para compra </div>
                             <p>Será necessário providenciar para o retorno...</p>
                             <div class="grid-container-simulation-material minor-padding">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937325.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{mask_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {result["priority"]["total_masks"]} </div>
                                 <div class="div3 bold" > máscaras por semana </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2622/2622386.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{thermometer_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {result["priority"]["total_thermometers"]} </div>
                                 <div class="div3 bold"> termômetros </div>
                             </div>
                             <div class="grid-container-simulation-material">
-                                <div class="div1"> <img class="icon-cards" src="https://www.flaticon.com/svg/static/icons/svg/2937/2937355.svg" title="Freepik"> </div>
+                                <div class="div1"> <img class="icon-cards" src="data:image/png;base64,{sanitizer_icon}" alt="Fonte: Flaticon"> </div>
                                 <div class="div2 card-number"> {int(result["priority"]["total_sanitizer"])} </div>
                                 <div class="div3 bold"> litros de álcool em gel por semana </div>
                             </div>
@@ -123,47 +129,54 @@ def genSimulationResult(params, config):
         unsafe_allow_html=True,
     )
 
+
 def genSimulationContainer(df, config, session_state):
+
+    main_icon = utils.load_image("imgs/simulation_main_icon.png")
+
     st.write(
         f"""
         <div class="title-section">
             <p style="color:#2b14ff; font-size:21px;"><b>4 - Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?</b></p>
         </div>
         <div class="container main-padding">
-            <div class="text-title-section"> Simule o retorno </div>
-                <div >
-                    <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
-                    </div>
-                    <div class="minor-padding">
-                        <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
-                            <div>
-                                Uma parte essencial da reabertura é definir 
-                                <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
-                            </div>
-                        <div class="row main-padding" style="grid-gap: 1rem;">
-                            <div class="col lighter-blue-green-bg card-simulator" style="border-radius:30px;">
-                                <div class="row">
-                                    <div class="col card-title-section">EQUITATIVO</div>
-                                    <div class="col text-subdescription container">
-                                        <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
-                                        <p></p>
-                                        Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
-                                        que somente 1 dia. Atividades podem ser de reforço ou conteúdo.
-                                    </div>
+            <div class="text-title-section minor-padding"> 
+                <img class="icon" src="data:image/png;base64,{main_icon}" alt="Fonte: Flaticon">
+                Simule o retorno
+            </div><br>
+            <div>
+                <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
+                </div>
+                <div class="minor-padding">
+                    <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
+                        <div>
+                            Uma parte essencial da reabertura é definir 
+                            <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
+                        </div>
+                    <div class="row main-padding" style="grid-gap: 1rem;">
+                        <div class="col lighter-blue-green-bg card-simulator" style="border-radius:30px;">
+                            <div class="row">
+                                <div class="col card-title-section">EQUITATIVO</div>
+                                <div class="col text-subdescription container">
+                                    <b>Todos os alunos têm aula presencial ao menos 1 vez por semana.</b>
+                                    <p></p>
+                                    Prioriza-se de forma igualitária que alunos voltem para a escola, mesmo  
+                                    que somente 1 dia. Atividades podem ser de reforço ou conteúdo.
                                 </div>
                             </div>
-                            <div class="col light-blue-green-bg card-simulator" style="border-radius:30px">
-                            <div class="row">
-                                <div class="col card-title-section">PRIORITÁRIO</div>
-                                <div class="col text-subdescription container">
-                                    <b>Número limitado de alunos retorna 5 vezes por semana.</b>
-                                <p></p>
-                                O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
-                                Atividades podem ser de reforço ou conteúdo.
-                            </div>
                         </div>
+                        <div class="col light-blue-green-bg card-simulator" style="border-radius:30px">
+                        <div class="row">
+                            <div class="col card-title-section">PRIORITÁRIO</div>
+                            <div class="col text-subdescription container">
+                                <b>Número limitado de alunos retorna 5 vezes por semana.</b>
+                            <p></p>
+                            O modelo prioriza o tempo que o aluno passa na escola, mesmo que para uma quantidade menor de alunos. 
+                            Atividades podem ser de reforço ou conteúdo.
                         </div>
                     </div>
+                    </div>
+                </div>
         """,
         unsafe_allow_html=True,
     )
@@ -322,8 +335,7 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_5:
         st.write(
-            f"""<div class="minor-padding"> </div>""",
-            unsafe_allow_html=True,
+            f"""<div class="minor-padding"> </div>""", unsafe_allow_html=True,
         )
 
         params["max_students_per_class"] = st.slider(
@@ -455,7 +467,7 @@ def genSimulationContainer(df, config, session_state):
 
         *Além disso, no modelo equitativo, no qual a rede oferece apenas uma aula por semana para cada aluno, esta pode atender muito mais alunos do que uma rede operando de maneira convencional.*
         """
-        
+
         st.write(methodology_text)
 
 
