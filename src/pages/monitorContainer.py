@@ -5,9 +5,10 @@ import utils
 
 def genMonitorContainer():
 
-    notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
-    plan_image = utils.load_image("imgs/monitor_plan_forms.png")
+    plan_image = utils.load_image("imgs/monitor_plan_form.png")
+    notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
+    notify_image = utils.load_image("imgs/monitor_notify_form.png")
 
     # Add Container Contents
     st.write(
@@ -59,7 +60,7 @@ def genMonitorContainer():
                     <div class="col"><br>
                         <div class="main-padding">
                             <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
-                            <img class="img-forms" src="https://i.imgur.com/nhx3ZGB.png"> 
+                            <img class="img-forms" src='data:image/png;base64,{notify_image}'> 
                         </div>
                         </a>
                     </div>

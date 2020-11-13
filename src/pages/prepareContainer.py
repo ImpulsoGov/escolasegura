@@ -5,6 +5,7 @@ import utils
 def genPrepareContainer():
 
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
+    verify_image = utils.load_image("imgs/prepare_verify_form.png")
 
     st.write(
         f"""
@@ -35,7 +36,7 @@ def genPrepareContainer():
                         <div class="col"><br>
                             <div class="minor-padding">
                                 <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
-                                <img class="img-forms" src="https://i.imgur.com/gA2IIgB.png"> 
+                                <img class="img-forms" src='data:image/png;base64,{verify_image}'>
                                 </a>
                             </div>
                         </div>
