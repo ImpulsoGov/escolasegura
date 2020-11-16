@@ -46,7 +46,7 @@ def genMonitorContainer():
                             </div>
                             <div class="minor-padding button-position">
                                 <a href="https://docs.google.com/forms/d/1BunWrThhRcVl564AZDKlut2t1d5ugM9W5YtGnQmwo6Y/copy" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo</button>
+                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo ></button>
                                 </a>
                             </div>
                             <br>
@@ -84,7 +84,7 @@ def genMonitorContainer():
                             </div>
                             <div class="minor-padding button-position">
                                 <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo</button>
+                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo ></button>
                                 </a>
                             </div>
                         </div>
