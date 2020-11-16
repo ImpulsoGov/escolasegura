@@ -25,9 +25,9 @@ def genPlanContainer(df, config, session_state):
         elements = config["br"]["farolcovid"]["elements"][alert]
 
         caption = f"""
-        Hoje em <b>{cidade}</b>, segundo o <a href="http://farolcovid.coronacidades.org">FarolCovid</a>, o nível de alerta é: 
+       Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
-        {elements["description"]}"""
+        {elements["description"]} Dados: <a href="http://farolcovid.coronacidades.org">FarolCovid</a>."""
 
         href = elements["href"]
         url = href + ".png"
@@ -129,31 +129,30 @@ def genPlanContainer(df, config, session_state):
         f"""
         <div class="container main-padding">
             <div class="title-section"> <img class="square" src="https://i.imgur.com/gGIFS5N.png">
-            Como organizo a reabertura da minha rede escolar? 
+            Como <b>estruturar</b> a reabertura da minha rede? 
             </div>
             <p><b>A fase de planejamento é essencial para uma reabertura segura.</b>
-            Devem ser incluídos os diversos atores do dia-a-dia das escolas 
-            para diálogo e formulação dos protocolos.</p>
+            Os diversos atores do dia-a-dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
                     <a class="col card-plan container" 
                     href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
                     <div style="margin:10px">
-                        <div>
-                            <p style="color:#2b14ff; font-size:21px;"> <b>1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?</b></p>              
-                        </div>
                         <div class="left-margin">
                             <div class="text-title-section minor-padding"> 
-                            <img class="icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
-                            Passo a passo</div>
-                            <div class="minor-padding main-black-span"><br>
-                            <b><i>O que é?</i><br>
-                            Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
-                            <b><i>Quem usa?</i></b>
-                            <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
+                                <img class="icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
+                                Passo a passo
+                            </div>
+                            <div class="subtitle-section minor-padding"> 
+                                Como checar o <b>preparo</b> da minha secretaria e rede para a reabertura presencial?
+                            </div>              
+                            <div class="minor-padding main-black-span">
+                                <b>Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
+                                <b><i>Quem usa?</i></b>
+                                <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>
                             <div align="center" style="padding-bottom: 10px;">
-                                <button class="button"; style="border-radius: .25rem;">Veja Aqui</button><br>
+                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div>
                     </div>
@@ -161,35 +160,38 @@ def genPlanContainer(df, config, session_state):
                     <a class="col card-plan container" href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view" target="blank_">           
                     <div style="margin:10px">
                         <div class="left-margin">
-                            <p style="color:#2b14ff; font-size:21px;"> <b>2 - Quais são as principais recomendações sanitárias e protocolos para retomada?</b></p>
                             <div class="text-title-section minor-padding"> 
-                            <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
-                            Protocolos</div>
-                            <div class="minor-padding main-black-span"><br>
-                                <b><i>O que é?</i><br>
-                                Listas de orientações para planejar a estrutura sanitária nas escolas</b>
+                                <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
+                                Protocolos
+                            </div>
+                            <div class="subtitle-section minor-padding"> 
+                                Quais são as principais <b>recomendações sanitárias</b> e protocolos para retomada?
+                            </div> 
+                            <div class="minor-padding main-black-span">
+                                <b>Listas de orientações para planejar a estrutura sanitária nas escolas.</b>
                                 A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
                                 <b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
                                 <li> Diretores(as) de escolas.
                             </div><br>
                             <div align="center" style="padding-bottom: 10px;">
-                                <button class="button"; style="border-radius: .25rem;">Veja Aqui</button><br>
+                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div><br>
                     </div>
                     </a>
                 </div><br>
-                <div class="title-section">
-                 <p style="font-size:21px;"> <b>3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?</b></p>              
-                </div>
-                <div class="text-title-section minor-padding"> 
+                <div class="text-title-section main-orange-span minor-padding"> 
                     <img class="icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
-                    Régua de protocolo</div>
-                <div class="minor-padding">
-                    <b><i>O que é?</i><br></b>  Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<br><br>
+                    Régua de protocolo
                 </div>
-                <div class="minor-padding">{caption}</div><br>{modal}
+                <div class="subtitle-section minor-padding"> 
+                    Quais protocolos seguir de acordo com o nível de alerta da minha região?
+                </div> 
+                <div class="minor-padding">
+                    Ferramenta de indicação das <b>principais ações</b> a serem tomadas no ambiente escolar <b>para cada nível de alerta.<b>
+                </div>
+                <div class="main-padding">{caption}</div><br>{modal}
                 </div>
                 <div class="minor-padding">
                     <a href={href} target="_blank">
