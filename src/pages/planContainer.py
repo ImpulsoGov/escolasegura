@@ -157,7 +157,7 @@ def genPlanContainer(df, config, session_state):
                         </div>
                     </div>
                     </a>
-                    <a class="col card-plan container" href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">           
+                    <a class="col card-plan container" href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view" target="blank_">           
                     <div style="margin:10px">
                         <div class="left-margin">
                             <div class="text-title-section minor-padding"> 
