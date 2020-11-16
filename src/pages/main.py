@@ -121,6 +121,51 @@ def genSelectBox(df, session_state):
 
 
 def main(session_state):
+    if os.getenv("IS_DEV") == "FALSE":
+        #  ==== GOOGLE ANALYTICS SETUP ====
+        GOOGLE_ANALYTICS_CODE = os.getenv("GOOGLE_ANALYTICS_CODE")
+        if GOOGLE_ANALYTICS_CODE:
+            import pathlib
+            from bs4 import BeautifulSoup
+            TAG_MANAGER = (
+                """
+                function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-5ZZ5F66');
+                """
+            )
+            GA_JS = (
+                """
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '%s');
+            """
+                % GOOGLE_ANALYTICS_CODE
+            )
+            index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+            soup = BeautifulSoup(index_path.read_text(), features="lxml")
+            if not soup.find(id="google-analytics-loader"):
+                script_tag_import = soup.new_tag(
+                    "script",
+                    src="https://www.googletagmanager.com/gtag/js?id=%s"
+                    % GOOGLE_ANALYTICS_CODE,
+                )
+                soup.head.append(script_tag_import)
+                script_tag_loader = soup.new_tag("script", id="google-analytics-loader")
+                script_tag_loader.string = GA_JS
+                soup.head.append(script_tag_loader)
+                script_tag_manager = soup.new_tag("script", id="google-tag-manager")
+                script_tag_manager.string = TAG_MANAGER
+                soup.head.append(script_tag_manager)
+                index_path.write_text(str(soup))
+        # ====
+    st.write(
+        """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
+        unsafe_allow_html=True,
+    ) 
     utils.localCSS("style.css")
     genHeroSection(
         title1="Escola", title2="Segura", subtitle="{descrição}", header=True,

@@ -13,9 +13,9 @@ def genPrepareContainer():
                 <img class="square" src="https://i.imgur.com/gGIFS5N.png">
                 Como <b>gerir</b> as unidades escolares abertas? 
             </div>
-            <p><b>A fase de preparação é onde os protocolos de segurança das escolas são discutidas e pactuadas.</b> 
-            Durante a reabertura, é importante que seja estabelecida uma rotina de verificação das unidades escolares 
-            para acompanhar o cumprimento dos protocolos estabelecidos.</p>
+            <p><b>A fase de preparação é onde os protocolos de segurança das escolas são discutidas e pactuadas. 
+            Durante a reabertura</b>, é importante que seja estabelecida uma rotina de verificação das unidades escolares 
+            para <b>acompanhar o cumprimento dos protocolos</b> estabelecidos.</p>
             <div class="left-margin">
                 <div class="row">
                     <div class="col">
@@ -35,7 +35,7 @@ def genPrepareContainer():
                         </div>
                         <div class="minor-padding">
                             <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
-                                <button class="button"; style="border-radius: .25rem;"> baixe o PDF</button>
+                                <button class="button"; style="border-radius: .25rem;">IMPRIMA AQUI</button>
                             </a>
                         </div>
                         <br>
