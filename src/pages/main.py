@@ -39,7 +39,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
         </div>
         </div>
         <div class="hero-container-subtitle">
-            Salas <b>abertas</b> para estudantes, portas <b>fechadas</b> para a Covid-19
+            Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
         </div>
         """,
         unsafe_allow_html=True,
@@ -218,7 +218,7 @@ def main(session_state):
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Comece aqui"):
+        if st.button("comece aqui >"):
             session_state.section1_organize = True
             session_state.section2_manage = False
     with coluna2:
@@ -248,7 +248,7 @@ def main(session_state):
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Veja ferramentas"):
+        if st.button("veja ferramentas >"):
             session_state.section2_manage = True
             session_state.section1_organize = False
     with espaco:
