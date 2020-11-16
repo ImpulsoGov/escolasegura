@@ -171,7 +171,7 @@ def main(session_state):
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Veja como orientar reabertura"):
+        if st.button("Comece aqui"):
             session_state.section1_organize = True
             session_state.section2_manage = False
     with coluna2:
@@ -201,7 +201,7 @@ def main(session_state):
             """,
             unsafe_allow_html=True,
         )
-        if st.button("Veja como gerenciar unidades escolares"):
+        if st.button("Veja ferramentas"):
             session_state.section2_manage = True
             session_state.section1_organize = False
     with espaco:

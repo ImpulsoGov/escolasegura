@@ -172,8 +172,13 @@
     width: 200px;
     border: solid;
     border-radius: 0.7rem;
+    font-family: var(--main-title-font-family);
   }
 
+  .streamlit-expanderHeader:hover{
+    color:  var(--main-white);
+    fill: var(--main-light-blue-green);
+  }
   .stSelectbox{
     min-width:100px;
   }
@@ -197,10 +202,7 @@
   border-bottom-color: var(--main-light-blue-green);
 }
 
-.streamlit-expanderHeader:hover{
-  color:  var(--main-white);
-  fill: var(--main-light-blue-green);
-}
+
 
 .st-cm:hover {
   border-bottom-color:  var(--main-light-blue-green);
@@ -210,6 +212,7 @@
   background-color: var(--main-light-blue-green);
   border: 1px solid #e6eaf1;
   color: var(--main-black);
+  font-family: var(--main-title-font-family);
 }
 
 .streamlit-button.primary-button:hover{
@@ -436,6 +439,11 @@
   font-size: 1rem;
 }
 
+.text-card-section{
+  font-family: var(--main-title-font-family);
+  font-size: 18px;
+}
+
 .title-section{
   font-size: 1.9rem;
   color: var(--main-orange);
@@ -486,7 +494,7 @@
 }
 
 .card-plan{
-  box-shadow: 2px 2px 2px 2px var(--main-blue-green);
+  box-shadow: 2px 2px 2px 2px var(--main-grey);
   border-radius:1rem;
   text-decoration: none;
 }
@@ -688,11 +696,9 @@
 }
 
 .button {
-  font-family: var(--main-header-font-family);
+  font-family: var(--main-title-font-family);
   font-size: 20px;
-  color: white;
-  background-color: var(--main-orange);
-  font-weight: bold;
+  background-color: var(--main-light-blue-green);
   text-align: center;
   text-decoration: none;
   top: 10px;
