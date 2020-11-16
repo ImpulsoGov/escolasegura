@@ -5,9 +5,10 @@ import utils
 
 def genMonitorContainer():
 
-    notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
     plan_image = utils.load_image("imgs/monitor_plan_forms.png")
+    notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
+    notify_image = utils.load_image("imgs/monitor_notify_forms.png")
 
     # Add Container Contents
     st.write(
@@ -78,7 +79,7 @@ def genMonitorContainer():
                     </div>
                     <div class="col">
                         <div class="main-padding">
-                            <img class="img-forms" src="https://i.imgur.com/givZhUl.png"> 
+                            <img class="img-forms" src='data:image/png;base64,{notify_image}'>
                             <div class="text-card-section minor-padding main-orange-span">
                                 Disponibilizamos também o modelo <b>digital</b> e <b>editável</b> para você usar na sua secretaria 
                             </div>
