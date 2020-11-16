@@ -25,6 +25,7 @@ def genSimulationResult(params, config):
         <div class="container main-padding">
                 <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
                 <p>Com os valores selecionados acima, os resultados da sua rede para os 2 modelos de retorno:</p>
+                <p>* Caso os números apresentados não façam sentido, confira novamente se os dados inseridos sobre a sua localidade estão corretos.</p>
                 <div class="row">
                     <div class="col main-padding">
                         <div class="card-simulator-up lighter-blue-green-bg">
@@ -145,8 +146,7 @@ def genSimulationContainer(df, config, session_state):
                 Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?
             </div>
             <div class="minor-padding">
-                <b>Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
-                </b>
+                Conheça os modelos que trazemos, <b>preencha o simulador</b> abaixo para calcular os recursos necessários para a retomada e analise qual o modelo de retorno mais adequado para sua realidade.
                 <div class="main-padding">
                     <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
                         <div>
@@ -218,7 +218,7 @@ def genSimulationContainer(df, config, session_state):
 
     st.write(
         f"""
-            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019):</div>
+            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019), caso você queira simular todas as escolas (ex: rurais e urbanas), não selecione nenhuma alternativa:</div>
         """,
         unsafe_allow_html=True,
     )
@@ -279,7 +279,7 @@ def genSimulationContainer(df, config, session_state):
 
     st.write(
         f"""
-        <div class="container main-padding bold">4) Escolha as condições de retorno:</div><br>
+        <div class="container main-padding bold">4) Escolha as condições desejadas para o retorno presencial:</div><br>
             </div>
         </div>
         """,
@@ -291,7 +291,7 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_1:
         perc_students = st.slider(
-            "Percentual de alunos realizando atividades presenciais:", 0, 100, 100, 10
+            "Percentual de alunos que realizarão atividades presenciais:", 0, 100, 100, 10
         )
         params["number_students"] = int(perc_students * params["number_students"] / 100)
 
@@ -315,7 +315,7 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_3:
         perc_teachers = st.slider(
-            "Percentual de professores realizando atividades presenciais:",
+            "Percentual de professores que realizarão atividades presenciais:",
             0,
             100,
             100,
