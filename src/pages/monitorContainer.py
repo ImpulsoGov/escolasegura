@@ -31,7 +31,7 @@ def genMonitorContainer():
                             </div>
                             <div class="minor-padding">
                                 <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> baixe o PDF</button>
+                                    <button class="button"; style="border-radius: .25rem;"> IMPRIMA AQUI</button>
                                 </a>
                             </div>
                             <br>
@@ -70,7 +70,7 @@ def genMonitorContainer():
                             </ol>
                             <div class="minor-padding">
                                 <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> baixe o PDF</button>
+                                    <button class="button"; style="border-radius: .25rem;"> IMPRIMA AQUI</button>
                                 </a>
                             </div>
                             <br>
