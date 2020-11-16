@@ -15,6 +15,7 @@ import pages.referencesContainer as rc
 import pages.footerContainer as fc
 import pages.specialistContainer as spc
 
+
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
     if header:
@@ -71,7 +72,7 @@ def genSelectBox(df, session_state):
     st.write(
         f"""
         <div class="main-padding">
-            <div class="text-title-section"> Selecione sua rede </div>
+            <div class="subtitle-section"> Selecione sua rede </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -127,15 +128,14 @@ def main(session_state):
         if GOOGLE_ANALYTICS_CODE:
             import pathlib
             from bs4 import BeautifulSoup
-            TAG_MANAGER = (
-                """
+
+            TAG_MANAGER = """
                 function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer','GTM-5ZZ5F66');
                 """
-            )
             GA_JS = (
                 """
             window.dataLayer = window.dataLayer || [];
@@ -165,7 +165,7 @@ def main(session_state):
     st.write(
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
         unsafe_allow_html=True,
-    ) 
+    )
     utils.localCSS("style.css")
     genHeroSection(
         title1="Escola", title2="Segura", subtitle="{descrição}", header=True,

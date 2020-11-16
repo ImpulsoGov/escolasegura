@@ -29,9 +29,9 @@ def genMonitorContainer():
                                 <br><br><b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>
                             </div>
-                            <div class="minor-padding">
+                            <div class="minor-padding button-position">
                                 <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> IMPRIMA AQUI</button>
+                                    <button class="button"; style="border-radius: .25rem;"> imprima aqui > </button>
                                 </a>
                             </div>
                             <br>
@@ -44,7 +44,7 @@ def genMonitorContainer():
                             <div class="text-card-section minor-padding main-orange-span">
                                 Disponibilizamos também o modelo <b>digital</b> e <b>editável</b> para você usar na sua secretaria 
                             </div>
-                            <div class="minor-padding">
+                            <div class="minor-padding button-position">
                                 <a href="https://docs.google.com/forms/d/1BunWrThhRcVl564AZDKlut2t1d5ugM9W5YtGnQmwo6Y/copy" target="_blank">
                                     <button class="button"; style="border-radius: .25rem;"> copie o modelo</button>
                                 </a>
@@ -68,9 +68,9 @@ def genMonitorContainer():
                                 <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;</li>
                                 <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.</li>
                             </ol>
-                            <div class="minor-padding">
+                            <div class="minor-padding button-position">
                                 <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> IMPRIMA AQUI</button>
+                                    <button class="button"; style="border-radius: .25rem;"> imprima aqui ></button>
                                 </a>
                             </div>
                             <br>
@@ -82,7 +82,7 @@ def genMonitorContainer():
                             <div class="text-card-section minor-padding main-orange-span">
                                 Disponibilizamos também o modelo <b>digital</b> e <b>editável</b> para você usar na sua secretaria 
                             </div>
-                            <div class="minor-padding">
+                            <div class="minor-padding button-position">
                                 <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy" target="_blank">
                                     <button class="button"; style="border-radius: .25rem;"> copie o modelo</button>
                                 </a>

@@ -151,7 +151,7 @@ def genPlanContainer(df, config, session_state):
                                 <b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div class="button-position" style="padding-bottom: 10px;">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ def genPlanContainer(df, config, session_state):
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
                                 <li> Diretores(as) de escolas.
                             </div><br>
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div class="button-position" style="padding-bottom: 10px;">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div><br>
