@@ -32,16 +32,9 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             </div>
             <div class="div2-head">
                 <span class="hero-container-product main-blue-span">{title1}</span>
-                <br>
+                <div class="br-hero"></div>
                 <span class="hero-container-product main-blue-span">{title2}</span>
-                <br><br>
             </div>
-            <div class="div3-head">
-                <span class="hero-container-question">
-                Controle a Covid-19 e promova aulas presenciais seguras na rede pública.
-                </span>
-            </div>
-            <br>
         </div>
         </div>
         """,
@@ -144,16 +137,33 @@ def main(session_state):
 
     coluna1, coluna2, espaco = st.beta_columns([0.4, 0.4, 0.1])
     with coluna1:
+        protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
+        steps_icon = utils.load_image("imgs/plan_steps_icon.png")
+        ruler_icon = utils.load_image("imgs/plan_ruler_icon.png")
+        simulation_icon = utils.load_image("imgs/simulation_main_icon.png")
+
         st.write(
             f"""
             <div class="container" style="min-height: 150px;"><br>
-                <div class="text-title-section minor-padding ">Como organizo a reabertura da minha rede escolar?</div>
+                <div class="text-title-section minor-padding ">Como <span class="bold main-orange-span">estruturar</span> a reabertura da minha rede?</div>
+                <div class="minor-padding main-orange-span">
                     <div class="minor-padding">
-                        1 - Como checar o preparo da minha secretaria e rede para a reabertura presencial?<br>
-                        2 - Quais são as principais recomendações sanitárias e protocolos para retomada?<br>
-                        3 - Quais protocolos seguir de acordo com o nível de alerta da minha região?<br>
-                        4 - Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?<br>
-                    </div></br>
+                        <img class="minor-icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
+                        Passo a passo
+                    </div>
+                    <div class="minor-padding"> 
+                        <img class="minor-icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
+                        Protocolos
+                    </div>
+                    <div class="minor-padding"> 
+                        <img class="minor-icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
+                        Régua de protocolo
+                    </div>
+                    <div class="minor-padding"> 
+                        <img class="minor-icon" src="data:image/png;base64,{simulation_icon}" alt="Fonte: Flaticon">
+                        Simule o retorno
+                    </div>
+                </div></br>
             </div>
             """,
             unsafe_allow_html=True,
@@ -162,15 +172,28 @@ def main(session_state):
             session_state.section1_organize = True
             session_state.section2_manage = False
     with coluna2:
+        verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
+        notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
+        plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
+
         st.write(
             f"""
             <div class="container" style="min-height: 150px;"><br>
-            <div class="text-title-section minor-padding">Como faço a gestão das unidades escolares?</div>
-            <div class="minor-padding">
-                1 - Como verificar e garantir condições para reabertura de escolas por meio de gestores escolares?<br>
-                2 - O que fazer quando um caso for confirmado em uma unidade escolar?<br>
-                3 - Como acompanhar a notificação de casos em unidades escolares e orientar ações?<br>
-            </div></br>
+                <div class="text-title-section minor-padding">Como <span class="bold main-orange-span">gerir</span> as unidades escolares abertas?</div>
+                <div class="minor-padding main-orange-span">
+                    <div class="minor-padding">
+                        <img class="minor-icon" src="data:image/png;base64,{verify_icon}" alt="Fonte: Flaticon">
+                        Ferramenta de verificação
+                    </div>
+                    <div class="minor-padding"> 
+                        <img class="minor-icon" src="data:image/png;base64,{plan_icon}" alt="Fonte: Flaticon">
+                        Plano de contingência
+                    </div>
+                    <div class="minor-padding"> 
+                        <img class="minor-icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
+                        Ferramenta de notificação
+                    </div>
+                </div></br>
             </div>
             """,
             unsafe_allow_html=True,
