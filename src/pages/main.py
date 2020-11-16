@@ -37,6 +37,9 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
             </div>
         </div>
         </div>
+        <div class="hero-container-subtitle">
+            Salas <b>abertas</b> para estudantes, portas <b>fechadas</b> para a Covid-19
+        </div>
         """,
         unsafe_allow_html=True,
     )

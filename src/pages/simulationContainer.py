@@ -136,18 +136,18 @@ def genSimulationContainer(df, config, session_state):
 
     st.write(
         f"""
-        <div class="title-section">
-            <p style="color:#2b14ff; font-size:21px;"><b>4 - Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?</b></p>
-        </div>
         <div class="container main-padding">
-            <div class="text-title-section minor-padding"> 
+            <div class="text-title-section minor-padding main-orange-span"> 
                 <img class="icon" src="data:image/png;base64,{main_icon}" alt="Fonte: Flaticon">
                 Simule o retorno
-            </div><br>
-            <div>
-                <div class="minor-padding">Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
-                </div>
-                <div class="minor-padding">
+            </div>
+            <div class="subtitle-section minor-padding"> 
+                Qual é o modelo de retorno híbrido mais adequado para mim e qual a melhor logística e materiais necessários para isso?
+            </div>
+            <div class="minor-padding">
+                <b>Analise qual o modelo de retorno mais adequado para sua realidade e calcule os recursos necessários para a retomada.
+                </b>
+                <div class="main-padding">
                     <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
                         <div>
                             Uma parte essencial da reabertura é definir 

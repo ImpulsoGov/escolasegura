@@ -437,20 +437,16 @@
 }
 
 .title-section{
-  font-size: 36px;
-  font-weight: bold;
-  color: var(--main-blue);
+  font-size: 1.9rem;
+  color: var(--main-orange);
   font-family: var(--main-title-font-family);
   padding: 5px 0px 5px 10px;
 }
 
 .subtitle-section{
-  font-size: 24px;
-  color: var(--main-orange);
+  color: #5a5a5a;
   font-family: var(--main-subtitle-font-family);
   letter-spacing: 0.7px;
-  font-weight: bold;
-  padding: 5px 10px 5px 0px;
 }
 
 .text-title-footer{
