@@ -3,6 +3,9 @@ import time
 import os
 import yaml
 import requests
+from pathlib import Path
+import base64
+
 
 def get_config(url=os.getenv("CONFIG_URL")):
     return yaml.load(requests.get(url).text, Loader=yaml.FullLoader)
@@ -51,3 +54,7 @@ def filter_place(df, level, state_id=None, administrative_level=None, city_name=
         if city_name != None and city_name != "Todos":
             data = df[df["city_name"] == city_name]
         return data["administrative_level"].sort_values().unique()
+
+
+def load_image(path):
+    return base64.b64encode(Path(str(os.getcwd()) + "/" + path).read_bytes()).decode()

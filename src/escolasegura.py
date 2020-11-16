@@ -7,11 +7,23 @@ import time
 import pages.main as es
 
 import utils
+import pages.simulationContainer as sc
 
 st.set_page_config(layout="wide")
 
 
 def main():
+
+    # Remove menu da visualizacao
+    hide_streamlit_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+
+        """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
     # SESSION STATE
     time.sleep(
         0.05
@@ -31,6 +43,8 @@ def main():
         button_styles=dict(),
         continuation_selection=None,
         button_simule=0,
+        section1_organize=False,
+        section2_manage=False,
     )
 
     es.main(session_state)

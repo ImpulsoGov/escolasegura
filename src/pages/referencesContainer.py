@@ -3,6 +3,13 @@ import streamlit as st
 def  genReferencesContainer():
     st.write(
         f"""
+        <div class="container main-padding"></div>
+        """,
+        unsafe_allow_html = True,
+    )
+    with st.beta_expander("Fontes e Referências"):
+        st.write(
+        f"""
         <div class="container main-padding">
             <div class="title-section">
                 <img class="square" src="https://i.imgur.com/gGIFS5N.png">Fontes e Referências
