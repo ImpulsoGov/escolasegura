@@ -51,7 +51,7 @@ def genPrepareContainer():
                             </div>
                             <div class="minor-padding button-position">
                                 <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy" target="_blank">
-                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo</button>
+                                    <button class="button"; style="border-radius: .25rem;"> copie o modelo ></button>
                                 </a>
                             </div>
                             <br>

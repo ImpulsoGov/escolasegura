@@ -148,7 +148,7 @@ def genSimulationContainer(df, config, session_state):
             <div class="minor-padding">
                 Conheça os modelos que trazemos, <b>preencha o simulador</b> abaixo para calcular os recursos necessários para a retomada e analise qual o modelo de retorno mais adequado para sua realidade.
                 <div class="main-padding">
-                    <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
+                    <div class="text-title-section minor-padding main-orange-span" style="font-size:18px"> Entenda os modelos de retorno </div>
                         <div>
                             Uma parte essencial da reabertura é definir 
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
@@ -183,7 +183,7 @@ def genSimulationContainer(df, config, session_state):
     st.write(
         f"""<br>
             <div class="container">
-                <div class="text-title-section minor-padding" style="font-size:20px">Defina seu modelo de retorno</div><br>
+                <div class="text-title-section minor-padding main-orange-span" style="font-size:18px">Defina seu modelo de retorno</div><br>
                 <div>
                     <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
                 </div>
@@ -291,7 +291,11 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_1:
         perc_students = st.slider(
-            "Percentual de alunos que realizarão atividades presenciais:", 0, 100, 100, 10
+            "Percentual de alunos que realizarão atividades presenciais:",
+            0,
+            100,
+            100,
+            10,
         )
         params["number_students"] = int(perc_students * params["number_students"] / 100)
 
