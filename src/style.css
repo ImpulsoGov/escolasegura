@@ -246,7 +246,7 @@
 }
 
 .logo-header{
-    font-size: 14px;
+    font-size: 12px;
     font-family: var(--main-title-font-family);
     color: var(--main-orange);
 }
@@ -263,7 +263,7 @@
 
 .hero-container-product {
     font-family: var(--main-title-font-family);
-    font-size: 1.3rem;
+    font-size:24px;
     font-weight: bold;
     animation-name: fadein;
     animation-duration: 4s;
@@ -339,7 +339,7 @@
   grid-row-gap: 0px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
 }
 .grid-container-simulation-type {
   display: grid;
