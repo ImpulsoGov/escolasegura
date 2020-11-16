@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def genSpecialistContainer():
     st.write(
         f"""
@@ -8,12 +9,12 @@ def genSpecialistContainer():
                     <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
                         <div style="margin:10px">
                             <div class="left-margin">
-                                <div class="text-title-section minor-padding"> 
+                                <div class="text-title-section main-orange-span minor-padding"> 
                                 Fale com o especialista</div>
                                 <div class="minor-padding main-black-span"><br>
                                 <b>Wanderson</b> é ... e estará disponível para..
                                 <div align="center" style="padding-bottom: 10px;">
-                                    <button class="button"; style="border-radius: .25rem;">Veja Aqui</button><br>
+                                    <button class="button"; style="border-radius: .25rem;">agende aqui ></button><br>
                                 </div>
                             </div>
                         </div>
@@ -24,6 +25,6 @@ def genSpecialistContainer():
         unsafe_allow_html=True,
     )
 
-    
+
 if __name__ == "__main__":
     main()
