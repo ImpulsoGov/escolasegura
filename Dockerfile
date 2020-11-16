@@ -14,7 +14,7 @@ ENV USER_NAME=ubuntu \
     GOOGLE_ANALYTICS_CODE=UA-161606940-3 \
     # Data API - set TRUE if running local
     IS_LOCAL="FALSE" \
-    IS_DEV="TRUE"
+    IS_DEV="FALSE"
 
 WORKDIR ${USER_HOME}
 
