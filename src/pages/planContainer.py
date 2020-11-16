@@ -25,9 +25,9 @@ def genPlanContainer(df, config, session_state):
         elements = config["br"]["farolcovid"]["elements"][alert]
 
         caption = f"""
-        Hoje em <b>{cidade}</b>, segundo o <a href="http://farolcovid.coronacidades.org">FarolCovid</a>, o nível de alerta é: 
+       Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
-        {elements["description"]}"""
+        {elements["description"]} Dados: <a href="http://farolcovid.coronacidades.org">FarolCovid</a>."""
 
         href = elements["href"]
         url = href + ".png"
@@ -132,8 +132,7 @@ def genPlanContainer(df, config, session_state):
             Como <b>estruturar</b> a reabertura da minha rede? 
             </div>
             <p><b>A fase de planejamento é essencial para uma reabertura segura.</b>
-            Devem ser incluídos os diversos atores do dia-a-dia das escolas 
-            para diálogo e formulação dos protocolos.</p>
+            Os diversos atores do dia-a-dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
                     <a class="col card-plan container" 
@@ -190,7 +189,7 @@ def genPlanContainer(df, config, session_state):
                     Quais protocolos seguir de acordo com o nível de alerta da minha região?
                 </div> 
                 <div class="minor-padding">
-                    <b>Ferramenta de indicação das principais ações a serem tomadas no ambiente escolar para cada nível de alerta.<b>
+                    Ferramenta de indicação das <b>principais ações</b> a serem tomadas no ambiente escolar <b>para cada nível de alerta.<b>
                 </div>
                 <div class="main-padding">{caption}</div><br>{modal}
                 </div>
