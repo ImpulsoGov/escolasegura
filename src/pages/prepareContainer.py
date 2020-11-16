@@ -5,7 +5,7 @@ import utils
 def genPrepareContainer():
 
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
-    verify_image = utils.load_image("imgs/prepare_verify_form.png")
+    verify_image = utils.load_image("imgs/prepare_verify_forms.png")
 
     st.write(
         f"""

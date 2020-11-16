@@ -6,9 +6,9 @@ import utils
 def genMonitorContainer():
 
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
-    plan_image = utils.load_image("imgs/monitor_plan_form.png")
+    plan_image = utils.load_image("imgs/monitor_plan_forms.png")
     notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
-    notify_image = utils.load_image("imgs/monitor_notify_form.png")
+    notify_image = utils.load_image("imgs/monitor_notify_forms.png")
 
     # Add Container Contents
     st.write(
