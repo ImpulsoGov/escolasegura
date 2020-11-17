@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def genSpecialistContainer():
     st.write(
         f"""
@@ -26,6 +27,6 @@ def genSpecialistContainer():
         unsafe_allow_html=True,
     )
 
-    
+
 if __name__ == "__main__":
     main()
