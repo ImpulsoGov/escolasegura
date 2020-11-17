@@ -31,9 +31,11 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
                 <img class="img-logo-header" src="https://i.imgur.com/SJHwG4Z.png">
             </div>
             <div class="div2-head">
+                <a href="" class="logo-link">
                 <span class="hero-container-product main-blue-span">{title1}</span>
                 <div class="br-hero"></div>
                 <span class="hero-container-product main-blue-span">{title2}</span>
+                </a>
             </div>
         </div>
         </div>
