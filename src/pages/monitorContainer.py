@@ -57,7 +57,7 @@ def genMonitorContainer():
                     <div class="col">
                         <div class="card-plan">
                         <div style="margin:10px">
-                            <div class="text-title-section main-padding main-orange-span"> 
+                            <div class="text-title-section minor-padding main-orange-span"> 
                                 <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
                                 Ferramenta de notificação
                             </div>
