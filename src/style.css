@@ -164,18 +164,27 @@
   }
 
   .streamlit-expanderHeader{
-    background-color:var(--main-orange);
+    /*background-color:var(--main-orange);
     color: var(--main-white);
     font-weight: bold;
     width: 200px;
     border: solid;
     border-radius: 0.7rem;
+    font-family: var(--main-title-font-family);*/
+    
+    background-color: var(--main-light-blue-green);
+    width: 200px;
+    border: 1px solid #e6eaf1;
+    border-radius: 0.7rem;
     font-family: var(--main-title-font-family);
+    top: 10px;
+    right: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   }
 
   .streamlit-expanderHeader:hover{
-    color:  var(--main-white);
-    fill: var(--main-light-blue-green);
+    color:  var(--main-blue);
+    fill: var(--main-blue);
   }
   .stSelectbox{
     min-width:100px;
@@ -193,12 +202,16 @@
   .st-cw:hover {
     border-bottom-color: var(--main-light-blue-green);
   }
+
+  .st-cj:hover {
+    border-bottom-color: var(--main-blue);
+  }
   
 
 
-.st-ea:hover {
-  border-bottom-color: var(--main-light-blue-green);
-}
+  .st-ea:hover {
+    border-bottom-color: var(--main-light-blue-green);
+  }
 
 
 
