@@ -168,7 +168,7 @@ def main(session_state):
     st.write(
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
         unsafe_allow_html=True,
-    )   
+    )
     genHeroSection(
         title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
