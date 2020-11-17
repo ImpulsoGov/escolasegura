@@ -27,7 +27,9 @@ def genPlanContainer(df, config, session_state):
         caption = f"""
        Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
-        {elements["description"]} Dados: <a href="http://farolcovid.coronacidades.org">FarolCovid</a>."""
+        {elements["description"]}<br>Dados: <a
+        href="http://farolcovid.coronacidades.org" style="font-family:
+        var(--main-text-font-family)">FarolCovid</a>."""
 
         href = elements["href"]
         url = href + ".png"
@@ -45,7 +47,7 @@ def genPlanContainer(df, config, session_state):
     date_update = farol_covid["date_update"]
 
     modal = f"""
-    <a href="#entenda-mais" class="info-btn">Entenda os níveis do FarolCovid</a>
+    <a href="#entenda-mais" class="info-btn"><b>entenda alerta do farolcovid > </b></a>
     <div id="entenda-mais" class="info-modal-window">
         <div>
             <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
@@ -135,11 +137,10 @@ def genPlanContainer(df, config, session_state):
             Os diversos atores do dia-a-dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
-                    <a class="col card-plan container" 
-                    href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
+                    <div class="col card-plan container">
                     <div style="margin:10px">
                         <div class="left-margin">
-                            <div class="text-title-section minor-padding"> 
+                            <div class="text-title-section main-orange-span minor-padding"> 
                                 <img class="icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
                                 Passo a passo
                             </div>
@@ -151,16 +152,16 @@ def genPlanContainer(df, config, session_state):
                                 <b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div class="button-position" style="padding-bottom: 10px;">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div>
                     </div>
-                    </a>
-                    <a class="col card-plan container" href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">           
+                    </div>
+                    <div class="col card-plan container">
                     <div style="margin:10px">
                         <div class="left-margin">
-                            <div class="text-title-section minor-padding"> 
+                            <div class="text-title-section main-orange-span minor-padding"> 
                                 <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
                                 Protocolos
                             </div>
@@ -174,12 +175,12 @@ def genPlanContainer(df, config, session_state):
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
                                 <li> Diretores(as) de escolas.
                             </div><br>
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div class="button-position" style="padding-bottom: 10px;">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                             </div>
                         </div><br>
                     </div>
-                    </a>
+                    </div>
                 </div><br>
                 <div class="text-title-section main-orange-span minor-padding"> 
                     <img class="icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">

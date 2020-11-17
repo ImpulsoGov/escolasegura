@@ -36,8 +36,6 @@
 
 }
 
-
-
 .main-blue-span{
   color: var(--main-blue);
 }
@@ -166,18 +164,27 @@
   }
 
   .streamlit-expanderHeader{
-    background-color:var(--main-orange);
+    /*background-color:var(--main-orange);
     color: var(--main-white);
     font-weight: bold;
     width: 200px;
     border: solid;
     border-radius: 0.7rem;
+    font-family: var(--main-title-font-family);*/
+    
+    background-color: var(--main-light-blue-green);
+    width: 200px;
+    border: 1px solid #e6eaf1;
+    border-radius: 0.7rem;
     font-family: var(--main-title-font-family);
+    top: 10px;
+    right: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   }
 
   .streamlit-expanderHeader:hover{
-    color:  var(--main-white);
-    fill: var(--main-light-blue-green);
+    color:  var(--main-blue);
+    fill: var(--main-blue);
   }
   .stSelectbox{
     min-width:100px;
@@ -195,17 +202,25 @@
   .st-cw:hover {
     border-bottom-color: var(--main-light-blue-green);
   }
+
+  .st-cj:hover {
+    border-bottom-color: var(--main-blue);
+  }
   
 
 
-.st-ea:hover {
-  border-bottom-color: var(--main-light-blue-green);
-}
+  .st-ea:hover {
+    border-bottom-color: var(--main-light-blue-green);
+  }
 
 
 
 .st-cm:hover {
   border-bottom-color:  var(--main-light-blue-green);
+}
+
+.streamlit-button{
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .streamlit-button.primary-button{
@@ -218,6 +233,7 @@
 .streamlit-button.primary-button:hover{
   border-color:  var(--main-blue);
   color:  var(--main-blue);
+ /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
 }
 .streamlit-button.primary-button:active {
   color: #fff;
@@ -267,6 +283,7 @@
     font-weight: bold;
     animation-name: fadein;
     animation-duration: 4s;
+    text-align: top;
 }
 
 .hero-container-subtitle {
@@ -339,7 +356,7 @@
   grid-row-gap: 0px;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
 }
 .grid-container-simulation-type {
   display: grid;
@@ -442,19 +459,21 @@
 .text-card-section{
   font-family: var(--main-title-font-family);
   font-size: 18px;
+  align-content: center
 }
 
 .title-section{
   font-size: 1.9rem;
   color: var(--main-orange);
   font-family: var(--main-title-font-family);
-  padding: 5px 0px 5px 10px;
+  /* padding: 5px 0px 5px 10px; */
 }
 
 .subtitle-section{
   color: #5a5a5a;
-  font-family: var(--main-subtitle-font-family);
+  font-family: var( --main-title-font-family);
   letter-spacing: 0.7px;
+  font-size: 0.8em;
 }
 
 .text-title-footer{
@@ -506,7 +525,8 @@
 
 /* button */
 .reportview-container .markdown-text-container a {
-  color:var(--main-orange);
+  color: var(--main-black);
+  font-family: var(--main-title-font-family);
 }
 
 /* button expander */
@@ -525,7 +545,7 @@
 
 
 .img-logo-header{
-  width: 2rem;
+  width: 42px;
 }
 
 
@@ -564,8 +584,6 @@
   border-radius: 15px;
   width: 150px;
   padding: 0.5em;
-  text-transform: uppercase;
-  font-family: var(--main-light-blue-green);
   background-color: var(--main-light-blue-green);
   text-align: center;
   text-decoration: none;
@@ -704,4 +722,20 @@
   top: 10px;
   right: 10px;
   border: 1px solid #e6eaf1;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.button-position {
+  text-align: center;
+}
+
+.button:hover{
+  border-color:  var(--main-blue);
+  color:  var(--main-blue);
+ /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25); */
+}
+
+/* test para botão da main */
+.stButton {
+  align-content: center;
 }

@@ -8,6 +8,7 @@ import pandas as pd
 from ipywidgets import AppLayout, GridspecLayout
 
 from model.get_school_return_data import entrypoint
+from utils import load_markdown_content
 
 
 def genSimulationResult(params, config):
@@ -23,7 +24,7 @@ def genSimulationResult(params, config):
     st.write(
         f"""
         <div class="container main-padding">
-                <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
+                <div class="text-title-section minor-padding main-orange-span"> RESULTADO DA SIMULAÇÃO </div>
                 <p>Com os valores selecionados acima, os resultados da sua rede para os 2 modelos de retorno:</p>
                 <p>* Caso os números apresentados não façam sentido, confira novamente se os dados inseridos sobre a sua localidade estão corretos.</p>
                 <div class="row">
@@ -148,7 +149,7 @@ def genSimulationContainer(df, config, session_state):
             <div class="minor-padding">
                 Conheça os modelos que trazemos, <b>preencha o simulador</b> abaixo para calcular os recursos necessários para a retomada e analise qual o modelo de retorno mais adequado para sua realidade.
                 <div class="main-padding">
-                    <div class="text-title-section minor-padding" style="font-size:20px"> Entenda os modelos de retorno </div>
+                    <div class="text-title-section minor-padding main-orange-span" style="font-size:18px"> Entenda os modelos de retorno </div>
                         <div>
                             Uma parte essencial da reabertura é definir 
                             <b>quem pode retornar e como</b> - trazemos 2 modelos possíveis:
@@ -183,7 +184,7 @@ def genSimulationContainer(df, config, session_state):
     st.write(
         f"""<br>
             <div class="container">
-                <div class="text-title-section minor-padding" style="font-size:20px">Defina seu modelo de retorno</div><br>
+                <div class="text-title-section minor-padding main-orange-span" style="font-size:18px">Defina seu modelo de retorno</div><br>
                 <div>
                     <div class="text-padding bold">1) Para qual etapa de ensino você está planejando?</div>
                 </div>
@@ -291,7 +292,11 @@ def genSimulationContainer(df, config, session_state):
 
     with col3_1:
         perc_students = st.slider(
-            "Percentual de alunos que realizarão atividades presenciais:", 0, 100, 100, 10
+            "Percentual de alunos que realizarão atividades presenciais:",
+            0,
+            100,
+            100,
+            10,
         )
         params["number_students"] = int(perc_students * params["number_students"] / 100)
 
@@ -361,7 +366,7 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
 
-    with st.beta_expander("Simular retorno"):
+    with st.beta_expander("simular retorno"):
         genSimulationResult(params, config)
 
     '''if st.button("Simular retorno"):
@@ -386,88 +391,8 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
-    with st.beta_expander("Ler metodologia"):
-
-        methodology_text = """
-        ## Metodologia de Simule o Retorno
-
-        ### O que é?
-
-        O simulador é uma ferramenta de cálculo para o gestor planejar o retorno das atividades escolares definindo restrições e seguindo os protocolos sanitários indicados. 
-        
-        A partir dos valores e restrições inseridos pelo gestor, o simulador calcula o **número de alunos e professores que podem retornar** às atividades escolares e **os materiais necessários para compra**, incluindo máscaras descartáveis, termômetros e
-        litros de álcool em gel (mais materiais podem ser acessados na planilha que disponibilizamos).
-
-        ### Como fazer a simulação?
-
-        Ao acessar a ferramenta, o gestor encontrará os seguintes campos para preenchimento:
-
-        - **Total de alunos:** O gestor pode informar aqui o número total de alunos 
-        inscritos no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
-
-        - **Total de professores:** O gestor pode informar aqui o número de professores disponíveis 
-        para dar aula no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
-
-        - **Total de salas de aula:** O gestor pode informar aqui o total de salas de aula disponíveis 
-        para retorno no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
-
-        - **Percentual de alunos realizando atividades presenciais:** O gestor deve informar aqui o percentual de alunos
-        dentre o **Total de alunos** indicado que estão previstos para retornar as atividades.
-
-        - **Percentual de professores realizando atividades presenciais:**  O gestor deve informar aqui o percentual de professores 
-        dentre o **Total de professores** indicado que estão previstos para retornar as atividades.
-
-        - **Máximo de alunos por sala:** 
-        O gestor deve indicar aqui o limite de alunos por sala de aula. 
-        Por padrão, este valor é de 20 alunos por sala, que também é o máximo que permitimos ser escolhido a fim tentar limitar a transmissão da doença.
-
-        - **Filtros da simulação**: (se aplicam aos valores padrões do Censo Escolar 2019)
-            - *Apenas escolas rurais*: escolhe-se para retorno apenas escolas em regiões rurais com base no Censo 2019. Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
-            - *Apenas escolas com água encanada*: escolhe-se para retorno apenas escolas com água encanada (escolas com fornecimento de água da rede pública no Censo 2019). Este filtro limita para somente os alunos, professores e salas em escolas nessas regiões.
-
-        ### Como calculamos o resultado?
-
-        O simulador utiliza as informações: 
-        - **A**: total de alunos x percentual de alunos que retornam
-        - **P**: total de professores x percentual de professores que retornam
-        - **S**: número de salas de aula disponíveis
-        - **K**: máximo de alunos permitidos por sala 
-
-        Além desses, são fixados valores para cada modelo de retorno:
-        
-        - **H**: horas disponíveis para aulas semanalmente (H = 40 horas por semana)
-        - **D**: duração de cada aula em horas (D = 2 horas)
-        - **N**: quantidade mínima de aulas por semana por aluno (equitativo: N = 1; prioritário: N = 5)
-
-        Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos o conceito de **oportunidade**: uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até **K** alunos (máximo por turma), a **quantidade de oportunidades de aulas na rede** é dada por $K \\times O$, onde **O** corresponde à oferta total de aulas na rede.
-
-        A oferta de aulas na rede (**O**) depende diretamente da disponibilidade de professores e salas. Dado o total de horas disponíveis na semana (**H**) e a duração definida de uma aula (**D**), o máximo de aulas que podem ser oferecidas por professor/sala é dado por $Q = \left\lfloor \\frac{ H }{ D } \\right\\rfloor$.
-
-        Assim, a oferta total de aulas (**O**) é dada por:
-
-        $$ 
-        O = Q \\times \min{ ( S, P ) } 
-        $$
-
-        Ao mesmo tempo, cada aluno deve ter uma quantidade **N** de aulas por semana, que é dada pelo modelo de retorno escolhido. Assim, a capacidade efetiva de retorno de alunos(**C**) é dada por:
-
-        $$
-        C = \\frac{K \\times O}{N}
-        $$
-
-        O número de alunos que de fato retornam (**R**) depende da capacidade da rede de fornecer horários de aula dadas as restrições de professores, salas e turmas. Logo, **R** é o mínimo entre a quantidade de alunos que têm permissão para retornar **A** e a capacidade de retorno da rede **C**:
-
-        $$
-        R = \min{ ( A,C ) }
-        $$
-
-        E, finalmente, o número de professores que retornam é dado por **P**.
-
-        ℹ️ *Note que **a capacidade total da rede pode ser maior que o número de alunos que se deseja retornar**. Isso ocorre pois, uma vez selecionada a etapa de ensino, alocamos todos as 40 horas de professores/salas das escolas que possuem essa etapa.*
-
-        *Além disso, no modelo equitativo, no qual a rede oferece apenas uma aula por semana para cada aluno, esta pode atender muito mais alunos do que uma rede operando de maneira convencional.*
-        """
-
+    with st.beta_expander("ler metodologia"):
+        methodology_text = load_markdown_content("methodology.md")
         st.write(methodology_text)
 
 

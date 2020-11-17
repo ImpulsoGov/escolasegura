@@ -58,3 +58,13 @@ def filter_place(df, level, state_id=None, administrative_level=None, city_name=
 
 def load_image(path):
     return base64.b64encode(Path(str(os.getcwd()) + "/" + path).read_bytes()).decode()
+
+def load_markdown_content(relative_path):
+    # Paths are relative to /content directory
+    full_path = f"{os.getcwd()}/content/{relative_path}"
+
+    # Read File
+    with open(full_path, 'r') as file:
+        text = file.read()
+
+    return text
