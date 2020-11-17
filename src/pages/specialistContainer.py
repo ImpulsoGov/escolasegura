@@ -17,7 +17,7 @@ def genSpecialistContainer():
                                 <div class="main-padding" align="center" style="padding-bottom: 10px;">
                                     <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
                                     <button class="button"; style="border-radius: .25rem;">manifeste seu interesse ></button><br>
-                                    </a>
+                                    </a><br>
                                 </div>
                             </div>
                         </div>
