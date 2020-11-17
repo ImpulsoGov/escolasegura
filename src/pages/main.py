@@ -32,12 +32,14 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
                 <img class="img-logo-header" src="https://i.imgur.com/SJHwG4Z.png">
             </div>
             <div class="div2-head">
+                <a href="" class="logo-link">
                 <span class="hero-container-product main-blue-span">{title1}</span>
                 <div class="br-hero"></div>
                 <span class="hero-container-product main-blue-span">{title2}</span>
+                </a>
             </div>
         </div>
-        </div>
+        </div><br>
         <div class="hero-container-subtitle">
             Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
         </div>
@@ -254,7 +256,7 @@ def main(session_state):
     with espaco:
         st.write(
             f"""
-        <div class="container main-padding">
+        <div class="container minor-padding">
             <br>
         </div>
         """,
@@ -269,7 +271,7 @@ def main(session_state):
         mc.genMonitorContainer()
     st.write(
         f"""
-    <div class="container main-padding">
+    <div class="container minor-padding">
         <br>
     </div>
     """,

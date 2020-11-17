@@ -12,12 +12,12 @@ def genSpecialistContainer():
                                 Encontro com o <span class="bold main-orange-span">especialista </span></div>
                                 <div class="minor-padding main-black-span"><br>
                                 Realizamos, semanalmente, um encontro online com <b>Wanderson de Oliveira</b>, 
-                                epidemiologista e ex-secretário nascional de vigilância em saúde, para solucionar dúvidas da 
+                                epidemiologista e ex-secretário nacional de vigilância em saúde, para solucionar dúvidas da 
                                 gestão pública sobre o processo de retomada de atividades presenciais na rede de ensino. 
                                 <div class="main-padding" align="center" style="padding-bottom: 10px;">
                                     <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
                                     <button class="button"; style="border-radius: .25rem;">manifeste seu interesse ></button><br>
-                                    </a>
+                                    </a><br>
                                 </div>
                             </div>
                         </div>

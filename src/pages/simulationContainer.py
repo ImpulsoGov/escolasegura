@@ -24,7 +24,7 @@ def genSimulationResult(params, config):
     st.write(
         f"""
         <div class="container main-padding">
-                <div class="subtitle-section minor-padding"> RESULTADO DA SIMULAÇÃO </div>
+                <div class="text-title-section minor-padding main-orange-span"> RESULTADO DA SIMULAÇÃO </div>
                 <p>Com os valores selecionados acima, os resultados da sua rede para os 2 modelos de retorno:</p>
                 <p>* Caso os números apresentados não façam sentido, confira novamente se os dados inseridos sobre a sua localidade estão corretos.</p>
                 <div class="row">
@@ -366,7 +366,7 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
 
-    with st.beta_expander("Simular retorno"):
+    with st.beta_expander("simular retorno"):
         genSimulationResult(params, config)
 
     '''if st.button("Simular retorno"):
@@ -391,7 +391,7 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
-    with st.beta_expander("Ler metodologia"):
+    with st.beta_expander("ler metodologia"):
         methodology_text = load_markdown_content("methodology.md")
         st.write(methodology_text)
 
