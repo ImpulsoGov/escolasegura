@@ -343,7 +343,7 @@
   grid-row-gap: 0px;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
 }
 .grid-container-simulation-type {
   display: grid;
@@ -532,7 +532,7 @@
 
 
 .img-logo-header{
-  width: 2rem;
+  width: 42px;
 }
 
 
