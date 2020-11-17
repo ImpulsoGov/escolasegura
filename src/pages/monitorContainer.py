@@ -40,7 +40,7 @@ def genMonitorContainer():
                         </div>
                         <div class="col">
                             <div class="minor-padding">
-                                    <img class="img-forms" src="https://i.imgur.com/givZhUl.png"> 
+                                <img class="img-forms" src='data:image/png;base64,{plan_image}'>
                             </div>
                             <div class="text-card-section minor-padding main-orange-span">
                                 Disponibilizamos também o modelo <b>digital</b> e <b>editável</b> para você usar na sua secretaria 
@@ -57,7 +57,7 @@ def genMonitorContainer():
                     <div class="col">
                         <div class="card-plan">
                         <div style="margin:10px">
-                            <div class="text-title-section main-padding main-orange-span"> 
+                            <div class="text-title-section minor-padding main-orange-span"> 
                                 <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
                                 Ferramenta de notificação
                             </div>
