@@ -164,11 +164,11 @@ def main(session_state):
                 soup.head.append(script_tag_manager)
                 index_path.write_text(str(soup))
         # ====
+    utils.localCSS("style.css")
     st.write(
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
         unsafe_allow_html=True,
-    )
-    utils.localCSS("style.css")
+    )   
     genHeroSection(
         title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
     )
