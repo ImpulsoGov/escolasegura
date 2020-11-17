@@ -39,7 +39,7 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
                 </a>
             </div>
         </div>
-        </div>
+        </div><br>
         <div class="hero-container-subtitle">
             Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
         </div>
@@ -256,7 +256,7 @@ def main(session_state):
     with espaco:
         st.write(
             f"""
-        <div class="container main-padding">
+        <div class="container minor-padding">
             <br>
         </div>
         """,
@@ -271,7 +271,7 @@ def main(session_state):
         mc.genMonitorContainer()
     st.write(
         f"""
-    <div class="container main-padding">
+    <div class="container minor-padding">
         <br>
     </div>
     """,
