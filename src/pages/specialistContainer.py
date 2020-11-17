@@ -5,19 +5,21 @@ def genSpecialistContainer():
         f"""
         <div class="container">
                 <div class="left-margin card-plan">
-                    <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
                         <div style="margin:10px">
                             <div class="left-margin">
                                 <div class="text-title-section minor-padding"> 
-                                Fale com o especialista</div>
+                                Encontro com o <span class="bold main-orange-span">especialista </span></div>
                                 <div class="minor-padding main-black-span"><br>
-                                <b>Wanderson</b> é ... e estará disponível para..
-                                <div align="center" style="padding-bottom: 10px;">
-                                    <button class="button"; style="border-radius: .25rem;">Veja Aqui</button><br>
+                                Realizamos, semanalmente, um encontro online com <b>Wanderson de Oliveira</b>, 
+                                epidemiologista e ex-secretário nascional de vigilância em saúde, para solucionar dúvidas da 
+                                gestão pública sobre o processo de retomada de atividades presenciais na rede de ensino. 
+                                <div class="main-padding" align="center" style="padding-bottom: 10px;">
+                                    <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
+                                    <button class="button"; style="border-radius: .25rem;">manifeste seu interesse ></button><br>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </a>
                 </div>
         </div>
         """,
