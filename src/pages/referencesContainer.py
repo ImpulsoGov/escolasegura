@@ -24,6 +24,13 @@ def  genReferencesContainer():
                 </thead>
                 <tbody>
                     <tr>
+                        <td> Estratégias de reabertura das escolas durante a COVID-19 </td>
+                        <td> <a href="https://publications.iadb.org/pt/estrategias-de-reabertura-das-escolas-durante-covid-19">
+                            BID
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
                         <td> Orientações para Retomada Segura das Atividades Presenciais nas Escolas de Educação Básica no Contexto da Pandemia da COVID-19 </td>
                         <td> <a href="http://antigo.saude.gov.br/images/pdf/2020/September/18/doc-orientador-para-retomada-segura-das-escolas-no-contexto-da-covid-19.pdf">
                             Ministério da Saúde
