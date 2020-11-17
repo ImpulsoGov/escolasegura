@@ -27,7 +27,9 @@ def genPlanContainer(df, config, session_state):
         caption = f"""
        Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
-        {elements["description"]} Dados: <a href="http://farolcovid.coronacidades.org">FarolCovid</a>."""
+        {elements["description"]}<br>Dados: <a
+        href="http://farolcovid.coronacidades.org" style="font-family:
+        var(--main-text-font-family)">FarolCovid</a>."""
 
         href = elements["href"]
         url = href + ".png"
