@@ -48,7 +48,7 @@ def genPlanContainer(df, config, session_state):
 
     modal = f"""
     <a href="#entenda-mais">
-        <button class="button" style="font-size:15px">
+        <button class="button-entendaalerta" style="font-size:15px">
             entenda alerta do farolcovid >
         </button>
     </a>
@@ -158,7 +158,7 @@ def genPlanContainer(df, config, session_state):
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
                                 <a href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
-                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
+                                <button class="button-passoapasso"; style="border-radius: .25rem;">acesse ></button><br>
                                 </a>
                             </div>
                         </div>
@@ -183,7 +183,7 @@ def genPlanContainer(df, config, session_state):
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
                                 <a href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">
-                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
+                                <button class="button-protocolos"; style="border-radius: .25rem;">acesse ></button><br>
                                 </a>
                             </div>
                         </div><br>
