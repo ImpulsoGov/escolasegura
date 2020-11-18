@@ -162,6 +162,11 @@ def main(session_state):
                 script_tag_manager = soup.new_tag("script", id="google-tag-manager")
                 script_tag_manager.string = TAG_MANAGER
                 soup.head.append(script_tag_manager)
+                script_tag_manager_body = soup.new_tag(
+                    "script",
+                    src="https://www.googletagmanager.com/gtm.js?id=GTM-5ZZ5F66"
+                )
+                soup.head.append(script_tag_manager_body)
                 index_path.write_text(str(soup))
         # ====
     utils.localCSS("style.css")
