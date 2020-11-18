@@ -47,7 +47,11 @@ def genPlanContainer(df, config, session_state):
     date_update = farol_covid["date_update"]
 
     modal = f"""
-    <a href="#entenda-mais" class="info-btn"><b>entenda alerta do farolcovid > </b></a>
+    <a href="#entenda-mais">
+        <button class="button" style="font-size:15px">
+            entenda alerta do farolcovid >
+        </button>
+    </a>
     <div id="entenda-mais" class="info-modal-window">
         <div>
             <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
