@@ -14,7 +14,7 @@ import pages.monitorContainer as mc
 import pages.referencesContainer as rc
 import pages.footerContainer as fc
 import pages.specialistContainer as spc
-
+import amplitude
 
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
