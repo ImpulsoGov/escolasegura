@@ -25,7 +25,7 @@ def genMonitorContainer():
                             </div>
                             <div>
                                 <br>
-                                <b><i>O que é?</b></i><br>É importante saber o que fazer no caso de algum caso confirmado de Covid-19 em escolas 
+                                <b><i>O que é?</b></i><br>É importante saber o que fazer se houver algum caso confirmado de Covid-19 em escolas 
                                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                                 <br><br><b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>

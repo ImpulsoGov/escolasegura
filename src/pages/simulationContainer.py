@@ -219,7 +219,7 @@ def genSimulationContainer(df, config, session_state):
 
     st.write(
         f"""
-            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019), caso você queira simular todas as escolas (ex: rurais e urbanas), não selecione nenhuma alternativa:</div>
+            <br><div class="container text-padding bold">2) Utilize os filtros para os dados do Censo Escolar (2019). Caso você queira simular todas as escolas (ex: rurais e urbanas), não selecione nenhuma alternativa:</div>
         """,
         unsafe_allow_html=True,
     )
@@ -330,7 +330,7 @@ def genSimulationContainer(df, config, session_state):
 
         st.write(
             f"""<div class="container">
-            <i>Valor selecionado: {str(perc_teachers)}% dos alunos</i> - {str(params["number_teachers"])} professores no total.<br><hr>
+            <i>Valor selecionado: {str(perc_teachers)}% dos professores</i> - {str(params["number_teachers"])} professores no total.<br><hr>
             </div>
             """,
             unsafe_allow_html=True,

@@ -25,7 +25,7 @@ def genPlanContainer(df, config, session_state):
         elements = config["br"]["farolcovid"]["elements"][alert]
 
         caption = f"""
-       Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
+       Hoje, na região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
         {elements["description"]}<br>Dados: <a
         href="http://farolcovid.coronacidades.org" style="font-family:
@@ -134,7 +134,7 @@ def genPlanContainer(df, config, session_state):
             Como <b>estruturar</b> a reabertura da minha rede? 
             </div>
             <p><b>A fase de planejamento é essencial para uma reabertura segura.</b>
-            Os diversos atores do dia-a-dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
+            Os diversos atores do dia a dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
                     <div class="col card-plan container">
