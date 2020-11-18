@@ -25,7 +25,7 @@ def genPlanContainer(df, config, session_state):
         elements = config["br"]["farolcovid"]["elements"][alert]
 
         caption = f"""
-       Hoje na Região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
+       Hoje, na região que voce selecionou (<b>{cidade}</b>), o nível de alerta é: 
         <t class='{elements["color"]}'><b>{alert.upper()}</b></t>. 
         {elements["description"]}<br>Dados: <a
         href="http://farolcovid.coronacidades.org" style="font-family:
@@ -47,7 +47,11 @@ def genPlanContainer(df, config, session_state):
     date_update = farol_covid["date_update"]
 
     modal = f"""
-    <a href="#entenda-mais" class="info-btn"><b>entenda alerta do farolcovid > </b></a>
+    <a href="#entenda-mais">
+        <button class="button" style="font-size:15px">
+            entenda alerta do farolcovid >
+        </button>
+    </a>
     <div id="entenda-mais" class="info-modal-window">
         <div>
             <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
@@ -134,7 +138,7 @@ def genPlanContainer(df, config, session_state):
             Como <b>estruturar</b> a reabertura da minha rede? 
             </div>
             <p><b>A fase de planejamento é essencial para uma reabertura segura.</b>
-            Os diversos atores do dia-a-dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
+            Os diversos atores do dia a dia das escolas devem ser incluídos para diálogo e formulação dos protocolos.</p>
             <div class="left-margin">
                 <div class="row">
                     <div class="col card-plan container">
@@ -153,7 +157,9 @@ def genPlanContainer(df, config, session_state):
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
+                                <a href="https://docs.google.com/forms/d/1Mml-UF44tGqVZ-FQpjuposgb_ZXsi_DoEOdSNiCnAtc/viewform" target="blank_">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -176,7 +182,9 @@ def genPlanContainer(df, config, session_state):
                                 <li> Diretores(as) de escolas.
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
+                                <a href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">
                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
+                                </a>
                             </div>
                         </div><br>
                     </div>

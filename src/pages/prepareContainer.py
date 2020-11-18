@@ -14,7 +14,7 @@ def genPrepareContainer():
                 <img class="square" src="https://i.imgur.com/gGIFS5N.png">
                 Como <b>gerir</b> as unidades escolares abertas? 
             </div>
-            <p class="minor-padding"><b>A fase de preparação é onde os protocolos de segurança das escolas são discutidas e pactuadas. 
+            <p class="minor-padding"><b>A fase de preparação é onde os protocolos de segurança das escolas são discutidos e pactuados. 
             Durante a reabertura</b>, é importante que seja estabelecida uma rotina de verificação das unidades escolares 
             para <b>acompanhar o cumprimento dos protocolos</b> estabelecidos.</p>
             <div class="left-margin">
