@@ -70,7 +70,7 @@ def get_data(config):
     return df
 
 
-def genSelectBox(df, session_state):
+def genSelectBox(df, session_state, user_analytics):
     st.write(
         f"""
         <div class="main-padding">
@@ -121,6 +121,11 @@ def genSelectBox(df, session_state):
         """,
             unsafe_allow_html=True,
         )
+    changed_place = user_analytics.safe_log_event(
+        "picked escolasegura place",
+        session_state,
+        event_args={"estado_value": session_state.state_id, "municipio_value": session_state.city_name, "administracao_value": session_state.administrative_level},
+    )
 
 
 def main(session_state):
@@ -183,7 +188,7 @@ def main(session_state):
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
-    genSelectBox(data, session_state)
+    genSelectBox(data, session_state, user_analytics)
 
     # to keep track on dev
     print(
