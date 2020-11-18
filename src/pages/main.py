@@ -295,7 +295,7 @@ def main(session_state):
         unsafe_allow_html=True,
     )
     spc.genSpecialistContainer()
-    rc.genReferencesContainer()
+    rc.genReferencesContainer(session_state)
     fc.genFooterContainer()
 
 
