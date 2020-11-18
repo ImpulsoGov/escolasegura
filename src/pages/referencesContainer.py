@@ -1,6 +1,7 @@
 import streamlit as st
-
-def  genReferencesContainer():
+import utils
+import amplitude
+def  genReferencesContainer(session_state):
     st.write(
         f"""
         <div class="container main-padding"></div>
@@ -8,6 +9,10 @@ def  genReferencesContainer():
         unsafe_allow_html = True,
     )
     with st.beta_expander("Fontes e Referências"):
+        user_analytics = amplitude.gen_user(utils.get_server_session())
+        opening_response = user_analytics.safe_log_event(
+            "clicked fontes", session_state, is_new_page=True
+        )
         st.write(
         f"""
         <div class="container main-padding">
