@@ -169,6 +169,10 @@ def main(session_state):
                 soup.head.append(script_tag_manager_body)
                 index_path.write_text(str(soup))
         # ====
+    user_analytics = amplitude.gen_user(utils.get_server_session())
+    opening_response = user_analytics.safe_log_event(
+        "opened escolasegura", session_state, is_new_page=True
+    )
     utils.localCSS("style.css")
     st.write(
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
@@ -226,6 +230,10 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("comece aqui >"):
+            user_analytics = amplitude.gen_user(utils.get_server_session())
+            opening_response = user_analytics.safe_log_event(
+                "clicked botaoI", session_state, is_new_page=True
+            )
             session_state.section1_organize = True
             session_state.section2_manage = False
     with coluna2:
@@ -256,6 +264,10 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("veja ferramentas >"):
+            user_analytics = amplitude.gen_user(utils.get_server_session())
+            opening_response = user_analytics.safe_log_event(
+                "clicked botaoII", session_state, is_new_page=True
+            )
             session_state.section2_manage = True
             session_state.section1_organize = False
     with espaco:
