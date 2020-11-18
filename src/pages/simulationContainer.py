@@ -6,7 +6,8 @@ import utils
 import os
 import pandas as pd
 from ipywidgets import AppLayout, GridspecLayout
-
+import utils
+import amplitude
 from model.get_school_return_data import entrypoint
 from utils import load_markdown_content
 
@@ -367,6 +368,10 @@ def genSimulationContainer(df, config, session_state):
         )
 
     with st.beta_expander("simular retorno"):
+        user_analytics = amplitude.gen_user(utils.get_server_session())
+        opening_response = user_analytics.safe_log_event(
+            "clicked simule retorno", session_state, is_new_page=True
+        )
         genSimulationResult(params, config)
 
     '''if st.button("Simular retorno"):
@@ -392,6 +397,10 @@ def genSimulationContainer(df, config, session_state):
     )'''
 
     with st.beta_expander("ler metodologia"):
+        user_analytics = amplitude.gen_user(utils.get_server_session())
+        opening_response = user_analytics.safe_log_event(
+            "clicked simule metodologia", session_state, is_new_page=True
+        )
         methodology_text = load_markdown_content("methodology.md")
         st.write(methodology_text)
 
