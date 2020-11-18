@@ -14,6 +14,7 @@ ENV USER_NAME=ubuntu \
     GOOGLE_ANALYTICS_CODE=UA-161606940-3 \
     # Data API - set TRUE if running local
     IS_LOCAL="FALSE" \
+    # Developer mode - set TRUE it testing local (if FALSE Analytics should work)
     IS_DEV="FALSE"
 
 WORKDIR ${USER_HOME}
