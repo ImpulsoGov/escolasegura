@@ -94,6 +94,19 @@ def genSelectBox(df, session_state, user_analytics):
             ]
         )
         session_state.city_name = st.selectbox("Município", options_city_name, index=x)
+        import pathlib
+        from bs4 import BeautifulSoup
+        GA_JS = (
+            """
+        window.dataLayer = window.dataLayer || [];
+        function municipio(){dataLayer.push('municipio_value': '%s');}
+        """
+            % session_state.city_name
+        )
+        index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+        soup = BeautifulSoup(index_path.read_text(), features="lxml")
+        script_tag_loader = soup.new_tag("script")
+        script_tag_loader.string = GA_JS
     with col3:
         options_adiminlevel = utils.filter_place(
             df,
