@@ -14,7 +14,7 @@ import pages.monitorContainer as mc
 import pages.referencesContainer as rc
 import pages.footerContainer as fc
 import pages.specialistContainer as spc
-
+import amplitude
 
 def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
 
@@ -70,7 +70,7 @@ def get_data(config):
     return df
 
 
-def genSelectBox(df, session_state):
+def genSelectBox(df, session_state, user_analytics):
     st.write(
         f"""
         <div class="main-padding">
@@ -121,6 +121,11 @@ def genSelectBox(df, session_state):
         """,
             unsafe_allow_html=True,
         )
+    changed_place = user_analytics.safe_log_event(
+        "picked escolasegura place",
+        session_state,
+        event_args={"estado_value": session_state.state_id, "municipio_value": session_state.city_name, "administracao_value": session_state.administrative_level},
+    )
 
 
 def main(session_state):
@@ -169,6 +174,10 @@ def main(session_state):
                 soup.head.append(script_tag_manager_body)
                 index_path.write_text(str(soup))
         # ====
+    user_analytics = amplitude.gen_user(utils.get_server_session())
+    opening_response = user_analytics.safe_log_event(
+        "opened escolasegura", session_state, is_new_page=True
+    )
     utils.localCSS("style.css")
     st.write(
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
@@ -179,7 +188,7 @@ def main(session_state):
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)
-    genSelectBox(data, session_state)
+    genSelectBox(data, session_state, user_analytics)
 
     # to keep track on dev
     print(
@@ -226,6 +235,10 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("comece aqui >"):
+            user_analytics = amplitude.gen_user(utils.get_server_session())
+            opening_response = user_analytics.safe_log_event(
+                "clicked botaoI", session_state, is_new_page=True
+            )
             session_state.section1_organize = True
             session_state.section2_manage = False
     with coluna2:
@@ -256,6 +269,10 @@ def main(session_state):
             unsafe_allow_html=True,
         )
         if st.button("veja ferramentas >"):
+            user_analytics = amplitude.gen_user(utils.get_server_session())
+            opening_response = user_analytics.safe_log_event(
+                "clicked botaoII", session_state, is_new_page=True
+            )
             session_state.section2_manage = True
             session_state.section1_organize = False
     with espaco:
@@ -283,7 +300,7 @@ def main(session_state):
         unsafe_allow_html=True,
     )
     spc.genSpecialistContainer()
-    rc.genReferencesContainer()
+    rc.genReferencesContainer(session_state)
     fc.genFooterContainer()
 
 

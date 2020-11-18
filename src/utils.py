@@ -5,7 +5,11 @@ import yaml
 import requests
 from pathlib import Path
 import base64
+import session 
+from ua_parser import user_agent_parser
 
+def get_server_session():
+    return session._get_session_raw()
 
 def get_config(url=os.getenv("CONFIG_URL")):
     return yaml.load(requests.get(url).text, Loader=yaml.FullLoader)
@@ -68,3 +72,39 @@ def load_markdown_content(relative_path):
         text = file.read()
 
     return text
+
+def parse_headers(request):
+    """ Takes a raw streamlit request header and converts it to a nicer dictionary """
+    data = dict(request.headers.items())
+    ip = request.remote_ip
+    if "Cookie" in data.keys():
+        data["Cookie"] = dict([i.split("=") for i in data["Cookie"].split("; ")])
+        data["cookies_initialized"] = True
+    else:
+        data["Cookie"] = dict()
+        data["cookies_initialized"] = False
+    if "user_public_data" in data["Cookie"].keys():
+        data["Cookie"]["user_public_data"] = dict(
+            [i.split("|:") for i in data["Cookie"]["user_public_data"].split("|%")]
+        )
+    data["Remote_ip"] = ip
+    data.update(parse_user_agent(data["User-Agent"]))
+    return data
+
+def parse_user_agent(ua_string):
+    in_data = user_agent_parser.Parse(ua_string)
+    out_data = dict()
+    data_reference = [
+        ["os_name", ["os", "family"]],
+        ["os_version", ["os", "major"]],
+        ["device_manufacturer", ["device", "brand"]],
+        ["device_model", ["device", "model"]],
+        ["platform", ["user_agent", "family"]],
+        ["app_version", ["user_agent", "major"]],
+    ]
+    for key_in, keys_out in data_reference:
+        try:
+            out_data["ua_" + key_in] = in_data[keys_out[0]][keys_out[1]]
+        except:
+            out_data["ua_" + key_in] = None
+    return out_data
