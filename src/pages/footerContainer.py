@@ -9,6 +9,17 @@ def genFooterContainer():
     st.write(
             f"""
             <div class="container main-padding">
+                <p style="text-align:center; font-size:.9em;">
+                <b>As sugestões e recomendações apresentadas no Escola Segura são indicativas, feitas a partir de dados oficiais públicos 
+                e estudos referenciados já publicados, estando sujeitas a variáveis que aqui não podem ser consideradas.</b> 
+                Trata-se de contribuição à elaboração de cenários por parte dos governos e não configura qualquer obrigação 
+                ou responsabilidade perante as decisões efetivadas.Saiba mais sobre os cálculos por trás em nossa Metodologia, 
+                que mantemos atualizada.<br><br>
+                <i>Todo código da ferramenta pode ser acessado no 
+                <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/escolasegura">Github do projeto</a> do projeto 
+                e os dados estão disponíveis em nossa 
+                <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/coronacidades-datasource/blob/master/README.md">API</a>.</i>
+                </p>
                 <div class="text-title-footer main-padding"> Realizado por </div>
                 <div class="div-logo-footer main-padding img-center">
                 <ul style="list-style-type: none;">
