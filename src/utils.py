@@ -78,7 +78,7 @@ def parse_headers(request):
     data = dict(request.headers.items())
     ip = request.remote_ip
     if "Cookie" in data.keys():
-        data["Cookie"] = dict([i.split("=") for i in data["Cookie"].split("; ")])
+        data["Cookie"] = dict([i.split("=", 1) for i in data["Cookie"].split("; ")])
         data["cookies_initialized"] = True
     else:
         data["Cookie"] = dict()
