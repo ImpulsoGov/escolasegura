@@ -182,7 +182,7 @@ def genPlanContainer(df, config, session_state):
                                 <li> Diretores(as) de escolas.
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
-                                <a href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">
+                                <a href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view?usp=sharing" target="blank_">
                                 <button class="button-protocolos"; style="border-radius: .25rem;">acesse ></button><br>
                                 </a>
                             </div>
