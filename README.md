@@ -9,11 +9,9 @@ Em um primeiro momento, a pandemia de Coronavírus exigiu a interrupção das au
 O retorno às atividades presenciais em escolas deve levar em consideração diversas variáveis, priorizando sempre a saúde dos atores envolvidos. Para apoiar secretários de educação e demais integrantes da gestão pública nesse processo, desenvolvemos a **Escola Segura**, uma ferramenta online da plataforma **CoronaCidades** que oferece protocolos, simuladores e checklist para orientar todas as etapas do retorno às aulas, desde o planejamento até o monitoramento das escolas reabertas. 
 
 
-É com essa pergunta que iniciamos o **Escola Segura**, a ferramenta de educação da **Impulso**. Queremos com ela facilitar o processo de decisão do retorno às atividades presenciais em escolas. 
-
 Todos os dados utilizados na ferramenta são abertos e estão disponíveis na nossa [API](http://datasource.coronacidades.org/br). Além disso, com nosso código aberto, incentivamos a transparência e submissão de melhorias.
 
-A **Escola Segura** está disponível [aqui](https://escolasegura.coronacidades.org/).
+A **Escola Segura** está disponível [aqui]().
 
 
 ## Desenvolvimento
