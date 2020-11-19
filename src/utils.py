@@ -85,7 +85,7 @@ def parse_headers(request):
         data["cookies_initialized"] = False
     if "user_public_data" in data["Cookie"].keys():
         data["Cookie"]["user_public_data"] = dict(
-            [i.split("|:") for i in data["Cookie"]["user_public_data"].split("|%")]
+            [i.split("|:", 1) for i in data["Cookie"]["user_public_data"].split("|%")]
         )
     data["Remote_ip"] = ip
     data.update(parse_user_agent(data["User-Agent"]))
