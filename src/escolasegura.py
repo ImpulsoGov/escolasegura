@@ -8,8 +8,14 @@ import pages.main as es
 
 import utils
 import pages.simulationContainer as sc
+from PIL import Image
 
-st.set_page_config(layout="wide")
+
+st.set_page_config(
+    page_title="Escola Segura", 
+    page_icon=Image.open("imgs/escolasegura_favicon.png"),
+    layout='wide',
+    initial_sidebar_state='collapsed')
 
 
 def main():

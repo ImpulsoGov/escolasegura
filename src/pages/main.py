@@ -23,13 +23,15 @@ def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
     else:
         header = """<br>"""
 
+    icon = utils.load_image("imgs/escolasegura_favicon.png")
+
     st.write(
         f"""
         <div class="container">
             {header}
         <div class="grid-container-header">
             <div class="div1-head">
-                <img class="img-logo-header" src="https://i.imgur.com/SJHwG4Z.png">
+                <img class="img-logo-header" src="data:image/png;base64,{icon}">
             </div>
             <div class="div2-head">
                 <a href="" class="logo-link">
