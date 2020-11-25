@@ -16,38 +16,6 @@ import pages.footerContainer as fc
 import pages.specialistContainer as spc
 import amplitude
 
-def genHeroSection(title1: str, title2: str, subtitle: str, header: bool):
-
-    if header:
-        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
-    else:
-        header = """<br>"""
-
-    icon = utils.load_image("imgs/escolasegura_favicon.png")
-
-    st.write(
-        f"""
-        <div class="container">
-            {header}
-        <div class="grid-container-header">
-            <div class="div1-head">
-                <img class="img-logo-header" src="data:image/png;base64,{icon}">
-            </div>
-            <div class="div2-head">
-                <a href="" class="logo-link">
-                <span class="hero-container-product main-blue-span">{title1}</span>
-                <div class="br-hero"></div>
-                <span class="hero-container-product main-blue-span">{title2}</span>
-                </a>
-            </div>
-        </div>
-        </div><br>
-        <div class="hero-container-subtitle">
-            Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
 
 def read_data(country, config, endpoint):
@@ -198,8 +166,8 @@ def main(session_state):
         """<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZZ5F66" height="0" width="0" style="display:none;visibility:hidden"></iframe>""",
         unsafe_allow_html=True,
     )
-    genHeroSection(
-        title1="Escola", title2="Segura", subtitle="{descrição}", header=True,
+    utils.genHeroSection(
+        title1="Escola", title2="Segura", header=True,
     )
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     data = get_data(config)

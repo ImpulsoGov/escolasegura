@@ -5,6 +5,7 @@ import session
 import time
 
 import pages.main as es
+import pages.about as ab
 
 import utils
 import pages.simulationContainer as sc
@@ -53,8 +54,18 @@ def main():
         section2_manage=False,
     )
 
-    es.main(session_state)
-    utils.applyButtonStyles(session_state)
+    PAGES = {	
+        "Escola Segura": es,	
+        "Quem somos?" : ab	
+    }
+
+    page = st.sidebar.radio(
+        "Menu", list(PAGES.keys()),
+    )
+
+    if __name__ == "__main__":
+        PAGES[page].main(session_state)
+        utils.applyButtonStyles(session_state)
 
 
 if __name__ == "__main__":

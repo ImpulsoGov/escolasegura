@@ -5,6 +5,7 @@ def genFooterContainer():
     bidicon = utils.load_image("imgs/logo-bid.png")
     imaginableicon = utils.load_image("imgs/logo-imaginable.png")
     formaricon = utils.load_image("imgs/logo-formar.png")
+    impulso_icon = utils.load_image("imgs/logo-impulso.png")
 
     st.write(
             f"""
@@ -26,7 +27,7 @@ def genFooterContainer():
                     <li style="display: inline; margin-right: 2em;">
                     <a class="logo-footer" href="https://www.impulsogov.com.br/" target="_blank">
                         <img class="logo-footer" style="margin-bottom:2em;"
-                        src="https://static1.squarespace.com/static/5d86962ef8b1bc58c1dcaa0b/t/5ddad475ee3ebb607ae3d629/1600289027251/?format=1500w"
+                        src="data:image/png;base64,{impulso_icon}"
                         title="logo Impulso"/>
                     </a></li>
                     <li style="display: inline; margin-right: 2em;">
