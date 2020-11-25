@@ -5,6 +5,7 @@ import session
 import time
 
 import pages.main as es
+import pages.about as ab
 
 import utils
 import pages.simulationContainer as sc
@@ -16,6 +17,11 @@ st.set_page_config(
     page_icon=Image.open("imgs/escolasegura_favicon.png"),
     layout='wide',
     initial_sidebar_state='collapsed')
+
+PAGES = {
+    "Escola Segura": es,
+    "Sobre" : ab
+}
 
 
 def main():
@@ -53,8 +59,20 @@ def main():
         section2_manage=False,
     )
 
-    es.main(session_state)
-    utils.applyButtonStyles(session_state)
+    page = st.sidebar.radio(
+        "Menu", ["Escola Segura", "Quem somos?",],
+    )
+
+    if page == "Escola Segura":
+        if __name__ == "__main__":
+            es.main(session_state)
+            utils.applyButtonStyles(session_state)
+    elif page == "Quem somos?":
+        if __name__ == "__main__":
+            ab.main(session_state)
+
+    #es.main(session_state)
+    #utils.applyButtonStyles(session_state)
 
 
 if __name__ == "__main__":
