@@ -54,20 +54,18 @@ def main():
         section2_manage=False,
     )
 
+    PAGES = {	
+        "Escola Segura": es,	
+        "Quem somos?" : ab	
+    }
+
     page = st.sidebar.radio(
-        "Menu", ["Escola Segura", "Quem somos?",],
+        "Menu", list(PAGES.keys()),
     )
 
-    if page == "Escola Segura":
-        if __name__ == "__main__":
-            es.main(session_state)
-            utils.applyButtonStyles(session_state)
-    elif page == "Quem somos?":
-        if __name__ == "__main__":
-            ab.main(session_state)
-
-    #es.main(session_state)
-    #utils.applyButtonStyles(session_state)
+    if __name__ == "__main__":
+        PAGES[page].main(session_state)
+        utils.applyButtonStyles(session_state)
 
 
 if __name__ == "__main__":
