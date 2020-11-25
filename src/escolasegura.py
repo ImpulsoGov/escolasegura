@@ -18,11 +18,6 @@ st.set_page_config(
     layout='wide',
     initial_sidebar_state='collapsed')
 
-PAGES = {
-    "Escola Segura": es,
-    "Sobre" : ab
-}
-
 
 def main():
 
