@@ -15,8 +15,8 @@ def genSpecialistContainer():
                                 epidemiologista e ex-secretário nacional de vigilância em saúde, para solucionar dúvidas da 
                                 gestão pública sobre o processo de retomada de atividades presenciais na rede de ensino. 
                                 <div class="main-padding" align="center" style="padding-bottom: 10px;">
-                                    <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
-                                    <button class="button"; style="border-radius: .25rem;">inscreva-se ></button><br>
+                                    <a href="https://forms.gle/DQTfXau4L1eyzHdn7" target=_blank>
+                                    <button class="button"; style="border-radius: .25rem;">participe!></button><br>
                                     </a><br>
                                 </div>
                             </div>
