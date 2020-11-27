@@ -74,7 +74,7 @@ def genSelectBox(df, session_state, user_analytics):
             % session_state.city_name
         )
         index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
-        soup = BeautifulSoup(index_path.read_text(), features="lxml")
+        soup = BeautifulSoup(index_path.read_text())
         script_tag_loader = soup.new_tag("script")
         script_tag_loader.string = GA_JS
     with col3:
