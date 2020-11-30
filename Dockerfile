@@ -16,6 +16,7 @@ ENV USER_NAME=ubuntu \
     IS_LOCAL="FALSE" \
     # Developer mode - set TRUE it testing local (if FALSE Analytics should work)
     IS_DEV="FALSE"
+    IS_TESTE="FALSE"
 
 WORKDIR ${USER_HOME}
 
