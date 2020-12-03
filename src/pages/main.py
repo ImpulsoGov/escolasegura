@@ -66,7 +66,7 @@ def genSelectBox(df, session_state, user_analytics):
     Parameters: 
         df (type): 2019 school census dataframe
         session_state (type): section dataset
-        user_analytics (type): description
+        user_analytics (type): user data by amplitude
     """
 
     st.write(
@@ -141,7 +141,7 @@ def genSelectBox(df, session_state, user_analytics):
 
 def main(session_state):
     """ 
-    This function generates Escola Segura
+    This function generates Escola Segura webpage
 
     Parameters: 
         session_state (type): section dataset

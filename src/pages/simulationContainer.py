@@ -17,7 +17,7 @@ def genSimulationResult(params, config):
     This is a function that returns the simulation result
 
     Parameters: 
-        params (type): description
+        params (type): parameters for simulation
         config (type): doc config.yaml
               
     """
