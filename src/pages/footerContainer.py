@@ -2,6 +2,11 @@ import streamlit as st
 import utils
 
 def genFooterContainer():
+    """ 
+    This is a function that returns the "Footer" session 
+    
+    """
+
     bidicon = utils.load_image("imgs/logo-bid.png")
     imaginableicon = utils.load_image("imgs/logo-imaginable.png")
     formaricon = utils.load_image("imgs/logo-formar.png")
@@ -59,14 +64,6 @@ def genFooterContainer():
             """,
             unsafe_allow_html=True,
         )
-
-
-#  <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
-#                     <img class="logo-footer"
-#                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
-#                     title="logo BID">
-#                 </a>
-
 
 if __name__ == "__main__":
     main()

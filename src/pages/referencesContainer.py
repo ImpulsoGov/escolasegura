@@ -1,7 +1,15 @@
 import streamlit as st
 import utils
 import amplitude
+
 def  genReferencesContainer(session_state):
+    """ 
+    This is a function that returns the "References" session
+
+    Parameters: 
+        session_state (type): section dataset
+              
+    """
     st.write(
         f"""
         <div class="container main-padding"></div>

@@ -3,6 +3,10 @@ import utils
 
 
 def genPrepareContainer():
+    """ 
+    This is a function that returns the "Prepare" session
+              
+    """
 
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
     verify_image = utils.load_image("imgs/prepare_verify_forms.png")

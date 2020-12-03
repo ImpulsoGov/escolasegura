@@ -13,6 +13,14 @@ from utils import load_markdown_content
 
 
 def genSimulationResult(params, config):
+    """ 
+    This is a function that returns the simulation result
+
+    Parameters: 
+        params (type): description
+        config (type): doc config.yaml
+              
+    """
 
     result = entrypoint(params, config)
 
@@ -134,6 +142,15 @@ def genSimulationResult(params, config):
 
 
 def genSimulationContainer(df, config, session_state):
+    """ 
+    This is a function that returns the "Simulation" session
+
+    Parameters: 
+        df (type): 2019 school census dataframe
+        config (type): doc config.yaml
+        session_state (type): section dataset
+              
+    """
 
     main_icon = utils.load_image("imgs/simulation_main_icon.png")
 
