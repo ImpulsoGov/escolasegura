@@ -19,6 +19,15 @@ import amplitude
 
 
 def read_data(country, config, endpoint):
+    """ 
+    This is function reads the API's data
+
+    Parameters: 
+        country (type): data country
+        config (type): doc config.yaml
+        endpoint (type): endpoint name in API
+              
+    """
 
     if os.getenv("IS_LOCAL") == "TRUE":
         api_url = config[country]["api"]["local"]
@@ -34,6 +43,16 @@ def read_data(country, config, endpoint):
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
+    """ 
+    This function return a dataframe with all data
+
+    Parameters: 
+        config (type): doc config.yaml
+
+    Returns:
+        df (type): 2019 school census dataframe
+    """
+    
     df = read_data("br", config, "br/cities/safeschools/main").replace(
         {"Fundamental I": "Fund. I", "Fundamental II": "Fund. II"}
     )
@@ -41,6 +60,15 @@ def get_data(config):
 
 
 def genSelectBox(df, session_state, user_analytics):
+    """ 
+    This function generates select boxes for choosing the school network
+
+    Parameters: 
+        df (type): 2019 school census dataframe
+        session_state (type): section dataset
+        user_analytics (type): user data by amplitude
+    """
+
     st.write(
         f"""
         <div class="main-padding">
@@ -112,6 +140,13 @@ def genSelectBox(df, session_state, user_analytics):
 
 
 def main(session_state):
+    """ 
+    This function generates Escola Segura webpage
+
+    Parameters: 
+        session_state (type): section dataset
+    """
+
     if os.getenv("IS_DEV") == "FALSE":
         #  ==== GOOGLE ANALYTICS SETUP ====
         GOOGLE_ANALYTICS_CODE = os.getenv("GOOGLE_ANALYTICS_CODE")

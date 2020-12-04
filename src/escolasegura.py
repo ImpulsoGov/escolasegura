@@ -20,6 +20,9 @@ st.set_page_config(
 
 
 def main():
+    """ 
+    This function generates Escola Segura
+    """
 
     # Remove menu da visualizacao
     hide_streamlit_style = """

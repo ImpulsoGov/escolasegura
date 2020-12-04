@@ -2,6 +2,13 @@ import streamlit as st
 import utils
 
 def main(session_state):
+    """ 
+    This is a function that returns the "about" page
+      
+    Parameters: 
+        session_state (type): section dataset
+    """
+
     utils.localCSS("style.css")
     utils.genHeroSection(
         title1="Escola", title2="Segura", header=True,

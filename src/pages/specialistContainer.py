@@ -2,6 +2,10 @@ import streamlit as st
 
 
 def genSpecialistContainer():
+    """ 
+    This is a function that returns the "Specialist" session
+              
+    """
     st.write(
         f"""
         <div class="container">
