@@ -25,6 +25,8 @@ def genFooterContainer():
                 <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/escolasegura">Github do projeto</a> do projeto 
                 e os dados estão disponíveis em nossa 
                 <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/coronacidades-datasource/blob/master/README.md">API</a>.</i>
+                <br><i> A Escola Segura é uma iniciativa da plataforma <b class="main-orange-span">CoronaCidades</b>. Conheça 
+                <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://coronacidades.org/"> aqui</a>. </i>
                 </p>
                 <div class="text-title-footer main-padding"> Realizado por </div>
                 <div class="div-logo-footer main-padding img-center">
