@@ -229,8 +229,8 @@ def main(session_state):
         if session_state.city_name != "Todos":
             message_begin = session_state.city_name +", como"
         else: 
+            #message_begin = session_state.state_name +", como"
             message_begin = "Como"
-
         st.write(
                 f"""
                 <div class="container" style="min-height: 150px;"><br>
