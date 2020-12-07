@@ -9,24 +9,37 @@ import session
 from ua_parser import user_agent_parser
 
 def get_server_session():
+    """
+    This function returns the server session
+    """
     return session._get_session_raw()
 
 def get_config(url=os.getenv("CONFIG_URL")):
+    """
+    This function return the yaml config file
+    """
     return yaml.load(requests.get(url).text, Loader=yaml.FullLoader)
 
 
 def localCSS(filename):
+    """
+    This function open the css file
+    """
     with open(filename) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 def stylizeButton(name, style_string, session_state, others=dict()):
-    """ adds a css option to a button you made """
+    """ 
+    adds a css option to a button you made 
+    """
     session_state.button_styles[name] = [style_string, others]
 
 
 def applyButtonStyles(session_state):
-    """ Use it at the end of the program to apply styles to buttons as defined by the function above """
+    """ 
+    Use it at the end of the program to apply styles to buttons as defined by the function above 
+    """
     time.sleep(0.1)
     html = ""
     for name, style in session_state.button_styles.items():
@@ -48,6 +61,19 @@ def applyButtonStyles(session_state):
 
 
 def filter_place(df, level, state_id=None, administrative_level=None, city_name=None):
+    """
+    Filter place by parameters
+
+    Parameters:
+        df (type): 2019 school census dataframe
+        level (type): level of school network (state or city)
+        state_id: id of state
+        administrative_level: level of admin (municipal, state, all) 
+        city_name: name of city
+    
+    Returns:
+        data with filters
+    """
     if level == "state":
         return df["state_id"].sort_values().unique()
     elif level == "city":
@@ -61,9 +87,25 @@ def filter_place(df, level, state_id=None, administrative_level=None, city_name=
 
 
 def load_image(path):
+    """
+    Loads a image
+    
+    Parameters:
+        path (type): path to image
+    """
     return base64.b64encode(Path(str(os.getcwd()) + "/" + path).read_bytes()).decode()
 
 def load_markdown_content(relative_path):
+    """
+    Loads a markdown
+    
+    Parameters:
+        relative_path (type): relative path to markdown
+
+    Returns:
+        Markdown text
+    """
+
     # Paths are relative to /content directory
     full_path = f"{os.getcwd()}/content/{relative_path}"
 
@@ -74,7 +116,9 @@ def load_markdown_content(relative_path):
     return text
 
 def parse_headers(request):
-    """ Takes a raw streamlit request header and converts it to a nicer dictionary """
+    """ 
+    Takes a raw streamlit request header and converts it to a nicer dictionary 
+    """
     data = dict(request.headers.items())
     ip = request.remote_ip
     if "Cookie" in data.keys():
@@ -110,7 +154,14 @@ def parse_user_agent(ua_string):
     return out_data
 
 def genHeroSection(title1: str, title2: str, header: bool):
-
+    """
+    Gen the Hero Section
+    
+    Parameters:
+        title1 (str): first title 
+        title2 (str): second title
+        header (bool): if has header
+    """
     if header:
         header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
     else:

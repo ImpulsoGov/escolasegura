@@ -2,6 +2,10 @@ import streamlit as st
 
 
 def genSpecialistContainer():
+    """ 
+    This is a function that returns the "Specialist" session
+              
+    """
     st.write(
         f"""
         <div class="container">
@@ -16,7 +20,7 @@ def genSpecialistContainer():
                                 gestão pública sobre o processo de retomada de atividades presenciais na rede de ensino. 
                                 <div class="main-padding" align="center" style="padding-bottom: 10px;">
                                     <a href="https://forms.gle/MrkuQ9H4WwEYjbw98" target=_blank>
-                                    <button class="button"; style="border-radius: .25rem;">manifeste seu interesse ></button><br>
+                                    <button class="button"; style="border-radius: .25rem;">inscreva-se ></button><br>
                                     </a><br>
                                 </div>
                             </div>
@@ -30,3 +34,5 @@ def genSpecialistContainer():
 
 if __name__ == "__main__":
     main()
+
+

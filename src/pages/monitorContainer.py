@@ -4,6 +4,10 @@ import utils
 
 
 def genMonitorContainer():
+    """ 
+    This is a function that returns the "Monitor" session
+      
+    """
 
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
     plan_image = utils.load_image("imgs/monitor_plan_forms.png")

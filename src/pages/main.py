@@ -19,6 +19,15 @@ import amplitude
 
 
 def read_data(country, config, endpoint):
+    """ 
+    This is function reads the API's data
+
+    Parameters: 
+        country (type): data country
+        config (type): doc config.yaml
+        endpoint (type): endpoint name in API
+              
+    """
 
     if os.getenv("IS_LOCAL") == "TRUE":
         api_url = config[country]["api"]["local"]
@@ -34,6 +43,16 @@ def read_data(country, config, endpoint):
 
 @st.cache(suppress_st_warning=True)
 def get_data(config):
+    """ 
+    This function return a dataframe with all data
+
+    Parameters: 
+        config (type): doc config.yaml
+
+    Returns:
+        df (type): 2019 school census dataframe
+    """
+    
     df = read_data("br", config, "br/cities/safeschools/main").replace(
         {"Fundamental I": "Fund. I", "Fundamental II": "Fund. II"}
     )
@@ -41,9 +60,18 @@ def get_data(config):
 
 
 def genSelectBox(df, session_state, user_analytics):
+    """ 
+    This function generates select boxes for choosing the school network
+
+    Parameters: 
+        df (type): 2019 school census dataframe
+        session_state (type): section dataset
+        user_analytics (type): user data by amplitude
+    """
+
     st.write(
         f"""
-        <div class="main-padding">
+        <div class="main-padding" id="top">
             <div class="subtitle-section"> Selecione sua rede </div>
         </div>
         """,
@@ -112,6 +140,13 @@ def genSelectBox(df, session_state, user_analytics):
 
 
 def main(session_state):
+    """ 
+    This function generates Escola Segura webpage
+
+    Parameters: 
+        session_state (type): section dataset
+    """
+
     if os.getenv("IS_DEV") == "FALSE":
         #  ==== GOOGLE ANALYTICS SETUP ====
         GOOGLE_ANALYTICS_CODE = os.getenv("GOOGLE_ANALYTICS_CODE")
@@ -267,6 +302,15 @@ def main(session_state):
         """,
             unsafe_allow_html=True,
         )
+    
+    st.write(
+        f"""
+            <a href="#top" class="float">
+                <img class="my-float minor-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMi4xNzEgNTEyLjE3MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgY2xhc3M9IiI+PGc+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+Cgk8Zz4KCQk8cGF0aCBkPSJNNDc2LjcyMywyMTYuNjRMMjYzLjMwNSwzLjExNUMyNjEuMjk5LDEuMTA5LDI1OC41OSwwLDI1NS43NTMsMGMtMi44MzcsMC01LjU0NywxLjEzMS03LjU1MiwzLjEzNkwzNS40MjIsMjE2LjY0ICAgIGMtMy4wNTEsMy4wNTEtMy45NDcsNy42MzctMi4zMDQsMTEuNjI3YzEuNjY0LDMuOTg5LDUuNTQ3LDYuNTcxLDkuODU2LDYuNTcxaDExNy4zMzN2MjY2LjY2N2MwLDUuODg4LDQuNzc5LDEwLjY2NywxMC42NjcsMTAuNjY3ICAgIGgxNzAuNjY3YzUuODg4LDAsMTAuNjY3LTQuNzc5LDEwLjY2Ny0xMC42NjdWMjM0LjgzN2gxMTYuODg1YzQuMzA5LDAsOC4xOTItMi42MDMsOS44NTYtNi41OTIgICAgQzQ4MC43MTMsMjI0LjI1Niw0NzkuNzc0LDIxOS42OTEsNDc2LjcyMywyMTYuNjR6IiBmaWxsPSIjZmY5MTQ3IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+Cgk8L2c+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPC9nPjwvc3ZnPg==" alt="Fonte: Flaticon">
+            </a>
+        """,
+        unsafe_allow_html=True,
+    )
     if session_state.section1_organize == True:
         pc.genPlanContainer(data, config, session_state)
         sc.genSimulationContainer(data, config, session_state)

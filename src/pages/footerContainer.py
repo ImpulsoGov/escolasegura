@@ -2,6 +2,11 @@ import streamlit as st
 import utils
 
 def genFooterContainer():
+    """ 
+    This is a function that returns the "Footer" session 
+    
+    """
+
     bidicon = utils.load_image("imgs/logo-bid.png")
     imaginableicon = utils.load_image("imgs/logo-imaginable.png")
     formaricon = utils.load_image("imgs/logo-formar.png")
@@ -20,6 +25,8 @@ def genFooterContainer():
                 <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/escolasegura">Github do projeto</a> do projeto 
                 e os dados estão disponíveis em nossa 
                 <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://github.com/ImpulsoGov/coronacidades-datasource/blob/master/README.md">API</a>.</i>
+                <br><i> A Escola Segura é uma iniciativa da plataforma <b class="main-orange-span">CoronaCidades</b>. Conheça 
+                <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://coronacidades.org/"> aqui</a>. </i>
                 </p>
                 <div class="text-title-footer main-padding"> Realizado por </div>
                 <div class="div-logo-footer main-padding img-center">
@@ -59,14 +66,6 @@ def genFooterContainer():
             """,
             unsafe_allow_html=True,
         )
-
-
-#  <a href="https://www.iadb.org/pt/sobre-o-bid/visao-geral" target="_blank">
-#                     <img class="logo-footer"
-#                     src="https://seeklogo.com/images/B/banco-interamericano-de-desenvolvimento-logo-0F13DDE475-seeklogo.com.png"
-#                     title="logo BID">
-#                 </a>
-
 
 if __name__ == "__main__":
     main()
