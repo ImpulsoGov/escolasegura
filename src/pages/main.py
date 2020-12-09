@@ -81,6 +81,7 @@ def genSelectBox(df, session_state, user_analytics):
 
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+        session_state.state_name = utils.set_state_name(df,session_state.state_id)
     with col2:
         options_city_name = utils.filter_place(
             df, "city", state_id=session_state.state_id
@@ -213,6 +214,7 @@ def main(session_state):
         "PLACE SELECTION: \n",
         "\n=> UF: ",
         session_state.state_id,
+        session_state.state_name,
         "\n=> CITY: ",
         session_state.city_name,
         "\n=> ADM: ",
@@ -229,8 +231,7 @@ def main(session_state):
         if session_state.city_name != "Todos":
             message_begin = session_state.city_name +", como"
         else: 
-            #message_begin = session_state.state_name +", como"
-            message_begin = "Como"
+            message_begin = session_state.state_name +", como"
         st.write(
                 f"""
                 <div class="container" style="min-height: 150px;"><br>
