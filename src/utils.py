@@ -85,6 +85,8 @@ def filter_place(df, level, state_id=None, administrative_level=None, city_name=
             data = df[df["city_name"] == city_name]
         return data["administrative_level"].sort_values().unique()
 
+def set_state_name(df,state_id):
+    return df[df["state_id"] == state_id]["state_name"].sort_values().unique()[0]
 
 def load_image(path):
     """

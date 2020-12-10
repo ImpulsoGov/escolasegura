@@ -81,6 +81,7 @@ def genSelectBox(df, session_state, user_analytics):
 
     with col1:
         session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+        session_state.state_name = utils.set_state_name(df,session_state.state_id)
     with col2:
         options_city_name = utils.filter_place(
             df, "city", state_id=session_state.state_id
@@ -213,6 +214,7 @@ def main(session_state):
         "PLACE SELECTION: \n",
         "\n=> UF: ",
         session_state.state_id,
+        session_state.state_name,
         "\n=> CITY: ",
         session_state.city_name,
         "\n=> ADM: ",
@@ -225,40 +227,45 @@ def main(session_state):
         steps_icon = utils.load_image("imgs/plan_steps_icon.png")
         ruler_icon = utils.load_image("imgs/plan_ruler_icon.png")
         simulation_icon = utils.load_image("imgs/simulation_main_icon.png")
-
+    
+        if session_state.city_name != "Todos":
+            message_begin = session_state.city_name +", como"
+        else: 
+            message_begin = session_state.state_name +", como"
         st.write(
-            f"""
-            <div class="container" style="min-height: 150px;"><br>
-                <div class="text-title-section minor-padding ">Como <span class="bold main-orange-span">estruturar</span> a reabertura da minha rede?</div>
-                <div class="minor-padding main-orange-span">
-                    <div class="minor-padding">
-                        <img class="minor-icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
-                        Passo a passo
-                    </div>
-                    <div class="minor-padding"> 
-                        <img class="minor-icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
-                        Protocolos
-                    </div>
-                    <div class="minor-padding"> 
-                        <img class="minor-icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
-                        Régua de protocolo
-                    </div>
-                    <div class="minor-padding"> 
-                        <img class="minor-icon" src="data:image/png;base64,{simulation_icon}" alt="Fonte: Flaticon">
-                        Simule o retorno
-                    </div>
-                </div></br>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        if st.button("comece aqui >"):
-            user_analytics = amplitude.gen_user(utils.get_server_session())
-            opening_response = user_analytics.safe_log_event(
-                "clicked botaoI", session_state, is_new_page=True
+                f"""
+                <div class="container" style="min-height: 150px;"><br>
+                    <div class="text-title-section minor-padding ">{message_begin} <span class="bold main-orange-span">estruturar</span> 
+                    a reabertura da sua rede?</div>
+                    <div class="minor-padding main-orange-span">
+                        <div class="minor-padding">
+                            <img class="minor-icon" src="data:image/png;base64,{steps_icon}" alt="Fonte: Flaticon">
+                            Passo a passo
+                        </div>
+                        <div class="minor-padding"> 
+                            <img class="minor-icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
+                            Protocolos
+                        </div>
+                        <div class="minor-padding"> 
+                            <img class="minor-icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
+                            Régua de protocolo
+                        </div>
+                        <div class="minor-padding"> 
+                            <img class="minor-icon" src="data:image/png;base64,{simulation_icon}" alt="Fonte: Flaticon">
+                            Simule o retorno
+                        </div>
+                    </div></br>
+                </div>
+                """,
+                unsafe_allow_html=True,
             )
-            session_state.section1_organize = True
-            session_state.section2_manage = False
+        if st.button("comece aqui >"):
+                user_analytics = amplitude.gen_user(utils.get_server_session())
+                opening_response = user_analytics.safe_log_event(
+                    "clicked botaoI", session_state, is_new_page=True
+                )
+                session_state.section1_organize = True
+                session_state.section2_manage = False
     with coluna2:
         verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
         notify_icon = utils.load_image("imgs/monitor_notify_icon.png")
