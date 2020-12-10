@@ -16,9 +16,10 @@ Instruções para rodar a aplicação localmente:
 ### Streamlit
 
 ```bash
-# roda em localhost:8001
+# roda em localhost:8501
 pip install -r requirements.txt
-streamlit run src/escolasegura.py
+cd src
+streamlit run escolasegura.py
 ```
 ### Docker
 
