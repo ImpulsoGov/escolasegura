@@ -16,3 +16,4 @@ mechanize
 flask
 flask-cors
 ipywidgets
+streamlit
