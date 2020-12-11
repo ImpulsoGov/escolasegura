@@ -320,7 +320,7 @@ def genSimulationContainer(df, config, session_state):
 
         st.write(
             f"""<div class="container">
-            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {str(params["number_students"])} alunos no total.<br><hr>
+            <i>Valor selecionado: {str(perc_students)}% dos alunos</i> - {'{0:,}'.format(params["number_students"]).replace(',','.')} alunos no total.<br><hr>
             </div>
         """,
             unsafe_allow_html=True,
@@ -348,7 +348,7 @@ def genSimulationContainer(df, config, session_state):
 
         st.write(
             f"""<div class="container">
-            <i>Valor selecionado: {str(perc_teachers)}% dos professores</i> - {str(params["number_teachers"])} professores no total.<br><hr>
+            <i>Valor selecionado: {str(perc_teachers)}% dos professores</i> - {'{0:,}'.format(params["number_teachers"]).replace(',','.')} professores no total.<br><hr>
             </div>
             """,
             unsafe_allow_html=True,
