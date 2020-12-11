@@ -6,7 +6,7 @@
 
 Todos os dados utilizados na ferramenta são abertos e estão disponíveis na nossa [API](http://datasource.coronacidades.org/br). Além disso, com nosso código aberto, incentivamos a transparência e subimissão de melhorias.
 
-A **Escola Segura** está disponível [aqui]().
+A **Escola Segura** está disponível [aqui](https://escolasegura.coronacidades.org/).
 
 
 ## Desenvolvimento
@@ -14,6 +14,24 @@ A **Escola Segura** está disponível [aqui]().
 Instruções para rodar a aplicação localmente:
 
 ### Streamlit
+
+```bash
+# Para criar uma env
+pip install virtualenv
+virtualenv nome_da_virtualenv
+# Para ativar a env (Windows)
+cd nome_da_virtualenv\Scripts\activate
+# Para ativar a env (Linux)
+source nome_da_virtualenv/bin/activate
+```
+#### Instalação da versão apropriada do Streamlit
+Faça o download através desse [link](https://escolasegura.coronacidades.org/).
+
+```bash
+# Com seu ambiente virtual ativo,
+# rode o shell no diretório que salvou o streamlit e insira o comando
+pip install streamlit-0.70.0-py2.py3-none-any.whl
+```
 
 ```bash
 # roda em localhost:8501
@@ -27,7 +45,7 @@ streamlit run escolasegura.py
 
 ```bash
 # antes instale o docker
-# roda em localhost:8001 com shell aberto
+# roda em localhost:8501 com shell aberto
 make docker-build-dev
 ```
 
