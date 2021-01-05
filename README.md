@@ -6,7 +6,11 @@
 
 Todos os dados utilizados na ferramenta são abertos e estão disponíveis na nossa [API](http://datasource.coronacidades.org/br). Além disso, com nosso código aberto, incentivamos a transparência e subimissão de melhorias.
 
-A **Escola Segura** está disponível [aqui](https://escolasegura.coronacidades.org/).
+A **Escola Segura** está disponível [aqui](https://escolasegura.coronacidades.org/). As informacões compiladas do projeto pode ser acessada [aqui](https://sites.google.com/impulsogov.org/wiki-techdados/produtos/escola-segura?authuser=1&read_current=1).
+
+**Missão**:  Oferecer guias e protocolos para possibilitar uma reabertura planejada da rede pública de ensino, respeitando boas práticas de distanciamento social e segurança sanitária para manter o controle da covid-19. 
+
+**Público**: voltada para integrantes de secretarias de educação de estados e municípios.
 
 
 ## Desenvolvimento
