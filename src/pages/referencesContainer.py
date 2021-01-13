@@ -66,7 +66,7 @@ def  genReferencesContainer(session_state):
                     </tr>
                     <tr>
                         <td> Considerations for school-related public health measures in the context of COVID-19 </td>
-                        <td> <a href="https://www.who.int/publications/i/item/considerations-for-school-related-public-health-measures-in-the-context-of-covid-19">
+                        <td> <a href="https://apps.who.int/iris/handle/10665/334294">
                             Organização Mundial da Saúde
                             </a>
                         </td>
