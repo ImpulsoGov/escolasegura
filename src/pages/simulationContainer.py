@@ -38,12 +38,12 @@ def genSimulationResult(params, config):
                 <div class="col minor-padding">
                     <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>AULAS ASSÍNCRONAS POR VÍDEO</b>, totalizando:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#FF934A; width: 50%;"> {result["equitative"]["num_returning_students"]} </div>
-                        <div class="div2" style="width: 50%;">estudantes, <br>2 horas por semana</div>
+                        <div class="div2 card-number" style="color:#FF934A; width: 30%;"> {result["equitative"]["num_returning_students"]} </div>
+                        <div class="div2" style="width: 50%;"><b>estudantes,</b> <br>2 horas por semana</div>
                     </div>
                     <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#2B14FF; width: 50%;"> {result["equitative"]["num_returning_teachers"]} </div>
-                        <div class="div2" style="width: 50%;">professores, <br>2 horas por sema</div>
+                        <div class="div2 card-number" style="color:#2B14FF; width: 30%;"> {result["equitative"]["num_returning_teachers"]} </div>
+                        <div class="div2" style="width: 50%;"><b>professores,</b> <br>2 horas por sema</div>
                     </div>
                     <div class="card-simulator-bottom light-green-simulator-bg">
                         <div class="grid-container-simulation-type minor-padding">
@@ -136,15 +136,26 @@ def genSimulationContainer(df, config, session_state):
         (df["city_name"] == session_state.city_name)
         & (df["administrative_level"] == session_state.administrative_level)
     ]
-    education_phase = st.selectbox(
-        "", data["education_phase"].sort_values().unique()
-    )
-    data = data[data["education_phase"] == education_phase]
+    col1, col2 = st.beta_columns([0.9, 0.2])
+    with col1:
+        education_phase = st.selectbox(
+            "", data["education_phase"].sort_values().unique()
+        )
+        data = data[data["education_phase"] == education_phase]
+    with col2:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
 
     st.write(
         f"""<br>
             <div class="container">
-                <div class="minor-padding" style="font-size: 20px; color:#FF934A; font-weight: bold;">1. Escolha o modelo de retorno às atividades</div>
+                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>1. Escolha o modelo de retorno às atividades</b></div>
                 <div class="minor-padding">
                     Existem diversos modelos possíveis de retorno avaliadas de acordo com as etapas de aprendizado. Separamos abaixo 5 opções possíveis indicadas pela UNESCO.
                 </div>
@@ -158,10 +169,20 @@ def genSimulationContainer(df, config, session_state):
     'Aulas sincronas por video', 
     'Aulas assincronas por video', 
     'Totalmente Remoto']
-    education_model = st.selectbox(
-        "", UNESCOmodels
-    )
-
+    col1_1, col1_2 = st.beta_columns([0.9, 0.2])
+    with col1_1:
+        education_model = st.selectbox(
+            "", UNESCOmodels
+        )
+    with col1_2:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
     st.write(
         f"""
             <div class="container">
@@ -250,13 +271,13 @@ def genSimulationContainer(df, config, session_state):
     st.write(
         f"""<br>
             <div class="container">
-                <div class="minor-padding" style="font-size: 20px; color:#FF934A; font-weight: bold;">2. Escolha quem pode retornar</div>
+                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>2. Escolha quem pode retornar</b></div>
             </div>
         """,
         unsafe_allow_html=True,
     )
     params = dict()
-    col2a_1, col2a_2 = st.beta_columns([0.4, 0.8])
+    col2a_1, col2a_2, col2a_3 = st.beta_columns([0.4, 0.8, 0.3])
     with col2a_1:
         params["number_students"] = st.number_input(
             "Quantos estudantes retornam na rede?",
@@ -285,6 +306,15 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
+    with col2a_3:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
     st.write(
         f"""
         <div class="container main-padding">
@@ -293,7 +323,7 @@ def genSimulationContainer(df, config, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col2b_1, col2b_2 = st.beta_columns([0.4, 0.8])  
+    col2b_1, col2b_2, col2b_3 = st.beta_columns([0.4, 0.8, 0.3])  
     with col2b_1:
         params["number_teachers"] = st.number_input(
             "Quantos professores(as) retornam?",
@@ -322,6 +352,15 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
+    with col2b_3:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
+            """,
+            unsafe_allow_html=True,
+        )
 
 
 
@@ -329,14 +368,16 @@ def genSimulationContainer(df, config, session_state):
     st.write(
         f"""
         <br>
-        <div class="minor-padding" style="font-size: 20px; color:#FF934A; font-weight: bold;">3. Defina as restrições de retorno</div><br>
+        <div class="container">
+            <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>3. Defina as restrições de retorno</b></div><br>
+                </div>
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    col3_1, col3_2, col3_3, col3_4, col3_5 = st.beta_columns(
-        [0.35, 0.05, 0.4, 0.05, 0.4]
+    col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
+        [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
     )
 
     with col3_1:
@@ -406,6 +447,16 @@ def genSimulationContainer(df, config, session_state):
             <br>
             </div>
             <br>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col3_6:
+        st.write(
+            f"""<div class="container">
+                <br>
+                </div>
+                <br>
             """,
             unsafe_allow_html=True,
         )
