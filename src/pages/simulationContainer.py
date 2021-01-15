@@ -37,13 +37,13 @@ def genSimulationResult(params, config):
             <div class="row">
                 <div class="col minor-padding">
                     <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>AULAS ASSÍNCRONAS POR VÍDEO</b>, totalizando:</p>
-                    <div class="grid-container-simulation-material" style="padding: 10px;">
-                        <div class="div2 card-number" style="color:#FF934A"> {result["equitative"]["num_returning_students"]} </div>
-                        <div class="div2">estudantes, <br>2 horas por semana</div>
+                    <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
+                        <div class="div2 card-number" style="color:#FF934A; width: 50%;"> {result["equitative"]["num_returning_students"]} </div>
+                        <div class="div2" style="width: 50%;">estudantes, <br>2 horas por semana</div>
                     </div>
-                    <div class="grid-container-simulation-material minor-padding" style="padding: 10px;">
-                        <div class="div2 card-number" style="color:#2B14FF"> {result["equitative"]["num_returning_teachers"]} </div>
-                        <div class="div2" >professores, <br>2 horas por sema</div>
+                    <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
+                        <div class="div2 card-number" style="color:#2B14FF; width: 50%;"> {result["equitative"]["num_returning_teachers"]} </div>
+                        <div class="div2" style="width: 50%;">professores, <br>2 horas por sema</div>
                     </div>
                     <div class="card-simulator-bottom light-green-simulator-bg">
                         <div class="grid-container-simulation-type minor-padding">
@@ -58,17 +58,17 @@ def genSimulationResult(params, config):
                 <div class="col minor-padding">
                     <div class="card-simulator-bottom light-green-simulator-bg minor-padding">
                         <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários para compra:</p>
-                        <div class="grid-container-simulation-material" style="padding: 10px;">
-                            <div class="div2 card-number"> {result["equitative"]["total_thermometers"]} </div>
-                            <div class="div2"><b>termômetros</b> (1/100 alunos)</div>
+                        <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
+                            <div class="div2 card-number" style="width: 50%;"> {result["equitative"]["total_thermometers"]} </div>
+                            <div class="div2" style="width: 50%;"><b>termômetros</b> (1/100 alunos)</div>
                         </div>
-                        <div class="grid-container-simulation-material minor-padding" style="padding: 10px;">
-                            <div class="div2 card-number"> {result["equitative"]["total_masks"]} </div>
-                            <div class="div2" ><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
+                        <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
+                            <div class="div2 card-number" style="width: 50%;"> {result["equitative"]["total_masks"]} </div>
+                            <div class="div2" style="width: 50%;"><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
                         </div>
-                        <div class="grid-container-simulation-material" style="padding: 10px;">
-                            <div class="div2 card-number"> {int(result["equitative"]["total_sanitizer"])} </div>
-                            <div class="div2" ><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
+                        <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
+                            <div class="div2 card-number" style="width: 50%;"> {int(result["equitative"]["total_sanitizer"])} </div>
+                            <div class="div2" style="width: 50%;"><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
                         </div>
                         <div class="container">
                             <div class="button-position" style="padding-bottom: 10px;">
@@ -161,13 +161,64 @@ def genSimulationContainer(df, config, session_state):
     education_model = st.selectbox(
         "", UNESCOmodels
     )
-    col1_1, col1_2 = st.beta_columns([0.3, 0.4])
-    with col1_1:
+
+    st.write(
+        f"""
+            <div class="container">
+                <div class="minor-padding" style="font-size: 16px;">Opcao I - dropdown</div>
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    modelo = False
+    etapa = False
+    coluna1, coluna2 = st.beta_columns([0.25, 0.5])
+    with coluna1:
+        if st.button("entenda cada modelo >"):
+            modelo = True
+            etapa = False
+    with coluna2:
+        if st.button("planeje por etapa de ensino >"):
+            modelo = False
+            etapa = True
+    if modelo == True:
+        st.write(
+            f"""
+                <div class="minor-padding">
+                    <a href="https://imgur.com/ZByy47a" target="_blank">
+                        <img class="images" src="https://i.imgur.com/ZByy47a.jpg"> 
+                    </a>
+                </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    if etapa == True:
+        st.write(
+            f"""
+                <div class="minor-padding">
+                    <a href="https://imgur.com/FyoIFe9" target="_blank">
+                        <img class="images" src="https://i.imgur.com/FyoIFe9.jpg"> 
+                    </a>
+                </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        
+    st.write(
+        f"""
+            <div class="container">
+                <div class="minor-padding" style="font-size: 16px;">Opcao II - baixar arquivo</div>
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    colII_1, colII_2 = st.beta_columns([0.25, 0.5])
+    with colII_1:
         st.write(
             f"""
                 <div class="container">
                     <div class="button-position" style="padding-bottom: 10px; text-align:left;">
-                        <a href="" target="blank_">
+                        <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download" target="blank_">
                         <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">entenda cada modelo ></button><br>
                         </a>
                     </div>
@@ -175,12 +226,12 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
-    with col1_2:
+    with colII_2:
         st.write(
             f"""
                 <div class="container">
                     <div class="button-position" style="padding-bottom: 10px; text-align:left;">
-                        <a href="" target="blank_">
+                        <a href="https://drive.google.com/file/d/1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_/view?usp=sharing" target="blank_">
                         <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">planeje por etapa de ensino ></button><br>
                         </a>
                     </div>
@@ -188,6 +239,12 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
+
+
+
+
+
+
 
 
     st.write(
