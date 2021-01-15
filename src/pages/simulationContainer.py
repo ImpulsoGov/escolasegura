@@ -159,17 +159,6 @@ def genSimulationContainer(df, config, session_state):
     )
     col1_1, col1_2 = st.beta_columns([0.3, 0.4])
     with col1_1:
-        # with st.beta_expander("entenda cada modelo >"):
-            # st.write(
-            #     f"""
-            #         <div class="minor-padding">
-            #             <a href="https://i.imgur.com/FyoIFe9.jpg" target="_blank">
-            #                 <img class="images" src="https://i.imgur.com/FyoIFe9.jpg"> 
-            #             </a>
-            #         </div>
-            #     """,
-            #     unsafe_allow_html=True,
-            # )   
         st.write(
             f"""
                 <div class="container">
@@ -183,17 +172,6 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
     with col1_2:
-        # with st.beta_expander("planeje por etapa de ensino >"):
-        #     st.write(
-        #         f"""
-        #             <div class="minor-padding">
-        #                 <a href="https://imgur.com/ZByy47a" target="_blank">
-        #                     <img class="images" src="https://i.imgur.com/ZByy47a.jpg"> 
-        #                 </a>
-        #             </div>
-        #         """,
-        #         unsafe_allow_html=True,
-        # )
         st.write(
             f"""
                 <div class="container">
