@@ -29,8 +29,6 @@
     --main-light-yellow: #FFE599;
     --main-light-orange: #F9CB9C;
     --main-light-red:#F57375;
-    --simulator-light-green: #DDFBF0;
-    --simulator-dark-green: #5FEDB6;
     --main-margin: 2em;
     --main-item-margin: 1em;
     --main-padding: 2em;
@@ -78,13 +76,8 @@
 }
 .lighter-blue-green-bg{
   background: var(--main-light-blue-green);
+
 }
-
-.light-green-simulator-bg{
-  background: var(--simulator-light-green);
-}
-
-
 
 .uppercase{
   text-transform: uppercase;
@@ -118,10 +111,8 @@
 /*responsividade*/
 .container {
     width: 100%;
-    padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
-    padding-bottom: 10px;
     margin-right: 0;
     margin-left: 0;
     font-family: var(--main-text-font-family);
@@ -379,15 +370,9 @@
   /*place-items: center;*/
 
 }
-
-.linha{
-  display: flex;
-  flex-flow: row wrap;
-}
-
 .grid-container-simulation-material{
   display: grid;
-  grid-template-columns: 0.2fr 1.7fr;
+  grid-template-columns: 0.2fr 0.3fr 1.7fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -517,9 +502,7 @@
 }
 
 .card-simulator-bottom{
-  border-color: var(--simulator-dark-green);
-  border-style: dashed;
-  border-radius: 1rem 1rem 1rem 1rem;
+  border-radius: 0rem 0rem 1rem 1rem;
   padding: 1em;
 }
 
@@ -527,7 +510,7 @@
 .card-number{
   font-size: 2rem;
   font-weight: bold;
-  color: var(--main-black);
+  color: var(--main-orange);
 }
 
 .card-plan{
@@ -919,4 +902,21 @@
 /* test para botão da main */
 .stButton {
   align-content: center;
+}
+
+.float{
+	position:fixed;
+	width:50px;
+	height:50px;
+	bottom:40px;
+	right:40px;
+	background-color: var(--main-blue);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top: 8px;
 }
