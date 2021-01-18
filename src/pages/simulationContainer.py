@@ -280,7 +280,7 @@ def genSimulationContainer(df, config, session_state):
                 </div>
                 <div class="button-position" style="padding-bottom: 15px;">
                     <a href="#entenda-etapa">
-                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
                             como retornar estudantes >
                         </button>
                     </a>
@@ -327,7 +327,7 @@ def genSimulationContainer(df, config, session_state):
                 </div>
                 <div class="button-position" style="padding-bottom: 15px;">
                     <a href="#entenda-etapa">
-                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
                             como retornar professores(as) >
                         </button>
                     </a>
