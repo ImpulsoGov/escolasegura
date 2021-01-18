@@ -130,7 +130,7 @@ def genSimulationContainer(df, config, session_state):
     st.write(
             f"""
             <div class="text-title-section minor-padding">
-                Como <span class="bold main-orange-span">distribuir</span> professores, alunos e materiais necessários para o retorno as aulas?
+                Quantos <span class="bold main-orange-span">alunos e professores</span> retornam às salas de aula em diferentes modelos?
             </div>
             <div class="container main-padding" style="padding-left:0px;">
                 <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
