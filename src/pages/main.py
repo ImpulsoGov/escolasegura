@@ -309,7 +309,7 @@ def main(session_state):
         """,
             unsafe_allow_html=True,
         )
-    
+
     st.write(
         f"""
             <a href="#top" class="float">
@@ -320,7 +320,6 @@ def main(session_state):
     )
     if session_state.section1_organize == True:
         pc.genPlanContainer(data, config, session_state)
-        sc.genSimulationContainer(data, config, session_state)
 
     if session_state.section2_manage == True:
         prc.genPrepareContainer()
@@ -333,6 +332,8 @@ def main(session_state):
     """,
         unsafe_allow_html=True,
     )
+    sc.genSimulationContainer(data, config, session_state)
+    
     spc.genSpecialistContainer()
     rc.genReferencesContainer(session_state)
     fc.genFooterContainer()
