@@ -38,12 +38,12 @@ def genSimulationResult(params, config):
                 <div class="col minor-padding">
                     <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>AULAS ASSÍNCRONAS POR VÍDEO</b>, totalizando:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#FF934A; width: 30%;"> {result["equitative"]["num_returning_students"]} </div>
-                        <div class="div2" style="width: 50%;"><b>estudantes,</b> <br>2 horas por semana</div>
+                        <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["equitative"]["num_returning_students"]} </div>
+                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>2 horas por semana</div>
                     </div>
                     <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#2B14FF; width: 30%;"> {result["equitative"]["num_returning_teachers"]} </div>
-                        <div class="div2" style="width: 50%;"><b>professores,</b> <br>2 horas por sema</div>
+                        <div class="div2 card-number" style="color:#2B14FF; width: 30%; margin-right: 20px;"> {result["equitative"]["num_returning_teachers"]} </div>
+                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>professores,</b> <br>2 horas por sema</div>
                     </div>
                     <div class="card-simulator-bottom light-green-simulator-bg">
                         <div class="grid-container-simulation-type minor-padding">
@@ -60,16 +60,16 @@ def genSimulationResult(params, config):
                     <div class="card-simulator-bottom light-green-simulator-bg minor-padding">
                         <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários para compra:</p>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 50%;"> {result["equitative"]["total_thermometers"]} </div>
-                            <div class="div2" style="width: 50%;"><b>termômetros</b> (1/100 alunos)</div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_thermometers"]} </div>
+                            <div class="div2" style="width: 50%; padding-left: 10px;"><b>termômetros</b> (1/100 alunos)</div>
                         </div>
                         <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 50%;"> {result["equitative"]["total_masks"]} </div>
-                            <div class="div2" style="width: 50%;"><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_masks"]} </div>
+                            <div class="div2" style="width: 50%; padding-left: 10px;"><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
                         </div>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 50%;"> {int(result["equitative"]["total_sanitizer"])} </div>
-                            <div class="div2" style="width: 50%;"><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {int(result["equitative"]["total_sanitizer"])} </div>
+                            <div class="div2" style="width: 50%; padding-left: 10px;"><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
                         </div>
                         <div class="container">
                             <div class="button-position" style="padding-bottom: 10px;">
@@ -130,7 +130,7 @@ def genSimulationContainer(df, config, session_state):
     st.write(
             f"""
             <div class="text-title-section minor-padding">
-                Quantos <span class="bold main-orange-span">alunos e professores</span> retornam às salas de aula em diferentes modelos?
+                 Quantos <span class="bold main-orange-span">alunos e professores</span> retornam às salas de aula em diferentes modelos?
             </div>
             <div class="container main-padding" style="padding-left:0px;">
                 <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
