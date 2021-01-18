@@ -185,86 +185,62 @@ def genSimulationContainer(df, config, session_state):
         )
     st.write(
         f"""
-            <div class="container">
-                <div class="minor-padding" style="font-size: 16px;">Opcao I - dropdown</div>
+        <a href="#entenda-modelo">
+            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                entenda cada modelo >
+            </button>
+        </a>
+        <div id="entenda-modelo" class="info-modal-window">
+            <div>
+                <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+                <div style="margin: 10px 15px 15px 15px;">
+                <h1 class="main-orange-span bold">Valores de referência</h1>
+                <div style="font-size: 14px">
+                    Para mais detalhes confira nossa página de Metodologia no <a href="http://farolcovid.coronacidades.org">FarolCovid</a>.</b></a>
+                </div><br>
+                <div class="info-div-table">
+                    <table class="info-table">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
+        </div>
+        <div class="container">
+        </div>
         """,
         unsafe_allow_html=True,
     )
-    modelo = False
-    etapa = False
-    coluna1, coluna2 = st.beta_columns([0.25, 0.5])
-    with coluna1:
-        if st.button("entenda cada modelo >"):
-            modelo = True
-            etapa = False
-    with coluna2:
-        if st.button("planeje por etapa de ensino >"):
-            modelo = False
-            etapa = True
-    if modelo == True:
-        st.write(
-            f"""
-                <div class="minor-padding">
-                    <a href="https://imgur.com/ZByy47a" target="_blank">
-                        <img class="images" src="https://i.imgur.com/ZByy47a.jpg"> 
-                    </a>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    if etapa == True:
-        st.write(
-            f"""
-                <div class="minor-padding">
-                    <a href="https://imgur.com/FyoIFe9" target="_blank">
-                        <img class="images" src="https://i.imgur.com/FyoIFe9.jpg"> 
-                    </a>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        
     st.write(
         f"""
-            <div class="container">
-                <div class="minor-padding" style="font-size: 16px;">Opcao II - baixar arquivo</div>
+        <a href="#entenda-etapa">
+            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                planeje por etapa de ensino >
+            </button>
+        </a>
+        <div id="entenda-etapa" class="info-modal-window">
+            <div>
+                <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+                <div style="margin: 10px 15px 15px 15px;">
+                <h1 class="main-orange-span bold">Valores de referência</h1>
+                <div style="font-size: 14px">
+                    Para mais detalhes confira nossa página de Metodologia no <a href="http://farolcovid.coronacidades.org">FarolCovid</a>.</b></a>
+                </div><br>
+                <div class="info-div-table">
+                    <table class="info-table">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
+        </div>
+        <div class="container">
+        </div>
         """,
         unsafe_allow_html=True,
     )
-    colII_1, colII_2 = st.beta_columns([0.25, 0.5])
-    with colII_1:
-        st.write(
-            f"""
-                <div class="container">
-                    <div class="button-position" style="padding-bottom: 10px; text-align:left;">
-                        <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download" target="blank_">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">entenda cada modelo ></button><br>
-                        </a>
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with colII_2:
-        st.write(
-            f"""
-                <div class="container">
-                    <div class="button-position" style="padding-bottom: 10px; text-align:left;">
-                        <a href="https://drive.google.com/file/d/1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_/view?usp=sharing" target="blank_">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">planeje por etapa de ensino ></button><br>
-                        </a>
-                    </div>
-                </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-
-
-
-
 
 
 
@@ -277,7 +253,7 @@ def genSimulationContainer(df, config, session_state):
         unsafe_allow_html=True,
     )
     params = dict()
-    col2a_1, col2a_2, col2a_3 = st.beta_columns([0.4, 0.8, 0.3])
+    col2a_1, col2a_2, col2a_3, col2a_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
     with col2a_1:
         params["number_students"] = st.number_input(
             "Quantos estudantes retornam na rede?",
@@ -288,25 +264,33 @@ def genSimulationContainer(df, config, session_state):
     with col2a_2:
         st.write(
             f"""
-            <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row" style="margin-bottom:0px;">
-                    <div class="col text-padding container">
-                        <b>Iniciamos com total de alunos reportados no Censo Escolar 2019 (INEP).</b>
-                        <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de alunos podem ser <b>vulneráveis</b> ou ter prioridade.
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="button-position" style="padding-bottom: 10px;">
-                        <a href="" target="blank_">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">como retornar estudantes ></button><br>
-                        </a>
-                    </div>
-                </div>
+            <div class="container main-padding">
+                <br>
             </div>
             """,
             unsafe_allow_html=True,
         )
     with col2a_3:
+        st.write(
+            f"""
+            <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
+                <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
+                    <b>Iniciamos com total de alunos reportados no Censo Escolar 2019 (INEP).</b>
+                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de alunos podem ser vulneráveis ou ter prioridade.
+                </div>
+                <div class="button-position" style="padding-bottom: 15px;">
+                    <a href="#entenda-etapa">
+                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                            como retornar estudantes >
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            """,
+            unsafe_allow_html=True,
+        )
+    with col2a_4:
         st.write(
             f"""<div class="container">
                 <br>
@@ -323,7 +307,8 @@ def genSimulationContainer(df, config, session_state):
         """,
         unsafe_allow_html=True,
     )
-    col2b_1, col2b_2, col2b_3 = st.beta_columns([0.4, 0.8, 0.3])  
+
+    col2b_1, col2b_2, col2b_3, col2b_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
     with col2b_1:
         params["number_teachers"] = st.number_input(
             "Quantos professores(as) retornam?",
@@ -331,40 +316,27 @@ def genSimulationContainer(df, config, session_state):
             value=data["number_teachers"].values[0],
             step=1,
         )
-    with col2b_2:
+    col2b_2=col2a_2
+    with col2b_3:
         st.write(
             f"""
             <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row" style="margin-bottom:0px;">
-                    <div class="col text-padding container">
-                        <b>Iniciamos com total de professores reportados no Censo Escolar 2019 (INEP).</b> 
-                        <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de professores podem ser de <b>risco, confortáveis para retorno e outros.</b>
-                    </div>
+                <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
+                    <b>Iniciamos com total de professores reportados no Censo Escolar 2019 (INEP).</b> 
+                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de professores podem ser de risco, confortáveis para retorno e outros.
                 </div>
-                <div class="container">
-                    <div class="button-position" style="padding-bottom: 10px;">
-                        <a href="" target="blank_">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">como retornar professores(as) ></button><br>
-                        </a>
-                    </div>
+                <div class="button-position" style="padding-bottom: 15px;">
+                    <a href="#entenda-etapa">
+                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
+                            como retornar professores(as) >
+                        </button>
+                    </a>
                 </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
-    with col2b_3:
-        st.write(
-            f"""<div class="container">
-                <br>
-                </div>
-                <br>
-            """,
-            unsafe_allow_html=True,
-        )
-
-
-
-
+    col2b_4=col2a_4
     st.write(
         f"""
         <br>
@@ -376,10 +348,14 @@ def genSimulationContainer(df, config, session_state):
         """,
         unsafe_allow_html=True,
     )
+
+
+
+
+
     col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
         [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
     )
-
     with col3_1:
         params["number_classrooms"] = st.number_input(
             "Quantas salas de aula disponíveis?",
@@ -388,46 +364,27 @@ def genSimulationContainer(df, config, session_state):
             step=1,
         )
         st.write(
-            f"""<div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row">
-                    <div class="col text-subdescription container">
-                        O número de salas e professores(as) restringem o número de turmas que podem voltar de forma simultânea.
-                    </div>
-                </div>
+            f"""
+            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+                O número de salas e professores(as) restringem o número de turmas que podem voltar de forma simultânea.
             </div>
         """,
             unsafe_allow_html=True,
         )
-
-    with col3_2:
-        st.write(
-            f"""
-            <div class="container main-padding">
-                <br>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
+    col3_2=col2a_2
     with col3_3:
         params["max_students_per_class"] = st.slider(
             "Quantas salas de aula disponíveis?", 0, 20, 20, 1
         )
         st.write(
             f"""
-            <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row">
-                    <div class="col text-subdescription container">
-                        As instituições XX recomendam o máximo de XX alunos por sala para diminuir o risco de transmissão.
-                    </div>
-                </div>
+            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+                As instituições XX recomendam o máximo de XX alunos por sala para diminuir o risco de transmissão.
             </div>
             """,
             unsafe_allow_html=True,
         )
-
-    col3_4 = col3_2
-
+    col3_4 = col2a_2
     with col3_5:
         hours_classes = st.slider(
             "Selecione o número de horas presenciais na semana por turma:", 0, 4, 2, 1,
@@ -435,12 +392,8 @@ def genSimulationContainer(df, config, session_state):
         params["hours_classes"] = int(hours_classes)
         st.write(
             f"""
-             <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row">
-                    <div class="col text-subdescription container">
-                        As restrições sanitárias limitam a quantidade de tempo e alunos que conseguem retornar à sala de aula.
-                    </div>
-                </div>
+            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+                As restrições sanitárias limitam a quantidade de tempo e alunos que conseguem retornar à sala de aula.
             </div>
 
             <div class="container">
@@ -450,16 +403,8 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
+    col3_6=col2a_4
 
-    with col3_6:
-        st.write(
-            f"""<div class="container">
-                <br>
-                </div>
-                <br>
-            """,
-            unsafe_allow_html=True,
-        )
 
 
     with st.beta_expander("simular retorno"):
