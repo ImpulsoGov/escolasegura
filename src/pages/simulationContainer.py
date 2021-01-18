@@ -73,7 +73,7 @@ def genSimulationResult(params, config):
                         <div class="container">
                             <div class="button-position" style="padding-bottom: 10px;">
                                 <a href="https://docs.google.com/spreadsheets/d/15ib2NCdwPbLllofuqf9epKCAQK_hvY1Q8rdp6hHko_U/edit?ts=5f889510#gid=0" target="blank_">
-                                <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">veja a lista completa ></button><br>
+                                <button class="button-protocolos"; style="border-radius: .25rem; font-size:16px;">veja a lista completa ></button><br>
                                 </a>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ def genSimulationResult(params, config):
                     </div>
                     <div class="button-position minor-padding" style="padding-bottom: 10px;">
                         <a href="" target="blank_">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:18px;">entenda sobre os turnos ></button><br>
+                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:16px;">entenda sobre os turnos ></button><br>
                         </a>
                     </div>
                 </div>
