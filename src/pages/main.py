@@ -250,10 +250,6 @@ def main(session_state):
                             <img class="minor-icon" src="data:image/png;base64,{ruler_icon}" alt="Fonte: Flaticon">
                             Régua de protocolo
                         </div>
-                        <div class="minor-padding"> 
-                            <img class="minor-icon" src="data:image/png;base64,{simulation_icon}" alt="Fonte: Flaticon">
-                            Simule o retorno
-                        </div>
                     </div></br>
                 </div>
                 """,
