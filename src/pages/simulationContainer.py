@@ -61,7 +61,7 @@ def genSimulationResult(params, config):
                         <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários para compra:</p>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
                             <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_thermometers"]} </div>
-                            <div class="div2" style="width: 50%; padding-left: 10px;"><b>termômetros</b> (1/100 alunos)</div>
+                            <div class="div2" style="width: 50%; padding-left: 10px;"><b>termômetros</b> (1/100 estudantes)</div>
                         </div>
                         <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
                             <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_masks"]} </div>
@@ -130,7 +130,7 @@ def genSimulationContainer(df, config, session_state):
     st.write(
             f"""
             <div class="text-title-section minor-padding">
-                 Quantos <span class="bold main-orange-span">alunos e professores</span> retornam às salas de aula em diferentes modelos?
+                 Quantos <span class="bold main-orange-span">estudantes e professores</span> retornam às salas de aula em diferentes modelos?
             </div>
             <div class="container main-padding" style="padding-left:0px;">
                 <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
@@ -272,8 +272,8 @@ def genSimulationContainer(df, config, session_state):
             f"""
             <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
                 <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
-                    <b>Iniciamos com total de alunos reportados no Censo Escolar 2019 (INEP).</b>
-                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de alunos podem ser vulneráveis ou ter prioridade.
+                    <b>Iniciamos com total de estudantes reportados no Censo Escolar 2019 (INEP).</b>
+                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de estudantes podem ser vulneráveis ou ter prioridade.
                 </div>
                 <div class="button-position" style="padding-bottom: 15px;">
                     <a href="#entenda-estudantes">
@@ -384,12 +384,12 @@ def genSimulationContainer(df, config, session_state):
     col3_2=col2a_2
     with col3_3:
         params["max_students_per_class"] = st.slider(
-            "Quantas salas de aula disponíveis?", 0, 20, 20, 1
+            "Seleciona o máximo de estudantes por turma:", 0, 20, 20, 1
         )
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                As instituições XX recomendam o máximo de XX alunos por sala para diminuir o risco de transmissão.
+                As instituições XX recomendam o máximo de XX estudantes por sala para diminuir o risco de transmissão.
             </div>
             """,
             unsafe_allow_html=True,
@@ -403,7 +403,7 @@ def genSimulationContainer(df, config, session_state):
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                As restrições sanitárias limitam a quantidade de tempo e alunos que conseguem retornar à sala de aula.
+                As restrições sanitárias limitam a quantidade de tempo e estudantes que conseguem retornar à sala de aula.
             </div>
 
             <div class="container">
