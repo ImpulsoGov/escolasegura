@@ -5,8 +5,6 @@ import os
 import pandas as pd
 from ipywidgets import AppLayout, GridspecLayout
 
-from model.get_school_return_data import entrypoint
-
 import pages.planContainer as pc
 import pages.simulationContainer as sc
 import pages.prepareContainer as prc
