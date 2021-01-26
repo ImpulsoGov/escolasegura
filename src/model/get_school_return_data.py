@@ -5,9 +5,9 @@ def get_school_return_projections(
     num_students,
     num_teachers,
     num_classrooms,
-    selected_mode_return,
+    hours_per_day,
     max_students_per_class,
-    config,
+    hours_day_classes=10,
 ):
     """
     Calculates projected number of students and teachers returning to school.
@@ -20,12 +20,12 @@ def get_school_return_projections(
             Number of teachers allowed to return to school.
         num_classrooms : int or float
             Number of classrooms available.
-        selected_mode_return : string
-            Mode of return to school (e.g. priority, equitative...).
+        hours_per_day : string
+            Duration of time spent in class per day (defined by user/model).
         max_students_per_class : int or float
             Maximum number of students per class.
-        config : dict
-            General school return parameters.
+        hours_day_classes : dict
+            Total hours available for classes in a day. Default: 10 = 5 hours x 2 shifts (morning/afternoon)
 
     Returns
     -------
@@ -34,27 +34,15 @@ def get_school_return_projections(
         num_returning_teachers : int
             Project number of teachers returning to school.
     """
-    hours_per_week = config["br"]["simule"]["class"]["hours_per_week"]
-    hours_per_lecture = config["br"]["simule"]["class"]["hours_per_lecture"]
+    # 1. Total hours of classrooms available per day
+    max_hours_classroom = hours_day_classes * num_classrooms / hours_per_day
 
-    # Select Mode of Return
-    modes = config["br"]["simule"]["class"]["lectures_per_student"]
-    lectures_per_student = modes[selected_mode_return]
+    # 2. Total groups of students per day
+    max_groups = min(num_teachers, max_hours_classroom)
 
-    # Calculate total number of lectures per week
-    num_lectures = floor(hours_per_week / hours_per_lecture)
-
-    # Determine maximum number of lectures given teacher and classroom constraints
-    room_potential = num_classrooms * num_lectures
-    teacher_potential = num_teachers * num_lectures
-    school_capacity = max_students_per_class * min(room_potential, teacher_potential)
-
-    # Adjust for number of lectures per student per week
-    school_capacity = school_capacity // lectures_per_student
-
-    # Calculate number of actual returning students and teachers
-    num_returning_students = min(num_students, school_capacity)
-    num_returning_teachers = num_teachers
+    # 3. Total students & teatchers to return
+    num_returning_students = max_students_per_class * max_groups
+    num_returning_teachers = max_groups
 
     return num_returning_students, num_returning_teachers
 
@@ -62,9 +50,10 @@ def get_school_return_projections(
 def get_school_return_supplies(
     num_returning_students,
     num_returning_teachers,
-    selected_mode_return,
+    hours_per_day,
     max_students_per_class,
     config,
+    number_days=7
 ):
     """
     Calculates number of school supplies given number of return students and faculty.
@@ -75,12 +64,14 @@ def get_school_return_supplies(
             Number of returning students.
         num_returning_teachers : int or float
             Number of returning teachers.
-        selected_mode_return : string
-            Mode of return to school (e.g. priority, equitative...).
+        hours_per_day : string
+            Duration of time spent in class per day (defined by user/model).
         max_students_per_class : int or float
             Maximum number of students per class.
         config : dict
             General school return parameters.
+        number_days : int
+            Number of days to consider for calculation. Default = 30 days.
 
     Returns
     -------
@@ -99,15 +90,11 @@ def get_school_return_supplies(
     sanitizer_per_person_per_hour = config["br"]["simule"]["supplies"]["sanitizer_per_person_per_hour"]
     people_per_thermometer = config["br"]["simule"]["supplies"]["people_per_thermometer"]
     
-    # Class Hours and Composition
-    hours_per_lecture = config["br"]["simule"]["class"]["hours_per_lecture"]
-    lectures_per_student = config["br"]["simule"]["class"]["lectures_per_student"][selected_mode_return]
-    
     # Determine Masks and Hand Sanitizer for Students
-    hours_per_student = lectures_per_student * hours_per_lecture
+    hours_per_student = number_days * hours_per_day
 
     masks_per_student = max(
-        lectures_per_student, ceil(hours_per_student / mask_time_limit)
+        number_days, ceil(hours_per_student / mask_time_limit)
     )
     student_masks = num_returning_students * masks_per_student
     student_sanitizer = (
@@ -115,7 +102,7 @@ def get_school_return_supplies(
     )
 
     # Determine Masks and Hand Sanitizer for Teachers
-    student_hours = num_returning_students * lectures_per_student * hours_per_lecture
+    student_hours = num_returning_students * number_days * hours_per_day
     class_hours = student_hours / max_students_per_class
     try:
         hours_per_teacher = class_hours / num_returning_teachers
@@ -138,7 +125,7 @@ def get_school_return_supplies(
     return total_masks, total_sanitizer, total_thermometers
 
 
-def entrypoint(params, config, modes=["equitative", "priority"]):
+def entrypoint(params, config):
     """
     Entrypoint for school return data.
 
@@ -158,31 +145,28 @@ def entrypoint(params, config, modes=["equitative", "priority"]):
     """
 
     school_return_data = dict()
-    for mode in modes:
-        # Calculate Number of Returning Students and Teachers
-        num_returning_students, num_returning_teachers = get_school_return_projections(
-            params["number_students"],
-            params["number_teachers"],
-            params["number_classrooms"],
-            mode,
-            params["max_students_per_class"],
-            config,
-        )
-        # Calculate Amount of Required Protection Equipment
-        total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(
-            params["number_students"],
-            params["number_teachers"],
-            mode,
-            params["max_students_per_class"],
-            config,
-        )
-        # Build School Return Data Dictionary
-        school_return_data[mode] = {
-            "num_returning_students": num_returning_students,
-            "num_returning_teachers": num_returning_teachers,
-            "total_masks": round(total_masks, 0),
-            "total_sanitizer": round(total_sanitizer, 0),
-            "total_thermometers": round(total_thermometers, 1),
-        }
 
-    return school_return_data
+    # Calculate Number of Returning Students and Teachers
+    num_returning_students, num_returning_teachers = get_school_return_projections(
+        params["number_students"],
+        params["number_teachers"],
+        params["number_classrooms"],
+        params["hours_per_day"],
+        params["max_students_per_class"],
+    )
+    # Calculate Amount of Required Protection Equipment
+    total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(
+        params["number_students"],
+        params["number_teachers"],
+        params["hours_per_day"],
+        params["max_students_per_class"],
+        config,
+    )
+    # Build School Return Data Dictionary
+    return {
+        "num_returning_students": num_returning_students,
+        "num_returning_teachers": num_returning_teachers,
+        "total_masks": round(total_masks, 0),
+        "total_sanitizer": round(total_sanitizer, 0),
+        "total_thermometers": round(total_thermometers, 1),
+    }
