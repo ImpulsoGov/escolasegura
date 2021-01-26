@@ -36,14 +36,14 @@ def genSimulationResult(params, config):
             <div class="text-title-section minor-padding main-orange-span"><b>RESULTADO DA SIMULAÇÃO</b></div>
             <div class="row">
                 <div class="col minor-padding">
-                    <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>AULAS ASSÍNCRONAS POR VÍDEO</b>, totalizando:</p>
+                    <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>{params["education_model"]}</b>, totalizando:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["equitative"]["num_returning_students"]} </div>
-                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>2 horas por semana</div>
+                        <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["num_returning_students"]} </div>
+                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>{params["hours_per_day"]} horas por dia</div>
                     </div>
                     <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                        <div class="div2 card-number" style="color:#2B14FF; width: 30%; margin-right: 20px;"> {result["equitative"]["num_returning_teachers"]} </div>
-                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>professores,</b> <br>2 horas por sema</div>
+                        <div class="div2 card-number" style="color:#2B14FF; width: 30%; margin-right: 20px;"> {result["num_returning_teachers"]} </div>
+                        <div class="div2" style="width: 50%; padding-left: 10px;"><b>professores,</b> <br>{params["hours_per_day"]} horas por dia</div>
                     </div>
                     <div class="card-simulator-bottom light-green-simulator-bg">
                         <div class="grid-container-simulation-type minor-padding">
@@ -60,15 +60,15 @@ def genSimulationResult(params, config):
                     <div class="card-simulator-bottom light-green-simulator-bg minor-padding">
                         <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários para compra:</p>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_thermometers"]} </div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["total_thermometers"]} </div>
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>termômetros</b> (1/100 estudantes)</div>
                         </div>
                         <div class="grid-container-simulation-material minor-padding" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["equitative"]["total_masks"]} </div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["total_masks"]} </div>
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
                         </div>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {int(result["equitative"]["total_sanitizer"])} </div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {int(result["total_sanitizer"])} </div>
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
                         </div>
                         <div class="container">
@@ -126,11 +126,12 @@ def genSimulationResult(params, config):
 
 def genSimulationContainer(df, config, session_state):
 
+    params = dict()
     main_icon = utils.load_image("imgs/simulation_main_icon.png")
     st.write(
             f"""
             <div class="text-title-section minor-padding">
-                 Quantos <span class="bold main-orange-span">estudantes e professores</span> retornam às salas de aula em diferentes modelos?
+                 Quantos <span class="bold main-orange-span">estudantes e professores(as)</span> retornam às salas de aula em diferentes modelos?
             </div>
             <div class="container main-padding" style="padding-left:0px;">
                 <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
@@ -180,17 +181,102 @@ def genSimulationContainer(df, config, session_state):
         """,
         unsafe_allow_html=True,
     )
-    UNESCOmodels = ['Totalmente Presencial', 
-    'Apenas aulas expositivas presenciais + atividades como tarefa',
-    'Aulas por video + exercícios e tarefas presenciais', 
-    'Aulas sincronas por video', 
-    'Aulas assincronas por video', 
-    'Totalmente Remoto']
+
+    UNESCO_models = {
+        'Totalmente Presencial': {
+            "description": """Neste modelo, todos os estudantes <b>retornam às aulas
+            presenciais padrão</b>, isto é, os mesmos horários em sala de
+            aula, porém seguindo os novos protocolos de distanciamento e segurança
+            sanitária.
+            <br><br><b>Por que este modelo?</b><br>
+            <li>Professores(as) e estudantes já habituados</li>
+            <li>Facilita interação entre professores e estudantes</li>
+            <br><b>Pontos de atenção</b>
+            <li>Capacidade física limitada para atender todos os estudantes</li>
+            <li>Maior risco de disseminação da Covid-19</li>"""
+            ,
+            "hours_per_day": 5,
+            "priority": False
+        }
+        , 
+        'Híbrido: Aulas expositivas presenciais + tarefas em casa': {
+            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
+            presenciais por menos tempo no dia e têm parte das aulas
+            remotas. Em especial, neste modelo professores(as) <b>transmitem
+            conceitos para os estudantes presencialmente<b>, e, em seguida,
+            <b>estudantes completam exercícios e tarefas em casa</b>.
+            <br><br><b>Por que este modelo?</b><br>
+            <li>Alunos e professores mantêm um contato próximo, e estudantes 
+            podem tirar dúvidas durante a exposição da matéria.</li>
+            <br><b>Pontos de atenção</b>"""
+            ,
+            "hours_per_day": 3,
+            "priority": False
+        }
+        , 
+        'Híbrido: Aulas por vídeo + tarefas presenciais': {
+            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
+            presenciais por menos tempo no dia e têm parte das aulas
+            remotas. Em especial, neste modelo estudantes <b>aprendem
+            novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
+            tarefas presencialmente</b> com o(a) professor(a).
+            <br><br><b>Por que este modelo?</b><br>
+            <li>Alunos e professores mantêm o convívio, e os estudantes podem tirar dúvidas 
+            durante a realização dos exercícios e se beneficiarem com as dúvidas dos colegas.</li>
+            <br><b>Pontos de atenção</b>"""
+            ,
+            "hours_per_day": 2,
+            "priority": False
+        }
+        ,
+        'Híbrido: Aulas gravadas previamente em vídeo': {
+            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
+            presenciais por menos tempo no dia e têm parte das aulas
+            remotas. Nos modelos híbridos todos os estudantes retornam às aulas
+            presenciais por tempo reduzido na escola e têm parte das aulas
+            remotas. Em especial, neste modelo ambas as <b>aulas expositivas e exercícios são feitos 
+            em sala e de forma remota</b>
+            <br><br><b>Por que este modelo?</b><br>
+            <li>Alunos podem adaptar a sua nova rotina ao ensino remoto, e os professores 
+            acompanham todos durante o processo.</b>"""
+            ,
+            "hours_per_day": 2,
+            "priority": False
+        }
+        , 
+        'Prioritário: Parte dos estudantes em aulas remotas e parte presencial': {
+            "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
+            de estudantes presencial, enquanto outro grupo acompanha remotamente 
+            por meio de videoconferência (VC)</b>.
+            <br><br><b>Por que este modelo?</b>
+            <li>Turma não precisa ser separada</li>
+            <li>Professores(as) podem trabalhar sincronamente com todos os estudantes</li>	
+            <br><b>Pontos de atenção</b>
+            <li>Professores(as) não conseguem ver estudantes durante a instrução</li>	
+            <li>Dificuldade para estudantes acompanherem o ritmo da aula remotamente</li>"""
+            ,
+            "hours_per_day": 5,
+            "priority": True
+        }
+    }
+
     col1_1, col1_2 = st.beta_columns([0.9, 0.2])
     with col1_1:
-        education_model = st.selectbox(
-            "", UNESCOmodels
+        params["education_model"] = st.selectbox(
+            "", list(UNESCO_models.keys())
         )
+        params["priority"] = UNESCO_models[params["education_model"]]["priority"]
+
+        # Sobre o modelo
+        st.write(
+                f"""<div class="container">
+                    {UNESCO_models[params["education_model"]]["description"]}
+                    </div>
+                    <br>
+                """,
+                unsafe_allow_html=True,
+            )
+
     with col1_2:
         st.write(
             f"""<div class="container">
@@ -200,6 +286,21 @@ def genSimulationContainer(df, config, session_state):
             """,
             unsafe_allow_html=True,
         )
+
+    st.write(
+        f"""<br>
+            <div class="container" style="padding-left:0px;">
+                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>1. Escolha o modelo de retorno às atividades</b></div>
+                <div class="minor-padding">
+                    Existem diversos modelos possíveis de retorno avaliadas de acordo com as etapas de aprendizado. Separamos abaixo 5 opções possíveis indicadas pela UNESCO.
+                </div>
+            </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # TODO: rever descrição dos modelos para tabela - deve dar para
+    # utilizar o dict UNESCO_models aqui!
     st.write(
         f"""
         <a href="#entenda-modelo">
@@ -239,8 +340,6 @@ def genSimulationContainer(df, config, session_state):
         unsafe_allow_html=True,
     )
 
-
-
     st.write(
         f"""<br>
             <div class="container" style="padding-left:0px;">
@@ -249,15 +348,24 @@ def genSimulationContainer(df, config, session_state):
         """,
         unsafe_allow_html=True,
     )
-    params = dict()
+
     col2a_1, col2a_2, col2a_3, col2a_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
     with col2a_1:
         params["number_students"] = st.number_input(
-            "Quantos estudantes retornam na rede?",
+            "Quantos estudantes retornam às aulas presenciais?",
             format="%d",
             value=data["number_students"].values[0],
             step=1,
         )
+        if params["priority"]:
+            params["number_remote_students"] = st.number_input(
+            "Quantos estudantes acompanham às aulas somente de forma remota?",
+            format="%d",
+            value=data["number_students"].values[0],
+            step=1,
+        )
+
+
     with col2a_2:
         st.write(
             f"""
@@ -359,10 +467,6 @@ def genSimulationContainer(df, config, session_state):
         unsafe_allow_html=True,
     )
 
-
-
-
-
     col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
         [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
     )
@@ -396,10 +500,14 @@ def genSimulationContainer(df, config, session_state):
         )
     col3_4 = col2a_2
     with col3_5:
-        hours_classes = st.slider(
-            "Selecione o número de horas presenciais na semana por turma:", 0, 4, 2, 1,
-        )
-        params["hours_classes"] = int(hours_classes)
+        params["hours_per_day"] = int(st.slider(
+            "Selecione o número de horas presenciais diárias na escola por turma:", 
+            min_value=1, 
+            max_value=5, 
+            value=UNESCO_models[params["education_model"]]["hours_per_day"], 
+            step=1,
+        ))
+
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
@@ -415,13 +523,12 @@ def genSimulationContainer(df, config, session_state):
         )
     col3_6=col2a_4
 
-
-
     with st.beta_expander("simular retorno"):
         user_analytics = amplitude.gen_user(utils.get_server_session())
         opening_response = user_analytics.safe_log_event(
             "clicked simule retorno", session_state, is_new_page=True
         )
+        print(params)
         genSimulationResult(params, config)
 
     '''if st.button("Simular retorno"):
@@ -446,6 +553,7 @@ def genSimulationContainer(df, config, session_state):
         session_state=session_state,
     )'''
 
+    # TODO: escrever metodologia v1.2
     with st.beta_expander("ler metodologia"):
         user_analytics = amplitude.gen_user(utils.get_server_session())
         opening_response = user_analytics.safe_log_event(

@@ -9,12 +9,6 @@ br:
                 city: "br/cities/safeschools/main"
                 students: "br/cities/safeschools/students"
     simule:
-        class:
-            hours_per_week: 40
-            hours_per_lecture: 2
-            lectures_per_student:
-                equitative: 1
-                priority: 5
         supplies:
             mask_time_limit: 3
             sanitizer_per_person_per_hour: 0.002
