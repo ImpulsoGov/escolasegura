@@ -548,7 +548,7 @@ def genSimulationContainer(df, config, session_state):
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                A instituição CDC recomenda o máximo de 20 estudantes por sala para diminuir o risco de transmissão.
+                Limitamos em 20 estudantes por sala para diminiuir o risco de transmissão seguindo critérios sanitários.
             </div>
             """,
             unsafe_allow_html=True,
