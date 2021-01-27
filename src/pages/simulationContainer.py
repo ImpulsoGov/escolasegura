@@ -97,7 +97,7 @@ def genSimulationResult(params, config):
                     </div>
                 </div>
                 <div class="col minor-padding">
-                    <a href="https://imgur.com/a/u8EKYBi" target="_blank">
+                    <a href="https://i.imgur.com/KHVgLLX.jpg" target="_blank">
                         <img class="images" src="https://i.imgur.com/KHVgLLX.jpg"> 
                     </a>
                 </div>
@@ -115,8 +115,44 @@ def genSimulationResult(params, config):
             <div id="entenda-turno" class="info-modal-window" style="width: 80%; height: 70%;">
                 <div>
                     <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                    <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Etapas de Ensino</h1>
-                    <img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/BYRTiuC.jpg">
+                    <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Entenda sobre Turnos</h1>
+                    <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+                        <br>
+                        <b>MODELO: BASEADO EM HORAS</b><br>
+                        <b>Por que esse modelo?</b><br>
+                        <li>Alunos podem frequentar a escola diariamente, recebendo suporte didático e emocional.</li>                            
+                        <b>Desafios:</b><br>
+                        <li>Maior risco de infecção.</li>
+                        <li>Maior dificuldade de organizar os horários.</li>
+                        <li>Exige dois procedimentos de limpeza pesada entre os turnos e ao final do dia.</li>                            
+                        <br>
+                        <br>
+                        <b>MODELO: BASEADOS EM DIAS ALTERNADOS</b><br>
+                        <b>Por que esse modelo?</b><br>
+                        <li>Alunos recebem suporte didático e emocional regularmente, restabelecendo uma rotina e contato com professores e colegas.</li>
+                        <b>Desafios:</b><br>
+                        <li>Risco alto de infecção.</li>
+                        <li>Exige procedimento de limpeza pesada diariamente ao final do dia.</li>
+                        <li>Dificuldade maior para os responsáveis organizarem suas rotinas.</li>
+                        <br>
+                        <br>
+                        <b>MODELO: BASEADOS EM DIAS CONSECUTIVOS</b><br>
+                        <b>Por que esse modelo?</b><br>
+                        <li>Alunos frequentam a escola ao menos 1 vez por semana, e estabelecem um contato com a escola. </li>
+                        <b>Desafios:</b><br>
+                        <li>Risco alto de infecção.</li>
+                        <li>Alunos ficam um tempo maior afastados fisicamente da escola.</li>
+                        <br>
+                        <br>
+                        <b>MODELO: BASEADO EM SEMANAS</b><br>
+                        <b>Por que esse modelo?</b><br>
+                        <li>Alunos têm exposição a todas as matérias, e uma rotina mais próxima ao usual.</li>
+                        <li>Menor risco de infecção.</li>
+                        <b>Desafios:</b><br>
+                        <li>Alunos ficam um tempo maior afastados fisicamente da escola.</li>
+                        <br>Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1ELqjm6NzJkHmRG6CDxLg5XY1iOgAPZeV&export=download">[AQUI]</a>.
+                    </div>
+                    <a href="https://drive.google.com/u/1/uc?id=1ELqjm6NzJkHmRG6CDxLg5XY1iOgAPZeV&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/BYRTiuC.jpg"></a>
                 </div>
             </div>
         """,
@@ -189,11 +225,7 @@ def genSimulationContainer(df, config, session_state):
             aula, porém seguindo os novos protocolos de distanciamento e segurança
             sanitária.
             <br><br><b>Por que este modelo?</b><br>
-            <li>Professores(as) e estudantes já habituados</li>
-            <li>Facilita interação entre professores e estudantes</li>
-            <br><b>Pontos de atenção</b>
-            <li>Capacidade física limitada para atender todos os estudantes</li>
-            <li>Maior risco de disseminação da Covid-19</li>"""
+            Modelo tradicional, onde os estudantes e docentes estão habituados."""
             ,
             "hours_per_day": 5,
             "priority": False
@@ -203,12 +235,10 @@ def genSimulationContainer(df, config, session_state):
             "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
             presenciais por menos tempo no dia e têm parte das aulas
             remotas. Em especial, neste modelo professores(as) <b>transmitem
-            conceitos para os estudantes presencialmente<b>, e, em seguida,
+            conceitos para os estudantes presencialmente</b>, e, em seguida,
             <b>estudantes completam exercícios e tarefas em casa</b>.
             <br><br><b>Por que este modelo?</b><br>
-            <li>Alunos e professores mantêm um contato próximo, e estudantes 
-            podem tirar dúvidas durante a exposição da matéria.</li>
-            <br><b>Pontos de atenção</b>"""
+            Alunos e professores mantêm um contato próximo, e estudantes podem tirar dúvidas durante a exposição da matéria."""
             ,
             "hours_per_day": 3,
             "priority": False
@@ -221,9 +251,8 @@ def genSimulationContainer(df, config, session_state):
             novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
             tarefas presencialmente</b> com o(a) professor(a).
             <br><br><b>Por que este modelo?</b><br>
-            <li>Alunos e professores mantêm o convívio, e os estudantes podem tirar dúvidas 
-            durante a realização dos exercícios e se beneficiarem com as dúvidas dos colegas.</li>
-            <br><b>Pontos de atenção</b>"""
+            Alunos e professores mantêm o convívio, e os estudantes podem tirar dúvidas 
+            urante a realização dos exercícios e se beneficiarem com as dúvidas dos colegas."""
             ,
             "hours_per_day": 2,
             "priority": False
@@ -237,7 +266,7 @@ def genSimulationContainer(df, config, session_state):
             remotas. Em especial, neste modelo ambas as <b>aulas expositivas e exercícios são feitos 
             em sala e de forma remota</b>
             <br><br><b>Por que este modelo?</b><br>
-            <li>Alunos podem adaptar a sua nova rotina ao ensino remoto, e os professores 
+            Alunos podem adaptar a sua nova rotina ao ensino remoto, e os professores 
             acompanham todos durante o processo.</b>"""
             ,
             "hours_per_day": 2,
@@ -249,35 +278,94 @@ def genSimulationContainer(df, config, session_state):
             de estudantes presencial, enquanto outro grupo acompanha remotamente 
             por meio de videoconferência (VC)</b>.
             <br><br><b>Por que este modelo?</b>
-            <li>Turma não precisa ser separada</li>
-            <li>Professores(as) podem trabalhar sincronamente com todos os estudantes</li>	
-            <br><b>Pontos de atenção</b>
-            <li>Professores(as) não conseguem ver estudantes durante a instrução</li>	
-            <li>Dificuldade para estudantes acompanherem o ritmo da aula remotamente</li>"""
+            Turma mantém o convívio, mesmo que virtual, e os professores atentem todos da turma no mesmo momento."""
             ,
             "hours_per_day": 5,
             "priority": True
         }
     }
 
-    col1_1, col1_2 = st.beta_columns([0.9, 0.2])
+    col1_1, col1_2, col1_3, col1_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
     with col1_1:
         params["education_model"] = st.selectbox(
             "", list(UNESCO_models.keys())
         )
         params["priority"] = UNESCO_models[params["education_model"]]["priority"]
-
-        # Sobre o modelo
+    with col1_2:
         st.write(
-                f"""<div class="container">
-                    {UNESCO_models[params["education_model"]]["description"]}
+            f"""
+            <div class="container main-padding">
+                <br>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with col1_3:
+    # Sobre o modelo
+        st.write(
+                f"""
+                <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
+                    <div style="font-family: 'Roboto Condensed', sans-serif; padding:10px; margin-bottom:0px; margin-top: 16px;margin-left: 16px; margin-right: 16px;">
+                        <b>{params["education_model"]}</b>
+                        <br><br>{UNESCO_models[params["education_model"]]["description"]}
                     </div>
-                    <br>
+                    <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+                        <a href="#entenda-modelo">
+                            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+                                leia sobre todos os modelos >
+                            </button>
+                        </a>
+                    </div>
+                    <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+                        <a href="#entenda-etapa">
+                            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+                                veja considerações por etapa de ensino >
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div id="entenda-modelo" class="info-modal-window" style="width: 80%; height: 70%;">
+                    <div>
+                        <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+                        <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Modelos</h1>
+                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+                            Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download">[AQUI]</a>.
+                        </div>
+                        <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/ZByy47a.jpg"></a>
+                    </div>
+                </div>
+                <div id="entenda-etapa" class="info-modal-window" style="width: 80%; height: 70%;">
+                    <div>
+                        <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+                        <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Etapas de Ensino</h1>
+                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+                            <br>
+                            <b>4 - 8 anos</b><br>
+                            Pontos principais para consideração:<br>
+                            <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves.</li>                            
+                            <li>Pais e responsáveis necessitam de creches e suporte para manter demais atividades do dia a dia</li>
+                            <li>Eficácia muito baixa do ensino remoto</li><br>
+                            <b>8 - 12 anos</b><br>
+                            Pontos principais para consideração:<br>
+                            <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves, mas há maior dificuldade em adotar medidas sanitárias.</li>
+                            <li>Já possuem maior autonomia no cotidiano e pode</li><br>
+                            <b>12 - 17 anos</b><br>
+                            Pontos principais para consideração:<br>
+                            <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários</li>
+                            <li>Logística de agendamento presencial pode ser mais complexa, pois os anos possuem matérias e professores diversos.</li><br>
+                            <b>17 - 18 anos</b><br>
+                            Pontos principais para consideração:<br>
+                            <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários.</li>
+                            <li>Alta eficácia e adesão ao método remoto</li>
+                            <br>Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download">[AQUI]</a>.
+                        </div>
+                        <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/FyoIFe9.jpg"></a>
+                    </div>
+                </div>
                 """,
                 unsafe_allow_html=True,
-            )
-
-    with col1_2:
+        )
+    with col1_4:
         st.write(
             f"""<div class="container">
                 <br>
@@ -287,58 +375,6 @@ def genSimulationContainer(df, config, session_state):
             unsafe_allow_html=True,
         )
 
-    st.write(
-        f"""<br>
-            <div class="container" style="padding-left:0px;">
-                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>1. Escolha o modelo de retorno às atividades</b></div>
-                <div class="minor-padding">
-                    Existem diversos modelos possíveis de retorno avaliadas de acordo com as etapas de aprendizado. Separamos abaixo 5 opções possíveis indicadas pela UNESCO.
-                </div>
-            </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    # TODO: rever descrição dos modelos para tabela - deve dar para
-    # utilizar o dict UNESCO_models aqui!
-    st.write(
-        f"""
-        <a href="#entenda-modelo">
-            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
-                entenda cada modelo >
-            </button>
-        </a>
-        <div id="entenda-modelo" class="info-modal-window" style="width: 80%; height: 70%;">
-            <div>
-                <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Modelos</h1>
-                <img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/ZByy47a.jpg">
-            </div>
-        </div>
-        <div class="container">
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    st.write(
-        f"""
-        <a href="#entenda-etapa">
-            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px;">
-                planeje por etapa de ensino >
-            </button>
-        </a>
-        <div id="entenda-etapa" class="info-modal-window" style="width: 80%; height: 70%;">
-            <div>
-                <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Etapas de Ensino</h1>
-                <img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/FyoIFe9.jpg">
-            </div>
-        </div>
-        <div class="container">
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
 
     st.write(
         f"""<br>
@@ -395,7 +431,21 @@ def genSimulationContainer(df, config, session_state):
                 <div>
                     <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
                     <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Estudantes</h1>
-                    <img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/fULJQWh.jpg">
+                    <div style="font-size: 20px; padding: 0px 50px 0px 50px;">
+                        <b>Grupos que requerem atencão especial</b>
+                    </div>
+                    <br>
+                    <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+                        <b>Exemplos de grupos vulneráveis ou/e marginalizados</b>
+                        <li>Minorias</li>
+                        <li>Meninas adolescentes</li>
+                        <li>Crianças com deficiência de aprendizagem</li>
+                        <li>Crianças que vivem em instituições de abrigo</li>
+                        <li>Crianças vivendo em condição de pobreza, em residências com alta ocupância ou improvisadas</li>
+                        <li>Orfãos</li>
+                        <li>Crianças separadas de seus responsáveis</li>
+                        <li>Crianças e adolescentes em risco de abandono escolar</li>
+                    </div>
                 </div>
             </div>
             """,
@@ -447,7 +497,12 @@ def genSimulationContainer(df, config, session_state):
                     <div>
                         <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
                         <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Professores</h1>
-                        <img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/4ai7xDK.jpg">
+                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+                            <b>Fatores a serem considerados:</b> grupos vulneráveis, número de casos suspeitos, desconforto da rede com o retorno presencial, dificuldade logística e a disponibilidade de retorno presencial.
+                            <br><br>O quadro explicativo traz para cada fator um desafio e uma ação sugerida.
+                            <br><br>Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download">[AQUI]</a>.
+                        </div>
+                        <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/4ai7xDK.jpg"></a>
                     </div>
                 </div>
             </div>
@@ -493,7 +548,7 @@ def genSimulationContainer(df, config, session_state):
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                As instituições XX recomendam o máximo de XX estudantes por sala para diminuir o risco de transmissão.
+                A instituição CDC recomenda o máximo de 20 estudantes por sala para diminuir o risco de transmissão.
             </div>
             """,
             unsafe_allow_html=True,
