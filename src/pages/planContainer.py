@@ -166,7 +166,7 @@ def genPlanContainer(df, config, session_state):
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>
                             <div class="button-position" style="padding-bottom: 10px;">
-                                <a href="https://drive.google.com/file/d/14XzVchfOmub2zBdCJwl7C8s-bc2QZgCS/view" target="blank_">
+                                <a href="https://drive.google.com/u/1/uc?id=14XzVchfOmub2zBdCJwl7C8s-bc2QZgCS&export=download" target="blank_">
                                 <button class="button-passoapasso"; style="border-radius: .25rem;">acesse ></button><br>
                                 </a>
                             </div>              
