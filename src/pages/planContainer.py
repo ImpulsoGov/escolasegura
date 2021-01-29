@@ -159,9 +159,19 @@ def genPlanContainer(df, config, session_state):
                             </div>
                             <div class="subtitle-section minor-padding"> 
                                 Como checar o <b>preparo</b> da minha secretaria e rede para a reabertura presencial?
+                            </div>
+                            <div class="minor-padding main-black-span">
+                                <b>Guia com 10 passos para uma reabertura segura da sua rede.</b><br>
+                                <b><i>Quem usa?</i></b>
+                                <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
+                            </div><br>
+                            <div class="button-position" style="padding-bottom: 10px;">
+                                <a href="https://drive.google.com/file/d/14XzVchfOmub2zBdCJwl7C8s-bc2QZgCS/view" target="blank_">
+                                <button class="button-passoapasso"; style="border-radius: .25rem;">acesse ></button><br>
+                                </a>
                             </div>              
                             <div class="minor-padding main-black-span">
-                                <b>Guia com 10 passos para uma reabertura segura da sua rede.</b> A ferramenta auxilia na criação de um plano de retomada com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br><br>
+                                Ferramenta que <b>auxilia na criação de um plano de retomada</b> com a inclusão da Secretaria de Saúde, comunidade escolar e outros atores.<br>
                                 <b><i>Quem usa?</i></b>
                                 <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.
                             </div><br>

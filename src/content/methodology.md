@@ -55,7 +55,6 @@ Note que a capacidade de atendimento da rede pode exceder o seu número convenci
 
 Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**.
 
-
 ### Como calculamos as quantidades de materiais?
 
 O simulador usa valores de referência para determinar as quantidades de materiais de proteção e limpeza necessários. 
