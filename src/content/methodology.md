@@ -39,19 +39,19 @@ Os modelos indicam a quantidade de horas de aula no dia de cada turma (ex: um mo
 
 O simulador recebe todas as informações mencionadas acima e, além dessas quantidades, fixamos o total de horas disponíveis para aulas num dia (H = 10 = 5 horas x 2 turnos) para os cálculos. Assim, a quantidade máxima de aulas por dia (Q) é dada pela razão do total de horas disponíveis e a duração máxima escolhida de permanência na escola num dia:
 
-$$ Q = \left\lfloor \frac{ H }{ D } \right\rfloor $$
+    $$ Q = \left\lfloor \frac{ H }{ D } \right\rfloor $$
 
 Dada a quantidade de aulas, o máximo de turmas para retorno depende da disponibilidade de professores e salas. Cada professor acompanha somente 1 turma, e cada turma precisa de uma sala disponível para aula. Logo, com uma quantidade de salas disponíveis S e uma quantidade de professores que podem retornar **P**, a oferta possível de turmas **O** é dada pela fórmula:
 
-$$ O = \min{ ( S \times Q, P ) } $$
+    $$ O = \min{ ( S \times Q, P ) } $$
 
 Como cada turma pode ter até **K** alunos, a quantidade máxima de alunos que a rede é capaz de retornar num dia é dada por:
 
-$$ C = K \times O $$
+    $$ C = K \times O $$
     
 Note que a capacidade de atendimento da rede pode exceder o seu número convencional de alunos. Uma rede que oferece apenas uma aula por semana por aluno pode atender muito mais alunos do que uma rede operando de maneira convencional. Portanto, o número de alunos que de fato retornam **R** é o mínimo entre a quantidade de alunos que têm permissão para retornar **A** e a capacidade de retorno da rede C. Expresso como uma fórmula:
 
-$$ R = \min{ ( A,C ) } $$
+    $$ R = \min{ ( A,C ) } $$
 
 Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**.
 
@@ -64,29 +64,29 @@ Note que as quantidades de materiais de uso individual (como máscaras e álcool
 
 Com base no número de aulas por semana por aluno (N) e a duração de cada aula (D), é possível calcular o tempo semanal em aulas por aluno (TA).
 
-$$ T_A = N \times D $$
+    $$ T_A = N \times D $$
 
 Considerando o uso estimado de L litros de álcool em gel por hora por pessoa, a quantidade de álcool em gel necessária para os alunos (GA) é:
 
-$$ G_A = R \times T_A \times L $$
+    $$ G_A = R \times T_A \times L $$
 
 Para determinar a quantidade de máscaras necessárias, o simulador leva em consideração a troca delas a cada E horas. Contudo, vale ressaltar que as aulas nem sempre são sequenciais. É possível que entre aulas o aluno seja obrigado a descartar a sua máscara por conta da validade. É prudente garantir ao aluno pelo menos uma máscara por aula. Assim, a quantidade de máscaras exigidas por alunos MA é dada por:
 
-$$ M_A = R \times \max{ \left( N, \left\lceil{}  \frac{T_A}{E}  \right\rceil{} \right) }  $$
+    $$ M_A = R \times \max{ \left( N, \left\lceil{}  \frac{T_A}{E}  \right\rceil{} \right) }  $$
 
 Com relação aos professores, o tempo semanal em aulas por professor TP  é dado por:
 
-$$ T_P = \frac{ R \times T_A }{ K \times P } $$
+    $$ T_P = \frac{ R \times T_A }{ K \times P } $$
 
 Portanto, as quantidades sugeridas de álcool em gel para professores GP e de máscaras para professores MP são dadas por:
 
-$$ G_P = P \times T_P \times L $$
-$$ M_P =  P \times \left\lceil \frac{ T_P }{ E } \right\rceil  $$
+    $$ G_P = P \times T_P \times L $$
+    $$ M_P =  P \times \left\lceil \frac{ T_P }{ E } \right\rceil  $$
 
 No caso dos professores, não há a ressalva sobre garantir uma máscara por aula. Essa escolha provém da expectativa de que intervalos entre aulas de professores serão mais curtos. Nesse sentido, o aproveitamento das máscaras é maior. Contudo, a troca ainda deve ser observada a cada E horas. Com isso, as quantidade totais respectivas de álcool em gel GT  e de máscaras MT são
 
-$$ G_T = G_A + G_P $$
-$$ M_T = M_A + M_P $$
+    $$ G_T = G_A + G_P $$
+    $$ M_T = M_A + M_P $$
 
 No caso de termômetros infravermelhos, é indicado um termômetro para cada 100 alunos. O simulador automaticamente realiza esse cálculo, arredondando para cima. 
 
@@ -97,7 +97,7 @@ O gestor passa como variáveis para o simulador o total de alunos que se deseja 
 
 Calculamos a oferta de aulas pelo mínimo entre o número de professores e o total de salas disponíveis na semana, e o total de tempos de aula **(n)** disponíveis na semana:
 
-$$ O = (n x 2) x min{S, P} $$
+    $$ O = (n x 2) x min{S, P} $$
 
 Para cada modelo de turno, temos uma quantidade de tempos de aula diferentes por semana:
 - **Modelo baseado em horas**: alunos frequentam a escola todos os dias.
@@ -170,9 +170,7 @@ Além dessas, são fixados valores para cada modelo de retorno:
 
 Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos o conceito de **oportunidade**: uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até $K$ alunos (máximo por turma), a **quantidade de oportunidades de aulas na rede** é dada por $K \times O$, onde $O$ corresponde à oferta total de aulas na rede.
 
-A oferta de aulas na rede ($O$) depende diretamente da disponibilidade de professores e salas. Dado o total de horas disponíveis na semana ($H$) e a duração definida de uma aula ($D$), o máximo de aulas que podem ser oferecidas por professor/sala é dado por 
-
-$$ Q = \left\lfloor \frac{ H }{ D } \right\rfloor $$
+A oferta de aulas na rede ($O$) depende diretamente da disponibilidade de professores e salas. Dado o total de horas disponíveis na semana ($H$) e a duração definida de uma aula ($D$), o máximo de aulas que podem ser oferecidas por professor/sala é dado por $ Q = \left\lfloor \frac{ H }{ D } \right\rfloor $
 
 Assim, a oferta total de aulas é dada por:
 
