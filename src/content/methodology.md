@@ -20,17 +20,18 @@ Ao acessar a ferramenta, o usuário encontrará os seguintes campos para preench
  - **Quantidade de alunos que se deseja retornar (A):** O usuário fornece o número total de alunos que deseja retornar às atividades presenciais na rede local de ensino. O sistema automaticamente fornece como sugestão a quantidade que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
 - **Quantidade de professores disponíveis para retorno (P):** O usuário fornece o número de professores disponíveis para dar aula na rede local de ensino. O sistema automaticamente fornece como sugestão a quantidade de professores que consta nas bases do governo. Contudo, o usuário está livre para escolher a quantidade que quiser.
 - **Número máximo de alunos por sala (K):** O usuário fornece o limite de alunos por sala determinado pelo gestor a fim de limitar a transmissibilidade da doença.
-- **Modelo de retorno:** O usuário pode escolher os seguintes modelos de retorno:<br>
+- **Modelo de retorno:** O usuário pode escolher os seguintes modelos de retorno:
     - **Modelo:** Totalmente presencial<br>
-        **Descrição:** Neste modelo, todos os estudantes retornam às aulas presenciais como antes, com os mesmos horários em sala de aula, porém seguindo os novos protocolos de distanciamento e segurança sanitária.<br><br>
-    - **Modelo:** Híbrido com aulas expositivas presenciais + tarefas para casa.<br>
-        **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo professores(as) transmitem conceitos para os estudantes presencialmente, e os estudantes completam exercícios e tarefas em casa.<br><br>
-    - **Modelo:** Híbrido: Aulas gravadas em vídeo + tarefas presenciais<br>
-    **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo estudantes aprendem novos conceitos de forma remota e concluem exercícios e tarefas presencialmente com o(a) professor(a).<br><br>
-    - **Modelo:** Híbrido: Aulas gravadas previamente e distribuídas em vídeo.<br>
-    **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo ambas as aulas expositivas e exercícios são feitos em sala e de forma remota.<br><br>
-    - **Modelo:** Prioritário: Aulas síncronas por vídeo com parte de estudantes em sala e parte em casa (grupo dividido)<br><br>
-    **Descrição:** Neste modelo, os professores têm uma aula normal completa com um grupo de estudantes presencial, enquanto outro grupo acompanha remotamente por meio de videoconferência (VC).<br><br>
+        - **Descrição:** Neste modelo, todos os estudantes retornam às aulas presenciais como antes, com os mesmos horários em sala de aula, porém seguindo os novos protocolos de distanciamento e segurança sanitária.<br><br>
+    - **Modelo:** Híbrido com aulas expositivas presenciais + tarefas para casa.
+        - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo professores(as) transmitem conceitos para os estudantes presencialmente, e os estudantes completam exercícios e tarefas em casa.
+    - **Modelo:** Híbrido: Aulas gravadas em vídeo + tarefas presenciais
+      - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo estudantes aprendem novos conceitos de forma remota e concluem exercícios e tarefas presencialmente com o(a) professor(a).
+    - **Modelo:** Híbrido: Aulas gravadas previamente e distribuídas em vídeo.
+      - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo ambas as aulas expositivas e exercícios são feitos em sala e de forma remota.
+    - **Modelo:** Prioritário: Aulas síncronas por vídeo com parte de estudantes em sala e parte em casa (grupo dividido)
+      - **Descrição:** Neste modelo, os professores têm uma aula normal completa com um grupo de estudantes presencial, enquanto outro grupo acompanha remotamente por meio de videoconferência (VC).
+ <br><br>
 Os modelos indicam a quantidade de horas de aula no dia de cada turma (ex: um modelo total presencial teria 5 horas de aula enquanto um modelo híbrido teria uma carga reduzida, de 3 horas). **Apenas um modelo deve ser escolhido por simulação.**
 
 
@@ -38,19 +39,27 @@ Os modelos indicam a quantidade de horas de aula no dia de cada turma (ex: um mo
 
 O simulador recebe todas as informações mencionadas acima e, além dessas quantidades, fixamos o total de horas disponíveis para aulas num dia (H = 10 = 5 horas x 2 turnos) para os cálculos. Assim, a quantidade máxima de aulas por dia (Q) é dada pela razão do total de horas disponíveis e a duração máxima escolhida de permanência na escola num dia:
 
-    $$ Q = \left\lfloor \frac{ H }{ D } \right\rfloor $$
+$$
+Q = \left\lfloor \frac{ H }{ D } \right\rfloor 
+$$
 
 Dada a quantidade de aulas, o máximo de turmas para retorno depende da disponibilidade de professores e salas. Cada professor acompanha somente 1 turma, e cada turma precisa de uma sala disponível para aula. Logo, com uma quantidade de salas disponíveis S e uma quantidade de professores que podem retornar **P**, a oferta possível de turmas **O** é dada pela fórmula:
 
-    $$ O = \min{ ( S \times Q, P ) } $$
+$$
+O = \min{ ( S \times Q, P ) } 
+$$
 
 Como cada turma pode ter até **K** alunos, a quantidade máxima de alunos que a rede é capaz de retornar num dia é dada por:
 
-    $$ C = K \times O $$
+$$
+C = K \times O 
+$$
     
 Note que a capacidade de atendimento da rede pode exceder o seu número convencional de alunos. Uma rede que oferece apenas uma aula por semana por aluno pode atender muito mais alunos do que uma rede operando de maneira convencional. Portanto, o número de alunos que de fato retornam **R** é o mínimo entre a quantidade de alunos que têm permissão para retornar **A** e a capacidade de retorno da rede C. Expresso como uma fórmula:
 
-    $$ R = \min{ ( A,C ) } $$
+$$
+R = \min{ ( A,C ) } 
+$$
 
 Assim, as quantidades respectivas de alunos e professores que de fato retornam são **R** e **P**.
 
@@ -63,29 +72,46 @@ Note que as quantidades de materiais de uso individual (como máscaras e álcool
 
 Com base no número de aulas por semana por aluno (N) e a duração de cada aula (D), é possível calcular o tempo semanal em aulas por aluno (TA).
 
-    $$ T_A = N \times D $$
+$$
+T_A = N \times D 
+$$
 
 Considerando o uso estimado de L litros de álcool em gel por hora por pessoa, a quantidade de álcool em gel necessária para os alunos (GA) é:
 
-    $$ G_A = R \times T_A \times L $$
+$$
+G_A = R \times T_A \times L 
+$$
 
 Para determinar a quantidade de máscaras necessárias, o simulador leva em consideração a troca delas a cada E horas. Contudo, vale ressaltar que as aulas nem sempre são sequenciais. É possível que entre aulas o aluno seja obrigado a descartar a sua máscara por conta da validade. É prudente garantir ao aluno pelo menos uma máscara por aula. Assim, a quantidade de máscaras exigidas por alunos MA é dada por:
 
-    $$ M_A = R \times \max{ \left( N, \left\lceil{}  \frac{T_A}{E}  \right\rceil{} \right) }  $$
+$$ 
+M_A = R \times \max{ \left( N, \left\lceil{}  \frac{T_A}{E}  \right\rceil{} \right) }  
+$$
 
 Com relação aos professores, o tempo semanal em aulas por professor TP  é dado por:
 
-    $$ T_P = \frac{ R \times T_A }{ K \times P } $$
+$$
+T_P = \frac{ R \times T_A }{ K \times P } 
+$$
 
 Portanto, as quantidades sugeridas de álcool em gel para professores GP e de máscaras para professores MP são dadas por:
 
-    $$ G_P = P \times T_P \times L $$
-    $$ M_P =  P \times \left\lceil \frac{ T_P }{ E } \right\rceil  $$
+$$
+G_P = P \times T_P \times L 
+$$
+
+$$ 
+M_P =  P \times \left\lceil \frac{ T_P }{ E } \right\rceil  
+$$
 
 No caso dos professores, não há a ressalva sobre garantir uma máscara por aula. Essa escolha provém da expectativa de que intervalos entre aulas de professores serão mais curtos. Nesse sentido, o aproveitamento das máscaras é maior. Contudo, a troca ainda deve ser observada a cada E horas. Com isso, as quantidade totais respectivas de álcool em gel GT  e de máscaras MT são
 
-    $$ G_T = G_A + G_P $$
-    $$ M_T = M_A + M_P $$
+$$
+G_T = G_A + G_P
+$$
+ $$ 
+ M_T = M_A + M_P 
+ $$
 
 No caso de termômetros infravermelhos, é indicado um termômetro para cada 100 alunos. O simulador automaticamente realiza esse cálculo, arredondando para cima. 
 
@@ -96,7 +122,9 @@ O gestor passa como variáveis para o simulador o total de alunos que se deseja 
 
 Calculamos a oferta de aulas pelo mínimo entre o número de professores e o total de salas disponíveis na semana, e o total de tempos de aula **(n)** disponíveis na semana:
 
-    $$ O = (n x 2) x min{S, P} $$
+$$
+O = (n x 2) x min{S, P} 
+$$
 
 Para cada modelo de turno, temos uma quantidade de tempos de aula diferentes por semana:
 - **Modelo baseado em horas**: alunos frequentam a escola todos os dias.
