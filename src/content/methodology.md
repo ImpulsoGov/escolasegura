@@ -22,7 +22,7 @@ Ao acessar a ferramenta, o usuário encontrará os seguintes campos para preench
 - **Número máximo de alunos por sala (K):** O usuário fornece o limite de alunos por sala determinado pelo gestor a fim de limitar a transmissibilidade da doença.
 - **Modelo de retorno:** O usuário pode escolher os seguintes modelos de retorno:
   - **Modelo:** Totalmente presencial
-   - **Descrição:** Neste modelo, todos os estudantes retornam às aulas presenciais como antes, com os mesmos horários em sala de aula, porém seguindo os novos protocolos de distanciamento e segurança sanitária.
+    - **Descrição:** Neste modelo, todos os estudantes retornam às aulas presenciais como antes, com os mesmos horários em sala de aula, porém seguindo os novos protocolos de distanciamento e segurança sanitária.
   - **Modelo:** Híbrido com aulas expositivas presenciais + tarefas para casa.
    - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo professores(as) transmitem conceitos para os estudantes presencialmente, e os estudantes completam exercícios e tarefas em casa.
   - **Modelo:** Híbrido: Aulas gravadas em vídeo + tarefas presenciais
