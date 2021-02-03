@@ -36,7 +36,7 @@ def genSimulationResult(params, config):
             <div class="text-title-section minor-padding main-orange-span"><b>RESULTADO DA SIMULAÇÃO</b></div>
             <div class="row">
                 <div class="col minor-padding">
-                    <p>Você pode retornar até <b>{result["max_groups"]}</b> no modelo de <b>{params["education_model"]}</b>, totalizando:</p>
+                    <p>Você pode no modelo {params["education_model"]}:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
                         <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["num_returning_students"]} </div>
                         <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>{params["hours_per_day"]} horas por dia</div>
