@@ -47,6 +47,7 @@ def get_school_return_projections(
     return num_returning_students, num_returning_teachers, max_groups
 
 
+
 def get_school_return_supplies(
     num_returning_students,
     num_returning_teachers,
