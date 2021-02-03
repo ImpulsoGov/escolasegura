@@ -44,7 +44,7 @@ def get_school_return_projections(
     num_returning_students = max_students_per_class * max_groups
     num_returning_teachers = max_groups
 
-    return num_returning_students, num_returning_teachers, max_hours_classroom
+    return num_returning_students, num_returning_teachers, max_groups
 
 
 def get_school_return_supplies(
@@ -147,7 +147,7 @@ def entrypoint(params, config):
     school_return_data = dict()
 
     # Calculate Number of Returning Students and Teachers
-    num_returning_students, num_returning_teachers = get_school_return_projections(
+    num_returning_students, num_returning_teachers, max_groups = get_school_return_projections(
         params["number_students"],
         params["number_teachers"],
         params["number_classrooms"],
@@ -166,7 +166,7 @@ def entrypoint(params, config):
     return {
         "num_returning_students": num_returning_students,
         "num_returning_teachers": num_returning_teachers,
-        "max_hours_classroom": max_hours_classroom,
+        "max_groups": max_groups,
         "total_masks": round(total_masks, 0),
         "total_sanitizer": round(total_sanitizer, 0),
         "total_thermometers": round(total_thermometers, 1),
