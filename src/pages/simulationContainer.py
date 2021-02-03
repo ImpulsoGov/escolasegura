@@ -36,7 +36,7 @@ def genSimulationResult(params, config):
             <div class="text-title-section minor-padding main-orange-span"><b>RESULTADO DA SIMULAÇÃO</b></div>
             <div class="row">
                 <div class="col minor-padding">
-                    <p>Você pode retornar até <b>{result["max_hours_classroom"]}</b> no modelo de <b>{params["education_model"]}</b>, totalizando:</p>
+                    <p>Você pode retornar até <b>{result["max_groups"]}</b> no modelo de <b>{params["education_model"]}</b>, totalizando:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
                         <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["num_returning_students"]} </div>
                         <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>{params["hours_per_day"]} horas por dia</div>
@@ -286,8 +286,7 @@ def genSimulationContainer(df, config, session_state):
                     <div style="font-family: 'Roboto Condensed', sans-serif; padding:10px; margin-bottom:0px; margin-top: 16px;margin-left: 16px; margin-right: 16px;">
                         <b>{params["education_model"]}</b>
                         <br><br>{UNESCO_models[params["education_model"]]["description"]}
-                        <br><br><b>FONTE: UNESCO</b>
-                        <br>https://en.unesco.org/sites/default/files/unesco-covid-19-response-toolkit-hybrid-learning.pdf
+                        <br><br><b><a href="https://en.unesco.org/sites/default/files/unesco-covid-19-response-toolkit-hybrid-learning.pdf">FONTE: UNESCO</a></b>
                     </div>
                     <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
                         <a href="#entenda-modelo">
@@ -515,7 +514,7 @@ def genSimulationContainer(df, config, session_state):
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                O número de salas e  restringe o número de turmas que podem voltar de forma simultânea.
+                O número de salas restringe o número de turmas que podem voltar de forma simultânea.
             </div>
         """,
             unsafe_allow_html=True,
