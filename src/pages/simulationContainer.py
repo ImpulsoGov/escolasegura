@@ -36,7 +36,7 @@ def genSimulationResult(params, config):
             <div class="text-title-section minor-padding main-orange-span"><b>RESULTADO DA SIMULAÇÃO</b></div>
             <div class="row">
                 <div class="col minor-padding">
-                    <p>Você pode retornar até <b>10 TURMAS</b> no modelo de <b>{params["education_model"]}</b>, totalizando:</p>
+                    <p>Você pode no modelo {params["education_model"]}:</p>
                     <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
                         <div class="div2 card-number" style="color:#FF934A; width: 30%; margin-right: 20px;"> {result["num_returning_students"]} </div>
                         <div class="div2" style="width: 50%; padding-left: 10px;"><b>estudantes,</b> <br>{params["hours_per_day"]} horas por dia</div>
@@ -228,10 +228,8 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Híbrido: Aulas expositivas presenciais + tarefas em casa': {
-            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
-            presenciais por menos tempo no dia e têm parte das aulas
-            remotas. Em especial, neste modelo professores(as) <b>transmitem
+        'Aulas presenciais + Tarefas remota': {
+            "description": """Neste modelo professores(as) <b>transmitem
             conceitos para os estudantes presencialmente</b>, e, em seguida,
             <b>estudantes completam exercícios e tarefas em casa</b>.
             <br><br><b>Por que este modelo?</b><br>
@@ -241,10 +239,8 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Híbrido: Aulas por vídeo + tarefas presenciais': {
-            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
-            presenciais por menos tempo no dia e têm parte das aulas
-            remotas. Em especial, neste modelo estudantes <b>aprendem
+        'Aulas por vídeo + Tarefas presenciais': {
+            "description": """Neste modelo estudantes <b>aprendem
             novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
             tarefas presencialmente</b> com o(a) professor(a).
             <br><br><b>Por que este modelo?</b><br>
@@ -254,23 +250,8 @@ def genSimulationContainer(df, config, session_state):
             "hours_per_day": 2,
             "priority": False
         }
-        ,
-        'Híbrido: Aulas gravadas previamente em vídeo': {
-            "description": """Nos modelos híbridos, todos os estudantes retornam às aulas
-            presenciais por menos tempo no dia e têm parte das aulas
-            remotas. Nos modelos híbridos todos os estudantes retornam às aulas
-            presenciais por tempo reduzido na escola e têm parte das aulas
-            remotas. Em especial, neste modelo ambas as <b>aulas expositivas e exercícios são feitos 
-            em sala e de forma remota</b>
-            <br><br><b>Por que este modelo?</b><br>
-            Alunos podem adaptar a sua nova rotina ao ensino remoto, e os professores 
-            acompanham todos durante o processo.</b>"""
-            ,
-            "hours_per_day": 2,
-            "priority": False
-        }
         , 
-        'Prioritário: Parte dos estudantes em aulas remotas e parte presencial': {
+        'Parte remoto + Parte presencial': {
             "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
             de estudantes presencial, enquanto outro grupo acompanha remotamente 
             por meio de videoconferência (VC)</b>.
@@ -305,6 +286,7 @@ def genSimulationContainer(df, config, session_state):
                     <div style="font-family: 'Roboto Condensed', sans-serif; padding:10px; margin-bottom:0px; margin-top: 16px;margin-left: 16px; margin-right: 16px;">
                         <b>{params["education_model"]}</b>
                         <br><br>{UNESCO_models[params["education_model"]]["description"]}
+                        <br><br><b><a href="https://en.unesco.org/sites/default/files/unesco-covid-19-response-toolkit-hybrid-learning.pdf">FONTE: UNESCO</a></b>
                     </div>
                     <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
                         <a href="#entenda-modelo">
@@ -419,7 +401,7 @@ def genSimulationContainer(df, config, session_state):
                 <div class="button-position" style="padding-bottom: 15px;">
                     <a href="#entenda-estudantes">
                         <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
-                            como retornar estudantes >
+                            grupos que requerem atencão especial >
                         </button>
                     </a>
                 </div>
@@ -532,7 +514,7 @@ def genSimulationContainer(df, config, session_state):
         st.write(
             f"""
             <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                O número de salas e professores(as) restringem o número de turmas que podem voltar de forma simultânea.
+                O número de salas restringe o número de turmas que podem voltar de forma simultânea.
             </div>
         """,
             unsafe_allow_html=True,
@@ -540,7 +522,7 @@ def genSimulationContainer(df, config, session_state):
     col3_2=col2a_2
     with col3_3:
         params["max_students_per_class"] = st.slider(
-            "Seleciona o máximo de estudantes por turma:", 0, 20, 20, 1
+            "Selecione o máximo de estudantes por turma:", 0, 20, 20, 1
         )
         st.write(
             f"""
