@@ -228,7 +228,7 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Aulas expositivas presenciais + tarefas em casa': {
+        'Aulas presenciais + Tarefas remota': {
             "description": """Neste modelo professores(as) <b>transmitem
             conceitos para os estudantes presencialmente</b>, e, em seguida,
             <b>estudantes completam exercícios e tarefas em casa</b>.
@@ -239,7 +239,7 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Aulas por vídeo + tarefas presenciais': {
+        'Aulas por vídeo + Tarefas presenciais': {
             "description": """Neste modelo estudantes <b>aprendem
             novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
             tarefas presencialmente</b> com o(a) professor(a).
@@ -251,7 +251,7 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Parte dos estudantes em aulas remotas e parte presencial': {
+        'Parte remoto + Parte presencial': {
             "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
             de estudantes presencial, enquanto outro grupo acompanha remotamente 
             por meio de videoconferência (VC)</b>.
