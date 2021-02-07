@@ -5,12 +5,10 @@ import utils
 def genPlanContainer(df, config, session_state):
     """ 
     This is a function that returns the "Plan" session
-
     Parameters: 
         df (type): 2019 school census dataframe
         config (type): doc config.yaml
         session_state (type): section dataset
-
     """
     data = df[
         (df["state_id"] == session_state.state_id)
@@ -72,66 +70,14 @@ def genPlanContainer(df, config, session_state):
             <div style="font-size: 12px">
                 <b>Atualizado em</b>: {date_update}<br>
             </div>
-            <div class="info-div-table">
-            <table class="info-table">
-            <tbody>
-                <tr>
-                    <td class="grey-bg"><strong>Dimensão</strong></td>
-                    <td class="grey-bg"><strong>Indicador</strong></td>
-                    <td class="grey-bg"><strong><p class="blue-text">Novo Normal</p></strong></td>
-                    <td class="grey-bg"><strong>Risco <p class="yellow-text">Moderado</p></strong></td>
-                    <td class="grey-bg"><strong>Risco <p class="orange-text">Alto</p></strong></td>
-                    <td class="grey-bg"><strong>Risco <p class="red-text">Altíssimo</p></strong></td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                    <t><span>Situação da doença</span></t><br/>
-                    </td>
-                    <td><span>Novos casos diários (Média móvel 7 dias)</span></td>
-                    <td class="light-blue-bg bold"><span>x&lt;={situation_classification[1]}</span></td>
-                    <td class="light-yellow-bg bold"><span>{situation_classification[1]}&lt;x&lt;={situation_classification[2]}</span></td>
-                    <td class="light-orange-bg bold"><span>{situation_classification[2]}&lt;=x&lt;={situation_classification[3]}</span></td>
-                    <td class="light-red-bg bold"><span>x &gt;= {situation_classification[3]} </span></td>
-                </tr>
-                <tr>
-                    <td><span>Tendência de novos casos diários</span></td>
-                    <td class="lightgrey-bg" colspan="4"><span>Se crescendo*, mover para o nível mais alto</span></td>
-                </tr>
-                <tr>
-                    <td><span>Controle da doença</span></td>
-                    <td><span>Número de reprodução efetiva</span></td>
-                    <td class="light-blue-bg bold"><span>&lt;{control_classification[1]}</span></td>
-                    <td class="light-yellow-bg bold"><span>&lt;{control_classification[1]} - {control_classification[2]}&gt;</span></td>
-                    <td class="light-orange-bg bold"><span>&lt;{control_classification[2]} - {control_classification[3]}&gt;</span>&nbsp;</td>
-                    <td class="light-red-bg bold"><span>&gt;{control_classification[3]}</span></td>
-                </tr>
-                <tr>
-                    <td><span>Capacidade de respostas do sistema de saúde</span></td>
-                    <td><span>Projeção de tempo para ocupação total de leitos UTI</span></td>
-                    <td class="light-blue-bg bold">{capacity_classification[3]} - 90 dias</td>
-                    <td class="light-yellow-bg bold"><span>{capacity_classification[2]} - {capacity_classification[3]} dias</span></td>
-                    <td class="light-orange-bg bold"><span>{capacity_classification[1]} - {capacity_classification[2]} dias</span></td>
-                    <td class="light-red-bg bold"><span>{capacity_classification[0]} - {capacity_classification[1]} dias</span></td>
-                </tr>
-                <tr>
-                    <td><span>Confiança dos dados</span></td>
-                    <td><span>Subnotificação (casos <b>não</b> diagnosticados a cada 10 infectados)</span></td>
-                    <td class="light-blue-bg bold"><span>{int(trust_classification[0]*10)}&lt;=x&lt;{int(trust_classification[1]*10)}</span></td>
-                    <td class="light-yellow-bg bold"><span>{int(trust_classification[1]*10)}&lt;=x&lt;{int(trust_classification[2]*10)}</span></td>
-                    <td class="light-orange-bg bold"><span>{int(trust_classification[2]*10)}&lt;=x&lt;{int(trust_classification[3]*10)}</span></td>
-                    <td class="light-red-bg bold"><span>{int(trust_classification[3]*10)}&lt;=x&lt;=10</span></td>
-                </tr>
-            </tbody>
-            </table>
-            </div>
-                <div style="font-size: 12px">
-                    * Como determinamos a tendência:
-                    <ul class="sub"> 
-                        <li> Crescendo: caso o aumento de novos casos esteja acontecendo por pelo menos 5 dias. </li>
-                        <li> Descrescendo: caso a diminuição de novos casos esteja acontecendo por pelo menos 14 dias. </li>
-                        <li> Estabilizando: qualquer outra mudança. </li>
-                    </ul>
-                </div>
+            <div class="base-wrapper" style="font-size: 14px">
+            Desenvolvemos uma classificação em Níveis de Alerta, composta por 4 níveis:</br>
+            <br>
+            <li><strong style="color:#F02C2E">Altíssimo</strong>: Há um crescente número de casos de Covid-19 e grande número deles não são detectados</li>
+            <li><strong style="color:#F77800">Alto</strong>: Há muitos casos de Covid-19 com transmissão comunitária. A presença de casos não detectados é provável.</li>
+            <li><strong style="color:#F7B500">Moderado</strong>: há um número moderado de casos e a maioria tem uma fonte de transmissão conhecida.</li>
+            <li><strong style="color:#0090A7">Novo Normal</strong>: casos são raros e técnicas de rastreamento de contato e monitoramento de casos suspeitos evitam disseminação.</li>
+            <br></div>                
             </div>
         </div>
     </div>"""
