@@ -48,8 +48,8 @@ def get_school_return_projections(
     limite_turmas = min(max_alunos, max_salas, max_professores)
     
     # Dado o gargalo, identificar as condições reais do retorno
-    num_professores_retornantes = limite_turmas*max_professores_por_turma
-    num_alunos_retornantes = limite_turmas*max_alunos_por_sala
+    num_professores_retornantes = int(limite_turmas*max_professores_por_turma)
+    num_alunos_retornantes = int(limite_turmas*max_alunos_por_sala)
 
     return num_alunos_retornantes, num_professores_retornantes, limite_turmas
 
