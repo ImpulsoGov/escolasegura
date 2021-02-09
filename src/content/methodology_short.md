@@ -69,9 +69,9 @@ Utilizamos os dados do Censo Escolar 2019 como base para os cálculos padrão, m
 ### Como calculamos os números de alunos e professores retornando?
 
 O simulador utiliza as informações: 
-- $\bold{num_alunos}$: número de alunos autorizados a retornar à escola.
-- $\bold{num_professores}$: número de professores autorizados a voltar à escola.
-- $\bold{num_salas}$: número de salas de aula disponíveis.
+- $\bold{N_a}$: número de alunos autorizados a retornar à escola.
+- $\bold{N_p}$: número de professores autorizados a voltar à escola.
+- $\bold{N_s}$: número de salas de aula disponíveis.
 - $\bold{horas_de_aula_por_turma}$: duração do tempo em aula por dia (definido por modelo ou usuário).
 - $\bold{max_alunos_por_sala}$: máximo de alunos permitidos por sala.
 
@@ -83,26 +83,24 @@ Além dessas, são fixados valores para os modelos:
 
 Depois calcula o máximo de turmas de acordo com a quantidade de alunos, professores e salas possíveis:
 
-$$ max_alunos = \frac{num_alunos}{max_alunos_por_sala} $$
+Máximo por alunos.
+$$ M_a = \frac{N_a}{max_alunos_por_sala} $$
 
-$$ max_professores = num_professores \times max_professores_por_turma $$
+Máximo por professores.
+$$ M_p = N_p \times max_professores_por_turma $$
 
-$$ max_salas = \frac{horas_possiveis_sala \times num_salas}{horas_de_aula_por_turma} $$
+Máximo por salas.
+$$ M_s = \frac{horas_possiveis_sala \times N_s}{horas_de_aula_por_turma} $$
 
 
 Identifica o máximo de turmas:
-$\bold{R}$ [maximo_de_turmas] $$= \min{(max_alunos, max_salas, max_professores)}$$
 
-$\bold{R}$ [maximo_de_turmas] $= \min{($ max_alunos, max_salas, max_professores $)}$
+$$\bold{R}$$ [maximo_de_turmas] $$= \min{(M_a, M_p, M_s)}$$
 
 
 Dado o máximo de turmas, retorna o número de professores e alunos que podem voltar:
-
 - $\bold{A}$ [total de alunos que retornam]: máximo de turmas x máximo de alunos por sala ($\bold{K}$)
 - $\bold{P}$ [total de professrores que retornam]: máximo de turmas x máximo de professores por turma (fixado em 1)
-
-E, finalmente, o número de professores que retornam é dado por $P$.
-
 
 
 ### Como calculamos as quantidades de materiais?
