@@ -125,7 +125,7 @@ def get_school_return_supplies(
     )
 
     # Determine Total Quantities of Masks and Hand Sanitizer
-    total_masks = student_masks + teacher_masks
+    total_masks = ceil(student_masks + teacher_masks)
     total_sanitizer = student_sanitizer + teacher_sanitizer
 
     # Determine Number of Thermometers
@@ -176,7 +176,7 @@ def entrypoint(params, config):
         "num_returning_students": num_returning_students,
         "num_returning_teachers": num_returning_teachers,
         "max_groups": max_groups,
-        "total_masks": round(total_masks, 0),
-        "total_sanitizer": round(total_sanitizer, 0),
-        "total_thermometers": round(total_thermometers, 1),
+        "total_masks": total_masks,
+        "total_sanitizer": round(total_sanitizer, 2),
+        "total_thermometers": total_thermometers,
     }
