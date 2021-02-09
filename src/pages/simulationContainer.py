@@ -55,7 +55,7 @@ def genSimulationResult(params, config):
                 </div>
                 <div class="col minor-padding">
                     <div class="card-simulator-bottom light-green-simulator-bg minor-padding">
-                        <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários para compra:</p>
+                        <p>Considerando <b>protocolos sanitários</b> para o retorno, serão necessários semanalmente:</p>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
                             <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["total_thermometers"]} </div>
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>termômetros</b> (1/100 estudantes)</div>
