@@ -5,12 +5,10 @@ import utils
 def genPlanContainer(df, config, session_state):
     """ 
     This is a function that returns the "Plan" session
-
     Parameters: 
         df (type): 2019 school census dataframe
         config (type): doc config.yaml
         session_state (type): section dataset
-
     """
     data = df[
         (df["state_id"] == session_state.state_id)

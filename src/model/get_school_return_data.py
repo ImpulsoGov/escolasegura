@@ -55,9 +55,6 @@ def get_school_return_projections(
 
     return num_alunos_retornantes, num_professores_retornantes, limite_turmas
 
-
-
-
 def get_school_return_supplies(
     num_returning_students,
     num_returning_teachers,
@@ -83,7 +80,7 @@ def get_school_return_supplies(
             General school return parameters.
         number_days : int
             Number of days to consider for calculation. Default = 7 days.
-
+            
     Returns
     -------
         total_masks : int
