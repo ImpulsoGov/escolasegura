@@ -69,28 +69,34 @@ Utilizamos os dados do Censo Escolar 2019 como base para os cálculos padrão, m
 ### Como calculamos os números de alunos e professores retornando?
 
 O simulador utiliza as informações: 
-- $\bold{N_a}$: número de alunos autorizados a retornar à escola.
+- $\bold{Num_alunos}$: número de alunos autorizados a retornar à escola.
 - $\bold{N_p}$: número de professores autorizados a voltar à escola.
 - $\bold{N_s}$: número de salas de aula disponíveis.
-- $\bold{horas_de_aula_por_turma}$: duração do tempo em aula por dia (definido por modelo ou usuário).
-- $\bold{max_alunos_por_sala}$: máximo de alunos permitidos por sala.
+- $\bold{H_t}$: duração do tempo em aula por dia (definido por modelo ou usuário).
+- $\bold{Alunos_s}$: máximo de alunos permitidos por sala.
 
 
 Além dessas, são fixados valores para os modelos:
-- $\bold{max_professores_por_turma}$: máximo de professores por turma.
-- $\bold{horas_possiveis_sala}$: total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde).
+- $\bold{P_t}$: máximo de professores por turma.
+- $\bold{H_s}$: total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde).
 
 
 Depois calcula o máximo de turmas de acordo com a quantidade de alunos, professores e salas possíveis:
 
 Máximo por alunos.
-$$ M_a = \frac{N_a}{max_alunos_por_sala} $$
+$$ 
+M_a = \frac{Num_alunos}{Alunos_s} 
+$$
 
 Máximo por professores.
-$$ M_p = N_p \times max_professores_por_turma $$
+$$ 
+M_p = N_p \times P_t 
+$$
 
 Máximo por salas.
-$$ M_s = \frac{horas_possiveis_sala \times N_s}{horas_de_aula_por_turma} $$
+$$ 
+M_s = \frac{H_s \times N_s}{H_t} 
+$$
 
 
 Identifica o máximo de turmas:
