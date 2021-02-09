@@ -251,7 +251,7 @@ def genSimulationContainer(df, config, session_state):
             "priority": False
         }
         , 
-        'Parte remoto + Parte presencial': {
+        'Grupo prioritário presencial': {
             "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
             de estudantes presencial, enquanto outro grupo acompanha remotamente 
             por meio de videoconferência (VC)</b>.
