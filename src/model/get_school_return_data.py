@@ -11,7 +11,7 @@ def get_school_return_projections(
     max_professores_por_turma=1,
 ):
     """
-    Calculates projected number of students and teachers returning to school.
+    Calcula o número projetado de alunos e professores que retornam à escola.
 
     Parameters
     ----------
@@ -27,6 +27,8 @@ def get_school_return_projections(
             Número máximo de alunos por turma.
         horas_possiveis_sala: int
             Total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde)
+        max_professores_por_turma: int
+            Máximo de Professores por Turma. Padrão: 1.
 
     Returns
     -------
@@ -65,7 +67,7 @@ def get_school_return_supplies(
     number_days=7
 ):
     """
-    Calculates number of school supplies given number of return students and faculty.
+    Calcula o número de materiais escolares dado o número de alunos e professores que retornam.
 
     Parameters
     ----------
@@ -80,7 +82,7 @@ def get_school_return_supplies(
         config : dict
             General school return parameters.
         number_days : int
-            Number of days to consider for calculation. Default = 30 days.
+            Number of days to consider for calculation. Default = 7 days.
 
     Returns
     -------
