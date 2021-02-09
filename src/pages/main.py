@@ -195,18 +195,19 @@ def main(session_state):
     opening_response = user_analytics.safe_log_event(
         "opened escolasegura", session_state, is_new_page=True
     )
-
-#     # TEMPORARY ALERT BANNER
-#     st.write(
-#         """
-#         <div class="col card-simulator" style="background:#ff8f8f; border-radius:30px;">
-#             <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px; font-size:21px;">
-#             <b>IMPORTANTE: Esse é um site que usamos para testagem, se você está 
-#             procurando nosso site oficial do escola segura clique <a href="https://escolasegura.coronacidades.org/">AQUI</a> ou acesse o link: https://escolasegura.coronacidades.org/.</b>
-#             </div>
-#         </div>""",
-#         unsafe_allow_html=True,
-#     )
+    
+    if os.getenv("IS_DEV") == "TRUE":
+        # TEMPORARY ALERT BANNER
+        st.write(
+            """
+            <div class="col card-simulator" style="background:#ff8f8f; border-radius:30px;">
+                <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px; font-size:21px;">
+                <b>IMPORTANTE: Esse é um site que usamos para testagem, se você está 
+                procurando nosso site oficial do escola segura clique <a href="https://escolasegura.coronacidades.org/">AQUI</a> ou acesse o link: https://escolasegura.coronacidades.org/.</b>
+                </div>
+            </div>""",
+            unsafe_allow_html=True,
+        )
 
 
 
