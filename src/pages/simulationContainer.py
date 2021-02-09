@@ -65,7 +65,7 @@ def genSimulationResult(params, config):
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>máscaras  por semana</b> (1/pessoa cada 3 horas)</div>
                         </div>
                         <div class="grid-container-simulation-material" style="padding: 10px; display: flex; flex-flow: row wrap;">
-                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {int(result["total_sanitizer"])} </div>
+                            <div class="div2 card-number" style="width: 35%; margin-right: 20px;"> {result["total_sanitizer"]} </div>
                             <div class="div2" style="width: 50%; padding-left: 10px;"><b>litros de álcool em gel</b> (12ml/pessoa por dia)</div>
                         </div>
                         <div class="container">
