@@ -77,28 +77,7 @@ def genSimulationResult(params, config):
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row main-padding">
-                <div class="col minor-padding">
-                    <div class="minor-padding" style="font-size: 18px; color:#FF934A; font-weight: bold;">COMO ORGANIZAR AS TURMAS?</div>
-                    <div class="minor-padding">
-                        Segundo a UNESCO, os <b>sistemas de turnos</b> podem ser uma forma eficaz de distribuir a aprendizagem presencial para a maioria dos estudantes. 
-                        <br><br>
-                        <b>Reduzir o número de estudantes na escola de forma simultânea</b> ajuda a reduzir o risco de transmissão da Covid-19 no local.
-                        <br>
-                    </div>
-                    <div class="button-position minor-padding" style="padding-bottom: 10px;">
-                        <a href="#entenda-turno">
-                        <button class="button-protocolos"; style="border-radius: .25rem; font-size:16px;">entenda sobre os turnos ></button><br>
-                        </a>
-                    </div>
-                </div>
-                <div class="col minor-padding">
-                    <a href="https://i.imgur.com/KHVgLLX.jpg" target="_blank">
-                        <img class="images" src="https://i.imgur.com/KHVgLLX.jpg"> 
-                    </a>
-                </div>
-            </div>
+            </div> 
             <div class="row main-padding">
                 <div class="col minor-padding">
                     <div class="minor-padding" style="font-size: 18px; color:#FF934A; font-weight: bold;">VOCÊ CHEGOU AO FINAL DA SIMULACÃO, AGORA CLIQUE ABAIXO E VEJA OUTRAS FERRAMENTAS DISPONIVEÍS.</div>
@@ -107,49 +86,6 @@ def genSimulationResult(params, config):
                         <button class="button-protocolos"; style="border-radius: .25rem; font-size:16px;">explorar ferramentas ></button><br>
                         </a>
                     </div>
-                </div>
-            </div>
-            <div id="entenda-turno" class="info-modal-window" style="width: 80%; height: 70%;">
-                <div>
-                    <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                    <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Entenda sobre Turnos</h1>
-                    <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
-                        <br>
-                        <b>MODELO: BASEADO EM HORAS</b><br>
-                        <b>Por que esse modelo?</b><br>
-                        <li>Alunos podem frequentar a escola diariamente, recebendo suporte didático e emocional.</li>                            
-                        <b>Desafios:</b><br>
-                        <li>Maior risco de infecção.</li>
-                        <li>Maior dificuldade de organizar os horários.</li>
-                        <li>Exige dois procedimentos de limpeza pesada entre os turnos e ao final do dia.</li>                            
-                        <br>
-                        <br>
-                        <b>MODELO: BASEADOS EM DIAS ALTERNADOS</b><br>
-                        <b>Por que esse modelo?</b><br>
-                        <li>Alunos recebem suporte didático e emocional regularmente, restabelecendo uma rotina e contato com professores e colegas.</li>
-                        <b>Desafios:</b><br>
-                        <li>Risco alto de infecção.</li>
-                        <li>Exige procedimento de limpeza pesada diariamente ao final do dia.</li>
-                        <li>Dificuldade maior para os responsáveis organizarem suas rotinas.</li>
-                        <br>
-                        <br>
-                        <b>MODELO: BASEADOS EM DIAS CONSECUTIVOS</b><br>
-                        <b>Por que esse modelo?</b><br>
-                        <li>Alunos frequentam a escola ao menos 1 vez por semana, e estabelecem um contato com a escola. </li>
-                        <b>Desafios:</b><br>
-                        <li>Risco alto de infecção.</li>
-                        <li>Alunos ficam um tempo maior afastados fisicamente da escola.</li>
-                        <br>
-                        <br>
-                        <b>MODELO: BASEADO EM SEMANAS</b><br>
-                        <b>Por que esse modelo?</b><br>
-                        <li>Alunos têm exposição a todas as matérias, e uma rotina mais próxima ao usual.</li>
-                        <li>Menor risco de infecção.</li>
-                        <b>Desafios:</b><br>
-                        <li>Alunos ficam um tempo maior afastados fisicamente da escola.</li>
-                        <br>Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1ELqjm6NzJkHmRG6CDxLg5XY1iOgAPZeV&export=download">[AQUI]</a>.
-                    </div>
-                    <a href="https://drive.google.com/u/1/uc?id=1ELqjm6NzJkHmRG6CDxLg5XY1iOgAPZeV&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/BYRTiuC.jpg"></a>
                 </div>
             </div>
         """,
