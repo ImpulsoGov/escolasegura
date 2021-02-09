@@ -2,51 +2,58 @@ from math import floor, ceil
 
 
 def get_school_return_projections(
-    num_students,
-    num_teachers,
-    num_classrooms,
-    hours_per_day,
-    max_students_per_class,
-    hours_day_classes=10,
+    num_alunos,
+    num_professores,
+    num_salas,
+    horas_de_aula_por_turma,
+    max_alunos_por_sala,
+    horas_possiveis_sala=10,
+    max_professores_por_turma=1,
 ):
     """
-    Calculates projected number of students and teachers returning to school.
+    Calcula o número projetado de alunos e professores que retornam à escola.
 
     Parameters
     ----------
-        num_students: int 
+        num_alunos: int 
             Número de alunos autorizados a retornar à escola.
-        num_teachers: int
+        num_professores: int
             Número de professores autorizados a voltar à escola.
-        num_classrooms: int
+        num_salas: int
             Número de salas de aula disponíveis.
-        hours_per_day: int
+        horas_de_aula_por_turma: int
             Duração do tempo em aula por dia (definido por modelo ou usuário).
-        max_students_per_class: int
+        max_alunos_por_sala: int
             Número máximo de alunos por turma.
-        hours_day_classes: int
+        horas_possiveis_sala: int
             Total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde)
+        max_professores_por_turma: int
+            Máximo de Professores por Turma. Padrão: 1.
 
     Returns
     -------
-        num_returning_students : int
+        num_alunos_retornantes : int
             Número projetado de alunos voltando à escola.
-        num_returning_teachers : int
+        num_professores_retornantes : int
             Número projetado  de professores que retornam à escola.
     """
-    # 1. Total hours of classrooms available per day
-    max_hours_classroom = hours_day_classes * num_classrooms / hours_per_day
+    # Maximo de turmas por limitacao dos alunos
+    max_alunos = num_alunos/max_alunos_por_sala
+    
+    # Maximo de turmas por limitacao de salas
+    max_salas = horas_possiveis_sala * num_salas / horas_de_aula_por_turma
+    
+    # Maximo de turmas por limitacao por professores
+    max_professores = num_professores*max_professores_por_turma
+    
+    # Identifica o gargalo
+    limite_turmas = min(max_alunos, max_salas, max_professores)
+    
+    # Dado o gargalo, identificar as condições reais do retorno
+    num_professores_retornantes = ceil(limite_turmas*max_professores_por_turma)
+    num_alunos_retornantes = ceil(limite_turmas*max_alunos_por_sala)
 
-    # 2. Total groups of students per day
-    max_groups = min(num_teachers, max_hours_classroom)
-
-    # 3. Total students & teatchers to return
-    num_returning_students = max_students_per_class * max_groups
-    num_returning_teachers = max_groups
-
-    return num_returning_students, num_returning_teachers, max_groups
-
-
+    return num_alunos_retornantes, num_professores_retornantes, limite_turmas
 
 def get_school_return_supplies(
     num_returning_students,
@@ -57,7 +64,7 @@ def get_school_return_supplies(
     number_days=7
 ):
     """
-    Calculates number of school supplies given number of return students and faculty.
+    Calcula o número de materiais escolares dado o número de alunos e professores que retornam.
 
     Parameters
     ----------
@@ -72,8 +79,8 @@ def get_school_return_supplies(
         config : dict
             General school return parameters.
         number_days : int
-            Number of days to consider for calculation. Default = 30 days.
-
+            Number of days to consider for calculation. Default = 7 days.
+            
     Returns
     -------
         total_masks : int
@@ -117,7 +124,7 @@ def get_school_return_supplies(
     )
 
     # Determine Total Quantities of Masks and Hand Sanitizer
-    total_masks = student_masks + teacher_masks
+    total_masks = ceil(student_masks + teacher_masks)
     total_sanitizer = student_sanitizer + teacher_sanitizer
 
     # Determine Number of Thermometers
@@ -168,7 +175,7 @@ def entrypoint(params, config):
         "num_returning_students": num_returning_students,
         "num_returning_teachers": num_returning_teachers,
         "max_groups": max_groups,
-        "total_masks": round(total_masks, 0),
-        "total_sanitizer": round(total_sanitizer, 0),
-        "total_thermometers": round(total_thermometers, 1),
+        "total_masks": total_masks,
+        "total_sanitizer": round(total_sanitizer, 2),
+        "total_thermometers": total_thermometers,
     }
