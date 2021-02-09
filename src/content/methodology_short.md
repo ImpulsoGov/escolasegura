@@ -69,11 +69,11 @@ Utilizamos os dados do Censo Escolar 2019 como base para os cálculos padrão, m
 ### Como calculamos os números de alunos e professores retornando?
 
 O simulador utiliza as informações: 
-- $\bold{Num_alunos}$: número de alunos autorizados a retornar à escola.
+- $\bold{N_a}$: número de alunos autorizados a retornar à escola.
 - $\bold{N_p}$: número de professores autorizados a voltar à escola.
 - $\bold{N_s}$: número de salas de aula disponíveis.
 - $\bold{H_t}$: duração do tempo em aula por dia (definido por modelo ou usuário).
-- $\bold{Alunos_s}$: máximo de alunos permitidos por sala.
+- $\bold{A_s}$: máximo de alunos permitidos por sala.
 
 
 Além dessas, são fixados valores para os modelos:
@@ -85,7 +85,7 @@ Depois calcula o máximo de turmas de acordo com a quantidade de alunos, profess
 
 Máximo por alunos.
 $$ 
-M_a = \frac{Num_alunos}{Alunos_s} 
+M_a = \frac{N_a}{A_s} 
 $$
 
 Máximo por professores.
