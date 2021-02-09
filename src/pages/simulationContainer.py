@@ -593,7 +593,7 @@ def genSimulationContainer(df, config, session_state):
         opening_response = user_analytics.safe_log_event(
             "clicked simule metodologia", session_state, is_new_page=True
         )
-        methodology_text = load_markdown_content("methodology.md")
+        methodology_text = load_markdown_content("methodology_short.md")
         st.write(methodology_text)
 
 
