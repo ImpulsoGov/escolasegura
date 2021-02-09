@@ -29,10 +29,11 @@ para dar aula no sistema local de ensino. *Por padrão, fornecemos esse valor co
 - **Total de salas de aula:** O gestor pode informar aqui o total de salas de aula disponíveis 
 para retorno no sistema local de ensino. *Por padrão, fornecemos esse valor com base no Censo Escolar 2019.*
 
-- **Percentual de alunos realizando atividades presenciais:** O gestor deve informar aqui o percentual de alunos
-dentre o **Total de alunos** indicado que estão previstos para retornar as atividades.
+- **Número máximo de alunos por sala:** O usuário fornece o limite de alunos por sala determinado pelo gestor a fim de limitar a transmissibilidade da doença.
 
-- **Percentual de professores realizando atividades presenciais:**  O gestor deve informar aqui o percentual de professores 
+- **Número de horas presenciais diárias na escola por turma:**  Os modelos indicam a quantidade de horas de aula no dia de cada turma (ex: um modelo total presencial teria 5 horas de aula enquanto um modelo híbrido teria uma carga reduzida, de 3 horas), porém o usúario também pode altera-lo.
+
+O gestor deve informar aqui o percentual de professores 
 dentre o **Total de professores** indicado que estão previstos para retornar as atividades.
 
 - **Máximo de alunos por sala:** 
@@ -68,45 +69,38 @@ Utilizamos os dados do Censo Escolar 2019 como base para os cálculos padrão, m
 ### Como calculamos os números de alunos e professores retornando?
 
 O simulador utiliza as informações: 
+- $\bold{num_alunos}$: número de alunos autorizados a retornar à escola.
+- $\bold{num_professores}$: número de professores autorizados a voltar à escola.
+- $\bold{num_salas}$: número de salas de aula disponíveis.
+- $\bold{horas_de_aula_por_turma}$: duração do tempo em aula por dia (definido por modelo ou usuário).
+- $\bold{max_alunos_por_sala}$: máximo de alunos permitidos por sala.
 
-- $\bold{A}$: total de alunos x percentual de alunos que retornam
-- $\bold{P}$: total de professores x percentual de professores que retornam
-- $\bold{S}$: número de salas de aula disponíveis
-- $\bold{K}$: máximo de alunos permitidos por sala 
 
-Além dessas, são fixados valores para cada modelo de retorno:
+Além dessas, são fixados valores para os modelos:
+- $\bold{max_professores_por_turma}$: máximo de professores por turma.
+- $\bold{horas_possiveis_sala}$: total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde).
 
-- $\bold{H}$: horas disponíveis para aulas semanalmente ($H$ = 40 horas por semana)
-- $\bold{D}$: duração de cada aula em horas ($D$ = 2 horas)
-- $\bold{N}$: quantidade mínima de aulas por semana por aluno (equitativo: $N$ = 1; prioritário: $N$ = 5)
 
-Para determinar quantos alunos a rede escolar é capaz de receber, utilizamos o conceito de **oportunidade**: uma oportunidade corresponde a um aluno assistir uma aula inteira. Como cada aula pode ter até $K$ alunos (máximo por turma), a **quantidade de oportunidades de aulas na rede** é dada por $K \times O$, onde $O$ corresponde à oferta total de aulas na rede.
+Depois calcula o máximo de turmas de acordo com a quantidade de alunos, professores e salas possíveis:
+$$ max_alunos = \frac{num_alunos}{max_alunos_por_sala} $$
 
-A oferta de aulas na rede ($O$) depende diretamente da disponibilidade de professores e salas. Dado o total de horas disponíveis na semana ($H$) e a duração definida de uma aula ($D$), o máximo de aulas que podem ser oferecidas por professor/sala é dado por $Q = \left\lfloor \frac{ H }{ D } \right\rfloor$.
+$$ max_professores = num_professores \times max_professores_por_turma $$
 
-Assim, a oferta total de aulas é dada por:
+$$ max_salas = \frac{horas_possiveis_sala \times num_salas}{horas_de_aula_por_turma} $$
 
-$$ 
-O = Q \times \min{ ( S, P ) } 
-$$
 
-Ao mesmo tempo, cada aluno deve ter uma quantidade $N$ de aulas por semana, que é dada pelo modelo de retorno escolhido. Assim, a capacidade efetiva de retorno de alunos($C$) é dada por:
+Identifica o máximo de turmas:
+$$ maximo_de_turmas = \min{ ( max_alunos,max_salas, max_professores) } $$
 
-$$
-C = \frac{K \times O}{N}
-$$
 
-O número de alunos que de fato retornam $R$ depende da capacidade da rede de fornecer horários de aula dadas as restrições de professores, salas e turmas. Logo, $R$ é o mínimo entre a quantidade de alunos que têm permissão para retornar $A$ e a capacidade de retorno da rede $C$:
+Dado o máximo de turmas, retorna o número de professores e alunos que podem voltar:
 
-$$
-R = \min{ ( A,C ) }
-$$
+- $\bold{A [total de alunos que retornam]}$: máximo de turmas x máximo de alunos por sala ($\bold{K}$)
+- $\bold{P [total de professrores que retornam]}$: máximo de turmas x máximo de professores por turma (fixado em 1)
 
 E, finalmente, o número de professores que retornam é dado por $P$.
 
-ℹ️ *Note que **a capacidade total da rede pode ser maior que o número de alunos que se deseja retornar**. Isso ocorre pois, uma vez selecionada a etapa de ensino, alocamos todos as 40 horas de professores/salas das escolas que possuem essa etapa.*
 
-*Além disso, no modelo equitativo, no qual a rede oferece apenas uma aula por semana para cada aluno, esta pode atender muito mais alunos do que uma rede operando de maneira convencional.*
 
 ### Como calculamos as quantidades de materiais?
 
