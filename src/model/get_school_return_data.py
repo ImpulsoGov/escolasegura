@@ -14,25 +14,25 @@ def get_school_return_projections(
 
     Parameters
     ----------
-        num_students : int or float
-            Number of students allowed to return to school.
-        num_teachers : int or float
-            Number of teachers allowed to return to school.
-        num_classrooms : int or float
-            Number of classrooms available.
-        hours_per_day : string
-            Duration of time spent in class per day (defined by user/model).
-        max_students_per_class : int or float
-            Maximum number of students per class.
-        hours_day_classes : dict
-            Total hours available for classes in a day. Default: 10 = 5 hours x 2 shifts (morning/afternoon)
+        num_students: int 
+            Número de alunos autorizados a retornar à escola.
+        num_teachers: int
+            Número de professores autorizados a voltar à escola.
+        num_classrooms: int
+            Número de salas de aula disponíveis.
+        hours_per_day: int
+            Duração do tempo em aula por dia (definido por modelo ou usuário).
+        max_students_per_class: int
+            Número máximo de alunos por turma.
+        hours_day_classes: int
+            Total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde)
 
     Returns
     -------
         num_returning_students : int
-            Projected numbers of students returning to school.
+            Número projetado de alunos voltando à escola.
         num_returning_teachers : int
-            Project number of teachers returning to school.
+            Número projetado  de professores que retornam à escola.
     """
     # 1. Total hours of classrooms available per day
     max_hours_classroom = hours_day_classes * num_classrooms / hours_per_day
