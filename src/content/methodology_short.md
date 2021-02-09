@@ -82,6 +82,7 @@ Além dessas, são fixados valores para os modelos:
 
 
 Depois calcula o máximo de turmas de acordo com a quantidade de alunos, professores e salas possíveis:
+
 $$ max_alunos = \frac{num_alunos}{max_alunos_por_sala} $$
 
 $$ max_professores = num_professores \times max_professores_por_turma $$
@@ -90,13 +91,15 @@ $$ max_salas = \frac{horas_possiveis_sala \times num_salas}{horas_de_aula_por_tu
 
 
 Identifica o máximo de turmas:
-$$ maximo_de_turmas = \min{ ( max_alunos,max_salas, max_professores) } $$
+$\bold{R}$ [maximo_de_turmas] $$= \min{(max_alunos, max_salas, max_professores)}$$
+
+$\bold{R}$ [maximo_de_turmas] $= \min{($ max_alunos, max_salas, max_professores $)}$
 
 
 Dado o máximo de turmas, retorna o número de professores e alunos que podem voltar:
 
-- $\bold{A [total de alunos que retornam]}$: máximo de turmas x máximo de alunos por sala ($\bold{K}$)
-- $\bold{P [total de professrores que retornam]}$: máximo de turmas x máximo de professores por turma (fixado em 1)
+- $\bold{A}$ [total de alunos que retornam]: máximo de turmas x máximo de alunos por sala ($\bold{K}$)
+- $\bold{P}$ [total de professrores que retornam]: máximo de turmas x máximo de professores por turma (fixado em 1)
 
 E, finalmente, o número de professores que retornam é dado por $P$.
 
