@@ -42,12 +42,10 @@ Por padrão, este valor é de 20 alunos por sala, que também é o máximo que p
 - **Modelo de retorno:** O usuário pode escolher os seguintes modelos de retorno:
   - **Modelo:** Totalmente presencial
     - **Descrição:** Neste modelo, todos os estudantes retornam às aulas presenciais como antes, com os mesmos horários em sala de aula, porém seguindo os novos protocolos de distanciamento e segurança sanitária.
-  - **Modelo:** Híbrido com aulas expositivas presenciais + tarefas para casa.
+  - **Modelo:** Híbrido: Aulas expositivas presenciais + tarefas para casa
     - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo professores(as) transmitem conceitos para os estudantes presencialmente, e os estudantes completam exercícios e tarefas em casa.
   - **Modelo:** Híbrido: Aulas gravadas em vídeo + tarefas presenciais
     - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo estudantes aprendem novos conceitos de forma remota e concluem exercícios e tarefas presencialmente com o(a) professor(a).
-  - **Modelo:** Híbrido: Aulas gravadas previamente e distribuídas em vídeo.
-    - **Descrição:** Nos modelos híbridos todos os estudantes retornam às aulas presenciais por tempo reduzido na escola e têm parte das aulas remotas. Em especial, neste modelo ambas as aulas expositivas e exercícios são feitos em sala e de forma remota.
   - **Modelo:** Prioritário: Aulas síncronas por vídeo com parte de estudantes em sala e parte em casa (grupo dividido)
     - **Descrição:** Neste modelo, os professores têm uma aula normal completa com um grupo de estudantes presencial, enquanto outro grupo acompanha remotamente por meio de videoconferência (VC).
 
