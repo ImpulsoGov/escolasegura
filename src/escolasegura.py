@@ -4,8 +4,12 @@ import yaml
 import session
 import time
 
-import pages.main as es
-import pages.about as ab
+import pages.about as sobre
+import pages.inicio as inicio
+import pages.passos as passos
+import pages.simulationContainer as simulation
+import pages.simulacao as simulacao
+import pages.referencesContainer as referencias
 
 import utils
 import pages.simulationContainer as sc
@@ -58,8 +62,12 @@ def main():
     )
 
     PAGES = {	
-        "Escola Segura": es,	
-        "Quem somos?" : ab	
+        "Inicio" : inicio,
+        "Guia 10 passos" : passos,
+        "Simulation" : simulation,
+        "Simulacao" : simulacao,
+        "Quem somos?" : sobre,
+        "Fontes e Referências": referencias
     }
 
     page = st.sidebar.radio(
