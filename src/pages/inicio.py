@@ -57,14 +57,24 @@ def main():
     st.write(
         f"""
         <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
-            <div class="col flip" style="padding-top:10px; margin-right:0px; margin-left:0px;">
-                <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                </div>
-                <div class="back">
-                   <h2>{title}</h2>
-                   <p>{sub}</p>
+            <div class="card-plan" style="width:100%;">
+                <div style="margin:10px">
+                    <div>
+                        <div style="word-break: break-word; font-size:1.5em; color:#ff9147; font-weight:bold;">
+                        {title}
+                        </div>
+                        <div><br>
+                            {sub}
+                            <div align="center" style="padding-bottom: 10px;">
+                                <a href="" target=_blank>
+                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
+                                </a><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
         """,
         unsafe_allow_html=True,
     )
@@ -90,39 +100,76 @@ def main():
     sub3="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
     st.write(
         f"""
-        <div class="conteudo" style="padding-top:10px;">
-            <div class="flip">
-                <div class="front" style="width: 1090px; background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                </div>
-                <div class="back"  style="width: 1090px;">
-                   <h2>{simulador}</h2>
-                   <p>{simuladorsub}</p>
+        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
+            <div class="card-plan" style="width:100%;">
+                <div style="margin:10px">
+                    <div>
+                        <div style="word-break: break-word; font-size:1.5em; color:#ff9147; font-weight:bold;">
+                        {simulador}
+                        </div>
+                        <div><br>
+                            {simuladorsub}
+                            <div align="center" style="padding-bottom: 10px;">
+                                <a href="" target=_blank>
+                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
+                                </a><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="conteudo" style="padding-top:10px;">
-            <div class="flip">
-                <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                </div>
-                <div class="back">
-                   <h2>{title1}</h2>
-                   <p>{sub1}</p>
+
+        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
+            <div class="col card-plan" style="width:100%;">
+                <div style="margin:10px">
+                    <div>
+                        <div style="word-break: break-word; font-size:1.5em; color:#ff9147; font-weight:bold;">
+                        {title1}
+                        </div>
+                        <div><br>
+                            {sub1}
+                            <div align="center" style="padding-bottom: 10px;">
+                                <a href="" target=_blank>
+                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
+                                </a><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="flip">
-                <div class="front" style="background-image: url(https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                </div>
-                <div class="back">
-                   <h2>{title2}</h2>
-                   <p>{sub2}</p>
+            <div class="col card-plan" style="width:100%;">
+                <div style="margin:10px">
+                    <div>
+                        <div style="word-break: break-word; font-size:1.5em; color:#ff9147; font-weight:bold;">
+                        {title2}
+                        </div>
+                        <div><br>
+                            {sub2}
+                            <div align="center" style="padding-bottom: 10px;">
+                                <a href="" target=_blank>
+                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
+                                </a><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="flip">
-                <div class="front" style="background-image: url(https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
-                </div>
-                <div class="back">
-                   <h2>{title3}</h2>
-                   <p>{sub3}</p>
+            <div class="col card-plan" style="width:100%;">
+                <div style="margin:10px">
+                    <div>
+                        <div style="word-break: break-word; font-size:1.5em; color:#ff9147; font-weight:bold;">
+                        {title3}
+                        </div>
+                        <div><br>
+                            {sub3}
+                            <div align="center" style="padding-bottom: 10px;">
+                                <a href="" target=_blank>
+                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
+                                </a><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
