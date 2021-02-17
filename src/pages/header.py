@@ -29,9 +29,6 @@ def genHeader():
 					<span style="font-size:1.05em; font-color:#A8BFD2;">Quem Somos</span><br>
 				</div>
 				<div style="padding-top:20px; padding-bottom:30px;" >
-					<span style="font-size:1.05em; font-color:#A8BFD2;">Fontes e Referências</span><br>
-				</div>
-				<div style="padding-top:20px; padding-bottom:30px;" >
 					<span style="font-size:1.05em; font-color:#A8BFD2;">Dúvidas Frequentes</span><br>
 				</div>
 			</div>
