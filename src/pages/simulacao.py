@@ -635,6 +635,29 @@ def main():
         )
     col3_6=col2a_4
 
+
+
+
+    params["total_hour_class"] = st.number_input(
+        "Horas diárias de aula disponíveis por sala",
+        format="%d",
+        value=8,
+        step=1,
+    )
+    params["turnos"] = st.number_input(
+        "Número de turnos",
+        format="%d",
+        value=3,
+        step=1,
+    )
+    x = int(params["total_hour_class"]/params["turnos"])
+    params["hour_class"] = int(st.slider(
+        "Horas diárias de aula por turma", 
+        min_value=1, 
+        max_value=x, 
+        step=1,
+    ))
+
     with st.beta_expander("simular retorno"):
         user_analytics = amplitude.gen_user(utils.get_server_session())
         opening_response = user_analytics.safe_log_event(
@@ -675,7 +698,6 @@ def main():
         st.write(methodology_text)
     # tm.genTermo()
     # foo.genFooter()
-
 
 if __name__ == "__main__":
     main()

@@ -14,8 +14,8 @@ def genFooterContainer():
 
     st.write(
             f"""
-            <div class="container main-padding">
-                <p style="text-align:center; font-size:.9em;">
+            <div class="conteudo container upper-padding">
+                <p style="text-align:left; font-size:.9em;">
                 <b>As sugestões e recomendações apresentadas no Escola Segura são indicativas, feitas a partir de dados oficiais públicos 
                 e estudos referenciados já publicados, estando sujeitas a variáveis que aqui não podem ser consideradas.</b> 
                 Trata-se de contribuição à elaboração de cenários por parte dos governos e não configura qualquer obrigação 
@@ -28,7 +28,7 @@ def genFooterContainer():
                 <br><i> A Escola Segura é uma iniciativa da plataforma <b class="main-orange-span">CoronaCidades</b>. Conheça 
                 <a target="_blank" class="github-link" style="font-family:var(--main-text-font-family)" href="https://coronacidades.org/"> aqui</a>. </i>
                 </p>
-                <div class="text-title-footer main-padding"> Realizado por </div>
+                <div class="text-title-footer main-padding" style="color:#ff9147;"><b>Realizado por</b></div>
                 <div class="div-logo-footer main-padding img-center">
                 <ul style="list-style-type: none;">
                     <li style="display: inline; margin-right: 2em;">
@@ -58,9 +58,6 @@ def genFooterContainer():
                         title="logo BID"/>
                     </li>
                 </ul>          
-                </div>
-                <div class="container text-small main-padding">
-                    Todo os ícones são do <a href="https://www.freepik.com/" target="_blank">Freepik </a> com permissão de uso mediante créditos.
                 </div>
             </div>
             """,

@@ -165,7 +165,7 @@ def genHeroSection(title1: str, title2: str, header: bool):
         header (bool): if has header
     """
     if header:
-        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
+        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link" style="color:#ff9147; text-decoration: none;"><span class="logo-header" style="font-weight:bold; font-size: 64px; ">corona</span><span class="logo-header" style="font-weight:lighter; font-size: 64px;">cidades</span> <br></a>"""
     else:
         header = """<br>"""
 
@@ -173,23 +173,48 @@ def genHeroSection(title1: str, title2: str, header: bool):
 
     st.write(
         f"""
-        <div class="container">
-            {header}
-        <div class="grid-container-header">
-            <div class="div1-head">
-                <img class="img-logo-header" src="data:image/png;base64,{icon}">
+        <div class="base-wrapper" style="width: 100%; background-image: url('https://i.imgur.com/RhIe7on.png'); background-position:center; background-repeat:no-repeat; background-size:cover;">
+            <div style="padding-top:20px; display: flex; flex-direction: row;">
+                <div style="margin-left: 90px; display: flex; flex-direction: column;">
+                    {header}
+                    <span style="color:#2b14ff; text-transform: uppercase; font-size: 80px; font-weight: bold; line-height: 80px;">{title1}<br/>{title2}</span>
+                    <span style="color:#2b14ff; font-weight: lighter; font-size: 36px; max-lines: 2;"> Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19</span>
+                </div>
+                <div style="vertical-align: center; height: 100%; max-width: 300px; margin-right: auto; margin-left: auto;">   
+                    <br><img style="width: 100%; vertical-align: center;" src="data:image/png;base64,{icon}"/>
+                </div>
             </div>
-            <div class="div2-head">
-                <a href="" class="logo-link">
-                <span class="hero-container-product main-blue-span">{title1}</span>
-                <div class="br-hero"></div>
-                <span class="hero-container-product main-blue-span">{title2}</span>
-                </a>
-            </div>
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
-        </div><br>
-        <div class="hero-container-subtitle">
-            Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
+        """,
+        unsafe_allow_html=True,
+    )
+
+def main_title(title: str, subtitle: str):
+    st.write(
+        f"""
+        <div class="conteudo main-title" style="padding-top: 50px;"> 
+            {title}
+        </div>
+        <div class="conteudo" style="padding-bottom: 10px;">
+            {subtitle}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+def gen_title(title: str, subtitle: str):
+    st.write(
+        f"""
+        <div class="conteudo title-section" style="padding-bottom:20px;"> 
+            <img class="square" src="https://i.imgur.com/gGIFS5N.png">
+            {title}
+        </div>
+        <div class="conteudo" style="padding-bottom: 10px;">
+            {subtitle}
         </div>
         """,
         unsafe_allow_html=True,
