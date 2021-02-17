@@ -1,8 +1,11 @@
 import streamlit as st
 import utils
 import amplitude
+import pages.snippet as tm
+import pages.header as he
+import pages.footer as foo
 
-def  genReferencesContainer(session_state):
+def main(session_state):
     """ 
     This is a function that returns the "References" session
 
@@ -10,23 +13,12 @@ def  genReferencesContainer(session_state):
         session_state (type): section dataset
               
     """
+    he.genHeader()
+    utils.localCSS("localCSS.css")
+    utils.main_title(title="<b>Fontes e Referências</b>", subtitle="<br>")
     st.write(
         f"""
-        <div class="container main-padding"></div>
-        """,
-        unsafe_allow_html = True,
-    )
-    with st.beta_expander("Fontes e Referências"):
-        user_analytics = amplitude.gen_user(utils.get_server_session())
-        opening_response = user_analytics.safe_log_event(
-            "clicked fontes", session_state, is_new_page=True
-        )
-        st.write(
-        f"""
-        <div class="container main-padding">
-            <div class="title-section">
-                <img class="square" src="https://i.imgur.com/gGIFS5N.png">Fontes e Referências
-            </div><br>
+        <div class="conteudo main-padding">
             <div class="table-responsive">
             <table>
                 <thead>
@@ -113,6 +105,8 @@ def  genReferencesContainer(session_state):
         """,
         unsafe_allow_html = True,
     )
+    tm.genTermo()
+    foo.genFooter()
     
 if __name__ == "__main__":
     main()
