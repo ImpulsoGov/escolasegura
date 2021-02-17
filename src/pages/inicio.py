@@ -16,7 +16,6 @@ import pages.snippet as tm
 import pages.specialistContainer as spc
 import amplitude
 import session
-import escolasegura
 import time
 
 
