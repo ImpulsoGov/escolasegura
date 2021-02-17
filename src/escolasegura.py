@@ -5,7 +5,6 @@ import session
 import time
 import pages.about as sobre
 import pages.inicio as inicio
-import pages.inicio2 as inicio2
 import pages.passos as passos
 import pages.simulationContainer as simulation
 import pages.simulacao as simulacao
@@ -120,10 +119,8 @@ def main():
 
     PAGES = {   
         "Inicio" : inicio,
-        "Inicio Alternativo" : inicio2,
         "Guia 10 passos" : passos,
         "Simulacão" : simulation,
-        "Simulacao Desenvolvimento" : simulacao,
         "Quem somos?" : sobre,
         "Fontes e Referências": referencias
     }
