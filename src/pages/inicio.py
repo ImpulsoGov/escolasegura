@@ -186,7 +186,7 @@ def main():
     )
 
 
-    spc.genSpecialistContainer()
+#     spc.genSpecialistContainer()
     tm.genTermo()
     foo.genFooter()
 
