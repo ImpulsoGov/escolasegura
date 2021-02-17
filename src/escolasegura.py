@@ -6,7 +6,7 @@ import time
 import pages.about as sobre
 import pages.simulationContainer as simulation
 import pages.passos as passos
-import pages.inicio as inicio
+# import pages.inicio as inicio
 import pages.referencesContainer as referencias
 import socket
 import utils
@@ -61,7 +61,6 @@ def main():
     )
 
     PAGES = {   
-        "Inicio" : inicio,
         "Guia 10 passos" : passos,
         "Simulacão" : simulation,
         "Quem somos?" : sobre,
