@@ -11,7 +11,7 @@ import amplitude
 
 
 
-def main(session_state):
+def main():
     utils.localCSS("localCSS.css")
     he.genHeader()
 
@@ -52,7 +52,7 @@ def main(session_state):
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
                 <label for="tab-10"><i></i>Passo 10</label>           
                 <ul>
-                    <li class="section-one">
+                    <li class="section-one" id="section-one">
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
@@ -99,7 +99,7 @@ def main(session_state):
                                             </div><br>
                                             <div class="button-position" style="padding-bottom: 10px;">
                                                 <a href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view?usp=sharing" target="blank_">
-                                                <button class="button-protocolos"; style="border-radius: .25rem;">acesse ></button><br>
+                                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                                                 </a>
                                             </div>
                                         </div><br>
@@ -176,7 +176,7 @@ def main(session_state):
                                             </div>
                                             <div class="minor-padding button-position">
                                                 <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view" target="_blank">
-                                                    <button class="button-contigenciaimprima"; style="border-radius: .25rem;"> imprima aqui > </button>
+                                                    <button class="button"; style="border-radius: .25rem;"> imprima aqui > </button>
                                                 </a>
                                             </div>
                                         </div><br>
@@ -196,7 +196,7 @@ def main(session_state):
                             </div>  
                         </div>
                     </li>
-                    <li class="section-ten">
+                    <li class="section-ten" id="section-ten">
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
@@ -221,7 +221,7 @@ def main(session_state):
                                         </div>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
-                                                <button class="button-verificacaoimprime"; style="border-radius: .25rem;">imprima aqui ></button>
+                                                <button class="button"; style="border-radius: .25rem;">imprima aqui ></button>
                                             </a>
                                         </div>
                                         </div><br>
@@ -242,7 +242,7 @@ def main(session_state):
                                         </ol>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                                <button class="button-notificacaoimprime"; style="border-radius: .25rem;"> imprima aqui ></button>
+                                                <button class="button"; style="border-radius: .25rem;"> imprima aqui ></button>
                                             </a>
                                         </div>
                                         </div><br>
@@ -378,7 +378,7 @@ def main(session_state):
     #     </div>""",
     #     unsafe_allow_html=True,
     # )
-    tm.genTermo()
+    tm.genSimule()
     foo.genFooter()
 
 

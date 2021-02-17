@@ -5,7 +5,7 @@ import pages.snippet as tm
 import pages.header as he
 import pages.footer as foo
 
-def main(session_state):
+def main():
     """ 
     This is a function that returns the "References" session
 
@@ -105,7 +105,7 @@ def main(session_state):
         """,
         unsafe_allow_html = True,
     )
-    tm.genTermo()
+    tm.genGuia()
     foo.genFooter()
     
 if __name__ == "__main__":

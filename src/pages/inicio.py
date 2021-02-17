@@ -20,7 +20,7 @@ import escolasegura
 import time
 
 
-def main(session_state):
+def main():
     # import pathlib
     # from bs4 import BeautifulSoup
     # index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
@@ -56,7 +56,7 @@ def main(session_state):
     sub="Veja nossa guia os 10 passos para retomada presencial das aulas."
     st.write(
         f"""
-        <div class="conteudo row">
+        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
             <div class="col flip" style="padding-top:10px; margin-right:0px; margin-left:0px;">
                 <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
                 </div>
@@ -80,14 +80,26 @@ def main(session_state):
 
 
     utils.gen_title(title="Como podemos te <b>ajudar</b>?", subtitle="")
-    title1="Quero saber por onde começar"
-    sub1="Ainda estou começando planejar a abertura."
-    title2="Quero me planejar"
-    sub2="Quero descobrir como organizar professores e alunos em diferentes turmas, e quais os recursos necessários."
-    title3="Quero gerir a rede"
-    sub3="Já tenho unidades abertas e quero acompanhar."
+    simulador="Simulador: como organizar a rebertura?"
+    simuladorsub = "Descobra como organizar professores, salas e alunos e quais os materiais necessários para cumprir os protocolors sanitários. "
+    title1="Dúvidas Frequentes"
+    sub1="Veja respostas para as principais dúvidas."
+    title2="Conte com a Gente"
+    sub2="Entre em contato com a gente para se atualizar e tirar suas dúvidas."
+    title3="Quem Somos"
+    sub3="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
     st.write(
         f"""
+        <div class="conteudo" style="padding-top:10px;">
+            <div class="flip">
+                <div class="front" style="width: 1090px; background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
+                </div>
+                <div class="back"  style="width: 1090px;">
+                   <h2>{simulador}</h2>
+                   <p>{simuladorsub}</p>
+                </div>
+            </div>
+        </div>
         <div class="conteudo" style="padding-top:10px;">
             <div class="flip">
                 <div class="front" style="background-image: url(https://images.pexels.com/photos/540518/pexels-photo-540518.jpeg?w=1260&h=750&dpr=2&auto=compress&cs=tinysrgb)">
@@ -121,24 +133,6 @@ def main(session_state):
     st.write(
         f"""
         <div class="conteudo"> 
-            <hr style="height:5px;color:#ff9147;background-color:#ff9147">
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-
-    utils.gen_title(title="<b>Simulador</b>: como organizar a rebertura?", subtitle="")
-    st.write(
-        f"""
-        <div class="conteudo" style="padding-bottom: 10px;">
-            Descobra como organizar professores, salas e alunos e quais os materiais necessários para cumprir os protocolors sanitários.           
-        </div>
-        <div class="conteudo" align="center">
-            <a href="" target=_blank>
-            <button class="button"; style="border-radius: .25rem;">veja aqui ></button><br>
-            </a><br>
             <hr style="height:5px;color:#ff9147;background-color:#ff9147">
         </div>
         """,

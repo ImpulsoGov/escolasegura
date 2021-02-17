@@ -1,6 +1,5 @@
 import streamlit as st
-import utils
-import streamlit as st
+import session
 import yaml
 import utils
 import os
@@ -213,7 +212,25 @@ def genSimulationResult(params, config):
     )
 
 
-def main(session_state):
+def main():
+    session_state = session.SessionState.get(
+        key=session.get_user_id(),
+        update=False,
+        state_name="Acre",
+        state_id="AC",
+        city_name="Todos",
+        administrative_level="Todos",
+        refresh=False,
+        reset=False,
+        already_generated_user_id=None,
+        pages_open=None,
+        amplitude_events=None,
+        button_styles=dict(),
+        continuation_selection=None,
+        button_simule=0,
+        section1_organize=False,
+        section2_manage=False,
+    )
     utils.localCSS("style.css")
     # he.genHeader()
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)

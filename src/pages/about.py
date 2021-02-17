@@ -4,7 +4,7 @@ import pages.snippet as tm
 import pages.header as he
 import pages.footer as foo
 
-def main(session_state):
+def main():
     """ 
     This is a function that returns the "about" page
       
@@ -50,7 +50,7 @@ def main(session_state):
     utils.gen_title(title="Imaginable Futures", subtitle=imaninabledescricao)
     utils.gen_title(title="Programa Formar", subtitle=formardescricao)
 
-    tm.genTermo()
+    tm.genSimule()
     foo.genFooter()
 
 

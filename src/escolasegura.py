@@ -5,6 +5,7 @@ import session
 import time
 import pages.about as sobre
 import pages.inicio as inicio
+import pages.inicio2 as inicio2
 import pages.passos as passos
 import pages.simulationContainer as simulation
 import pages.simulacao as simulacao
@@ -80,7 +81,6 @@ st.set_page_config(
 # #     PAGES[page].main(session_state)
 
 
-
 def main():
     """ 
     This function generates Escola Segura
@@ -120,9 +120,10 @@ def main():
 
     PAGES = {   
         "Inicio" : inicio,
+        "Inicio Alternativo" : inicio2,
         "Guia 10 passos" : passos,
-        "Simulation" : simulation,
-        "Simulacao" : simulacao,
+        "Simulacão" : simulation,
+        "Simulacao Desenvolvimento" : simulacao,
         "Quem somos?" : sobre,
         "Fontes e Referências": referencias
     }
@@ -132,9 +133,22 @@ def main():
     )
 
     if __name__ == "__main__":
-        PAGES[page].main(session_state)
+        PAGES[page].main()
         utils.applyButtonStyles(session_state)
-
 
 if __name__ == "__main__":
     main()
+
+# app = Flask(__name__)
+
+# @app.route('/')
+# # def main():
+# #     # inicio.main()
+#     return "Hello World!"
+
+# @app.route('/guia10passos')
+# def passos():
+#     passos.main()
+
+# if __name__ == "__main__":
+#     app.run(host="localhost", debug=True, port=8501)

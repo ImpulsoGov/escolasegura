@@ -175,7 +175,7 @@ def genHeroSection(title1: str, title2: str, header: bool):
         f"""
         <div class="base-wrapper" style="width: 100%; background-image: url('https://i.imgur.com/RhIe7on.png'); background-position:center; background-repeat:no-repeat; background-size:cover;">
             <div style="padding-top:20px; display: flex; flex-direction: row;">
-                <div style="margin-left: 60px; display: flex; flex-direction: column;">
+                <div style="margin-left: 90px; display: flex; flex-direction: column;">
                     {header}
                     <span style="color:#2b14ff; text-transform: uppercase; font-size: 80px; font-weight: bold; line-height: 80px;">{title1}<br/>{title2}</span>
                     <span style="color:#2b14ff; font-weight: lighter; font-size: 36px; max-lines: 2;"> Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19</span>
