@@ -91,12 +91,12 @@ def main():
     utils.gen_title(title="Como podemos te <b>ajudar</b>?", subtitle="")
     simulador="Simulador: como organizar a rebertura?"
     simuladorsub = "Descobra como organizar professores, salas e alunos e quais os materiais necessários para cumprir os protocolors sanitários. "
-    title1="Dúvidas Frequentes"
-    sub1="Veja respostas para as principais dúvidas."
-    title2="Conte com a Gente"
-    sub2="Entre em contato com a gente para se atualizar e tirar suas dúvidas."
-    title3="Quem Somos"
-    sub3="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
+    title2="Dúvidas Frequentes"
+    sub2="Veja respostas para as principais dúvidas."
+    title3="Conte com a Gente"
+    sub3="Entre em contato com a gente para se atualizar e tirar suas dúvidas."
+    title1="Quem Somos"
+    sub1="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
     st.write(
         f"""
         <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
