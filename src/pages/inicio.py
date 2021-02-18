@@ -18,11 +18,10 @@ def main():
     # urlpath = "http://localhost:8501/"
     urlpath = 'https://escolasegura-staging.herokuapp.com/'
     # urlpath = 'https://escolasegura.coronacidades.org/'
-
+    utils.localCSS("localCSS.css")
     utils.genHeroSection(
         title1="Escola", title2="Segura", header=True,
     )
-    utils.localCSS("localCSS.css")
     subtitle = """Veja guias e protocolos para facilitar uma reabertura planejada da 
     rede pública de ensino, respeitando boas práticas de distanciamento e segurança 
     sanitária para controle da Covid-19. Encontre as ferramentas corretas de acordo 
