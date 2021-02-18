@@ -212,7 +212,7 @@ def main():
     df = get_data(session_state)
     data = df[(df["city_name"] == session_state.city_name)& (df["administrative_level"] == session_state.administrative_level)]
     subtitle = """O retorno às atividades presenciais deve ser pensado em etapas para definir não só quem pode retornar, mas também como. Trazemos abaixo um passo a passo para construir a simulação da sua rede - experimente!"""
-    utils.main_title(title="<b>Simulador</b>: como organizar a rebertura?", subtitle="")
+    utils.main_title(title="<b>Simulador</b>: como organizar a rebertura?", subtitle=subtitle)
     utils.gen_title(title="<b>1</b>. Escolha quem pode retornar", subtitle="")
     # params = dict()
     # params["number_students"] = st.number_input(
