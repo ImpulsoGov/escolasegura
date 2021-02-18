@@ -15,8 +15,8 @@ from pathlib import Path
 from utils import load_image
 
 def main():
-    urlpath = "http://localhost:8501/"
-    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
+    # urlpath = "http://localhost:8501/"
+    urlpath = 'https://escolasegura-staging.herokuapp.com/'
     # urlpath = 'https://escolasegura.coronacidades.org/'
 
     utils.genHeroSection(

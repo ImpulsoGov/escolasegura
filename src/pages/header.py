@@ -9,8 +9,8 @@ def genHeader(active):
     """
 	escola = utils.load_image("imgs/escolasegura.png")
 	header = utils.load_image("imgs/grey_header.png")
-	urlpath = 'http://localhost:8501/'
-	# urlpath = 'https://escolasegura-staging.herokuapp.com/'
+	# urlpath = 'http://localhost:8501/'
+	urlpath = 'https://escolasegura-staging.herokuapp.com/'
 	# urlpath = 'https://escolasegura.coronacidades.org/'
 	# import pdb; pdb.set_trace()
 	if active=="guia10passos":

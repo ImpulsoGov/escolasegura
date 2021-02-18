@@ -15,8 +15,8 @@ from pathlib import Path
 
 
 def main():
-    urlpath = "http://localhost:8501/"
-    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
+    # urlpath = "http://localhost:8501/"
+    urlpath = 'https://escolasegura-staging.herokuapp.com/'
     # urlpath = 'https://escolasegura.coronacidades.org/'
 
     utils.genHeroSection(
@@ -28,7 +28,7 @@ def main():
     sanitária para controle da Covid-19. Encontre as ferramentas corretas de acordo 
     com o status atual de sua abertura:
     <br>
-    Confira o inicio alternativo <a href="http://localhost:8501/?page=inicio2" >aqui</a>."""
+    Confira o inicio alternativo <a href="https://escolasegura-staging.herokuapp.com/?page=inicio2" >aqui</a>."""
     utils.main_title(title="Seja <b>Bem Vindo</b> ao Escola Segura!", subtitle=subtitle)
 
     
