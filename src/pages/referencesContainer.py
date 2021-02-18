@@ -13,8 +13,8 @@ def main():
         session_state (type): section dataset
               
     """
-    he.genHeader()
     utils.localCSS("localCSS.css")
+    he.genHeader("Sobre")
     utils.main_title(title="<b>Fontes e Referências</b>", subtitle="<br>")
     st.write(
         f"""

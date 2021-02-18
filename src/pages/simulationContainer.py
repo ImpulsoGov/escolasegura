@@ -232,7 +232,6 @@ def main():
         section2_manage=False,
     )
     utils.localCSS("style.css")
-    # he.genHeader()
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     df = get_data(config)
     genSelectBox(df, session_state)

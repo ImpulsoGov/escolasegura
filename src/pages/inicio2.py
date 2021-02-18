@@ -12,7 +12,7 @@ import amplitude
 import session
 import time
 from pathlib import Path
-
+from utils import load_image
 
 def main():
     urlpath = "http://localhost:8501/"
@@ -26,35 +26,16 @@ def main():
     subtitle = """Veja guias e protocolos para facilitar uma reabertura planejada da 
     rede pública de ensino, respeitando boas práticas de distanciamento e segurança 
     sanitária para controle da Covid-19. Encontre as ferramentas corretas de acordo 
-    com o status atual de sua abertura:
-    <br>
-    Confira o inicio alternativo <a href="http://localhost:8501/?page=inicio2" >aqui</a>."""
+    com o status atual de sua abertura:"""
     utils.main_title(title="Seja <b>Bem Vindo</b> ao Escola Segura!", subtitle=subtitle)
 
-    
-    utils.gen_title(title="Como <b>retomar</b> as atividades presenciais?", subtitle="")
     title="CONHEÇA OS 10 RETOMAR PARA REABERTURA!"
     sub="Veja nossa RETOMAR os 10 passos para retomada presencial das aulas."
+    passosfooter = utils.load_image("imgs/fundopassos.png")
     st.write(
         f"""
-        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
-            <div class="card-plan" style="width:100%;">
-                <div style="margin:10px">
-                    <div>
-                        <div class="card-title" >
-                        {title}
-                        </div>
-                        <div><br>
-                            {sub}
-                            <div align="center" style="padding-bottom: 10px;">
-                                <a href='{urlpath}?page=guia10passos' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style="marging-bottom:40px; marging-top:40px; padding-left:90px; padding-top:40px; padding-bottom:80px; background-image: url(data:image/png;base64,{passosfooter});">
+            <span style="color:white; padding-right:350px; font-size: 1.5rem;">Confira os 10 Passos para uma abertura segura!</span>
         </div>
         """,
         unsafe_allow_html=True,
