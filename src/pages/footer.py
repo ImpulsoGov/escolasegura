@@ -15,7 +15,7 @@ def genFooter():
 
 	st.write(
 		f"""
-			<div class="base-wrapper row" style="padding-left:60px; padding-top:20px; margin-top:0px; margin-left:0px; margin-bottom:0px;margin-right:0px; background:#f8f8f8">
+			<div class="base-wrapper row" style="padding-left:60px; padding-top:20px; margin-top:0px; margin-left:0px; margin-bottom:0px;margin-right:0px; background:#EEEEEE">
 				<div>
 					<img class="escola-footer" style="margin-bottom:2em;" src="data:image/png;base64,{escola}" title="logo Impulso"/>
 				</div>

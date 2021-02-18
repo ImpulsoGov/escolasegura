@@ -11,9 +11,9 @@ def main():
     Parameters: 
         session_state (type): section dataset
     """
+    he.genHeader("duvidasfrequentes")
+    utils.main_title(title="<b>Dúvidas Frequentes</b>", subtitle="")
     utils.localCSS("localCSS.css")
-    he.genHeader("sobre")
-    utils.main_title(title="<b>Quem Somos?</b>", subtitle="")
     # utils.gen_title(title="Quem somos?")
     impulsodescricao = """A Impulso é uma organização não governamental com a missão auxiliar governos na melhora da entrega de 
     serviços públicos de saúde à população através do uso de dados e tecnologia, apoiando o processo de 

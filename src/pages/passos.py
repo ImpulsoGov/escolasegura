@@ -13,7 +13,7 @@ import amplitude
 
 def main():
     utils.localCSS("localCSS.css")
-    he.genHeader()
+    he.genHeader("guia10passos")
 
     protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")

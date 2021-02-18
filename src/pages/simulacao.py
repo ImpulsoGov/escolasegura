@@ -13,31 +13,8 @@ import pages.snippet as tm
 import pages.header as he
 import pages.footer as foo
 
-def read_data(country, config, endpoint):
-    """ 
-    This is function reads the API's data
-
-    Parameters: 
-        country (type): data country
-        config (type): doc config.yaml
-        endpoint (type): endpoint name in API
-              
-    """
-
-    if os.getenv("IS_LOCAL") == "TRUE":
-        api_url = config[country]["api"]["local"]
-    else:
-        api_url = config[country]["api"]["external"]
-
-    url = api_url + endpoint
-
-    print("\nLoad data from:", url)
-    df = pd.read_csv(url)
-    return df
-
-
 @st.cache(suppress_st_warning=True)
-def get_data(config):
+def get_data(session_state):
     """ 
     This function return a dataframe with all data
 
@@ -47,10 +24,8 @@ def get_data(config):
     Returns:
         df (type): 2019 school census dataframe
     """
-    
-    df = read_data("br", config, "br/cities/safeschools/main").replace(
-        {"Fundamental I": "Fund. I", "Fundamental II": "Fund. II"}
-    )
+    url = "http://datasource.coronacidades.org/br/cities/safeschools/main?state_id="+session_state.state_id
+    df = pd.read_csv(url)
     return df
 
 
@@ -213,6 +188,7 @@ def genSimulationResult(params, config):
 
 
 def main():
+    utils.localCSS("localCSS.css")
     session_state = session.SessionState.get(
         key=session.get_user_id(),
         update=False,
@@ -231,473 +207,459 @@ def main():
         section1_organize=False,
         section2_manage=False,
     )
-    utils.localCSS("style.css")
-    # he.genHeader()
+    he.genHeader("simulation")
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
-    df = get_data(config)
-    genSelectBox(df, session_state)
+    df = get_data(session_state)
+    data = df[(df["city_name"] == session_state.city_name)& (df["administrative_level"] == session_state.administrative_level)]
+    subtitle = """O retorno às atividades presenciais deve ser pensado em etapas para definir não só quem pode retornar, mas também como. Trazemos abaixo um passo a passo para construir a simulação da sua rede - experimente!"""
+    utils.main_title(title="<b>Simulador</b>: como organizar a rebertura?", subtitle="")
+    utils.gen_title(title="<b>1</b>. Escolha quem pode retornar", subtitle="")
+    # params = dict()
+    # params["number_students"] = st.number_input(
+    #     "Quantos estudantes retornam às aulas presenciais?",
+    #     format="%d",
+    #     value=data["number_students"].values[0],
+    #     step=1,
+    # )
+    # params["number_teachers"] = st.number_input(
+    #     "Quantos professores(as) retornam?",
+    #     format="%d",
+    #     value=data["number_teachers"].values[0],
+    #     step=1,
+    # )
+    utils.gen_title(title="<b>2</b>. Informe sobre suas salas", subtitle="")
+    utils.gen_title(title="<b>3</b>. Organize suas turmas", subtitle="")
+    tm.genGuia()
+    foo.genFooter()
+    # genSelectBox(df, session_state)
 
-    params = dict()
-    main_icon = utils.load_image("imgs/simulation_main_icon.png")
-    st.write(
-            f"""
-            <div class="text-title-section minor-padding">
-                 Quantos <span class="bold main-orange-span">estudantes e professores(as)</span> retornam às salas de aula em diferentes modelos?
-            </div>
-            <div class="container main-padding" style="padding-left:0px;">
-                <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
-                    <img class="minor-icon" src="data:image/png;base64,{main_icon}" alt="Fonte: Flaticon">
-                    Simule o retorno
-                </div>
-                <div class="minor-padding">
-                    O retorno às atividades presenciais deve ser pensado em etapas para definir não só <b>quem pode retornar</b>, mas também <b>como</b>. Trazemos abaixo um passo a passo para construir a simulação da sua rede - experimente!
-                </div>
-                 <div class="minor-padding" style="font-size: 20px; color:#FF934A; font-weight: bold;">
-                    <br>Para qual etapa de ensino você está planejando?
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+    # params = dict()
+    # main_icon = utils.load_image("imgs/simulation_main_icon.png")
+    # st.write(
+    #         f"""
+    #         <div class="text-title-section minor-padding">
+    #              Quantos <span class="bold main-orange-span">estudantes e professores(as)</span> retornam às salas de aula em diferentes modelos?
+    #         </div>
+    #         <div class="container main-padding" style="padding-left:0px;">
+    #             <div class="container minor-padding main-orange-span" style="font-size: 20px; color:#FF934A; font-weight: bold;"> 
+    #                 <img class="minor-icon" src="data:image/png;base64,{main_icon}" alt="Fonte: Flaticon">
+    #                 Simule o retorno
+    #             </div>
+    #             <div class="minor-padding">
+    #                 O retorno às atividades presenciais deve ser pensado em etapas para definir não só <b>quem pode retornar</b>, mas também <b>como</b>. Trazemos abaixo um passo a passo para construir a simulação da sua rede - experimente!
+    #             </div>
+    #              <div class="minor-padding" style="font-size: 20px; color:#FF934A; font-weight: bold;">
+    #                 <br>Para qual etapa de ensino você está planejando?
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
 
-    # TODO: colocar por estado somente também
-    # if city_name:
-    data = df[
-        (df["city_name"] == session_state.city_name)
-        & (df["administrative_level"] == session_state.administrative_level)
-    ]
-    col1, col2 = st.beta_columns([0.9, 0.2])
-    with col1:
-        education_phase = st.selectbox(
-            "", data["education_phase"].sort_values().unique()
-        )
-        data = data[data["education_phase"] == education_phase]
-    with col2:
-        st.write(
-            f"""<div class="container">
-                <br>
-                </div>
-                <br>
-            """,
-            unsafe_allow_html=True,
-        )
+    # # TODO: colocar por estado somente também
+    # # if city_name:
+    # data = df[
+    #     (df["city_name"] == session_state.city_name)
+    #     & (df["administrative_level"] == session_state.administrative_level)
+    # ]
+    # col1, col2 = st.beta_columns([0.9, 0.2])
+    # with col1:
+    #     education_phase = st.selectbox(
+    #         "", data["education_phase"].sort_values().unique()
+    #     )
+    #     data = data[data["education_phase"] == education_phase]
+    # with col2:
+    #     st.write(
+    #         f"""<div class="container">
+    #             <br>
+    #             </div>
+    #             <br>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
 
-    st.write(
-        f"""<br>
-            <div class="container" style="padding-left:0px;">
-                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>1. Escolha o modelo de retorno às atividades</b></div>
-                <div class="minor-padding">
-                    Existem diversos modelos possíveis de retorno avaliadas de acordo com as etapas de aprendizado. Separamos abaixo 5 opções possíveis indicadas pela UNESCO.
-                </div>
-            </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # st.write(
+    #     f"""<br>
+    #         <div class="container" style="padding-left:0px;">
+    #             <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>1. Escolha o modelo de retorno às atividades</b></div>
+    #             <div class="minor-padding">
+    #                 Existem diversos modelos possíveis de retorno avaliadas de acordo com as etapas de aprendizado. Separamos abaixo 5 opções possíveis indicadas pela UNESCO.
+    #             </div>
+    #         </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
 
-    UNESCO_models = {
-        'Totalmente Presencial': {
-            "description": """Neste modelo, todos os estudantes <b>retornam às aulas
-            presenciais padrão</b>, isto é, os mesmos horários em sala de
-            aula, porém seguindo os novos protocolos de distanciamento e segurança
-            sanitária.
-            <br><br><b>Por que este modelo?</b><br>
-            Modelo tradicional, onde os estudantes e docentes estão habituados."""
-            ,
-            "hours_per_day": 5,
-            "priority": False
-        }
-        , 
-        'Aulas presenciais + Tarefas remota': {
-            "description": """Neste modelo professores(as) <b>transmitem
-            conceitos para os estudantes presencialmente</b>, e, em seguida,
-            <b>estudantes completam exercícios e tarefas em casa</b>.
-            <br><br><b>Por que este modelo?</b><br>
-            Alunos e professores mantêm um contato próximo, e estudantes podem tirar dúvidas durante a exposição da matéria."""
-            ,
-            "hours_per_day": 3,
-            "priority": False
-        }
-        , 
-        'Aulas por vídeo + Tarefas presenciais': {
-            "description": """Neste modelo estudantes <b>aprendem
-            novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
-            tarefas presencialmente</b> com o(a) professor(a).
-            <br><br><b>Por que este modelo?</b><br>
-            Alunos e professores mantêm o convívio, e os estudantes podem tirar dúvidas 
-            urante a realização dos exercícios e se beneficiarem com as dúvidas dos colegas."""
-            ,
-            "hours_per_day": 2,
-            "priority": False
-        }
-        , 
-        'Grupo prioritário presencial': {
-            "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
-            de estudantes presencial, enquanto outro grupo acompanha remotamente 
-            por meio de videoconferência (VC)</b>.
-            <br><br><b>Por que este modelo?</b>
-            Turma mantém o convívio, mesmo que virtual, e os professores atentem todos da turma no mesmo momento."""
-            ,
-            "hours_per_day": 5,
-            "priority": True
-        }
-    }
+    # UNESCO_models = {
+    #     'Totalmente Presencial': {
+    #         "description": """Neste modelo, todos os estudantes <b>retornam às aulas
+    #         presenciais padrão</b>, isto é, os mesmos horários em sala de
+    #         aula, porém seguindo os novos protocolos de distanciamento e segurança
+    #         sanitária.
+    #         <br><br><b>Por que este modelo?</b><br>
+    #         Modelo tradicional, onde os estudantes e docentes estão habituados."""
+    #         ,
+    #         "hours_per_day": 5,
+    #         "priority": False
+    #     }
+    #     , 
+    #     'Aulas presenciais + Tarefas remota': {
+    #         "description": """Neste modelo professores(as) <b>transmitem
+    #         conceitos para os estudantes presencialmente</b>, e, em seguida,
+    #         <b>estudantes completam exercícios e tarefas em casa</b>.
+    #         <br><br><b>Por que este modelo?</b><br>
+    #         Alunos e professores mantêm um contato próximo, e estudantes podem tirar dúvidas durante a exposição da matéria."""
+    #         ,
+    #         "hours_per_day": 3,
+    #         "priority": False
+    #     }
+    #     , 
+    #     'Aulas por vídeo + Tarefas presenciais': {
+    #         "description": """Neste modelo estudantes <b>aprendem
+    #         novos conceitos de forma remota</b> e, em seguida, <b>concluem exercícios e 
+    #         tarefas presencialmente</b> com o(a) professor(a).
+    #         <br><br><b>Por que este modelo?</b><br>
+    #         Alunos e professores mantêm o convívio, e os estudantes podem tirar dúvidas 
+    #         urante a realização dos exercícios e se beneficiarem com as dúvidas dos colegas."""
+    #         ,
+    #         "hours_per_day": 2,
+    #         "priority": False
+    #     }
+    #     , 
+    #     'Grupo prioritário presencial': {
+    #         "description": """Neste modelo, os professores têm uma <b>aula normal completa com um grupo
+    #         de estudantes presencial, enquanto outro grupo acompanha remotamente 
+    #         por meio de videoconferência (VC)</b>.
+    #         <br><br><b>Por que este modelo?</b>
+    #         Turma mantém o convívio, mesmo que virtual, e os professores atentem todos da turma no mesmo momento."""
+    #         ,
+    #         "hours_per_day": 5,
+    #         "priority": True
+    #     }
+    # }
 
-    col1_1, col1_2, col1_3, col1_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
-    with col1_1:
-        params["education_model"] = st.selectbox(
-            "", list(UNESCO_models.keys())
-        )
-        params["priority"] = UNESCO_models[params["education_model"]]["priority"]
-    with col1_2:
-        st.write(
-            f"""
-            <div class="container main-padding">
-                <br>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with col1_3:
-    # Sobre o modelo
-        st.write(
-                f"""
-                <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                    <div style="font-family: 'Roboto Condensed', sans-serif; padding:10px; margin-bottom:0px; margin-top: 16px;margin-left: 16px; margin-right: 16px;">
-                        <b>{params["education_model"]}</b>
-                        <br><br>{UNESCO_models[params["education_model"]]["description"]}
-                        <br><br><b><a href="https://en.unesco.org/sites/default/files/unesco-covid-19-response-toolkit-hybrid-learning.pdf">FONTE: UNESCO</a></b>
-                    </div>
-                    <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
-                        <a href="#entenda-modelo">
-                            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
-                                leia sobre todos os modelos >
-                            </button>
-                        </a>
-                    </div>
-                    <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
-                        <a href="#entenda-etapa">
-                            <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
-                                veja considerações por etapa de ensino >
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <div id="entenda-modelo" class="info-modal-window" style="width: 80%; height: 70%;">
-                    <div>
-                        <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                        <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Modelos</h1>
-                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
-                            Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download">[AQUI]</a>.
-                        </div>
-                        <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/ZByy47a.jpg"></a>
-                    </div>
-                </div>
-                <div id="entenda-etapa" class="info-modal-window" style="width: 80%; height: 70%;">
-                    <div>
-                        <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                        <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Etapas de Ensino</h1>
-                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
-                            <br>
-                            <b>4 - 8 anos</b><br>
-                            Pontos principais para consideração:<br>
-                            <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves.</li>                            
-                            <li>Pais e responsáveis necessitam de creches e suporte para manter demais atividades do dia a dia</li>
-                            <li>Eficácia muito baixa do ensino remoto</li><br>
-                            <b>8 - 12 anos</b><br>
-                            Pontos principais para consideração:<br>
-                            <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves, mas há maior dificuldade em adotar medidas sanitárias.</li>
-                            <li>Já possuem maior autonomia no cotidiano e pode</li><br>
-                            <b>12 - 17 anos</b><br>
-                            Pontos principais para consideração:<br>
-                            <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários</li>
-                            <li>Logística de agendamento presencial pode ser mais complexa, pois os anos possuem matérias e professores diversos.</li><br>
-                            <b>17 - 18 anos</b><br>
-                            Pontos principais para consideração:<br>
-                            <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários.</li>
-                            <li>Alta eficácia e adesão ao método remoto</li>
-                            <br>Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download">[AQUI]</a>.
-                        </div>
-                        <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/FyoIFe9.jpg"></a>
-                    </div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-        )
-    with col1_4:
-        st.write(
-            f"""<div class="container">
-                <br>
-                </div>
-                <br>
-            """,
-            unsafe_allow_html=True,
-        )
-
-
-    st.write(
-        f"""<br>
-            <div class="container" style="padding-left:0px;">
-                <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>2. Escolha quem pode retornar</b></div>
-            </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    col2a_1, col2a_2, col2a_3, col2a_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
-    with col2a_1:
-        params["number_students"] = st.number_input(
-            "Quantos estudantes retornam às aulas presenciais?",
-            format="%d",
-            value=data["number_students"].values[0],
-            step=1,
-        )
-        if params["priority"]:
-            params["number_remote_students"] = st.number_input(
-            "Quantos estudantes acompanham às aulas somente de forma remota?",
-            format="%d",
-            value=data["number_students"].values[0],
-            step=1,
-        )
+    # col1_1, col1_2, col1_3, col1_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
+    # with col1_1:
+    #     params["education_model"] = st.selectbox(
+    #         "", list(UNESCO_models.keys())
+    #     )
+    #     params["priority"] = UNESCO_models[params["education_model"]]["priority"]
+    # with col1_2:
+    #     st.write(
+    #         f"""
+    #         <div class="container main-padding">
+    #             <br>
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # with col1_3:
+    # # Sobre o modelo
+    #     st.write(
+    #             f"""
+    #             <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
+    #                 <div style="font-family: 'Roboto Condensed', sans-serif; padding:10px; margin-bottom:0px; margin-top: 16px;margin-left: 16px; margin-right: 16px;">
+    #                     <b>{params["education_model"]}</b>
+    #                     <br><br>{UNESCO_models[params["education_model"]]["description"]}
+    #                     <br><br><b><a href="https://en.unesco.org/sites/default/files/unesco-covid-19-response-toolkit-hybrid-learning.pdf">FONTE: UNESCO</a></b>
+    #                 </div>
+    #                 <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+    #                     <a href="#entenda-modelo">
+    #                         <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+    #                             leia sobre todos os modelos >
+    #                         </button>
+    #                     </a>
+    #                 </div>
+    #                 <div class="button-position" style="margin-bottom: 0px;padding: 10px;margin-top: 16px;margin-right: 16px;margin-left: 16px;">
+    #                     <a href="#entenda-etapa">
+    #                         <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+    #                             veja considerações por etapa de ensino >
+    #                         </button>
+    #                     </a>
+    #                 </div>
+    #             </div>
+    #             <div id="entenda-modelo" class="info-modal-window" style="width: 80%; height: 70%;">
+    #                 <div>
+    #                     <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+    #                     <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Modelos</h1>
+    #                     <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+    #                         Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download">[AQUI]</a>.
+    #                     </div>
+    #                     <a href="https://drive.google.com/u/1/uc?id=1tqBItM8XkLdY9u2wk0ZcPrVcHccgdp1f&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/ZByy47a.jpg"></a>
+    #                 </div>
+    #             </div>
+    #             <div id="entenda-etapa" class="info-modal-window" style="width: 80%; height: 70%;">
+    #                 <div>
+    #                     <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+    #                     <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Etapas de Ensino</h1>
+    #                     <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+    #                         <br>
+    #                         <b>4 - 8 anos</b><br>
+    #                         Pontos principais para consideração:<br>
+    #                         <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves.</li>                            
+    #                         <li>Pais e responsáveis necessitam de creches e suporte para manter demais atividades do dia a dia</li>
+    #                         <li>Eficácia muito baixa do ensino remoto</li><br>
+    #                         <b>8 - 12 anos</b><br>
+    #                         Pontos principais para consideração:<br>
+    #                         <li>Crianças desta faixa etária possuem menor risco de apresentar sintomas graves, mas há maior dificuldade em adotar medidas sanitárias.</li>
+    #                         <li>Já possuem maior autonomia no cotidiano e pode</li><br>
+    #                         <b>12 - 17 anos</b><br>
+    #                         Pontos principais para consideração:<br>
+    #                         <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários</li>
+    #                         <li>Logística de agendamento presencial pode ser mais complexa, pois os anos possuem matérias e professores diversos.</li><br>
+    #                         <b>17 - 18 anos</b><br>
+    #                         Pontos principais para consideração:<br>
+    #                         <li>Crianças desta faixa etária possuem maior risco intrínseco de contrair e desenvolver sintomas, mas apresentam maior aderência aos protocolos sanitários.</li>
+    #                         <li>Alta eficácia e adesão ao método remoto</li>
+    #                         <br>Abaixo há o quadro completo. Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download">[AQUI]</a>.
+    #                     </div>
+    #                     <a href="https://drive.google.com/u/1/uc?id=1Sj65MXPkRcw6VxojYBLsJ8otIuvpLfq_&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/FyoIFe9.jpg"></a>
+    #                 </div>
+    #             </div>
+    #             """,
+    #             unsafe_allow_html=True,
+    #     )
+    # with col1_4:
+    #     st.write(
+    #         f"""<div class="container">
+    #             <br>
+    #             </div>
+    #             <br>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
 
 
-    with col2a_2:
-        st.write(
-            f"""
-            <div class="container main-padding">
-                <br>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with col2a_3:
-        st.write(
-            f"""
-            <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
-                    <b>Iniciamos com total de estudantes reportados no Censo Escolar 2019 (INEP).</b>
-                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de estudantes podem ser vulneráveis ou ter prioridade.
-                </div>
-                <div class="button-position" style="padding-bottom: 15px;">
-                    <a href="#entenda-estudantes">
-                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
-                            grupos que requerem atencão especial >
-                        </button>
-                    </a>
-                </div>
-            </div>
-            <div id="entenda-estudantes" class="info-modal-window" style="width: 80%; height: 70%;">
-                <div>
-                    <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                    <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Estudantes</h1>
-                    <div style="font-size: 20px; padding: 0px 50px 0px 50px;">
-                        <b>Grupos que requerem atencão especial</b>
-                    </div>
-                    <br>
-                    <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
-                        <b>Exemplos de grupos vulneráveis ou/e marginalizados</b>
-                        <li>Minorias</li>
-                        <li>Meninas adolescentes</li>
-                        <li>Crianças com deficiência de aprendizagem</li>
-                        <li>Crianças que vivem em instituições de abrigo</li>
-                        <li>Crianças vivendo em condição de pobreza, em residências com alta ocupância ou improvisadas</li>
-                        <li>Orfãos</li>
-                        <li>Crianças separadas de seus responsáveis</li>
-                        <li>Crianças e adolescentes em risco de abandono escolar</li>
-                    </div>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    with col2a_4:
-        st.write(
-            f"""<div class="container">
-                <br>
-                </div>
-                <br>
-            """,
-            unsafe_allow_html=True,
-        )
-    st.write(
-        f"""
-        <div class="container main-padding">
-            <br>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # st.write(
+    #     f"""<br>
+    #         <div class="container" style="padding-left:0px;">
+    #             <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>2. Escolha quem pode retornar</b></div>
+    #         </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
 
-    col2b_1, col2b_2, col2b_3, col2b_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
-    with col2b_1:
-        params["number_teachers"] = st.number_input(
-            "Quantos professores(as) retornam?",
-            format="%d",
-            value=data["number_teachers"].values[0],
-            step=1,
-        )
-    col2b_2=col2a_2
-    with col2b_3:
-        st.write(
-            f"""
-            <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
-                <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
-                    <b>Iniciamos com total de professores reportados no Censo Escolar 2019 (INEP).</b> 
-                    <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de professores podem ser de risco, confortáveis para retorno e outros.
-                </div>
-                <div class="button-position" style="padding-bottom: 15px;">
-                    <a href="#entenda-professores">
-                        <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
-                            como retornar professores(as) >
-                        </button>
-                    </a>
-                </div>
-                <div id="entenda-professores" class="info-modal-window" style="width: 80%; height: 70%;">
-                    <div>
-                        <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
-                        <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Professores</h1>
-                        <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
-                            <b>Fatores a serem considerados:</b> grupos vulneráveis, número de casos suspeitos, desconforto da rede com o retorno presencial, dificuldade logística e a disponibilidade de retorno presencial.
-                            <br><br>O quadro explicativo traz para cada fator um desafio e uma ação sugerida.
-                            <br><br>Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download">[AQUI]</a>.
-                        </div>
-                        <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/4ai7xDK.jpg"></a>
-                    </div>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    col2b_4=col2a_4
-    st.write(
-        f"""
-        <br>
-        <div class="container" style="padding-left:0px;">
-            <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>3. Defina as restrições de retorno</b></div><br>
-                </div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    # col2a_1, col2a_2, col2a_3, col2a_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
+    # with col2a_1:
+    #     params["number_students"] = st.number_input(
+    #         "Quantos estudantes retornam às aulas presenciais?",
+    #         format="%d",
+    #         value=data["number_students"].values[0],
+    #         step=1,
+    #     )
+    #     if params["priority"]:
+    #         params["number_remote_students"] = st.number_input(
+    #         "Quantos estudantes acompanham às aulas somente de forma remota?",
+    #         format="%d",
+    #         value=data["number_students"].values[0],
+    #         step=1,
+    #     )
+    # with col2a_2:
+    #     st.write(
+    #         f"""
+    #         <div class="container main-padding">
+    #             <br>
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # with col2a_3:
+    #     st.write(
+    #         f"""
+    #         <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
+    #             <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
+    #                 <b>Iniciamos com total de estudantes reportados no Censo Escolar 2019 (INEP).</b>
+    #                 <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de estudantes podem ser vulneráveis ou ter prioridade.
+    #             </div>
+    #             <div class="button-position" style="padding-bottom: 15px;">
+    #                 <a href="#entenda-estudantes">
+    #                     <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+    #                         grupos que requerem atencão especial >
+    #                     </button>
+    #                 </a>
+    #             </div>
+    #         </div>
+    #         <div id="entenda-estudantes" class="info-modal-window" style="width: 80%; height: 70%;">
+    #             <div>
+    #                 <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+    #                 <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Estudantes</h1>
+    #                 <div style="font-size: 20px; padding: 0px 50px 0px 50px;">
+    #                     <b>Grupos que requerem atencão especial</b>
+    #                 </div>
+    #                 <br>
+    #                 <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+    #                     <b>Exemplos de grupos vulneráveis ou/e marginalizados</b>
+    #                     <li>Minorias</li>
+    #                     <li>Meninas adolescentes</li>
+    #                     <li>Crianças com deficiência de aprendizagem</li>
+    #                     <li>Crianças que vivem em instituições de abrigo</li>
+    #                     <li>Crianças vivendo em condição de pobreza, em residências com alta ocupância ou improvisadas</li>
+    #                     <li>Orfãos</li>
+    #                     <li>Crianças separadas de seus responsáveis</li>
+    #                     <li>Crianças e adolescentes em risco de abandono escolar</li>
+    #                 </div>
+    #             </div>
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # with col2a_4:
+    #     st.write(
+    #         f"""<div class="container">
+    #             <br>
+    #             </div>
+    #             <br>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # st.write(
+    #     f"""
+    #     <div class="container main-padding">
+    #         <br>
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
 
-    col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
-        [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
-    )
-    with col3_1:
-        params["number_classrooms"] = st.number_input(
-            "Quantas salas de aula disponíveis?",
-            format="%d",
-            value=data["number_classroms"].values[0],
-            step=1,
-        )
-        st.write(
-            f"""
-            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                O número de salas restringe o número de turmas que podem voltar de forma simultânea.
-            </div>
-        """,
-            unsafe_allow_html=True,
-        )
-    col3_2=col2a_2
-    with col3_3:
-        params["max_students_per_class"] = st.slider(
-            "Selecione o máximo de estudantes por turma:", 0, 20, 20, 1
-        )
-        st.write(
-            f"""
-            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                Limitamos em 20 estudantes por sala para diminiuir o risco de transmissão seguindo critérios sanitários.
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-    col3_4 = col2a_2
-    with col3_5:
-        params["hours_per_day"] = int(st.slider(
-            "Selecione o número de horas presenciais diárias na escola por turma:", 
-            min_value=1, 
-            max_value=5, 
-            value=UNESCO_models[params["education_model"]]["hours_per_day"], 
-            step=1,
-        ))
+    # col2b_1, col2b_2, col2b_3, col2b_4 = st.beta_columns([0.35, 0.05, 0.85, 0.3])
+    # with col2b_1:
+    #     params["number_teachers"] = st.number_input(
+    #         "Quantos professores(as) retornam?",
+    #         format="%d",
+    #         value=data["number_teachers"].values[0],
+    #         step=1,
+    #     )
+    # col2b_2=col2a_2
+    # with col2b_3:
+    #     st.write(
+    #         f"""
+    #         <div class="col light-green-simulator-bg card-simulator" style="border-radius:30px;">
+    #             <div class="row" style="font-family: 'Roboto Condensed', sans-serif; margin-bottom:0px; padding:10px;">
+    #                 <b>Iniciamos com total de professores reportados no Censo Escolar 2019 (INEP).</b> 
+    #                 <br>Você pode alterar esse valor ao lado. Leve em consideração quais grupos de professores podem ser de risco, confortáveis para retorno e outros.
+    #             </div>
+    #             <div class="button-position" style="padding-bottom: 15px;">
+    #                 <a href="#entenda-professores">
+    #                     <button class="button-protocolos" style="border-radius: .25rem; font-size:16px; margin-right: 10px;margin-left: 10px;">
+    #                         como retornar professores(as) >
+    #                     </button>
+    #                 </a>
+    #             </div>
+    #             <div id="entenda-professores" class="info-modal-window" style="width: 80%; height: 70%;">
+    #                 <div>
+    #                     <a href="#" title="Close" class="info-btn-close" style="color: white;">&times</a>
+    #                     <h1 class="main-orange-span bold" style="padding: 0px 50px 0px 50px;">Professores</h1>
+    #                     <div style="font-size: 16px; padding: 0px 50px 0px 50px;">
+    #                         <b>Fatores a serem considerados:</b> grupos vulneráveis, número de casos suspeitos, desconforto da rede com o retorno presencial, dificuldade logística e a disponibilidade de retorno presencial.
+    #                         <br><br>O quadro explicativo traz para cada fator um desafio e uma ação sugerida.
+    #                         <br><br>Caso não consiga ver a imagem, clique na imagem para baixa-la ou <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download">[AQUI]</a>.
+    #                     </div>
+    #                     <a href="https://drive.google.com/u/1/uc?id=1lLtbEMau4nIj8tZ5rQF51ThV2Q8K1DzE&export=download"><img style="padding: 50px 50px 50px 50px;" class="images" src="https://i.imgur.com/4ai7xDK.jpg"></a>
+    #                 </div>
+    #             </div>
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # col2b_4=col2a_4
+    # st.write(
+    #     f"""
+    #     <br>
+    #     <div class="container" style="padding-left:0px;">
+    #         <div class="minor-padding" style="font-size: 20px; color:#FF934A;"><b>3. Defina as restrições de retorno</b></div><br>
+    #             </div>
+    #         </div>
+    #     </div>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
 
-        st.write(
-            f"""
-            <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
-                As restrições sanitárias limitam a quantidade de tempo e estudantes que conseguem retornar à sala de aula.
-            </div>
+    # col3_1, col3_2, col3_3, col3_4, col3_5, col3_6 = st.beta_columns(
+    #     [0.35, 0.05, 0.4, 0.05, 0.4, 0.3]
+    # )
+    # with col3_1:
+    #     params["number_classrooms"] = st.number_input(
+    #         "Quantas salas de aula disponíveis?",
+    #         format="%d",
+    #         value=data["number_classroms"].values[0],
+    #         step=1,
+    #     )
+    #     st.write(
+    #         f"""
+    #         <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+    #             O número de salas restringe o número de turmas que podem voltar de forma simultânea.
+    #         </div>
+    #     """,
+    #         unsafe_allow_html=True,
+    #     )
+    # col3_2=col2a_2
+    # with col3_3:
+    #     params["max_students_per_class"] = st.slider(
+    #         "Selecione o máximo de estudantes por turma:", 0, 20, 20, 1
+    #     )
+    #     st.write(
+    #         f"""
+    #         <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+    #             Limitamos em 20 estudantes por sala para diminiuir o risco de transmissão seguindo critérios sanitários.
+    #         </div>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # col3_4 = col2a_2
+    # with col3_5:
+    #     params["hours_per_day"] = int(st.slider(
+    #         "Selecione o número de horas presenciais diárias na escola por turma:", 
+    #         min_value=1, 
+    #         max_value=5, 
+    #         value=UNESCO_models[params["education_model"]]["hours_per_day"], 
+    #         step=1,
+    #     ))
 
-            <div class="container">
-            <br>
-            </div>
-            <br>
-            """,
-            unsafe_allow_html=True,
-        )
-    col3_6=col2a_4
+    #     st.write(
+    #         f"""
+    #         <div class="row" style="margin:0px; padding:10px; background:#DDFBF0; border-radius: 1rem 1rem 1rem 1rem;">
+    #             As restrições sanitárias limitam a quantidade de tempo e estudantes que conseguem retornar à sala de aula.
+    #         </div>
+
+    #         <div class="container">
+    #         <br>
+    #         </div>
+    #         <br>
+    #         """,
+    #         unsafe_allow_html=True,
+    #     )
+    # col3_6=col2a_4
 
 
 
 
-    params["total_hour_class"] = st.number_input(
-        "Horas diárias de aula disponíveis por sala",
-        format="%d",
-        value=8,
-        step=1,
-    )
-    params["turnos"] = st.number_input(
-        "Número de turnos",
-        format="%d",
-        value=3,
-        step=1,
-    )
-    x = int(params["total_hour_class"]/params["turnos"])
-    params["hour_class"] = int(st.slider(
-        "Horas diárias de aula por turma", 
-        min_value=1, 
-        max_value=x, 
-        step=1,
-    ))
+    # params["total_hour_class"] = st.number_input(
+    #     "Horas diárias de aula disponíveis por sala",
+    #     format="%d",
+    #     value=8,
+    #     step=1,
+    # )
+    # params["turnos"] = st.number_input(
+    #     "Número de turnos",
+    #     format="%d",
+    #     value=3,
+    #     step=1,
+    # )
+    # x = int(params["total_hour_class"]/params["turnos"])
+    # params["hour_class"] = int(st.slider(
+    #     "Horas diárias de aula por turma", 
+    #     min_value=1, 
+    #     max_value=x, 
+    #     step=1,
+    # ))
 
-    with st.beta_expander("simular retorno"):
-        user_analytics = amplitude.gen_user(utils.get_server_session())
-        opening_response = user_analytics.safe_log_event(
-            "clicked simule retorno", session_state, is_new_page=True
-        )
-        print(params)
-        genSimulationResult(params, config)
+    # with st.beta_expander("simular retorno"):
+    #     user_analytics = amplitude.gen_user(utils.get_server_session())
+    #     opening_response = user_analytics.safe_log_event(
+    #         "clicked simule retorno", session_state, is_new_page=True
+    #     )
+    #     print(params)
+    #     genSimulationResult(params, config)
 
-    '''if st.button("Simular retorno"):
-        if st.button("Esconder"):
-            pass
-        genSimulationResult()
-    utils.stylizeButton(
-        name="SIMULAR RETORNO",
-        style_string="""
-        box-sizing: border-box;
-        border-radius: 15px; 
-        width: 150px;padding: 0.5em;
-        text-transform: uppercase;
-        font-family: 'Oswald', sans-serif;
-        background-color: #0097A7;
-        font-weight: bold;
-        text-align: center;
-        text-decoration: none;font-size: 18px;
-        animation-name: fadein;
-        animation-duration: 3s;
-        margin-top: 1.5em;""",
-        session_state=session_state,
-    )'''
-
-    # TODO: escrever metodologia v1.2
-    with st.beta_expander("ler metodologia"):
-        user_analytics = amplitude.gen_user(utils.get_server_session())
-        opening_response = user_analytics.safe_log_event(
-            "clicked simule metodologia", session_state, is_new_page=True
-        )
-        methodology_text = load_markdown_content("methodology_short.md")
-        st.write(methodology_text)
-    # tm.genTermo()
-    # foo.genFooter()
 
 if __name__ == "__main__":
     main()
