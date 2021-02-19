@@ -2,28 +2,32 @@ from math import floor, ceil
 
 
 def get_school_return_projections(
-    num_alunos,
-    num_professores,
-    num_salas,
-    horas_de_aula_por_turma,
-    max_alunos_por_sala,
-    horas_possiveis_sala=10,
-    max_professores_por_turma=1,
+    number_alunos,
+    number_alunos_naovoltando,
+    number_professores,
+    number_professores_naovoltando,
+    number_salas,
+    maxalunossalas,
+    hours_classpresencial,
+    hours_classpremoto,
+    turnos,
+    professorday,
+    horaaula,
 ):
     """
     Calcula o número projetado de alunos e professores que retornam à escola.
 
     Parameters
     ----------
-        num_alunos: int 
+        number_alunos: int 
             Número de alunos autorizados a retornar à escola.
-        num_professores: int
+        number_professores: int
             Número de professores autorizados a voltar à escola.
-        num_salas: int
+        number_salas: int
             Número de salas de aula disponíveis.
-        horas_de_aula_por_turma: int
+        hours_classpresencial: int
             Duração do tempo em aula por dia (definido por modelo ou usuário).
-        max_alunos_por_sala: int
+        maxalunossalas: int
             Número máximo de alunos por turma.
         horas_possiveis_sala: int
             Total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde)
@@ -32,28 +36,38 @@ def get_school_return_projections(
 
     Returns
     -------
-        num_alunos_retornantes : int
+        number_alunos_retornantes : int
             Número projetado de alunos voltando à escola.
-        num_professores_retornantes : int
+        number_professores_retornantes : int
             Número projetado  de professores que retornam à escola.
     """
     # Maximo de turmas por limitacao dos alunos
-    max_alunos = num_alunos/max_alunos_por_sala
+    max_alunos = number_alunos/maxalunossalas
     
     # Maximo de turmas por limitacao de salas
-    max_salas = horas_possiveis_sala * num_salas / horas_de_aula_por_turma
+    max_salas = number_salas*turnos
     
     # Maximo de turmas por limitacao por professores
-    max_professores = num_professores*max_professores_por_turma
+    max_professores = int(number_professores/(horaaula*professorday/60)/hours_classpresencial)
     
     # Identifica o gargalo
     limite_turmas = min(max_alunos, max_salas, max_professores)
     
     # Dado o gargalo, identificar as condições reais do retorno
-    num_professores_retornantes = ceil(limite_turmas*max_professores_por_turma)
-    num_alunos_retornantes = ceil(limite_turmas*max_alunos_por_sala)
+    max_professores_por_turma = (horaaula*professorday/60)/hours_classpresencial
+    number_professores_retornantes = ceil(limite_turmas*max_professores_por_turma)
+    number_alunos_retornantes = ceil(limite_turmas*maxalunossalas)
+    salasocupadas = ceil(limite_turmas/turnos)
+    salaslivres = number_salas-salasocupadas
+    alunoslivres = number_alunos-number_alunos_retornantes
+    professoreslivres = number_professores-number_professores_retornantes
 
-    return num_alunos_retornantes, num_professores_retornantes, limite_turmas
+    # Dias letivos
+
+    # Dias letivos
+    diasletivos = ceil(800/(hours_classpresencial+hours_classpremoto))
+
+    return number_alunos_retornantes, number_professores_retornantes, limite_turmas, salasocupadas, salaslivres, diasletivos, alunoslivres, professoreslivres
 
 def get_school_return_supplies(
     num_returning_students,
@@ -155,26 +169,38 @@ def entrypoint(params, config):
     school_return_data = dict()
 
     # Calculate Number of Returning Students and Teachers
-    num_returning_students, num_returning_teachers, max_groups = get_school_return_projections(
-        params["number_students"],
-        params["number_teachers"],
-        params["number_classrooms"],
-        params["hours_per_day"],
-        params["max_students_per_class"],
+    number_alunos_retornantes, number_professores_retornantes, limite_turmas, salasocupadas, salaslivres, diasletivos, alunoslivres, professoreslivres = get_school_return_projections(
+        params["number_alunos"],
+        params["number_alunos_naovoltando"],
+        params["number_professores"],
+        params["number_professores_naovoltando"],
+        params["number_salas"],
+        params["maxalunossalas"],
+        params["hours_classpresencial"],
+        params["hours_classpremoto"],
+        params["turnos"],
+        params["professorday"],
+        params["horaaula"],
     )
+
     # Calculate Amount of Required Protection Equipment
     total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(
-        params["number_students"],
-        params["number_teachers"],
-        params["hours_per_day"],
-        params["max_students_per_class"],
+        number_alunos_retornantes,
+        number_professores_retornantes,
+        params["hours_classpresencial"],
+        params["maxalunossalas"],
         config,
     )
     # Build School Return Data Dictionary
     return {
-        "num_returning_students": num_returning_students,
-        "num_returning_teachers": num_returning_teachers,
-        "max_groups": max_groups,
+        "number_alunos_retornantes": number_alunos_retornantes,
+        "number_professores_retornantes": number_professores_retornantes,
+        "limite_turmas": limite_turmas,
+        "salasocupadas": salasocupadas,
+        "salaslivres": salaslivres,
+        "alunoslivres": alunoslivres,
+        "professoreslivres": professoreslivres,
+        "diasletivos": diasletivos,
         "total_masks": total_masks,
         "total_sanitizer": round(total_sanitizer, 2),
         "total_thermometers": total_thermometers,
