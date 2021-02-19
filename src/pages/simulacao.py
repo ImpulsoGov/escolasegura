@@ -12,9 +12,8 @@ from utils import load_markdown_content
 import pages.snippet as tm
 import pages.header as he
 import pages.footer as foo
-# import plotly.graph_objs as go
-# import matplotlib.pyplot as plt
-# import numpy as np
+import matplotlib.pyplot as plt
+from math import floor, ceil
 
 @st.cache(suppress_st_warning=True)
 def get_data(session_state):
@@ -27,7 +26,7 @@ def get_data(session_state):
     Returns:
         df (type): 2019 school census dataframe
     """
-    # url = "http://datasource.coronacidades.org/br/cities/safeschools/main?state_id="+session_state.state_id
+#     url = "http://datasource.coronacidades.org/br/cities/safeschools/main?state_id="+session_state.state_id
     url = "http://datasource.coronacidades.org/br/cities/safeschools/main"
     df = pd.read_csv(url)
     return df
@@ -206,85 +205,40 @@ def main():
 
     utils.gen_title(title="<b>3</b>. Organize suas turmas", subtitle="")
     params["hours_classpresencial"] = st.slider(
-        "Horas diárias de aula PRESENCIAL por turma:", 0, 10, 5, 1
+        "Horas diárias de aula PRESENCIAL por turma:", 0, 8, 4, 1
     )
     params["hours_classpremoto"] = st.slider(
-        "Horas diárias de aula REMOTA por turma:", 0, 10, 0, 1
+        "Horas diárias de aula REMOTA por turma:", 0, 6, 0, 1
     )
     params["turnos"] = st.slider(
-        "Número de turnos em um dias:", 0, 10, 2, 1
+        "Número de turnos em um dia:", 0, int(24/params["hours_classpresencial"]), 2, 1
     )
-    # A = [4, 4, 4, 4, 4]
-    # B = [4, 4, 4, 4, 4]
-    # C = [4, 4, 4, 4, 4]
-    # D = [4, 4, 4, 4, 4]
-    # E = [4, 4, 4, 4, 4]
-    # fig = plt.figure(facecolor="white")
-    # ax = fig.add_subplot(1, 1, 1)
-    # bar_width = 0.5
-    # bar_l = np.arange(1, 6)
-    # tick_pos = [i + (bar_width / 2) for i in bar_l]
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    st.write(
+        f"""
+        <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
+            Na configuracão atual, <b>a escola funcionaria dando
+            {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
+            sendo que cada turno (e as turmas do turno) terão 
+            <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
+            com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
+            Continue a simulacão para saber quantas turmas e professores terão por turno.<br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    # ax1 = ax.bar(bar_l, A, width=bar_width, label="A")
-    # ax2 = ax.bar(bar_l, B, bottom=A, width=bar_width, label="B")
-    # ax3 = ax.bar(bar_l, C, bottom=A, width=bar_width, label="C")
-    # # ax4 = ax.bar(bar_l, D, bottom=A, width=bar_width, label="D")
-    # # ax5 = ax.bar(bar_l, E, bottom=A, width=bar_width, label="E")
-    # ax.set_ylabel("Horas de Aula Presenciais por Dia", fontsize=14)
-    # ax.legend(loc="best")
-    # ax.xaxis.tick_top() 
-    # plt.xticks(tick_pos, ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'], fontsize=16)
-    # st.pyplot(fig)
-    # A = [4, 4, 4, 4, 4]
-    # B = [4, 4, 4, 4, 4]
-    # C = [4, 4, 4, 4, 4]
-    # mylist = {}
-    # mylist["pies_2018"] = A
-    # mylist["pies_2019"] = B
-    # mylist["pies_2020"] = C
-    # plotdataA = pd.DataFrame(A,index=['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'])
-    # plotdataB = pd.DataFrame(A,index=['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'])
-    # stacked_data = plotdataA.apply(lambda x: x, axis=1)
-    # layout = go.Layout(
-    #     # title=title,
-    #     #plot_bgcolor="rgba(0,0,0,0)",
-    #     # autosize=True,
-    #     # width=1000,
-    #     height=700,
-    #     margin={"l": 100, "r": 100, "t": 30},
-    #     xaxis=dict(domain=[0, 0.8]),
-    #     xaxis2=dict(domain=[0.85, 1]),
-    #     yaxis=dict(tickmode="linear"),
-    #     # yaxis2=dict(tickmode="linear", anchor="x2"),
-    # )
-    # traceA = go.Bar(
-    #     x=plotdataA,
-    #     y=plotdataA.index,
-    #     xaxis="x2",
-    #     yaxis="y2",
-    #     orientation="h",
-    #     hoverinfo="text",
-    # )
-    # traceB = go.Bar(
-    #     x=plotdataB,
-    #     y=plotdataB.index,
-    #     xaxis="x2",
-    #     yaxis="y2",
-    #     orientation="h",
-    #     hoverinfo="text",
-    # )
-    # tracedata = [traceA, traceB]
-    # fig = go.Figure(data=tracedata, layout=layout)
-    # st.plotly_chart(fig, use_container_width=True)
-    # st.bar_chart(stacked_data)
-    # ax = stacked_data.plot(kind="bar", stacked=True, fontsize=14)
-    # ax.patch.set_facecolor('white')
-    # ax.xaxis.tick_top() 
-    # plt.ylabel("Horas de Aula Presenciais por Dia", fontsize=14)
-    # plt.legend(bbox_to_anchor=(1.05, 1))
-    # fig = plt.figure()
-
-
+    lista = dict()
+    for i in range(params["turnos"]):
+        x = [params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"]]
+        turmalabel = "Turno " + str(i+1)
+        lista[turmalabel] = x
+    df = pd.DataFrame(data=lista)
+    df.index = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+    ax = df.plot(stacked=True, kind='bar', grid=False, figsize=(12, 8), rot='horizontal', fontsize=14, colormap='Pastel2')
+    ax.xaxis.tick_top()
+    ax.set_ylabel("Horas de Aula Presenciais por Dia", fontsize=14)
+    st.pyplot(ax.figure.savefig('turmas.png'))
     params["professorday"] = st.number_input(
         "Horas aula diárias por professor",
         format="%d",
