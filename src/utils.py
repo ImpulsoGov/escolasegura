@@ -171,7 +171,7 @@ def genHeroSection(title1: str, title2: str, header: bool):
     st.write(
         f"""
         <div class="base-wrapper hero-bg">
-            <div class="hero-wrapper">
+            <div class="hero-wrapper" style="padding-bottom:40px;">
                 <div class="hero-container-content">
                     <a href="https://coronacidades.org/" style="text-decoration: none;"><span class="hero-container-corona">{header}</span></a>
                     <span class="hero-container-product">{title1}<br/>{title2}</span>
@@ -194,6 +194,16 @@ def main_title(title: str, subtitle: str):
         </div>
         <div class="conteudo" style="padding-bottom: 10px;">
             {subtitle}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+def appdescription(title: str, subtitle: str):
+    st.write(
+        f"""
+        <div class="conteudo title-section" style="text-align:center; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
+            {title}
         </div>
         """,
         unsafe_allow_html=True,
