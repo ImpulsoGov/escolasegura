@@ -18,37 +18,32 @@ def main():
     # urlpath = "http://localhost:8501/"
     urlpath = 'https://escolasegura-staging.herokuapp.com/'
     # urlpath = 'https://escolasegura.coronacidades.org/'
+    utils.localCSS("inicio.css")
     utils.localCSS("localCSS.css")
     utils.genHeroSection(
         title1="Escola", title2="Segura", header=True,
     )
-    subtitle = """Veja guias e protocolos para facilitar uma reabertura planejada da 
-    rede pública de ensino, respeitando boas práticas de distanciamento e segurança 
-    sanitária para controle da Covid-19. Encontre as ferramentas corretas de acordo 
-    com o status atual de sua abertura:
-    <br>
-    Confira o inicio alternativo <a href="https://escolasegura-staging.herokuapp.com/?page=inicio2" >aqui</a>."""
-    utils.main_title(title="Seja <b>Bem Vindo</b> ao Escola Segura!", subtitle=subtitle)
+    utils.appdescription(title="Escola Segura é uma iniciativa da Impulso Gov que oferece guias, protocolos e simuladores para auxiliar no planejamento de reabertura da rede pública de ensino!", subtitle="")
 
     
-    utils.gen_title(title="Como <b>retomar</b> as atividades presenciais?", subtitle="")
-    title="CONHEÇA OS 10 RETOMAR PARA REABERTURA!"
+    # utils.gen_title(title="Como <b>retomar</b> as atividades presenciais?", subtitle="")
+    title="Conheca os 10 passos para uma reabertura segura!"
     sub="Veja nossa RETOMAR os 10 passos para retomada presencial das aulas."
     st.write(
         f"""
-        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
+        <div class="conteudo row" style="margin-top:50px; margin-right:0px; margin-left:0px;">
             <div class="card-plan" style="width:100%;">
                 <div style="margin:10px">
                     <div>
-                        <div class="card-title" >
+                        <div class="card-title">
                         {title}
                         </div>
-                        <div><br>
+                        <div>
                             {sub}
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=guia10passos' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
+                                <button class="button"; style="border-radius: 0.8rem;">Acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +54,7 @@ def main():
         unsafe_allow_html=True,
     )
 
-    utils.gen_title(title="Como podemos te <b>ajudar</b>?", subtitle="")
+    # utils.gen_title(title="Como podemos te <b>ajudar</b>?", subtitle="")
     simulador="Simulador: como organizar a rebertura?"
     simuladorsub = "Descobra como organizar professores, salas e alunos e quais os materiais necessários para cumprir os protocolors sanitários. "
     title1="Dúvidas Frequentes"
@@ -70,26 +65,25 @@ def main():
     sub3="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
     st.write(
         f"""
-        <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
+        <div class="conteudo row" style="margin-top: 30px; margin-right:0px; margin-left:0px;">
             <div class="card-plan" style="width:100%;">
                 <div style="margin:10px">
                     <div>
                         <div class="card-title" >
                         {simulador}
                         </div>
-                        <div><br>
+                        <div>
                             {simuladorsub}
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=simulation' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
+                                <button class="button"; style="border-radius: 0.8rem;">Acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
             <div class="col card-plan" style="margin-top:20px; width:100%;">
                 <div style="margin:10px;">
@@ -97,12 +91,12 @@ def main():
                         <div class="card-title" >
                         {title1}
                         </div>
-                        <div><br>
+                        <div>
                             {sub1}
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=duvidasfrequentes' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
+                                <button class="button"; style="border-radius: 0.8rem;">Acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -114,12 +108,12 @@ def main():
                         <div class="card-title" >
                         {title2}
                         </div>
-                        <div><br>
+                        <div>
                             {sub2}
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=inicio' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
+                                <button class="button"; style="border-radius: 0.8rem;">Acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -131,12 +125,12 @@ def main():
                         <div class="card-title" >
                         {title3}
                         </div>
-                        <div><br>
+                        <div>
                             {sub3}
-                            <div align="center" style="padding-bottom: 10px;">
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=sobre' target="_self">
-                                <button class="button"; style="border-radius: .25rem;">ver ></button><br>
-                                </a><br>
+                                <button class="button"; style="border-radius: 0.8rem;">Acesse ></button><br>
+                                </a>
                             </div>
                         </div>
                     </div>
