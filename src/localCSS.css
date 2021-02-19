@@ -123,6 +123,37 @@ body{
 	padding-right: 120px;
 }
 
+/* SIMULADOR */
+.stNumberInput{
+  padding-left: 90px;
+  padding-right: 120px;
+  padding-bottom: 10px;
+}
+
+.stSlider{
+  padding-left: 90px;
+  padding-right: 120px;
+  padding-bottom: 10px;
+}
+
+.Widget>label{
+  font-size:0.9rem;
+}
+
+.stBlock-horiz{
+  padding-left: 90px;
+  padding-right: 120px;
+}
+
+.streamlit-button.primary-button{
+  margin-top: 20px;
+  margin-left: 90px;
+  margin-right: 120px;
+  padding: 10px;
+  font-size: 20px;
+  background: var(--main-light-blue-green);
+}
+
 /* TITULO PRINCIPAL */
 .main-title{
   font-size: 2.5rem;
