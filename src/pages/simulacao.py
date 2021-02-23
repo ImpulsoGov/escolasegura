@@ -109,19 +109,21 @@ def genSimulationResult(params, config):
         f"""
         <div class="conteudo" style="padding-top:5px;">
             <div style="background:#DDFBF0; padding:20px;">
-                <span class="title-section" style="color:#ff9147"><b>RESULTADO DA SIMULACÃO</b><br></span>
-                <br><b>TURMAS</b><br>
+                <span class="title-section" style="color:#2b14ff"><b>RESULTADO DA SIMULAÇÃO</b></span><br>
+                <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Turmas</span><br>
                 Quantidade de turmas: <b>{result["limite_turmas"]}</b> </br>
                 Dias letivos necessários para cumprir as horas totais anuais (800 horas): <b>{result["diasletivos"]}</b> </br>
-                <br><b>ORGANIZAÇÃO</b><br>
+                <br>
+                <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Numero de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
                 <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Numero de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
                 <br>Numero de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
                 <span style="font-size:0.85rem">Numero de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
-                <br><b>MATERIAIS</b><br>
-                Planeje suas compras! Estos são os materiais necessários por semana:<br>
+                <br>
+                <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Materiais</span><br>
+                Planeje suas compras! Esses são os materiais necessários por semana:<br>
                 Número de máscaras necessárias: <b>{result["total_masks"]}</b> </br>
                 Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
@@ -219,13 +221,13 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
 
     utils.gen_title(title="<b>3</b>. Como são suas turmas?", subtitle="")
     params["hours_classpresencial"] = st.slider(
-        "Horas diárias de aula presencial por turma:", 1, 8, 1, 1
+        "Horas diárias de aula presencial por turma:", 1, 8, 4, 1
     )
     params["hours_classpremoto"] = st.slider(
         "Horas diárias de aula remota por turma:", 0, 6, 0, 1
     )
     params["turnos"] = st.slider(
-        "Número de turnos:", 1, int(24/params["hours_classpresencial"]), 1, 1
+        "Número de turnos:", 1, int(18/params["hours_classpresencial"]), 1, 1
     )
     if params["hours_classpresencial"] > 0:
         st.write(
