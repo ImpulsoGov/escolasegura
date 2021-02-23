@@ -139,7 +139,7 @@ def get_school_return_supplies(
 
     # Determine Total Quantities of Masks and Hand Sanitizer
     total_masks = ceil(student_masks + teacher_masks)
-    total_sanitizer = student_sanitizer + teacher_sanitizer
+    total_sanitizer = ceil(student_sanitizer + teacher_sanitizer)
 
     # Determine Number of Thermometers
     total_thermometers = ceil(num_returning_students / people_per_thermometer)
