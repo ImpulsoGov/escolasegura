@@ -61,8 +61,8 @@ def main():
     simuladorsub = "Informe os dados da sua rede ou escola e calcule quantas turmas podem voltar em segurança e quais materiais você precisa providenciar."
     title1="Quem Somos"
     sub1="Reunimos organizações atuantes nas áreas de educação, saúde e análise de dados para criar este conteúdo técnico, fundamentado em fontes nacionais e internacionais, para apoiar gestores escolares neste desafio."
-    # title2="Conte com a Gente"
-    # sub2="Entre em contato com a gente para se atualizar e tirar suas dúvidas."
+    title2="Dúvidas Frequentes"
+    sub2="Saiba o que outros gestores e gestoras públicos já perguntaram sobre o desafio da retomada das atividades presenciais em escolas."
     # title3="Quem Somos"
     # sub3="Saiba mais sobre os envolvidos e o desenvolvimento da plataforma."
     st.write(
@@ -102,6 +102,25 @@ def main():
                             <div align="center" style="padding-top:15px; padding-bottom: 15px;">
                                 <a href='{urlpath}?page=sobre' target="_self">
                                 <button class="button"; style="border-radius: 0.8rem;">Saiba mais ></button><br>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col card-plan" style="width:100%; margin-top:15px; margin-botton:15px;">
+                <div>
+                    <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#7ACCA9; color:white;">
+                    {title2}
+                    </div>
+                    <div style="margin:10px">
+                        <div class="card-title">
+                        {sub2}
+                        </div>
+                        <div>
+                            <div align="center" style="padding-top:15px; padding-bottom: 15px;">
+                                <a href='{urlpath}?page=duvidasfrequentes' target="_self">
+                                <button class="button"; style="border-radius: 0.8rem;">Confira ></button><br>
                                 </a>
                             </div>
                         </div>
