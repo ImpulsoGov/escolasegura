@@ -16,4 +16,3 @@ mechanize
 flask
 flask-cors
 ipywidgets
-matplotlib
