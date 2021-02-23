@@ -364,7 +364,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
                                             </div>
                                             <div class="minor-padding button-position">
-                                                    <button class="button"; style="border-radius: .25rem;"> imprima aqui > </button>
+                                                    <button class="button"; style="border-radius: .25rem;"> acesse aqui > </button>
                                                 </a>
                                             </div>
                                         </div><br>
@@ -417,7 +417,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                         </div>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
-                                                <button class="button"; style="border-radius: .25rem;">imprima aqui ></button>
+                                                <button class="button"; style="border-radius: .25rem;">acesse aqui ></button>
                                             </a>
                                         </div>
                                         </div><br>
@@ -433,7 +433,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                         Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                                <button class="button"; style="border-radius: .25rem;"> imprima aqui ></button>
+                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
                                             </a>
                                         </div>
                                         </div><br>
