@@ -16,8 +16,8 @@ from pathlib import Path
 
 def main():
     # urlpath = "http://localhost:8501/"
-    urlpath = 'https://escolasegura-staging.herokuapp.com/'
-    # urlpath = 'https://escolasegura.coronacidades.org/'
+    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
+    urlpath = 'https://escolasegura.coronacidades.org/'
     utils.localCSS("inicio.css")
     utils.localCSS("localCSS.css")
     utils.genHeroSection(
