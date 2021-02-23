@@ -35,11 +35,11 @@ def main():
             <div class="card-plan" style="width:100%;">
                 <div>
                     <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#2b14ff; color:white;">
-                    {sub}
+                    {title}
                     </div>
                     <div style="margin:10px">
                         <div class="card-title">
-                        {title}
+                        {sub}
                         </div>
                         <div>
                             <div align="center" style="padding-top:15px; padding-bottom: 15px;">
@@ -109,6 +109,7 @@ def main():
                 </div>
             </div>
         </div>
+        <br>
         """,
         unsafe_allow_html=True,
     )
