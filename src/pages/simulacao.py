@@ -234,9 +234,9 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         f"""
             <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
                 <div style="background:#DDFBF0; padding:20px; border-radius: 0.8rem;">
-                Na configuracão atual, <b>a escola funcionaria dando
+                Na configuracão atual, <b>a(s) escola(s) funcionaria(m) dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
-                sendo que cada turno (e as turmas do turno) terão 
+                sendo que cada turno (e as turmas do turno) teriam 
                 <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
                 com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
                 Continue a simulacão para saber quantas turmas e professores terão por turno.<br>
