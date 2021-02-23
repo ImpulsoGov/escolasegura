@@ -14,6 +14,9 @@ import amplitude
 def main():
     utils.localCSS("localCSS.css")
     he.genHeader("guia10passos")
+    # urlpath = "http://localhost:8501/"
+    urlpath = 'https://escolasegura-staging.herokuapp.com/'
+    # urlpath = 'https://escolasegura.coronacidades.org/'
 
     protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
@@ -23,10 +26,105 @@ def main():
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
     plan_image = utils.load_image("imgs/monitor_plan_forms.png")
     
-    subtitle = """Veja os principais passos para uma reabertura no quiz <span style="color:#ff9147;"><b>Passo a passo de reabertura Escola-Segura</b>.</span>
-    <br><br>Nós estudamos bastante para essa prova! Revisamos a literatura científica, protocolos e melhores práticas encontradas em manuais de reabertura nacionais e internacionais, e resumimos os principais passos para você planejar um retorno escolar seguro para a sua comunidade!"""
-    utils.main_title(title="Sua <b>rede</b> está preparada para retormada as atividades presenciais?", subtitle=subtitle)
+    subtitle = """Revisamos a literatura científica, protocolos e melhores práticas encontradas no Brasil e no mundo para criar 10 passos para você, gestor da educação, preparar e gerir a retomada das atividades presenciais nas escolas, diante dos desafios impostos pela Covid-19. 
+<br><br>
+Aqui, você encontra orientações que começam desde o planejamento da reabertura, com a definição dos protocolos sanitários e regras que devem ser adotados pelas escolas antes de reabrir, até a gestão da rede após a retomada, com recomendações sobre o que fazer diante de algum caso confirmado de Covid-19 dentro da unidade escolar. 
+<br><br>
+Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para garantir uma reabertura mais segura para toda a comunidade escolar."""
+    utils.main_title(title="Como sua rede pode se preparar para a retomada das atividades presenciais em 10 passos? ", subtitle=subtitle)
     
+    obj1 = "Definir os atores responsáveis por planejar, preparar e monitorar a rede para a retomada de atividades presenciais e estabelecer um canal de comunicação com a comunidade escolar."
+    term1 = "Ter clareza sobre os papeis e responsabilidades de cada órgão dentro do processo de retomada, com um comitê estruturado para tomar decisões com agilidade, contando com discursos e comunicação alinhados. "
+    prat1 = """Ação 1. Forme uma Comissão de Reabertura com os atores-chave presentes nos diversos órgãos que devem ser engajados nessa retomada. Além da Secretaria de Educação, a comissão pode envolver membros da Secretaria de Saúde, Secretaria de Assistência/Desenvolvimento Social e também por lideranças regionais, caso sua rede conte com essa estrutura. 
+<br><br>
+Ação 2. Crie um canal para comunicaçao constante da comissão com a comunidade, em especial com diretores, funcionários de escola, professores, pais e responsáveis. Prepare uma pessoa para ser porta-voz e ponto de referência de todo o processo de retomada para a comunidade escolar e para a imprensa. 
+<br><br>
+Ação 3. Estabeleça um plano de comunicação, definindo o que, quando, como e com qual frequência a estratégia de reabertura das atividades presenciais será comunicada."""
+    obj2 = "Definir os critérios e condições sanitárias que serão considerados para o retorno das atividades presenciais nas escolas, uma vez que o cenário da Covid-19 é variável."
+    term2 = "Projetar uma data de retomada das atividades presenciais, de acordo com os critérios definidos."
+    prat2 = """Ação 1. Pactue com a Secretaria de Saúde sobre quais condições sanitárias, critérios e dados da Covid-19 devem ser considerados na hora de decidir sobre o retorno seguro de atividades escolares presenciais na sua rede.
+<br><br>
+Ação 2. Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada das atividade presenciais e comece a preparação para o retorno. 
+<br><br>
+Ação 3. Articule com atores-chave externos, como sindicato de professores, líderes comunitários locais e outros atores relevantes, sobre os critérios pactuados e a data pensada para a  retomada."""
+    obj3 = "Estabelecer o protocolo sanitário a ser seguido por todas as escolas da rede que retomarem as atividades presenciais, com orientações sobre adaptação de estrutura física e a necessidade de aquisição de materiais de limpeza e EPIs para prevenir o contágio da Covid-19 dentro das unidades de ensino"
+    term3 = "Adequar suas unidades de ensino ao protocolo estabelecido e comunicar as medidas de prevenção adotadas a toda a comunidade escolar. "
+    prat3 = """Ação 1. Prepare, com o apoio da Secretaria de Saúde, um protocolo sanitário a ser seguido por todas as escolas que retomarem as atividades presenciais, com a definição da lista de materiais necessários para sua implementação. 
+<br><br>
+Ação 2. Distribua o protocolo para os diretores escolares 
+<br><br>
+Ação 3. Organize a compra e distribuição de materiais de limpeza e de proteção individual para as unidades escolares.
+<br><br>
+Ação 4. Forme um time de inspeção, composto por gestores da Secretaria de Educação e da Vigilância Sanitária, para avaliar a adequação das unidades de ensino ao protocolo e identificar a necessidade de realização de pequenas reformas.  
+<br><br>
+Ação 5. Agende e realize visitas de inspeção nos prédios das escolas da sua rede. 
+<br><br>
+Ação 6. Implemente as obras de adequação necessárias.
+<br><br>
+Ação 7. Faça uma nova rodada de visitas de inspeção e certifique-se que as unidades têm as condições definidas no protocolo sanitário para a retomada. 
+<br><br>
+Ação 8. Comunique sobre o retorno. Prepare materiais informativos sobre a Covid-19 e os protocolos sanitários adotados, para que a comunidade escolar e a sociedade em geral estejam bem informadas sobre as medidas de prevenção tomadas nessa retomada. 
+<br><br>
+<b>Confira e adote os principais protocolos de prevenção da Covid-19 dentro e fora da escola:</b>"""
+    obj4 = "Identificar, a partir da definição de grupos de risco para Covid-19, quantos estudantes e professores poderão retornar às atividades presenciais em cada unidade escolar."
+    term4 = "Projetar a quantidade de estudantes e professores que não retornarão às salas de aula presenciais. Só assim você terá informação qualificada para avaliar o modelo de reabertura mais adequado à realidade da sua comunidade escolar. "
+    prat4 = """Ação 1. Peça aos diretores das escolas que dimensionem quantos alunos de cada unidade de ensino, provavelmente, não irão retornar às salas de aula diante de uma retomada das atividades presenciais. Sugerimos que você utilize o canal de comunicação estabelecido pela Comissão de Reabertura, conforme orientado no Passo 1 deste guia, para essa comunicação.  
+<br><br>
+Ação 2. Dimensione quantos professores estão em grupo de risco e não poderão retornar para atividades presenciais por esse motivo. 
+<br><br>
+<b>Informe os dados da sua rede e Simule o retorno:</b>"""
+    obj5 = "Planejar e definir qual modelo de reabertura das escolas é mais adequado para sua realidade"
+    term5 = "Saber quais grupos de estudantes terão prioridade na retomada de atividades presenciais, reorganizando turmas e salas de acordo com o modelo adotado."
+    prat5 = """Ação 1. Determine como será usado o tempo presencial e o tempo remoto, se existir. 
+<br><br>
+Ação 2. Estabeleça qual modelo será adotado no retorno à sala de aula: serão priorizados os anos terminais ou será dada prioridade a alunos com dificuldade de acompanhar o ensino remoto, por exemplo?. 
+<br><br>
+Ação 3. Feito o diagnóstico de professores e alunos que podem retornar, conforme definido no passo 4 deste guia, e com base no modelo de retomada escolhido, reorganize a divisão de salas e turmas. Caso necessário, programe a contratação de professores substitutos para suprir a falta de professores que integram o grupo de risco e não poderão retornar.
+<br><br>
+Ação 4. Comunique à comunidade escolar o modelo adotado e a nova organização de estudantes e professores. 
+<br><br>
+<b>Entenda que critérios adotar para definir o melhor modelo para sua rede></b>"""
+    obj6 = "Preparação do material pedagógico de acordo com o modelo de reabertura definido."
+    term6 = "Dispor do material mais adequado para dar sequência ao processo de aprendizado dos estudantes. "
+    prat6 = """Ação 1. Revise e prepare o material pedagógico para possibilidar um retorno adequado da rede, considerando o modelo de reabertura adotado. 
+<br><br>
+Ação 2. Prepare o apoio pedagógico (currículo, formação, avaliação, busca ativa) 
+<br>
+Recomendamos que o estudante tenha a opção de dar continuidade a sua formação no modo remoto. Caso seja adotado esse modelo, sugerimos que professores que não podem retornar para sala de aula fiquem responsáveis pela produção de material de alunos que continuam remotos."""
+    obj7 = "Identificar e atuar sobre alunos que não têm acompanhado as atividades remotas e estão em risco de perder o vínculo com a comunidade escolar. "
+    term7 = "Estabelecer uma rotina de busca ativa e suporte aos estudantes da sua comunidade escolar, para superar os desafios impostos pela Covid-19 "
+    prat7 = """Ação 1. Estabelecer junto à Secretaria de Assistência/Desenvolvimento Social uma rotina de identificação e busca ativa de alunos que não retornaram à sala de aula.
+<br><br>
+Ação 2. Implementar, em parceria com a Secretaria de Saúde do estado ou município, canais de atenção à saúde mental para apoiar profissionais, estudantes e responsáveis nesse processo de retorno."""
+    obj8 = "Estruturar um plano de contingência para identificar, isolar e acompanhar casos suspeitos de Covid-19 dentro de unidades escolares.  "
+    term8 = "Saber o que fazer e a quem acionar diante do surgimento de um caso suspeito de Covid-19 após a retomada das atividades presenciais. "
+    prat8 = """Ação 1. Pactuar com Unidade Básica de Saúde da região de cada escola sobre o acompanhamento da comunidade escolar.
+<br><br>
+Ação 2. Preparar um processo de tomada de decisão sobre fechamento de escolas, definindo que decisões são tomadas por responsáveis, professores, diretores e pela secretaria
+<br><br>
+Ação 3. Preparar o porta-voz da Comissão de Reabertura, prevista no passo 1 deste guia, para uma rotina de comunicação sobre suspensão de atividades de turmas e em escolas à comunidade e à imprensa
+<br><br>
+Ação 4. Preparar um fluxograma, que atribua responsáveis para as etapas do processo de atenção a um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.
+<br><br>
+<b>Acesse nossa ferramenta para saber como agir e monitorar casos suspeitos de Covid-19 dentro de escola:</b>"""
+    obj9 = "Instruir e capacitar todos os envolvidos no retorno às atividades presenciais nas escolas."
+    term9 = "Ter equipe e comunidade escolar alinhadas e bem informadas sobre os protocolos e procedimentos de prevenção à Covid-19."
+    prat9 = """Ação 1. Instrua os gestores escolares, docentes e demais colaboradores das escolas, bem como pais e responsáveis para que todos estejam alinhados com as novas condutas e suas responsabilidades para garantir a observação do protocolo sanitário adotado para reabertura das escolas. 
+<br><br>
+Ação 2. Distribua para as escolas e para a comunidade os materiais de comunicação de procedimentos e novas diretrizes, como cartazes e posters."""
+    obj10 = "Manter uma rotina de acompanhamento regular das escolas após a reabertura e da situação da doença na sua cidade."
+    term10 = "Saber qual a situação da Covid-19 no seu terrítório e na sua rede escolar para agir com velocidade diante de alguma mudança de cenário. "
+    prat10 = """Ação 1. Pactue com a Secretaria de Saúde uma rotina de atualização sobre a situação epidemiológica da doença na sua cidade. 
+<br><br>
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos das escolas.
+<br><br>
+Ação 3. Prepare comunicados internos sobre a situação da rede e determine uma periodicidade de envio.
+<br><br>
+Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
+<br><br>
+Ação 5. Organize visitas às unidades escolares, garantindo que todas as normativas e protocolos estão sendo seguidos no dia a dia.
+<br><br>
+<b>Utilize nossas ferramentas para acompanhar a adequação da sua rede aos protocolos e saber como notificar casos suspeitos:</b>"""
     st.write(
         f"""
         <div class="conteudo" style="padding-top:50px;">
@@ -56,7 +154,19 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">1. Diálogo
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>1. Diálogo</b>
+                                </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj1}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term1}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat1}
                                 </div>
                                 <div>
                                 </div>
@@ -67,20 +177,42 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">2. Determine as condições do retorno
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>2. Determine as condições do retorno
+                                </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj2}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term2}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat2}
                                 </div>
                                 <div>
                                 </div>
                             </div>  
                         </div>                      
                     </li>
-                    <li class="section-three">
+                     <li class="section-three">
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">3. Protocolos sanitários
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>3. Protocolos sanitários
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj3}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term3}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat3}
                                 </div>
                                 <div class="upper-padding">
                                     <div class="col card-plan container">
@@ -112,9 +244,24 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">4. Dimensione a rede
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>4. Dimensione a rede
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj4}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term4}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat4}
+                                </div>
+                                <div align="center" style="padding-top:15px; padding-bottom: 15px;">
+                                    <a href='{urlpath}?page=simulation' target="_self">
+                                    <button class="button"; style="border-radius: 0.8rem;">Simular ></button><br>
+                                    </a>
                                 </div>
                             </div>  
                         </div>
@@ -123,20 +270,47 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">5. Decida o modelo de reabertura
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>5. Decida o modelo de reabertura
+                                </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj5}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term5}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat5}
                                 </div>
                                 <div>
+                                <div align="center" style="padding-top:15px; padding-bottom: 15px;">
+                                        <a href='{urlpath}?page=simulation' target="_self">
+                                        <button class="button"; style="border-radius: 0.8rem;">Simular ></button><br>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>  
+                            </div> 
                         </div>
                     </li>
                     <li class="section-six">
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">6. Prepare o material pedagógico
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>6. Prepare o material pedagógico
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj6}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term6}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat6}
                                 </div>
                             </div>  
                         </div>
@@ -145,20 +319,40 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">7. Dê atenção aos alunos
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>7. Dê atenção aos alunos
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj7}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term7}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat7}
                                 </div>
                             </div>  
                         </div>
                     </li>
-                    <li class="section-eight">
+                     <li class="section-eight">
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">8. Plano de contingência
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>8. Plano de contingência
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj8}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term8}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat8}
                                 </div>
                                 <div class="upper-padding">
                                     <div class="col card-plan container">
@@ -189,9 +383,19 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">9. Instrua seus colaboradores
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>9. Instrua os profissionais
                                 </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {obj9}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                   {term9}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div class="conteudo" style="padding-bottom: 10px;">
+                                    {prat9}
                                 </div>
                             </div>  
                         </div>
@@ -200,7 +404,7 @@ def main():
                         <div class="grid-container">
                             <div class="column-twelve">
                                 <div class="title-section">
-                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png">10. Acompanhe sua rede!
+                                    <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>10. Acompanhe sua rede!
                                 </div>
                                 <div>
                                 </div>
