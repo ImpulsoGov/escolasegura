@@ -1,6 +1,5 @@
 import streamlit as st
-import utils
-import streamlit as st
+import session
 import yaml
 import utils
 import os
@@ -10,6 +9,126 @@ import utils
 import amplitude
 from model.get_school_return_data import entrypoint
 from utils import load_markdown_content
+import pages.snippet as tm
+import pages.header as he
+import pages.footer as foo
+
+def read_data(country, config, endpoint):
+    """ 
+    This is function reads the API's data
+
+    Parameters: 
+        country (type): data country
+        config (type): doc config.yaml
+        endpoint (type): endpoint name in API
+              
+    """
+
+    if os.getenv("IS_LOCAL") == "TRUE":
+        api_url = config[country]["api"]["local"]
+    else:
+        api_url = config[country]["api"]["external"]
+
+    url = api_url + endpoint
+
+    print("\nLoad data from:", url)
+    df = pd.read_csv(url)
+    return df
+
+
+@st.cache(suppress_st_warning=True)
+def get_data(config):
+    """ 
+    This function return a dataframe with all data
+
+    Parameters: 
+        config (type): doc config.yaml
+
+    Returns:
+        df (type): 2019 school census dataframe
+    """
+    
+    df = read_data("br", config, "br/cities/safeschools/main").replace(
+        {"Fundamental I": "Fund. I", "Fundamental II": "Fund. II"}
+    )
+    return df
+
+
+def genSelectBox(df, session_state):
+    """ 
+    This function generates select boxes for choosing the school network
+
+    Parameters: 
+        df (type): 2019 school census dataframe
+        session_state (type): section dataset
+        user_analytics (type): user data by amplitude
+    """
+
+    st.write(
+        f"""
+        <div class="main-padding" id="top">
+            <div class="subtitle-section"> Selecione sua rede </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    col1, col2, col3, col4 = st.beta_columns([0.3, 0.5, 0.5, 1])
+
+    with col1:
+        session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+        session_state.state_name = utils.set_state_name(df,session_state.state_id)
+    with col2:
+        options_city_name = utils.filter_place(
+            df, "city", state_id=session_state.state_id
+        )
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        x = int(
+            options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[
+                0
+            ]
+        )
+        session_state.city_name = st.selectbox("Município", options_city_name, index=x)
+        import pathlib
+        from bs4 import BeautifulSoup
+        GA_JS = (
+            """
+        window.dataLayer = window.dataLayer || [];
+        function municipio(){dataLayer.push('municipio_value': '%s');}
+        """
+            % session_state.city_name
+        )
+        index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+        soup = BeautifulSoup(index_path.read_text())
+        script_tag_loader = soup.new_tag("script")
+        script_tag_loader.string = GA_JS
+    with col3:
+        options_adiminlevel = utils.filter_place(
+            df,
+            "administrative_level",
+            state_id=session_state.state_id,
+            city_name=session_state.city_name,
+        )
+        options_adiminlevel = pd.DataFrame(
+            data=options_adiminlevel, columns=["adiminlevel"]
+        )
+        y = int(
+            options_adiminlevel[
+                options_adiminlevel["adiminlevel"] == "Todos"
+            ].index.tolist()[0]
+        )
+        session_state.administrative_level = st.selectbox(
+            "Nível de Administração", options_adiminlevel, index=y
+        )
+    with col4:
+        st.write(
+            f"""
+        <div class="container main-padding">
+            <br><br>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+
 
 
 def genSimulationResult(params, config):
@@ -93,7 +212,29 @@ def genSimulationResult(params, config):
     )
 
 
-def genSimulationContainer(df, config, session_state):
+def main():
+    session_state = session.SessionState.get(
+        key=session.get_user_id(),
+        update=False,
+        state_name="Acre",
+        state_id="AC",
+        city_name="Todos",
+        administrative_level="Todos",
+        refresh=False,
+        reset=False,
+        already_generated_user_id=None,
+        pages_open=None,
+        amplitude_events=None,
+        button_styles=dict(),
+        continuation_selection=None,
+        button_simule=0,
+        section1_organize=False,
+        section2_manage=False,
+    )
+    utils.localCSS("style.css")
+    config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
+    df = get_data(config)
+    genSelectBox(df, session_state)
 
     params = dict()
     main_icon = utils.load_image("imgs/simulation_main_icon.png")
@@ -531,6 +672,8 @@ def genSimulationContainer(df, config, session_state):
         )
         methodology_text = load_markdown_content("methodology_short.md")
         st.write(methodology_text)
+    # tm.genTermo()
+    # foo.genFooter()
 
 
 if __name__ == "__main__":
