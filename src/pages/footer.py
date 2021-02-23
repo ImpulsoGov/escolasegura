@@ -21,17 +21,17 @@ def genFooter():
 				</div>
 				<div>
 					<span style="font-size:0.7em; font-color:#A8BFD2;">Realizado por:</span><br>
-					<img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{impulso_icon}" title="logo Impulso"/>
+					<a href="https://impulsogov.org/"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{impulso_icon}" title="logo Impulso"/></a>
 				</div>
 				<div>
 					<span style="font-size:0.7em; font-color:#A8BFD2;">Viabilizado por:</span><br>
-					<img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{imaginableicon}" title="logo Imagine"/>
-					<img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{bidicon}" title="logo BID"/>
-					<img class="logo-footer" style="margin-bottom:2em;" src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png" tile="logo Lemann">
+					<a href="https://www.imaginablefutures.com/"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{imaginableicon}" title="logo Imagine"/></a>
+					<a href="https://www.iadb.org/pt/sobre-o-bid/historia-do-banco-interamericano-de-desenvolvimento%2C5999.html"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{bidicon}" title="logo BID"/></a>
+					<a href="https://fundacaolemann.org.br/"><img class="logo-footer" style="margin-bottom:2em;" src="https://captadores.org.br/wp-content/uploads/2016/02/lemann_logo_pref_vert_pos_rgb.png" tile="logo Lemann"></a>
 				</div>
 				<div>
 					<span style="font-size:0.7em; font-color:#A8BFD2;">Implementação:</span><br>
-					<img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{formaricon}" title="logo Formar"/>
+					<a href="https://fundacaolemann.org.br/projetos/formar">img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{formaricon}" title="logo Formar"/></a>
 				</div>
 			</div>
 		""",
