@@ -165,7 +165,7 @@ def genHeroSection(title1: str, title2: str, header: bool):
         header (bool): if has header
     """
     header = "<b>corona</b>cidades<br>"
-    subtitle = "Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19"
+    subtitle = "Siga 10 passos para reabrir escolas da rede pública<br> em segurança, de olho na Covid-19."
     icon = load_image("imgs/escolasegura_favicon.png")
 
     st.write(
@@ -202,7 +202,7 @@ def main_title(title: str, subtitle: str):
 def appdescription(title: str, subtitle: str):
     st.write(
         f"""
-        <div class="conteudo title-section" style="color:grey; border-top: 1px solid grey; border-bottom: 1px solid grey; text-align:center; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
+        <div class="conteudo title-section" style="color:grey; border-bottom: 1px solid grey; text-align:center; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
             {title}
         </div>
         """,
