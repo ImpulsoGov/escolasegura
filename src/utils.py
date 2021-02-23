@@ -164,60 +164,32 @@ def genHeroSection(title1: str, title2: str, header: bool):
         title2 (str): second title
         header (bool): if has header
     """
-    header = "<b>corona</b>cidades<br>"
-    subtitle = "Siga 10 passos para reabrir escolas da rede pública<br> em segurança, de olho na Covid-19."
+    if header:
+        header = """<a href="https://coronacidades.org/" target="blank" class="logo-link"><span class="logo-header" style="font-weight:bold;">corona</span><span class="logo-header" style="font-weight:lighter;">cidades</span> <br></a>"""
+    else:
+        header = """<br>"""
+
     icon = load_image("imgs/escolasegura_favicon.png")
 
     st.write(
         f"""
-        <div class="base-wrapper hero-bg">
-            <div class="hero-wrapper" style="padding-bottom:40px;">
-                <div class="hero-container-content">
-                    <a href="https://coronacidades.org/" style="text-decoration: none;"><span class="hero-container-corona">{header}</span></a>
-                    <span class="hero-container-product">{title1}<br/>{title2}</span>
-                    <span class="hero-container-subtitle">{subtitle}</span>
-                </div>
-                <div class="hero-container-image">   
-                    <img style="width: 100%;" src="data:image/png;base64,{icon}"/>
-                </div>
-            </div><br>
+        <div class="container">
+            {header}
+        <div class="grid-container-header">
+            <div class="div1-head">
+                <img class="img-logo-header" src="data:image/png;base64,{icon}">
+            </div>
+            <div class="div2-head">
+                <a href="" class="logo-link">
+                <span class="hero-container-product main-blue-span">{title1}</span>
+                <div class="br-hero"></div>
+                <span class="hero-container-product main-blue-span">{title2}</span>
+                </a>
+            </div>
         </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-def main_title(title: str, subtitle: str):
-    st.write(
-        f"""
-        <div class="conteudo main-title" style="padding-top: 50px;"> 
-            {title}
-        </div>
-        <div class="conteudo" style="padding-bottom: 10px;">
-            {subtitle}
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-def appdescription(title: str, subtitle: str):
-    st.write(
-        f"""
-        <div class="conteudo title-section" style="font-size: 1.2rem; color:grey; border-bottom: 1px solid grey; text-align:left; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
-            {title}
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-def gen_title(title: str, subtitle: str):
-    st.write(
-        f"""
-        <div class="conteudo title-section" style="padding-bottom:20px;"> 
-            <img class="square" src="https://i.imgur.com/gGIFS5N.png">
-            {title}
-        </div>
-        <div class="conteudo" style="padding-bottom: 10px;">
-            {subtitle}
+        </div><br>
+        <div class="hero-container-subtitle">
+            Salas <b>abertas</b> para estudantes<br>Portas <b>fechadas</b> para a Covid-19
         </div>
         """,
         unsafe_allow_html=True,
