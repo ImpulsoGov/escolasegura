@@ -165,7 +165,7 @@ O retorno às atividades presenciais deve ser planejado segundo as condições d
 Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
 <br>
 <b>Se você é gestor de uma escola:</b><br>
-Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltas ás aulas presenciais com segurança.
+Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
 <br>"""
     utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
     utils.gen_title(title="Selecione sua rede:", subtitle="")
