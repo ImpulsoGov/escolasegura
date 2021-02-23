@@ -406,7 +406,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                 <div class="title-section">
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>10. Acompanhe sua rede!
                                 </div>
-                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div class="conteudo" style="padding-bottom: 10px;"> {obj2} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div class="conteudo" style="padding-bottom: 10px;"> {term2} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div class="conteudo" style="padding-bottom: 10px;"> {prat2} </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div class="conteudo" style="padding-bottom: 10px;"> {obj10} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div class="conteudo" style="padding-bottom: 10px;"> {term10} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div class="conteudo" style="padding-bottom: 10px;"> {prat10} </div>
                                 <div>
                                 </div>
                                 <div class="upper-padding row">
