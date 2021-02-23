@@ -2,8 +2,8 @@ import streamlit as st
 import utils
 
 # urlpath = "http://localhost:8501/"
-# urlpath = 'https://escolasegura-staging.herokuapp.com/'
-urlpath = 'https://escolasegura.coronacidades.org/'
+urlpath = 'https://escolasegura-staging.herokuapp.com/'
+# urlpath = 'https://escolasegura.coronacidades.org/'
 
 def genTermo():
 	verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
