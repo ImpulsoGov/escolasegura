@@ -22,6 +22,7 @@ def genHeader(active):
 				  <a class="active" href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
 				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
+				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -35,6 +36,7 @@ def genHeader(active):
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
 				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a class="active" href="{urlpath}?page=sobre">Quem Somos</a>
+				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -48,6 +50,7 @@ def genHeader(active):
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
 				  <a class="active" href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
+				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -61,6 +64,7 @@ def genHeader(active):
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
 				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
+				  <a class="active" href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
