@@ -30,7 +30,7 @@ def main():
     projetos ao lado de professores, gestores escolares, secretarias de educação e governos 
     por uma aprendizagem de qualidade. Também apoiamos centenas de talentos, lideranças e organizações 
     que trabalham pela transformação social. Tudo para ajudar a construir um país mais justo, 
-    inclusivo e avançado. Saiba mais em: <a target="_blank" href="fundacaolemann.org.br">fundacaolemann.org.br</a>"""
+    inclusivo e avançado. Saiba mais em: <a target="_blank" href="https://fundacaolemann.org.br/">fundacaolemann.org.br</a>"""
     imaninabledescricao = """"Imaginable Futures é uma empresa de investimento filantrópico global que acredita 
     que a aprendizagem tem o poder de estimular o potencial humano e tem como missão oferecer 
     a cada aluno oportunidades e ferramentas para que eles imaginem e realizem um futuro brilhante. 
