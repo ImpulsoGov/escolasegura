@@ -53,6 +53,6 @@ streamlit run escolasegura.py
 make docker-build-dev
 ```
 
-- Windows:
+- Windows::
 
 [wip rodando com o docker]
