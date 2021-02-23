@@ -158,9 +158,16 @@ def main():
     df = get_data(session_state)
     data = df[(df["city_name"] == session_state.city_name)& (df["administrative_level"] == session_state.administrative_level)]
     subtitle = """Sabemos que no planejamento da reabertura surgem muitas dúvidas... Quantas turmas podem voltar? Quantos litros de álcool gel preciso comprar? 
-<br><br>
-O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!"""
-    utils.main_title(title="<b>Simule o retorno: como organizar a reabertura?</b>", subtitle=subtitle)
+<br>
+O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
+<br>
+<b>Se você é gestor da rede:</b><br>
+Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
+<br>
+<b>Se você é gestor de uma escola:</b><br>
+Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltas ás aulas presenciais com segurança.
+<br>"""
+    utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
     utils.gen_title(title="Selecione sua rede:", subtitle="")
     genSelectBox(df, session_state)
     utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
