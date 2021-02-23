@@ -157,15 +157,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>1. Diálogo</b>
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                     {obj1}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term1}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat1}
                                 </div>
                                 <div>
@@ -180,15 +180,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>2. Determine as condições do retorno
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj2}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term2}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat2}
                                 </div>
                                 <div>
@@ -203,15 +203,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>3. Protocolos sanitários
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj3}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term3}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat3}
                                 </div>
                                 <div class="upper-padding">
@@ -247,15 +247,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>4. Dimensione a rede
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj4}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term4}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat4}
                                 </div>
                                 <div align="center" style="padding-top:15px; padding-bottom: 15px;">
@@ -273,15 +273,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>5. Decida o modelo de reabertura
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj5}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term5}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat5}
                                 </div>
                                 <div>
@@ -301,15 +301,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>6. Prepare o material pedagógico
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj6}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term6}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat6}
                                 </div>
                             </div>  
@@ -322,15 +322,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>7. Dê atenção aos alunos
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj7}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term7}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat7}
                                 </div>
                             </div>  
@@ -343,15 +343,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>8. Plano de contingência
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj8}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term8}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat8}
                                 </div>
                                 <div class="upper-padding">
@@ -386,15 +386,15 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>9. Instrua os profissionais
                                 </div>
                                 <div class="title-section">OBJETIVO DESTA ETAPA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {obj9}
                                 </div>
                                 <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
-                                 <div class="conteudo" style="padding-bottom: 10px;">
+                                 <div style="padding-bottom: 10px;">
                                    {term9}
                                 </div>
                                 <div class="title-section">COLOCANDO EM PRÁTICA</div>
-                                <div class="conteudo" style="padding-bottom: 10px;">
+                                <div style="padding-bottom: 10px;">
                                     {prat9}
                                 </div>
                             </div>  
@@ -406,7 +406,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                 <div class="title-section">
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>10. Acompanhe sua rede!
                                 </div>
-                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div class="conteudo" style="padding-bottom: 10px;"> {obj10} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div class="conteudo" style="padding-bottom: 10px;"> {term10} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div class="conteudo" style="padding-bottom: 10px;"> {prat10} </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div style="padding-bottom: 10px;"> {obj10} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div style="padding-bottom: 10px;"> {term10} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div style="padding-bottom: 10px;"> {prat10} </div>
                                 <div>
                                 </div>
                                 <div class="upper-padding row">
