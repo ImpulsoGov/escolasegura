@@ -31,7 +31,7 @@ def genFooter():
 				</div>
 				<div>
 					<span style="font-size:0.7em; font-color:#A8BFD2;">Implementação:</span><br>
-					<a href="https://fundacaolemann.org.br/projetos/formar">img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{formaricon}" title="logo Formar"/></a>
+					<a href="https://fundacaolemann.org.br/projetos/formar"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{formaricon}" title="logo Formar"/></a>
 				</div>
 			</div>
 		""",
