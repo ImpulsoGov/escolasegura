@@ -34,7 +34,7 @@ def main():
         <div class="conteudo row" style="margin-top:50px; margin-right:0px; margin-left:0px;">
             <div class="card-plan" style="width:100%;">
                 <div>
-                    <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#2b14ff; color:white;">
+                    <div style="font-size:1.3rem; padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#2b14ff; color:white;">
                     {title}
                     </div>
                     <div style="margin:10px">
@@ -70,7 +70,7 @@ def main():
         <div class="conteudo row" style="margin-top: 30px; margin-right:0px; margin-left:0px;">
             <div class="card-plan" style="width:100%;">
                 <div>
-                    <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#2b14ff; color:white;">
+                    <div style="font-size:1.3rem; padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#2b14ff; color:white;">
                     {simulador}
                     </div>
                     <div style="margin:10px">
@@ -91,7 +91,7 @@ def main():
         <div class="conteudo row" style="margin-right:0px; margin-left:0px;">
            <div class="col card-plan" style="width:100%; margin-top:15px; margin-botton:15px;">
                 <div>
-                    <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#7ACCA9; color:white;">
+                    <div style="font-size:1.3rem; padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#7ACCA9; color:white;">
                     {title1}
                     </div>
                     <div style="margin:10px">
@@ -110,12 +110,13 @@ def main():
             </div>
             <div class="col card-plan" style="width:100%; margin-top:15px; margin-botton:15px;">
                 <div>
-                    <div style="padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#7ACCA9; color:white;">
+                    <div style="font-size:1.3rem; padding:5px; text-align: center; border-top-right-radius: 0.8rem; border-top-left-radius: 0.8rem; background:#7ACCA9; color:white;">
                     {title2}
                     </div>
                     <div style="margin:10px">
                         <div class="card-title">
                         {sub2}
+                        <br><br>
                         </div>
                         <div>
                             <div align="center" style="padding-top:15px; padding-bottom: 15px;">
