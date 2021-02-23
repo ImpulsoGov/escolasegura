@@ -225,9 +225,6 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                                 Quais são as principais <b>recomendações sanitárias</b> e protocolos para retomada?<br>
                                                 <b>Listas de orientações para planejar a estrutura sanitária nas escolas.</b>
                                                 A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
-                                                <b><i>Quem usa?</i></b>
-                                                <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
-                                                <li> Diretores(as) de escolas.
                                             </div><br>
                                             <div class="button-position" style="padding-bottom: 10px;">
                                                 <a href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view?usp=sharing" target="blank_">
@@ -365,11 +362,8 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                                 <br>
                                                 <b><i>O que é?</b></i><br>É importante saber o que fazer se houver algum caso confirmado de Covid-19 em escolas 
                                                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
-                                                <br><br><b><i>Quem usa?</i></b>
-                                                <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>
                                             </div>
                                             <div class="minor-padding button-position">
-                                                <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view" target="_blank">
                                                     <button class="button"; style="border-radius: .25rem;"> imprima aqui > </button>
                                                 </a>
                                             </div>
@@ -420,9 +414,6 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                             <b><i>O que é?</b></i><br>
                                             Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
                                             <br><br>
-                                            <b><i>Quem usa?</b></i>
-                                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).</li>
-                                            <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.</li>
                                         </div>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
@@ -440,11 +431,6 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                         <br>
                                         <b><i>O que é?</b></i><br>
                                         Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
-                                        <br><br><b><i>Como usa?</b></i>
-                                        <ol>
-                                            <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;</li>
-                                            <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.</li>
-                                        </ol>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
                                                 <button class="button"; style="border-radius: .25rem;"> imprima aqui ></button>
@@ -461,128 +447,6 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
         </div>""",
         unsafe_allow_html=True,
     )
-    
-    # utils.gen_title(title="<b>1</b>. Diálogo", subtitle="")
-    
-    # utils.gen_title(title="<b>2</b>. Determine as condições do retorno", subtitle="")
-
-    # utils.gen_title(title="<b>3</b>. Protocolos sanitários", subtitle="")
-    
-    # st.write(
-    #     f"""
-    #     <div class="conteudo upper-padding">
-    #         <div class="col card-plan container">
-    #             <div class="left-margin">
-    #                 <div class="text-title-section main-orange-span minor-padding"> 
-    #                     <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
-    #                     Protocolos
-    #                 </div>
-    #                 <div class="minor-padding main-black-span">
-    #                     Quais são as principais <b>recomendações sanitárias</b> e protocolos para retomada?<br>
-    #                     <b>Listas de orientações para planejar a estrutura sanitária nas escolas.</b>
-    #                     A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
-    #                     <b><i>Quem usa?</i></b>
-    #                     <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual
-    #                     <li> Diretores(as) de escolas.
-    #                 </div><br>
-    #                 <div class="button-position" style="padding-bottom: 10px;">
-    #                     <a href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view?usp=sharing" target="blank_">
-    #                     <button class="button-protocolos"; style="border-radius: .25rem;">acesse ></button><br>
-    #                     </a>
-    #                 </div>
-    #             </div><br>
-    #         </div>
-    #     </div>""",
-    #     unsafe_allow_html=True,
-    # )
-    # utils.gen_title(title="4. Dimensione a rede", subtitle="")
-
-    # utils.gen_title(title="5. Decida o modelo de reabertura", subtitle="")
-
-    # utils.gen_title(title="6. Prepare o material pedagógico", subtitle="")
-
-    # utils.gen_title(title="7. Dê atenção aos alunos", subtitle="")
-
-    # utils.gen_title(title="8. Plano de contingência", subtitle="")
-
-    # st.write(
-    #     f"""
-    #     <div class="conteudo upper-padding">
-    #         <div class="col card-plan container">
-    #             <div class="left-margin">
-    #              <div class="text-title-section minor-padding main-orange-span"> 
-    #                     <img class="icon" src="data:image/png;base64,{plan_icon}" alt="Fonte: Flaticon">
-    #                     Plano de contingência
-    #                 </div>
-    #                 <div>
-    #                     <br>
-    #                     <b><i>O que é?</b></i><br>É importante saber o que fazer se houver algum caso confirmado de Covid-19 em escolas 
-    #                     da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
-    #                     <br><br><b><i>Quem usa?</i></b>
-    #                     <li> Gestor(a) da Secretaria de Educação Municipal ou Estadual.<br></li>
-    #                 </div>
-    #                 <div class="minor-padding button-position">
-    #                     <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view" target="_blank">
-    #                         <button class="button-contigenciaimprima"; style="border-radius: .25rem;"> imprima aqui > </button>
-    #                     </a>
-    #                 </div>
-    #             </div><br>
-    #         </div>
-    #     </div>""",
-    #     unsafe_allow_html=True,
-    # )
-
-    # utils.gen_title(title="9. Instrua seus colaboradores", subtitle="")
-
-    # utils.gen_title(title="10. Acompanhe sua rede!", subtitle="")
-    # st.write(
-    #     f"""
-    #     <div class="conteudo upper-padding row">
-    #         <div class="col card-plan container">
-    #             <div>
-    #              <div class="text-title-section minor-padding main-orange-span"> 
-    #                 <img class="icon" src="data:image/png;base64,{verify_icon}" alt="Fonte: Flaticon">
-    #                 Ferramenta de verificação
-    #             </div><br>
-    #             <div>
-    #                 <b><i>O que é?</b></i><br>
-    #                 Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
-    #                 <br><br>
-    #                 <b><i>Quem usa?</b></i>
-    #                 <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual: obtém o formulário e envia para diretores(as).</li>
-    #                 <li>Diretores(as) escolares: preenchem o formulário para verificação da Secretaria.</li>
-    #             </div>
-    #             <div class="minor-padding button-position">
-    #                 <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
-    #                     <button class="button-verificacaoimprime"; style="border-radius: .25rem;">imprima aqui ></button>
-    #                 </a>
-    #             </div>
-    #             </div><br>
-    #         </div>
-    #         <div class="col card-plan container">
-    #             <div>
-    #              <div class="text-title-section minor-padding main-orange-span"> 
-    #                 <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
-    #                 Ferramenta de notificação
-    #             </div>
-    #             <br>
-    #             <b><i>O que é?</b></i><br>
-    #             Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
-    #             <br><br><b><i>Como usa?</b></i>
-    #             <ol>
-    #                 <li>Gestor(a) da Secretaria de Educação Municipal ou Estadual envia o formulário para as escolas de sua rede;</li>
-    #                 <li>No surgimento de um caso ou suspeita, diretores(as) utilizam o formulário para informar para a Secretaria de Educação e Saúde, e seguem o plano de ação indicado.</li>
-    #             </ol>
-    #             <div class="minor-padding button-position">
-    #                 <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-    #                     <button class="button-notificacaoimprime"; style="border-radius: .25rem;"> imprima aqui ></button>
-    #                 </a>
-    #             </div>
-    #             </div><br>
-    #         </div>
-    #     </div>""",
-    #     unsafe_allow_html=True,
-    # )
     tm.genSimule()
     foo.genFooter()
 
