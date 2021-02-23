@@ -2,7 +2,7 @@
 import streamlit as st
 import yaml
 import time
-from pages import inicio, inicio2
+from pages import inicio
 import pages.about as sobre
 import pages.passos as guiapassos
 import pages.simulacao as simulacao
