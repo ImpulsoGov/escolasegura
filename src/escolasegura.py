@@ -77,7 +77,6 @@ def main():
 
     PAGES = {   
         "inicio" : inicio,
-        "inicio2" : inicio2,
         "guia10passos" : guiapassos,
         "simulation" : simulacao,
         "sobre" : sobre,
