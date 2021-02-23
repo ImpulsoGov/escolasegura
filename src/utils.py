@@ -202,7 +202,7 @@ def main_title(title: str, subtitle: str):
 def appdescription(title: str, subtitle: str):
     st.write(
         f"""
-        <div class="conteudo title-section" style="color:grey; border-bottom: 1px solid grey; text-align:center; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
+        <div class="conteudo title-section" style="font-size: 1.2rem; color:grey; border-bottom: 1px solid grey; text-align:center; background-color:white; padding-bottom: 30px; padding-top: 30px;"> 
             {title}
         </div>
         """,
