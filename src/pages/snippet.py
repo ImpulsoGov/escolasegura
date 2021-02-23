@@ -1,6 +1,10 @@
 import streamlit as st
 import utils
 
+# urlpath = "http://localhost:8501/"
+urlpath = 'https://escolasegura-staging.herokuapp.com/'
+# urlpath = 'https://escolasegura.coronacidades.org/'
+
 def genTermo():
 	verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
 	st.write(
@@ -18,8 +22,9 @@ def genSimule():
 	st.write(
 		f"""
 		<div style="text-align:center; padding-top:10px; padding-bottom:25px; background: #ff9147; margin-top:50px; margin-bottom:0px;">
-			<img class="square" src="data:image/png;base64,{simulation_icon}"> 
-			<span style="color:#ffffff;"><b>Conheça nosso Simulador.</b></span>
+			<a href='{urlpath}?page=simulation' target="_self" style="text-decoration: none;"><img class="square" src="data:image/png;base64,{simulation_icon}"> 
+			<span style="color:#ffffff;"><b>Simule o retorno aqui e calcule o que é necessário para a retomada</b></span>
+			</a>
 		</div>
 		""",
 		unsafe_allow_html=True,
@@ -30,8 +35,9 @@ def genGuia():
 	st.write(
 		f"""
 		<div style="text-align:center; padding-top:10px; padding-bottom:25px; background: #ff9147; margin-top:50px; margin-bottom:0px;">
-			<img class="square" src="data:image/png;base64,{plan_icon}"> 
+			<a href='{urlpath}?page=guia10passos' target="_self" style="text-decoration: none;"><img class="square" src="data:image/png;base64,{plan_icon}"> 
 			<span style="color:#ffffff;"><b>Conheça nosso Guia de 10 Passos.</b></span>
+			</a>
 		</div>
 		""",
 		unsafe_allow_html=True,

@@ -18,11 +18,10 @@ def genHeader(active):
 			f"""
 				<div class="conteudo" id="navbar">
 				  <a href="{urlpath}?page=inicio" style="padding-top:0px; padding-bottom:0px;"><img class="escola-navbar" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
-				  <a href="{urlpath}?page=inicio">Inicio</a>
+				  <a href="{urlpath}?page=inicio">Início</a>
 				  <a class="active" href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
-				  <a href="{urlpath}?page=simulation">Simulação</a>
+				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
-				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -32,11 +31,10 @@ def genHeader(active):
 			f"""
 				<div class="conteudo" id="navbar">
 				  <a href="{urlpath}?page=inicio" style="padding-top:0px; padding-bottom:0px;"><img class="escola-navbar" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
-				  <a href="{urlpath}?page=inicio">Inicio</a>
+				  <a href="{urlpath}?page=inicio">Início</a>
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
-				  <a href="{urlpath}?page=simulation">Simulação</a>
+				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a class="active" href="{urlpath}?page=sobre">Quem Somos</a>
-				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -46,11 +44,10 @@ def genHeader(active):
 			f"""
 				<div class="conteudo" id="navbar">
 				  <a href="{urlpath}?page=inicio" style="padding-top:0px; padding-bottom:0px;"><img class="escola-navbar" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
-				  <a href="{urlpath}?page=inicio">Inicio</a>
+				  <a href="{urlpath}?page=inicio">Início</a>
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
-				  <a class="active" href="{urlpath}?page=simulation">Simulação</a>
+				  <a class="active" href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
-				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -60,31 +57,17 @@ def genHeader(active):
 			f"""
 				<div class="conteudo" id="navbar">
 				  <a href="{urlpath}?page=inicio" style="padding-top:0px; padding-bottom:0px;"><img class="escola-navbar" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
-				  <a href="{urlpath}?page=inicio">Inicio</a>
+				  <a href="{urlpath}?page=inicio">Início</a>
 				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
-				  <a href="{urlpath}?page=simulation">Simulação</a>
+				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
-				  <a class="active" href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
 		)
 
-	# st.write(
-	# 	f"""
-	# 		<div class="navbar sticky header-menu base-wrapper row" style="background:#EEEEEE; margin-top:0px; margin-left:0px; margin-bottom:0px; margin-right:0px;">
-	# 			<div>
-	# 				<a href="{urlpath}?page=inicio" style="text-decoration: none;"><img class="escola-footer" style="margin-bottom:0px;" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
-	# 				<a href="{urlpath}?page=inicio" style="text-decoration: none;">Inicio<br></a>
-	# 				<a href="{urlpath}?page=guia10passos" style="text-decoration: none;">Guia 10 Passos<br></a>
-	# 				<a href="{urlpath}?page=simulation" style="text-decoration: none;">Simulação<br></a>
-	# 				<a href="{urlpath}?page=sobre" style="text-decoration: none;">Quem Somos<br></a>
-	# 				<a href="{urlpath}?page=inicio" style="text-decoration: none;">Fontes e Referências<br></a>
-	# 				<a href="{urlpath}?page=duvidasfrequentes" style="text-decoration: none;">Dúvidas Frequentes<br></a>
-	# 			</div>
-	# 		</div>
-	# 	""",
-	# 	unsafe_allow_html=True,
+# <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
+# <a class="active" href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
 
 
 	# st.write(
