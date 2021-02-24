@@ -15,7 +15,6 @@ from pathlib import Path
 
 
 def main():
-    def main(session_state):
     """ 
     This function generates Escola Segura webpage
     Parameters: 
