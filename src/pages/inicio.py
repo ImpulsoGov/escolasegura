@@ -24,7 +24,7 @@ def main():
 
     if os.getenv("IS_DEV") == "FALSE":
         #  ==== GOOGLE ANALYTICS SETUP ====
-        GOOGLE_ANALYTICS_CODE = os.getenv("GOOGLE_ANALYTICS_CODE")
+        GOOGLE_ANALYTICS_CODE = "UA-161606940-3"
         if GOOGLE_ANALYTICS_CODE:
             import pathlib
             from bs4 import BeautifulSoup
