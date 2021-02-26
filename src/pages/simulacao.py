@@ -337,8 +337,6 @@ def genMunicipioQuetions(data):
         <div class="conteudo" style="padding-top:5px; font-family: 'Roboto Condensed', sans-serif; font-size: 1rem;">
             <div>
                 Salas disponíveis: <b>{data["numsalas"].sum()}</b> </br></br>
-                Total de professores: <b>10</b> </br>
-                <br><br>
             </div>
         </div>
         """,
