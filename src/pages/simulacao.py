@@ -115,51 +115,14 @@ def genSimulationResult(params, config):
         unsafe_allow_html=True,
     )
 
-
-def main():
-    session_state = session.SessionState.get(
-        key=session.get_user_id(),
-        update=False,
-        state_name="Acre",
-        state_id="AC",
-        city_name="Todos",
-        administrative_level="Todos",
-        refresh=False,
-        reset=False,
-        already_generated_user_id=None,
-        pages_open=None,
-        amplitude_events=None,
-        button_styles=dict(),
-        continuation_selection=None,
-        button_simule=0,
-        section1_organize=False,
-        section2_manage=False,
-    )
-    utils.localCSS("localCSS.css")
-    he.genHeader("simulation")
-    config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
-    df = get_data()
-    subtitle = """Sabemos que no planejamento da reabertura surgem muitas dúvidas... Quantas turmas podem voltar? Quantos litros de álcool gel preciso comprar? 
-<br>
-O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
-<br>
-<b>Se você é gestor da rede:</b><br>
-Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
-<br>
-<b>Se você é gestor de uma escola:</b><br>
-Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
-<br>"""
-    utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
-    utils.gen_title(title="Selecione sua rede:", subtitle="")
-    genSelectBox(df, session_state)
-    data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["administrative_level"] == session_state.administrative_level)]
-    utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
+def genQuetions(data):
     params = dict()
+    utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
     params["number_alunos"] = st.number_input(
         "Total de alunos matriculados",
         format="%d",
         min_value=1,
-        value=data["number_students"].values[0],
+        value=data["alunos"].values[0],
         step=1,
     )
     params["number_alunos_naovoltando"] = st.number_input(
@@ -173,7 +136,7 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         "Total de professores",
         format="%d",
         min_value=1,
-        value=data["number_teachers"].values[0],
+        value=10,
         step=1,
     )
     params["number_professores_naovoltando"] = st.number_input(
@@ -189,7 +152,7 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         "Salas disponíveis",
         format="%d",
         min_value=1,
-        value=10,
+        value=data["numsalas"].values[0],
         step=1,
     )
     params["maxalunossalas"] = st.number_input(
@@ -215,7 +178,7 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         f"""
             <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
                 <div style="background:#DDFBF0; padding:20px; border-radius: 0.8rem;">
-                Na configuração atual, <b>a(s) escola(s) funcionaria(m) dando
+                Na configuração atual, <b>a escola funcionaria dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
                 <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
@@ -250,9 +213,208 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         value=50,
         step=1,
     )
+    return params
 
-    if st.button("simular retorno"):
-        genSimulationResult(params, config)
+def genMultiQuetions(data):
+    params = dict()
+    turmas = st.multiselect("Turmas", list(data["nomeetapaensino"]), default=data["nomeetapaensino"].values[0])
+    data = data[data["nomeetapaensino"].isin(turmas)]
+    utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
+    params["number_alunos"] = st.number_input(
+        "Total de alunos matriculados",
+        format="%d",
+        min_value=1,
+        value=data["alunos"].sum(),
+        step=1,
+    )
+    params["number_alunos_naovoltando"] = st.number_input(
+        "Alunos não aptos para a volta presencial às aulas",
+        format="%d",
+        max_value=params["number_alunos"]-1,
+        value=0,
+        step=1,
+    )
+    params["number_professores"] = st.number_input(
+        "Total de professores",
+        format="%d",
+        min_value=1,
+        value=10,
+        step=1,
+    )
+    params["number_professores_naovoltando"] = st.number_input(
+        "Professores não aptos para retornar presencialmente",
+        format="%d",
+        max_value=params["number_professores"]-1,
+        value=0,
+        step=1,
+    )
+
+    utils.gen_title(title="<b>2</b>. Qual é a disponiblidade de salas?", subtitle="")
+    params["number_salas"] = st.number_input(
+        "Salas disponíveis",
+        format="%d",
+        min_value=1,
+        value=data["numsalas"].values[0],
+        step=1,
+    )
+    params["maxalunossalas"] = st.number_input(
+        "Máximo de alunos por sala",
+        format="%d",
+        min_value=1,
+        value=20,
+        step=1,
+    )
+
+    utils.gen_title(title="<b>3</b>. Como são suas turmas?", subtitle="")
+    params["hours_classpresencial"] = st.slider(
+        "Horas diárias de aula presencial por turma:", 1, 8, 4, 1
+    )
+    params["hours_classpremoto"] = st.slider(
+        "Horas diárias de aula remota por turma:", 0, 6, 0, 1
+    )
+    params["turnos"] = st.slider(
+        "Número de turnos:", 1, int(18/params["hours_classpresencial"]), 1, 1
+    )
+    if params["hours_classpresencial"] > 0:
+        st.write(
+        f"""
+            <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
+                <div style="background:#DDFBF0; padding:20px; border-radius: 0.8rem;">
+                Na configuração atual, <b>a escola funcionaria dando
+                {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
+                sendo que cada turno (e as turmas do turno) teriam 
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
+                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
+                Continue a simulação para saber quantas turmas e professores terão por turno.<br>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    # st.set_option('deprecation.showPyplotGlobalUse', False)
+    # lista = dict()
+    # for i in range(params["turnos"]):
+    #     x = [params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"], params["hours_classpresencial"]]
+    #     turmalabel = "Turno " + str(i+1)
+    #     lista[turmalabel] = x
+    # df = pd.DataFrame(data=lista)
+    # df.index = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']
+    # ax = df.plot(stacked=True, kind='bar', grid=False, figsize=(12, 8), rot='horizontal', fontsize=14, colormap='Pastel2')
+    # ax.xaxis.tick_top()
+    # ax.set_ylabel("Horas de Aula Presenciais por Dia", fontsize=14)
+    # st.pyplot(ax.figure.savefig('turmas.png'))
+    params["professorday"] = st.number_input(
+        "Horas aula diárias por professor:",
+        format="%d",
+        value=6,
+        step=1,
+    )
+    params["horaaula"] = st.number_input(
+        "Tempo de hora aula (minutos):",
+        format="%d",
+        value=50,
+        step=1,
+    )
+    return params
+
+
+
+
+def main():
+    session_state = session.SessionState.get(
+        key=session.get_user_id(),
+        update=False,
+        state_name="Acre",
+        state_id="AC",
+        city_name="Todos",
+        administrative_level="Todos",
+        escola="",
+        refresh=False,
+        reset=False,
+        already_generated_user_id=None,
+        pages_open=None,
+        amplitude_events=None,
+        button_styles=dict(),
+        continuation_selection=None,
+        button_simule=0,
+        section1_organize=False,
+        section2_manage=False,
+        nivelsimulacao=""
+    )
+    utils.localCSS("localCSS.css")
+    he.genHeader("simulation")
+    config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
+    # df = get_data()
+    subtitle = """Sabemos que no planejamento da reabertura surgem muitas dúvidas... Quantas turmas podem voltar? Quantos litros de álcool gel preciso comprar? 
+<br>
+O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
+<br>
+<b>Se você é gestor da rede:</b><br>
+Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
+<br>
+<b>Se você é gestor de uma escola:</b><br>
+Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
+<br>"""
+    utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
+
+
+    session_state.nivelsimulacao = st.selectbox(
+        "",
+        # ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal", "Rede Estadual"],
+        ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Nível Escolar Turma"],
+    )
+    if session_state.nivelsimulacao=="Nível Escolar":
+        df = pd.read_csv("pages/dadosporescolas.csv")
+        utils.gen_title(title="Selecione sua localização:", subtitle="")
+        session_state.state_id = st.selectbox("Estado", df["state_id"].sort_values().unique())
+        session_state.state_name = utils.set_state_name(df,session_state.state_id)
+
+        options_city_name = df[df["state_id"] == session_state.state_id]["city_name"].sort_values().unique()
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        session_state.city_name = st.selectbox("Município", options_city_name)
+
+        data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
+        session_state.escola = st.selectbox(
+            "Escola",
+            ["Selecione a Escola"] + list(data["nomedaescola"]),
+        )
+        data = data[data["nomedaescola"] == session_state.escola]
+        # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["nomedaescola"] == session_state.escola)]
+        if session_state.escola != "Selecione a Escola":
+            params = genQuetions(data)
+            if st.button("simular retorno"):
+                genSimulationResult(params, config)
+    if session_state.nivelsimulacao=="Nível Escolar Turma":
+        df = pd.read_csv("pages/dadosporturmasagrupado.csv")
+        utils.gen_title(title="Selecione sua localização:", subtitle="")
+        session_state.state_id = st.selectbox("Estado", df["state_id"].sort_values().unique())
+        session_state.state_name = utils.set_state_name(df,session_state.state_id)
+
+        options_city_name = df[df["state_id"] == session_state.state_id]["city_name"].sort_values().unique()
+        options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
+        session_state.city_name = st.selectbox("Município", options_city_name)
+
+        data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
+        session_state.escola = st.selectbox(
+            "Escola",
+            ["Selecione a Escola"] + list(data["nomedaescola"].unique()),
+        )
+        data = data[data["nomedaescola"] == session_state.escola]
+        # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["nomedaescola"] == session_state.escola)]
+        if session_state.escola != "Selecione a Escola":
+            params = genMultiQuetions(data)
+            if st.button("simular retorno"):
+                genSimulationResult(params, config)
+    # else if option=="Rede Municipal":
+    #     data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
+    # else if option=="Rede Estadual":
+    #     data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
+    # utils.gen_title(title="Selecione sua rede:", subtitle="")
+    # genSelectBox(df, session_state)
+    # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["administrative_level"] == session_state.administrative_level)]
+
+    # if st.button("simular retorno"):
+    #     genSimulationResult(params, config)
 
     tm.genGuia()
     foo.genFooter()
