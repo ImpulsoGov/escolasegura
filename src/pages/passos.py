@@ -30,12 +30,12 @@ def main():
 <br><br>
 Aqui, você encontra orientações que começam desde o planejamento da reabertura, com a definição dos protocolos sanitários e regras que devem ser adotados pelas escolas antes de reabrir, até a gestão da rede após a retomada, com recomendações sobre o que fazer diante de algum caso confirmado de Covid-19 dentro da unidade escolar. 
 <br><br>
-Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para garantir uma reabertura mais segura para toda a comunidade escolar."""
-    utils.main_title(title="Como sua rede pode se preparar para a retomada das atividades presenciais em 10 passos? ", subtitle=subtitle)
+Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para estruturar uma reabertura mais segura para toda a comunidade escolar."""
+    utils.main_title(title="Como sua rede pode se preparar para a retomada das atividades presenciais? Temos 10 passos para auxiliar no processo.", subtitle=subtitle)
     
     obj1 = "Definir os atores responsáveis por planejar, preparar e monitorar a rede para a retomada de atividades presenciais e estabelecer um canal de comunicação com a comunidade escolar."
-    term1 = "Ter clareza sobre os papeis e responsabilidades de cada órgão dentro do processo de retomada, com um comitê estruturado para tomar decisões com agilidade, contando com discursos e comunicação alinhados. "
-    prat1 = """Ação 1. Forme uma Comissão de Reabertura com os atores-chave presentes nos diversos órgãos que devem ser engajados nessa retomada. Além da Secretaria de Educação, a comissão pode envolver membros da Secretaria de Saúde, Secretaria de Assistência/Desenvolvimento Social e também por lideranças regionais, caso sua rede conte com essa estrutura. 
+    term1 = "Ter clareza sobre os papéis e responsabilidades de cada órgão dentro do processo de retomada, com um comitê estruturado para tomar decisões com agilidade, com discursos e comunicação alinhados. "
+    prat1 = """Ação 1. Forme uma Comissão de Reabertura com os atores-chave presentes nos diversos órgãos que devem ser engajados nessa retomada. Além da Secretaria de Educação, a comissão pode envolver membros da Secretaria de Saúde, Secretaria de Assistência/Desenvolvimento Social e também lideranças regionais, caso sua rede conte com essa estrutura. 
 <br><br>
 Ação 2. Crie um canal para comunicaçao constante da comissão com a comunidade, em especial com diretores, funcionários de escola, professores, pais e responsáveis. Prepare uma pessoa para ser porta-voz e ponto de referência de todo o processo de retomada para a comunidade escolar e para a imprensa. 
 <br><br>
@@ -44,7 +44,7 @@ Ação 3. Estabeleça um plano de comunicação, definindo o que, quando, como e
     term2 = "Projetar uma data de retomada das atividades presenciais, de acordo com os critérios definidos."
     prat2 = """Ação 1. Pactue com a Secretaria de Saúde sobre quais condições sanitárias, critérios e dados da Covid-19 devem ser considerados na hora de decidir sobre o retorno seguro de atividades escolares presenciais na sua rede.
 <br><br>
-Ação 2. Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada das atividade presenciais e comece a preparação para o retorno. 
+Ação 2.  Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada, mesmo que parcial, das atividade presenciais e comece a preparação para o retorno. 
 <br><br>
 Ação 3. Articule com atores-chave externos, como sindicato de professores, líderes comunitários locais e outros atores relevantes, sobre os critérios pactuados e a data pensada para a  retomada."""
     obj3 = "Estabelecer o protocolo sanitário a ser seguido por todas as escolas da rede que retomarem as atividades presenciais, com orientações sobre adaptação de estrutura física e a necessidade de aquisição de materiais de limpeza e EPIs para prevenir o contágio da Covid-19 dentro das unidades de ensino"
@@ -86,7 +86,7 @@ Ação 4. Comunique à comunidade escolar o modelo adotado e a nova organizaçã
 <b>Entenda que critérios adotar para definir o melhor modelo para sua rede></b>"""
     obj6 = "Preparação do material pedagógico de acordo com o modelo de reabertura definido."
     term6 = "Dispor do material mais adequado para dar sequência ao processo de aprendizado dos estudantes. "
-    prat6 = """Ação 1. Revise e prepare o material pedagógico para possibilidar um retorno adequado da rede, considerando o modelo de reabertura adotado. 
+    prat6 = """Ação 1. Revise e prepare o material pedagógico para possibilitar um retorno adequado da rede, considerando o modelo de reabertura adotado. 
 <br><br>
 Ação 2. Prepare o apoio pedagógico (currículo, formação, avaliação, busca ativa) 
 <br>
