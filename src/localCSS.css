@@ -151,6 +151,18 @@ img {
   padding-right: 120px;
 }
 
+.stSelectbox{
+  padding-left: 90px;
+  padding-right: 120px;
+  padding-bottom: 10px;
+}
+
+.stMultiSelect{
+  padding-left: 90px;
+  padding-right: 120px;
+  padding-bottom: 10px;
+}
+
 .streamlit-button.primary-button{
   margin-top: 20px;
   margin-left: 90px;
