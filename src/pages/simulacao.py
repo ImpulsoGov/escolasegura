@@ -116,11 +116,11 @@ def genSimulationResult(params, config):
                 <br>
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
-                <span style="font-size:0.85rem">Numero de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
+                <span style="font-size:0.85rem">Número de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
                 <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
-                <span style="font-size:0.85rem">Numero de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
-                <br>Numero de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
-                <span style="font-size:0.85rem">Numero de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
+                <span style="font-size:0.85rem">Número de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
+                <br>Número de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
+                <span style="font-size:0.85rem">Número de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
                 <br>
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Materiais</span><br>
                 Planeje suas compras! Esses são os materiais necessários por semana:<br>
