@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from math import floor, ceil
 
 @st.cache(suppress_st_warning=True)
-def get_data(session_state):
+def get_data():
     """ 
     This function return a dataframe with all data
 
@@ -44,37 +44,18 @@ def genSelectBox(df, session_state):
     col1, col2, col3, col4 = st.beta_columns([0.3, 0.5, 0.5, 1])
 
     with col1:
-        session_state.state_id = st.selectbox("Estado", utils.filter_place(df, "state"))
+        session_state.state_id = st.selectbox("Estado", df["state_id"].sort_values().unique())
         session_state.state_name = utils.set_state_name(df,session_state.state_id)
     with col2:
-        options_city_name = utils.filter_place(
-            df, "city", state_id=session_state.state_id
-        )
+        options_city_name = df[df["state_id"] == session_state.state_id]["city_name"].sort_values().unique()
         options_city_name = pd.DataFrame(data=options_city_name, columns=["city_name"])
-        x = int(
-            options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[
-                0
-            ]
-        )
+        x = int(options_city_name[options_city_name["city_name"] == "Todos"].index.tolist()[0])
         session_state.city_name = st.selectbox("Município", options_city_name, index=x)
     with col3:
-        options_adiminlevel = utils.filter_place(
-            df,
-            "administrative_level",
-            state_id=session_state.state_id,
-            city_name=session_state.city_name,
-        )
-        options_adiminlevel = pd.DataFrame(
-            data=options_adiminlevel, columns=["adiminlevel"]
-        )
-        y = int(
-            options_adiminlevel[
-                options_adiminlevel["adiminlevel"] == "Todos"
-            ].index.tolist()[0]
-        )
-        session_state.administrative_level = st.selectbox(
-            "Nível de Administração", options_adiminlevel, index=y
-        )
+        options_adiminlevel = utils.filter_place(df,"administrative_level",state_id=session_state.state_id,city_name=session_state.city_name,)
+        options_adiminlevel = pd.DataFrame(data=options_adiminlevel, columns=["adiminlevel"])
+        y = int(options_adiminlevel[options_adiminlevel["adiminlevel"] == "Todos"].index.tolist()[0])
+        session_state.administrative_level = st.selectbox("Nível de Administração", options_adiminlevel, index=y)
     with col4:
         st.write(
             f"""
@@ -136,7 +117,6 @@ def genSimulationResult(params, config):
 
 
 def main():
-    utils.localCSS("localCSS.css")
     session_state = session.SessionState.get(
         key=session.get_user_id(),
         update=False,
@@ -155,10 +135,10 @@ def main():
         section1_organize=False,
         section2_manage=False,
     )
+    utils.localCSS("localCSS.css")
     he.genHeader("simulation")
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
-    df = get_data(session_state)
-    data = df[(df["city_name"] == session_state.city_name)& (df["administrative_level"] == session_state.administrative_level)]
+    df = get_data()
     subtitle = """Sabemos que no planejamento da reabertura surgem muitas dúvidas... Quantas turmas podem voltar? Quantos litros de álcool gel preciso comprar? 
 <br>
 O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
@@ -172,6 +152,7 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
     utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
     utils.gen_title(title="Selecione sua rede:", subtitle="")
     genSelectBox(df, session_state)
+    data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["administrative_level"] == session_state.administrative_level)]
     utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
     params = dict()
     params["number_alunos"] = st.number_input(
