@@ -43,12 +43,14 @@ def get_school_return_projections(
             Número projetado  de professores que retornam à escola.
     """
     # Maximo de turmas por limitacao dos alunos
+    number_alunos = number_alunos-number_alunos_naovoltando
     max_alunos = number_alunos/maxalunossalas
     
     # Maximo de turmas por limitacao de salas
     max_salas = number_salas*turnos
     
     # Maximo de turmas por limitacao por professores
+    number_professores = number_professores-number_professores_naovoltando
     max_professores = ceil(number_professores/(horaaula*professorday/60)/hours_classpresencial)
     
     # Identifica o gargalo
