@@ -69,6 +69,27 @@ Para as informações sobre protocolos de limpeza e higienização do ambiente e
 O Escola Segura traz também uma ferramentas específicas com protocolos sanitários a serem seguidos pelos funcionários das Escolas em relação ao ambiente escolar, ao transporte escolar, à secretaria e atividades administrativas e a comunidade. Para a elaboração desses protocolos, orientações do Center for Disease Control (CDC)-EUA[15] e da ONU[19] foram utilizadas como bases, sendo feitas adaptações que refletem as diversas realidades encontradas no Brasil.<br><br>
 O Escola Segura traz um modelo de Plano de Ação e Monitoramento na identificação de casos para auxiliar o gestor a organizar sua rede para lidar com casos suspeitos e/ou confirmados entre alunos e funcionários. Para a criação desse plano de ação, foram utilizadas novamente as considerações do CDC-EUA, além de diretrizes dos Ministérios da Educação[18] e da Saúde[16] do Brasil, e Fiocruz[17]."""
     utils.gen_title(title="Embasamento científico e metodológico", subtitle=embasamento)
+    embasamentosimulador =  """Uma das ferramentas disponíveis no Escola Segura é o Simulador de Retomada Presencial das Atividades Escolares. O objetivo dessa ferramenta é auxiliar o gestor escolar no planejamento da capacidade física das escolas de sua rede, considerando o número de docentes, alunos e salas na simulação de possíveis modelos a serem adotados. 
+<br><br>Utilizando o Simulador, o gestor poderá testar diferentes configurações de carga horária diária presencial (de 0 até 6 horas) e remota (de 0 até 6 horas) que cada turma terá e como essa configuração escolhida afeta a organização e dimensionamento das necessidades estruturais para a retomada. 
+<br><br>Para utilizar o Simulador, o gestor deve primeiramente selecionar qual 1. Estado da federação, 2.  Município e 3. Nível de Administração (Estadual, Municipal, ou Todos) ele deseja. A partir dessa informação, o Simulador traz, segundo os dados do último CENSO ESCOLAR, o 4. “Total de alunos matriculados” e o 5. “Total de professores” da rede. Atenção: Se o nível selecionado for Rede - tanto Municipal como Estadual - os dessas categorias são fixos, mas se o nível selecionado for "Escolar" esses valores são livres para serem alterados. O gestor pode ainda, inserir a 6. quantidade de alunos e de 7. professores que ele já estima que não irão retornar presencialmente (exemplo: professores e alunos que fazem parte de grupos de alto risco para a Covid-19).
+<br><br>No segundo passo, o gestor deve informar a 1. “Quantidade de salas disponíveis” e 2. o “número máximo de alunos em cada sala”. Deixamos como referência uma ferramenta de auxílio para esse cálculo que foi desenvolvida pela Faculdade de Educação da UNICAMP. 
+<br><br>No terceiro e último passo, o gestor pode selecionar a 1. quantidade de “horas diárias presencial” que deseja atribuir às turmas (variando de 0 à 8 horas diárias), 2. A quantidade de “horas diárias de aula remota por turma” (variando de 0 à 6 horas diárias), 3. “Número de turnos em um dia” (variando de 0 à 12 turnos por dia). O gestor preenche ainda a quantidade de 4. “Horas aula diárias por professor” e 5. “Tempo de hora aula” (em minutos).
+<br><br>Com isso, o Simulador devolve ao gestor três grupos de informação: Sobre turmas, sobre sua organização de recursos, e sobre a quantidade necessária de materiais como máscaras, álcool em gel e termômetros.
+<br><br>Sobre turmas, o resultado da simulação informa a quantidade de turmas que o gestor consegue retornar e também a quantidade de dias letivos necessários para cumprir as 800 horas anuais determinadas pelo MEC[24].
+<br><br>Sobre a organização, o resultado da simulação traz o número de alunos e professores que retornariam e os que não retornariam - baseado na informação passada pelo gestor, o número de salas ocupadas com aulas presenciais e o número de salas ficaram livres. Esse cálculo é realizado com base nos parâmetros definidos pelo próprio gestor nos segundo e terceiro passos.
+<br><br>Sobre os materiais, o resultado da simulação traz a quantidade que seriam necessárias semanalmente a serem disponibilizadas para alunos e docentes de: álcool em gel, máscaras e termômetros. Esses cálculos são realizados com base nas informações passadas pelo gestor e em determinações técnicas da Fiocruz / Proqualis [11][17] e dos Ministérios da Saúde[16]  e Educação[18]."""
+    st.write(
+        f"""
+        <div class="conteudo title-section" style="padding-bottom:20px;"> 
+            <img id="embasamentosimulador" class="square" src="https://i.imgur.com/gGIFS5N.png">
+            Metodologia e Uso do Simulador de Retomada Presencial das Atividades Escolares
+        </div>
+        <div class="conteudo" style="padding-bottom: 10px;">
+            {embasamentosimulador}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     utils.gen_title(title="Fontes e referências", subtitle="<br>")    
     st.write(
         f"""
