@@ -92,7 +92,8 @@ def genSimulationResult(params, config):
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
-                <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
+                Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
+                <br><br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
                 <br>Número de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
                 <span style="font-size:0.85rem">Número de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
@@ -102,7 +103,7 @@ def genSimulationResult(params, config):
                 Número de máscaras necessárias: <b>{result["total_masks"]}</b> </br>
                 Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
-                <br>Como calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui
+                <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
         """,
@@ -161,9 +162,7 @@ def genQuetions(data):
     params["hours_classpresencial"] = st.slider(
         "Horas diárias de aula presencial por turma:", 1, 8, 4, 1
     )
-    params["hours_classpremoto"] = st.slider(
-        "Horas diárias de aula remota por turma:", 0, 6, 0, 1
-    )
+    params["hours_classpremoto"] = 0
     params["turnos"] = st.slider(
         "Número de turnos:", 1, int(18/params["hours_classpresencial"]), 1, 1
     )
@@ -175,8 +174,8 @@ def genQuetions(data):
                 Na configuração atual, <b>a escola funcionaria dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
-                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
-                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
+                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
                 Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
@@ -263,9 +262,7 @@ def genMultiQuetions(data):
     params["hours_classpresencial"] = st.slider(
         "Horas diárias de aula presencial por turma:", 1, 8, 4, 1
     )
-    params["hours_classpremoto"] = st.slider(
-        "Horas diárias de aula remota por turma:", 0, 6, 0, 1
-    )
+    params["hours_classpremoto"] = 0
     params["turnos"] = st.slider(
         "Número de turnos:", 1, int(18/params["hours_classpresencial"]), 1, 1
     )
@@ -277,7 +274,7 @@ def genMultiQuetions(data):
                 Na configuração atual, <b>a escola funcionaria dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
-                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
                 com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
                 Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
@@ -310,7 +307,6 @@ def genMultiQuetions(data):
         step=1,
     )
     return params
-
 
 def genMunicipioQuetions(data):
     params = dict()
@@ -365,8 +361,8 @@ def genMunicipioQuetions(data):
                 Na configuração atual, <b>todas as escolas funcionariam dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
-                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula e <b>{params["hours_classpremoto"]} horas remota</b>, 
-                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
+                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
                 Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
@@ -427,7 +423,8 @@ def genSimulationResultMunicipio(params, config, data):
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
-                <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
+                Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
+                <br><br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
                 <br>Número de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
                 <span style="font-size:0.85rem">Número de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
@@ -437,15 +434,14 @@ def genSimulationResultMunicipio(params, config, data):
                 Número de máscaras necessárias: <b>{result["total_masks"]}</b> </br>
                 Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
-                <br>Como calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
                 <br><br>Confira a distribuicao de professores, alunos e materiais por escola <a href='data:file/csv;base64,{b64}' download="resultadoporescola.csv" target="_self">Aqui</a>. Você consegur abrir no Google Planilhas e no Excel.
+                <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
     
-
 def main():
     session_state = session.SessionState.get(
         key=session.get_user_id(),
@@ -472,15 +468,15 @@ def main():
     config = yaml.load(open("config/config.yaml", "r"), Loader=yaml.FullLoader)
     # df = get_data()
     subtitle = """Sabemos que no planejamento da reabertura surgem muitas dúvidas... Quantas turmas podem voltar? Quantos litros de álcool gel preciso comprar? 
-<br>
-O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
-<br>
-<b>Se você é gestor da rede:</b><br>
-Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
-<br>
-<b>Se você é gestor de uma escola:</b><br>
-Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
-<br>"""
+    <br>
+    O retorno às atividades presenciais deve ser planejado segundo as condições da sua rede. Simule abaixo o retorno e veja os recursos e materiais necessários para uma reabertura segura!
+    <br>
+    <b>Se você é gestor da rede:</b><br>
+    Preencha os dados da sua rede e obtenha uma simulação geral das condições de retorno. 
+    <br>
+    <b>Se você é gestor de uma escola:</b><br>
+    Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
+    <br>"""
     utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
 
 
