@@ -196,7 +196,7 @@ Preencha os dados específicos da sua escola, por série ou por etapa de ensino,
         "Máximo de alunos por sala",
         format="%d",
         min_value=1,
-        value=20,
+        value=1,
         step=1,
     )
 
