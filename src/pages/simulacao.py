@@ -153,7 +153,7 @@ def genQuetions(data):
         "Máximo de alunos por sala",
         format="%d",
         min_value=1,
-        value=20,
+        value=1,
         step=1,
     )
 
@@ -255,7 +255,7 @@ def genMultiQuetions(data):
         "Máximo de alunos por sala",
         format="%d",
         min_value=1,
-        value=20,
+        value=1,
         step=1,
     )
 
@@ -343,7 +343,7 @@ def genMunicipioQuetions(data):
         "Máximo de alunos por sala",
         format="%d",
         min_value=1,
-        value=20,
+        value=1,
         step=1,
     )
 
