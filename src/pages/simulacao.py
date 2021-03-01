@@ -14,15 +14,14 @@ import pages.header as he
 import pages.footer as foo
 import matplotlib.pyplot as plt
 from math import floor, ceil
+import base64
 
 @st.cache(suppress_st_warning=True)
 def get_data():
     """ 
     This function return a dataframe with all data
-
     Parameters: 
         config (type): doc config.yaml
-
     Returns:
         df (type): 2019 school census dataframe
     """
@@ -34,7 +33,6 @@ def get_data():
 def genSelectBox(df, session_state):
     """ 
     This function generates select boxes for choosing the school network
-
     Parameters: 
         df (type): 2019 school census dataframe
         session_state (type): section dataset
@@ -68,7 +66,6 @@ def genSelectBox(df, session_state):
 def genSimulationResult(params, config):
     """ 
     This is a function that returns the simulation result
-
     Parameters: 
         params (type): parameters for simulation
         config (type): doc config.yaml
@@ -119,7 +116,7 @@ def genQuetions(data):
         "Total de alunos matriculados",
         format="%d",
         min_value=1,
-        value=data["alunos"].values[0],
+        value=int(data["alunos"].values[0]),
         step=1,
     )
     params["number_alunos_naovoltando"] = st.number_input(
@@ -133,7 +130,7 @@ def genQuetions(data):
         "Total de professores",
         format="%d",
         min_value=1,
-        value=10,
+        value=int(data["professores"].values[0]),
         step=1,
     )
     params["number_professores_naovoltando"] = st.number_input(
@@ -149,7 +146,7 @@ def genQuetions(data):
         "Salas disponíveis",
         format="%d",
         min_value=1,
-        value=data["numsalas"].values[0],
+        value=int(data["numsalas"].values[0]),
         step=1,
     )
     params["maxalunossalas"] = st.number_input(
@@ -221,7 +218,7 @@ def genMultiQuetions(data):
         "Total de alunos matriculados",
         format="%d",
         min_value=1,
-        value=data["alunos"].sum(),
+        value=int(data["alunos"].sum()),
         step=1,
     )
     params["number_alunos_naovoltando"] = st.number_input(
@@ -235,7 +232,7 @@ def genMultiQuetions(data):
         "Total de professores",
         format="%d",
         min_value=1,
-        value=10,
+        value=int(data["professores"].sum()),
         step=1,
     )
     params["number_professores_naovoltando"] = st.number_input(
@@ -251,7 +248,7 @@ def genMultiQuetions(data):
         "Salas disponíveis",
         format="%d",
         min_value=1,
-        value=data["numsalas"].values[0],
+        value=int(data["numsalas"].values[0]),
         step=1,
     )
     params["maxalunossalas"] = st.number_input(
@@ -322,8 +319,8 @@ def genMunicipioQuetions(data):
         f"""
         <div class="conteudo"  style="padding-top:5px; font-family: 'Roboto Condensed', sans-serif; font-size: 1rem;">
             <div>
-                Total de alunos matriculados: <b>{data["alunos"].sum()}</b> </br></br>
-                Total de professores: <b>Hardcodado (10*quantidade de escolas)</b> </br>
+                Total de alunos matriculados: <b>{int(data["alunos"].sum())}</b> </br></br>
+                Total de professores: <b>{int(data["professores"].sum())}</b> </br>
                 <br><br>
             </div>
         </div>
@@ -336,7 +333,7 @@ def genMunicipioQuetions(data):
         f"""
         <div class="conteudo" style="padding-top:5px; font-family: 'Roboto Condensed', sans-serif; font-size: 1rem;">
             <div>
-                Salas disponíveis: <b>{data["numsalas"].sum()}</b> </br></br>
+                Salas disponíveis: <b>{int(data["numsalas"].sum())}</b> </br></br>
             </div>
         </div>
         """,
@@ -405,14 +402,13 @@ def genMunicipioQuetions(data):
 def genSimulationResultMunicipio(params, config, data):
     """ 
     This is a function that returns the simulation result
-
     Parameters: 
         params (type): parameters for simulation
         config (type): doc config.yaml
               
     """
 
-    result = entrypoint_municipio(params, config, data)
+    result, resultadoporescola = entrypoint_municipio(params, config, data)
 
     teacher_icon = utils.load_image("imgs/simulation_teacher_icon.png")
     student_icon = utils.load_image("imgs/student_icons.png")
@@ -420,6 +416,7 @@ def genSimulationResultMunicipio(params, config, data):
     sanitizer_icon = utils.load_image("imgs/simulation_sanitizer_icon.png")
     thermometer_icon = utils.load_image("imgs/simulation_thermometer_icon.png")
 
+    b64 = base64.b64encode(resultadoporescola.to_csv().encode()).decode()
     st.write(
         f"""
         <div class="conteudo" style="padding-top:5px;">
@@ -440,12 +437,14 @@ def genSimulationResultMunicipio(params, config, data):
                 Número de máscaras necessárias: <b>{result["total_masks"]}</b> </br>
                 Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
-                <br>Como calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui
+                <br>Como calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
+                <br><br>Confira a distribuicao de professores, alunos e materiais por escola <a href='data:file/csv;base64,{b64}' download="resultadoporescola.csv" target="_self">Aqui</a>. Você consegur abrir no Google Planilhas e no Excel.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    
 
 def main():
     session_state = session.SessionState.get(
