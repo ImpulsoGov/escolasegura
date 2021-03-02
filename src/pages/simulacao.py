@@ -99,9 +99,9 @@ def genSimulationResult(params, config):
                 <br>
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Materiais</span><br>
                 Planeje suas compras! Esses são os materiais necessários por semana:<br>
-                Número de máscaras necessárias: <b>{result["total_masks"]}</b> </br>
-                Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
-                Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
+                Número de máscaras necessárias (1 por pessoa cada 3 horas): <b>{result["total_masks"]}</b> </br>
+                Litros de álcool em gel necessários (12ml por pessoa por dia): <b>{result["total_sanitizer"]}</b> </br>
+                Número de termômetros necessários (1 para cada 100 estudantes): <b>{result["total_thermometers"]}</b> </br>
                 <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
@@ -112,6 +112,16 @@ def genSimulationResult(params, config):
 def genQuetions(data):
     params = dict()
     utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
+    st.write(
+        f"""
+        <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
+            <div style="background:#DDFBF0; padding:20px; border-radius: 0.8rem;">
+            Baseado nos dados do Censo 2020 mostramos os números de alunos, professores e salas, mas você pode ajustá-los à sua realidade!
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     params["number_alunos"] = st.number_input(
         "Total de alunos matriculados",
         format="%d",
@@ -181,9 +191,9 @@ def genQuetions(data):
                 Na configuração atual, <b>a escola funcionaria dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
-                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
-                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
-                Continue a simulação para saber quantas turmas e professores terão por turno.<br>
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula.
+                <br>Com essa carga horária de aulas presenciais serão necessários <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.
+                <br>Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
             """,
@@ -281,9 +291,9 @@ def genMultiQuetions(data):
                 Na configuração atual, <b>a escola funcionaria dando
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
-                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
-                com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]+params["hours_classpremoto"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
-                Continue a simulação para saber quantas turmas e professores terão por turno.<br>
+                <b>{params["hours_classpresencial"]} horas presenciais</b> de aula.
+                <br>Com essa carga horária de aulas presenciais serão necessários <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.
+                <br>Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
             """,
@@ -318,6 +328,16 @@ def genMultiQuetions(data):
 def genMunicipioQuetions(data):
     params = dict()
     utils.gen_title(title="<b>1</b>. Quem poderia retornar às aulas presenciais?", subtitle="")
+    st.write(
+        f"""
+        <div class="conteudo" style="margin-top:15px; margin-bottom:40px;">
+            <div style="background:#DDFBF0; padding:20px; border-radius: 0.8rem;">
+            Baseado nos dados do Censo 2020, mostramos o número de alunos, professores e salas da sua rede. Realizamos os cálculos para cada uma das escolas e depois somamos o total, garantindo que não há reorganização escolar.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     st.write(
         f"""
         <div class="conteudo"  style="padding-top:5px; font-family: 'Roboto Condensed', sans-serif; font-size: 1rem;">
@@ -376,7 +396,7 @@ def genMunicipioQuetions(data):
                 sendo que cada turno (e as turmas do turno) teriam 
                 <b>{params["hours_classpresencial"]} horas presenciais</b> de aula, 
                 com essa carga horária será necessário <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.<br>
-                Continue a simulação para saber quantas turmas e professores terão por turno.<br>
+                <br>Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
             """,
@@ -512,7 +532,7 @@ def main():
         data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
         session_state.escola = st.selectbox(
             "Escola",
-            ["", "Minha escola não está na lista"] + list(data["nomedaescola"]),
+            ["", "Minha escola não está na lista"] + list(data["codinep_nomedaescola"]),
         )
         # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["nomedaescola"] == session_state.escola)]
         if session_state.escola == "Minha escola não está na lista":
@@ -522,7 +542,7 @@ def main():
             if st.button("simular retorno"):
                 genSimulationResult(params, config)
         elif session_state.escola != "":
-            data = data[data["nomedaescola"] == session_state.escola]
+            data = data[data["codinep_nomedaescola"] == session_state.escola]
             params = genQuetions(data)
             if st.button("simular retorno"):
                 genSimulationResult(params, config)
@@ -539,9 +559,9 @@ def main():
         data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
         session_state.escola = st.selectbox(
             "Escola",
-            ["Selecione a Escola"] + list(data["nomedaescola"].unique()),
+            ["Selecione a Escola"] + list(data["codinep_nomedaescola"].unique()),
         )
-        data = data[data["nomedaescola"] == session_state.escola]
+        data = data[data["codinep_nomedaescola"] == session_state.escola]
         # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["nomedaescola"] == session_state.escola)]
         if session_state.escola != "Selecione a Escola":
             params = genMultiQuetions(data)
