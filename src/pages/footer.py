@@ -10,7 +10,7 @@ def genFooter():
 	escola = utils.load_image("imgs/escolasegura.png")
 	bidicon = utils.load_image("imgs/logo-bid.png")
 	imaginableicon = utils.load_image("imgs/logo-imaginable.png")
-	formaricon = utils.load_image("imgs/logo-formar.png")
+	gestoicon = utils.load_image("imgs/logo_gesto.png")
 	impulso_icon = utils.load_image("imgs/logo-impulso.png")
 
 	st.write(
@@ -31,7 +31,7 @@ def genFooter():
 				</div>
 				<div>
 					<span style="font-size:0.7em; font-color:#A8BFD2;">Implementação:</span><br>
-					<a href="https://fundacaolemann.org.br/projetos/formar"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{formaricon}" title="logo Formar"/></a>
+					<a href="https://fundacaolemann.org.br/projetos/formar"><img class="logo-footer" style="margin-bottom:2em;" src="data:image/png;base64,{gestoicon}" title="logo Formar"/></a>
 				</div>
 			</div>
 		""",
