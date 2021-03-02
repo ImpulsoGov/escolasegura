@@ -44,20 +44,20 @@ def get_school_return_projections(
     """
     # Maximo de turmas por limitacao dos alunos
     number_alunos = number_alunos-number_alunos_naovoltando
-    max_alunos = number_alunos/maxalunossalas
+    max_alunos = int(number_alunos/maxalunossalas)
     
     # Maximo de turmas por limitacao de salas
     max_salas = number_salas*turnos
     
     # Maximo de turmas por limitacao por professores
     number_professores = number_professores-number_professores_naovoltando
-    max_professores = ceil(number_professores/(horaaula*professorday/60)/hours_classpresencial)
+    max_professores = int(number_professores*((horaaula*professorday/60)/hours_classpresencial))
     
     # Identifica o gargalo
     limite_turmas = min(max_alunos, max_salas, max_professores)
     # Dado o gargalo, identificar as condições reais do retorno
     max_professores_por_turma = (horaaula*professorday/60)/hours_classpresencial
-    number_professores_retornantes = ceil(limite_turmas*max_professores_por_turma)
+    number_professores_retornantes = ceil(limite_turmas/max_professores_por_turma)
     number_alunos_retornantes = ceil(limite_turmas*maxalunossalas)
     salasocupadas = ceil(limite_turmas/turnos)
     salaslivres = int(number_salas-salasocupadas)
