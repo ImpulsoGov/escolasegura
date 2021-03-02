@@ -92,8 +92,7 @@ def genSimulationResult(params, config):
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
-                Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
-                <br><br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
+                <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
                 <br>Número de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
                 <span style="font-size:0.85rem">Número de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
@@ -156,6 +155,14 @@ def genQuetions(data):
         min_value=1,
         value=1,
         step=1,
+    )
+    st.write(
+        f"""
+        <div class="conteudo" style="padding-top:5px;">
+            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a><br><br>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
     utils.gen_title(title="<b>3</b>. Como são suas turmas?", subtitle="")
@@ -342,6 +349,14 @@ def genMunicipioQuetions(data):
         value=1,
         step=1,
     )
+    st.write(
+        f"""
+        <div class="conteudo" style="padding-top:5px;">
+            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a><br><br>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     utils.gen_title(title="<b>3</b>. Como são suas turmas?", subtitle="")
     params["hours_classpresencial"] = st.slider(
@@ -423,8 +438,7 @@ def genSimulationResultMunicipio(params, config, data):
                 <span class="title-section" style="color:#ff9147; font-size:1.5rem;">Organização</span><br>
                 Número de alunos que retornariam às aulas presenciais: <b>{result["number_alunos_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de alunos que não poderiam retornar: <b>{result["alunoslivres"]}</b></span></br>
-                Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a>
-                <br><br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
+                <br>Número de professores que retornariam às aulas presenciais: <b>{result["number_professores_retornantes"]}</b> </br>
                 <span style="font-size:0.85rem">Número de professores que não precisariam retornar: <b>{result["professoreslivres"]}</b></span></br>
                 <br>Número de salas que estariam ocupadas com aulas presenciais: <b>{result["salasocupadas"]}</b> </br>
                 <span style="font-size:0.85rem">Número de salas livres de aulas presenciais: <b>{result["salaslivres"]}</b></span></br>
@@ -483,7 +497,7 @@ def main():
     session_state.nivelsimulacao = st.selectbox(
         "",
         # ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal"],
-        ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal", "Rede Estadual"],
+        ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal"],
     )
     if session_state.nivelsimulacao=="Nível Escolar":
         df = pd.read_csv("pages/dadosporescolas.csv")
