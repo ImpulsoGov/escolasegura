@@ -488,6 +488,8 @@ def main():
     <br>
     <b>Se você é gestor de uma escola:</b><br>
     Preencha os dados específicos da sua escola, por série ou por etapa de ensino, e obtenha as condições e materiais necessários para voltar ás aulas presenciais com segurança.
+    <br><br>
+    <b>Selecione o nível que gostaria de simular:</b>
     <br>"""
     utils.main_title(title="<b>Simule o retorno:</b> como organizar a reabertura?", subtitle=subtitle)
 
@@ -495,7 +497,7 @@ def main():
     session_state.nivelsimulacao = st.selectbox(
         "",
         # ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal"],
-        ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal"],
+        ["", "Nível Escolar", "Rede Municipal"],
     )
     if session_state.nivelsimulacao=="Nível Escolar":
         df = pd.read_csv("pages/dadosporescolas.csv")
@@ -510,11 +512,17 @@ def main():
         data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name)]
         session_state.escola = st.selectbox(
             "Escola",
-            ["Selecione a Escola"] + list(data["nomedaescola"]),
+            ["", "Minha escola não está na lista"] + list(data["nomedaescola"]),
         )
-        data = data[data["nomedaescola"] == session_state.escola]
         # data = df[(df["state_id"] == session_state.state_id) & (df["city_name"] == session_state.city_name) & (df["nomedaescola"] == session_state.escola)]
-        if session_state.escola != "Selecione a Escola":
+        if session_state.escola == "Minha escola não está na lista":
+            data = {'Unnamed: 0':[0], 'idescola':[0], 'nomedaescola':[0], 'city_id':[0], 'city_name':[0],'state_id':[0], 'state_name':[0], 'numsalas':[1], 'alunos':[1], 'tipoescola':[0],'professores':[1]}
+            data = pd.DataFrame(data, columns=['Unnamed: 0', 'idescola', 'nomedaescola', 'city_id', 'city_name','state_id', 'state_name', 'numsalas', 'alunos', 'tipoescola','professores'])
+            params = genQuetions(data)
+            if st.button("simular retorno"):
+                genSimulationResult(params, config)
+        elif session_state.escola != "":
+            data = data[data["nomedaescola"] == session_state.escola]
             params = genQuetions(data)
             if st.button("simular retorno"):
                 genSimulationResult(params, config)
