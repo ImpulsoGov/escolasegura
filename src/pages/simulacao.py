@@ -482,7 +482,7 @@ def main():
 
     session_state.nivelsimulacao = st.selectbox(
         "",
-        # ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal", "Rede Estadual"],
+        # ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal"],
         ["Selecione o nível que gostaria de simular:", "Nível Escolar", "Rede Municipal", "Rede Estadual"],
     )
     if session_state.nivelsimulacao=="Nível Escolar":
