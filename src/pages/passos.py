@@ -32,7 +32,16 @@ Aqui, você encontra orientações que começam desde o planejamento da reabertu
 <br><br>
 Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para estruturar uma reabertura mais segura para toda a comunidade escolar."""
     utils.main_title(title="Como sua rede pode se preparar para a retomada das atividades presenciais? Temos 10 passos para auxiliar no processo.", subtitle=subtitle)
-    
+    st.write(
+        f"""
+        <div class="conteudo title-section" style="padding-bottom:20px;"> 
+            <img class="square" src="https://i.imgur.com/gGIFS5N.png">
+            Passos:
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
     obj1 = "Definir os atores responsáveis por planejar, preparar e monitorar a rede para a retomada de atividades presenciais e estabelecer um canal de comunicação com a comunidade escolar."
     term1 = "Ter clareza sobre os papéis e responsabilidades de cada órgão dentro do processo de retomada, com um comitê estruturado para tomar decisões com agilidade, com discursos e comunicação alinhados. "
     prat1 = """Ação 1. Forme uma Comissão de Reabertura com os atores-chave presentes nos diversos órgãos que devem ser engajados nessa retomada. Além da Secretaria de Educação, a comissão pode envolver membros da Secretaria de Saúde, Secretaria de Assistência/Desenvolvimento Social e também lideranças regionais, caso sua rede conte com essa estrutura. 
@@ -148,7 +157,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                 <input type="radio" id="tab-9" name="flat-tabs-left" class="section-nine">
                 <label for="tab-9"><i></i>Passo 9</label>
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
-                <label for="tab-10"><i></i>Passo 10</label>           
+                <label for="tab-10"><i></i>Passo 10</label> 
                 <ul>
                     <li class="section-one" id="section-one">
                         <div class="grid-container">
@@ -227,7 +236,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                                 A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
                                             </div><br>
                                             <div class="button-position" style="padding-bottom: 10px;">
-                                                <a href="https://drive.google.com/file/d/1NDdWRenKQ9EzVwBX6GbovSd3UICREhVg/view?usp=sharing" target="blank_">
+                                                <a href="https://docs.google.com/spreadsheets/d/1_fYMo_Cy3ukJCmxdKDa9plTOJDBfbURQSY2z0wGCyTY/view" target="blank_">
                                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                                                 </a>
                                             </div>
@@ -362,9 +371,10 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                                 <br>
                                                 <b><i>O que é?</b></i><br>É importante saber o que fazer se houver algum caso confirmado de Covid-19 em escolas 
                                                 da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
+                                                Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1BunWrThhRcVl564AZDKlut2t1d5ugM9W5YtGnQmwo6Y/copy">Aqui</a>.<br><br>
                                             </div>
                                             <div class="minor-padding button-position">
-                                                <a href="https://docs.google.com/forms/d/e/1FAIpQLScntZ8pwhAONfi3h2bd2JAL584oPWFNUgdu3EtqKmpaHDHHfQ/viewform" target="_blank">
+                                                <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view">
                                                     <button class="button"; style="border-radius: .25rem;"> acesse aqui > </button>
                                                 </a>
                                             </div>
@@ -415,6 +425,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                             <b><i>O que é?</b></i><br>
                                             Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
                                             <br><br>
+                                            Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy">Aqui</a>.<br><br>
                                         </div>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
@@ -432,6 +443,7 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
                                         <br>
                                         <b><i>O que é?</b></i><br>
                                         Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
+                                        <br><br>Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">Aqui</a>.<br><br>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
                                                 <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>

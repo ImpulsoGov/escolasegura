@@ -1,4 +1,5 @@
 from math import floor, ceil
+import pandas as pd
 
 
 def get_school_return_projections(
@@ -43,26 +44,25 @@ def get_school_return_projections(
     """
     # Maximo de turmas por limitacao dos alunos
     number_alunos = number_alunos-number_alunos_naovoltando
-    max_alunos = number_alunos/maxalunossalas
+    max_alunos = int(number_alunos/maxalunossalas)
     
     # Maximo de turmas por limitacao de salas
     max_salas = number_salas*turnos
     
     # Maximo de turmas por limitacao por professores
     number_professores = number_professores-number_professores_naovoltando
-    max_professores = int(number_professores/(horaaula*professorday/60)/hours_classpresencial)
+    max_professores = int(number_professores*((horaaula*professorday/60)/hours_classpresencial))
     
     # Identifica o gargalo
     limite_turmas = min(max_alunos, max_salas, max_professores)
-    
     # Dado o gargalo, identificar as condições reais do retorno
     max_professores_por_turma = (horaaula*professorday/60)/hours_classpresencial
-    number_professores_retornantes = ceil(limite_turmas*max_professores_por_turma)
+    number_professores_retornantes = ceil(limite_turmas/max_professores_por_turma)
     number_alunos_retornantes = ceil(limite_turmas*maxalunossalas)
     salasocupadas = ceil(limite_turmas/turnos)
-    salaslivres = number_salas-salasocupadas
-    alunoslivres = number_alunos-number_alunos_retornantes
-    professoreslivres = number_professores-number_professores_retornantes
+    salaslivres = int(number_salas-salasocupadas)
+    alunoslivres = int(number_alunos-number_alunos_retornantes)
+    professoreslivres = int(number_professores-number_professores_retornantes)
 
     # Dias letivos
 
@@ -207,3 +207,85 @@ def entrypoint(params, config):
         "total_sanitizer": round(total_sanitizer, 2),
         "total_thermometers": total_thermometers,
     }
+
+def entrypoint_municipio(params, config, data):
+    """
+    Entrypoint for school return data.
+
+    Parameters
+    ----------
+        params : dict
+            Dictionary with user input from frontend.
+        config : dict
+            Dictionary with fixed parameters.
+
+    Returns
+    -------
+        school_return_data : dict
+            Dictionary with numbers of returning teachers, students, and
+            necessary protective equipment.
+
+    """
+    resultadoporescola = pd.DataFrame(columns=["Escola", "Alunos Retornantes", "Professores Retornantes", "Quantidade de Turmas", "Alunos Não Retornantes", "Professores Não Retornantes", "Salas ocupadas por turno", "Salas Livros por turnos", "Dias Letivos Necessários", "Máscaras (semanal)", "Álcool em gel (Litros - semanal)", "Termômetros (semanal"])
+    alunos_retornantes_total = 0
+    professores_retornantes_total = 0
+    limite_turmas_total = 0
+    salasocupadas_total = 0
+    salaslivres_total = 0
+    alunoslivres_total = 0
+    professoreslivres_total = 0
+    diasletivos_total = 0
+    total_masks_total = 0
+    total_sanitizer_total = 0
+    total_thermometers_total = 0
+    k = 0
+    for i in data.index:
+        # Calculate Number of Returning Students and Teachers
+        alunos_retornantes, professores_retornantes, limite_turmas, salasocupadas, salaslivres, diasletivos, alunoslivres, professoreslivres = get_school_return_projections(
+            data.loc[i]['alunos'],
+            0,
+            data.loc[i]['professores'],
+            0,
+            data.loc[i]['numsalas'],
+            params["maxalunossalas"],
+            params["hours_classpresencial"],
+            params["hours_classpremoto"],
+            params["turnos"],
+            params["professorday"],
+            params["horaaula"],
+        )
+        # Calculate Amount of Required Protection Equipment
+        total_masks, total_sanitizer, total_thermometers = get_school_return_supplies(
+            alunos_retornantes,
+            professores_retornantes,
+            params["hours_classpresencial"],
+            params["maxalunossalas"],
+            config,
+        )
+        alunos_retornantes_total = alunos_retornantes_total+alunos_retornantes
+        professores_retornantes_total = professores_retornantes_total+professores_retornantes
+        limite_turmas_total = limite_turmas_total+limite_turmas
+        salasocupadas_total = salasocupadas_total+salasocupadas
+        salaslivres_total = salaslivres_total+salaslivres
+        alunoslivres_total = alunoslivres_total+alunoslivres
+        professoreslivres_total = professoreslivres_total+professoreslivres
+        diasletivos_total = diasletivos
+        total_masks_total = total_masks_total+total_masks
+        total_sanitizer_total = total_sanitizer_total+total_sanitizer
+        total_thermometers_total = total_thermometers_total+total_thermometers
+        resultadoporescola.loc[k] = [data.loc[i]['nomedaescola'],alunos_retornantes_total,professores_retornantes_total,limite_turmas_total,alunoslivres_total,professoreslivres_total,salasocupadas_total,salaslivres_total,diasletivos_total,total_masks_total,total_sanitizer_total,total_thermometers_total]
+        k = k + 1
+    # Build School Return Data Dictionary
+    return {
+        "number_alunos_retornantes": alunos_retornantes_total,
+        "number_professores_retornantes": professores_retornantes_total,
+        "limite_turmas": limite_turmas_total,
+        "salasocupadas": salasocupadas_total,
+        "salaslivres": salaslivres_total,
+        "alunoslivres": alunoslivres_total,
+        "professoreslivres": professoreslivres_total,
+        "diasletivos": diasletivos_total,
+        "total_masks": total_masks_total,
+        "total_sanitizer": round(total_sanitizer_total, 2),
+        "total_thermometers": total_thermometers_total,
+    }, resultadoporescola
