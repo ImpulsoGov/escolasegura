@@ -362,9 +362,6 @@ def genMunicipioQuetions(data):
     params["hours_classpresencial"] = st.slider(
         "Horas diárias de aula presencial por turma:", 1, 8, 4, 1
     )
-    params["hours_classpremoto"] = st.slider(
-        "Horas diárias de aula remota por turma:", 0, 6, 0, 1
-    )
     params["turnos"] = st.slider(
         "Número de turnos:", 1, int(18/params["hours_classpresencial"]), 1, 1
     )
