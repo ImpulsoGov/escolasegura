@@ -15,8 +15,8 @@ def main():
     utils.localCSS("localCSS.css")
     he.genHeader("guia10passos")
     # urlpath = "http://localhost:8501/"
-    urlpath = 'https://escolasegura-staging.herokuapp.com/'
-    # urlpath = 'https://escolasegura.coronacidades.org/'
+    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
+    urlpath = 'https://escolasegura.coronacidades.org/'
 
     protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
@@ -56,11 +56,11 @@ Ação 3. Estabeleça um plano de comunicação, definindo o que, quando, como e
 Ação 2.  Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada, mesmo que parcial, das atividade presenciais e comece a preparação para o retorno. 
 <br><br>
 Ação 3. Articule com atores-chave externos, como sindicato de professores, líderes comunitários locais e outros atores relevantes, sobre os critérios pactuados e a data pensada para a  retomada."""
-    obj3 = "Estabelecer o protocolo sanitário a ser seguido por todas as escolas da rede que retomarem as atividades presenciais, com orientações sobre adaptação de estrutura física e a necessidade de aquisição de materiais de limpeza e EPIs para prevenir o contágio da Covid-19 dentro das unidades de ensino"
+    obj3 = "Estabelecer o protocolo sanitário a ser seguido por todas as escolas da rede que retomarem as atividades presenciais, com orientações sobre adaptação de estrutura física e a necessidade de aquisição de materiais de limpeza e EPIs para prevenir o contágio da Covid-19 dentro das unidades de ensino."
     term3 = "Adequar suas unidades de ensino ao protocolo estabelecido e comunicar as medidas de prevenção adotadas a toda a comunidade escolar. "
     prat3 = """Ação 1. Prepare, com o apoio da Secretaria de Saúde, um protocolo sanitário a ser seguido por todas as escolas que retomarem as atividades presenciais, com a definição da lista de materiais necessários para sua implementação. 
 <br><br>
-Ação 2. Distribua o protocolo para os diretores escolares 
+Ação 2. Distribua o protocolo para os diretores escolares.
 <br><br>
 Ação 3. Organize a compra e distribuição de materiais de limpeza e de proteção individual para as unidades escolares.
 <br><br>
@@ -82,11 +82,11 @@ Ação 8. Comunique sobre o retorno. Prepare materiais informativos sobre a Covi
 Ação 2. Dimensione quantos professores estão em grupo de risco e não poderão retornar para atividades presenciais por esse motivo. 
 <br><br>
 <b>Informe os dados da sua rede e Simule o retorno:</b>"""
-    obj5 = "Planejar e definir qual modelo de reabertura das escolas é mais adequado para sua realidade"
+    obj5 = "Planejar e definir qual modelo de reabertura das escolas é mais adequado para sua realidade."
     term5 = "Saber quais grupos de estudantes terão prioridade na retomada de atividades presenciais, reorganizando turmas e salas de acordo com o modelo adotado."
     prat5 = """Ação 1. Determine como será usado o tempo presencial e o tempo remoto, se existir. 
 <br><br>
-Ação 2. Estabeleça qual modelo será adotado no retorno à sala de aula: serão priorizados os anos terminais ou será dada prioridade a alunos com dificuldade de acompanhar o ensino remoto, por exemplo?. 
+Ação 2. Estabeleça qual modelo será adotado no retorno à sala de aula: serão priorizados os anos terminais ou será dada prioridade a alunos com dificuldade de acompanhar o ensino remoto, por exemplo?
 <br><br>
 Ação 3. Feito o diagnóstico de professores e alunos que podem retornar, conforme definido no passo 4 deste guia, e com base no modelo de retomada escolhido, reorganize a divisão de salas e turmas. Caso necessário, programe a contratação de professores substitutos para suprir a falta de professores que integram o grupo de risco e não poderão retornar.
 <br><br>
@@ -97,41 +97,40 @@ Ação 4. Comunique à comunidade escolar o modelo adotado e a nova organizaçã
     term6 = "Dispor do material mais adequado para dar sequência ao processo de aprendizado dos estudantes. "
     prat6 = """Ação 1. Revise e prepare o material pedagógico para possibilitar um retorno adequado da rede, considerando o modelo de reabertura adotado. 
 <br><br>
-Ação 2. Prepare o apoio pedagógico (currículo, formação, avaliação, busca ativa) 
+Ação 2. Prepare o apoio pedagógico (currículo, formação, avaliação, busca ativa). 
 <br>
 Recomendamos que o estudante tenha a opção de dar continuidade a sua formação no modo remoto. Caso seja adotado esse modelo, sugerimos que professores que não podem retornar para sala de aula fiquem responsáveis pela produção de material de alunos que continuam remotos."""
     obj7 = "Identificar e atuar sobre alunos que não têm acompanhado as atividades remotas e estão em risco de perder o vínculo com a comunidade escolar. "
-    term7 = "Estabelecer uma rotina de busca ativa e suporte aos estudantes da sua comunidade escolar, para superar os desafios impostos pela Covid-19 "
-    prat7 = """Ação 1. Estabelecer junto à Secretaria de Assistência/Desenvolvimento Social uma rotina de identificação e busca ativa de alunos que não retornaram à sala de aula.
+    term7 = "Estabelecer uma rotina de busca ativa e suporte aos estudantes da sua comunidade escolar, para superar os desafios impostos pela Covid-19. "
+    prat7 = """Ação 1. Estabeleça  junto à Secretaria de Assistência/Desenvolvimento Social uma rotina de identificação e busca ativa de alunos que não retornaram à sala de aula.
 <br><br>
-Ação 2. Implementar, em parceria com a Secretaria de Saúde do estado ou município, canais de atenção à saúde mental para apoiar profissionais, estudantes e responsáveis nesse processo de retorno."""
+Ação 2. Implemente, em parceria com a Secretaria de Saúde do estado ou município, canais de atenção à saúde mental para apoiar profissionais, estudantes e responsáveis nesse processo de retorno."""
     obj8 = "Estruturar um plano de contingência para identificar, isolar e acompanhar casos suspeitos de Covid-19 dentro de unidades escolares.  "
     term8 = "Saber o que fazer e a quem acionar diante do surgimento de um caso suspeito de Covid-19 após a retomada das atividades presenciais. "
-    prat8 = """Ação 1. Pactuar com Unidade Básica de Saúde da região de cada escola sobre o acompanhamento da comunidade escolar.
-<br><br>
-Ação 2. Preparar um processo de tomada de decisão sobre fechamento de escolas, definindo que decisões são tomadas por responsáveis, professores, diretores e pela secretaria
-<br><br>
-Ação 3. Preparar o porta-voz da Comissão de Reabertura, prevista no passo 1 deste guia, para uma rotina de comunicação sobre suspensão de atividades de turmas e em escolas à comunidade e à imprensa
-<br><br>
-Ação 4. Preparar um fluxograma, que atribua responsáveis para as etapas do processo de atenção a um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.
-<br><br>
+    prat8 = """Ação 1. Pactue com a Unidade Básica de Saúde da região de cada escola como será feito o acompanhamento da comunidade escolar.<br>
+<br>
+Ação 2. Prepare um processo de tomada de decisão sobre fechamento de escolas, definindo papéis e responsabilidades de professores, diretores, secretaria e pais e responsáveis.<br>
+<br>
+Ação 3. Prepare o porta-voz da Comissão de Reabertura, prevista no passo 1 deste guia, para uma rotina de comunicação acerca da suspensão de atividades de turmas e em escolas à comunidade e à imprensa.<br> 
+<br>
+Ação 4. Prepare um fluxograma para atribuir responsabilidades diante de um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.<br>
 <b>Acesse nossa ferramenta para saber como agir e monitorar casos suspeitos de Covid-19 dentro de escola:</b>"""
     obj9 = "Instruir e capacitar todos os envolvidos no retorno às atividades presenciais nas escolas."
     term9 = "Ter equipe e comunidade escolar alinhadas e bem informadas sobre os protocolos e procedimentos de prevenção à Covid-19."
-    prat9 = """Ação 1. Instrua os gestores escolares, docentes e demais colaboradores das escolas, bem como pais e responsáveis para que todos estejam alinhados com as novas condutas e suas responsabilidades para garantir a observação do protocolo sanitário adotado para reabertura das escolas. 
+    prat9 = """Ação 1. Instrua os gestores escolares, docentes e demais colaboradores das escolas, bem como pais e responsáveis, para que todos estejam alinhados com as novas condutas e responsabilidades, para garantir a observação do protocolo sanitário adotado para reabertura das escolas.
 <br><br>
 Ação 2. Distribua para as escolas e para a comunidade os materiais de comunicação de procedimentos e novas diretrizes, como cartazes e posters."""
     obj10 = "Manter uma rotina de acompanhamento regular das escolas após a reabertura e da situação da doença na sua cidade."
     term10 = "Saber qual a situação da Covid-19 no seu terrítório e na sua rede escolar para agir com velocidade diante de alguma mudança de cenário. "
     prat10 = """Ação 1. Pactue com a Secretaria de Saúde uma rotina de atualização sobre a situação epidemiológica da doença na sua cidade. 
 <br><br>
-Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos das escolas.
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas. 
 <br><br>
 Ação 3. Prepare comunicados internos sobre a situação da rede e determine uma periodicidade de envio.
 <br><br>
 Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
 <br><br>
-Ação 5. Organize visitas às unidades escolares, garantindo que todas as normativas e protocolos estão sendo seguidos no dia a dia.
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
 <br><br>
 <b>Utilize nossas ferramentas para acompanhar a adequação da sua rede aos protocolos e saber como notificar casos suspeitos:</b>"""
     st.write(
@@ -139,25 +138,25 @@ Ação 5. Organize visitas às unidades escolares, garantindo que todas as norma
         <div class="conteudo" style="padding-top:50px;">
             <div class="flat-tabs-left flat-tabs-orange tabs-zoom-in">
                 <input type="radio" id="tab-1" name="flat-tabs-left" class="section-one">
-                <label for="tab-1"><i></i>Passo 1</label>
+                <label for="tab-1"><i></i>1. Diálogo</label>
                 <input type="radio" id="tab-2" name="flat-tabs-left" class="section-two">
-                <label for="tab-2"><i></i>Passo 2</label>
+                <label for="tab-2"><i></i>2. Critérios</label>
                 <input type="radio" id="tab-3" name="flat-tabs-left" class="section-three">
-                <label for="tab-3"><i></i>Passo 3</label>
+                <label for="tab-3"><i></i>3. Protocolos</label>
                 <input type="radio" id="tab-4" name="flat-tabs-left" class="section-four">
-                <label for="tab-4"><i></i>Passo 4</label>
+                <label for="tab-4"><i></i>4. Rede</label>
                 <input type="radio" id="tab-5" name="flat-tabs-left" class="section-five">
-                <label for="tab-5"><i></i>Passo 5</label>
+                <label for="tab-5"><i></i>5. Modelo</label>
                 <input type="radio" id="tab-6" name="flat-tabs-left" class="section-six">
-                <label for="tab-6"><i></i>Passo 6</label>
+                <label for="tab-6"><i></i>6. Material </label>
                 <input type="radio" id="tab-7" name="flat-tabs-left" class="section-seven">
-                <label for="tab-7"><i></i>Passo 7</label>
+                <label for="tab-7"><i></i>7. Busca</label>
                 <input type="radio" id="tab-8" name="flat-tabs-left" class="section-eight">
-                <label for="tab-8"><i></i>Passo 8</label>
+                <label for="tab-8"><i></i>8. Contingência</label>
                 <input type="radio" id="tab-9" name="flat-tabs-left" class="section-nine">
-                <label for="tab-9"><i></i>Passo 9</label>
+                <label for="tab-9"><i></i>9. Capacitação</label>
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
-                <label for="tab-10"><i></i>Passo 10</label> 
+                <label for="tab-10"><i></i>10.Rotina </label>           
                 <ul>
                     <li class="section-one" id="section-one">
                         <div class="grid-container">
