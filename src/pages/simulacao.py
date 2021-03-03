@@ -192,7 +192,7 @@ def genQuetions(data):
                 {params["hours_classpresencial"]*params["turnos"]} horas de aula presenciais por dia</b>, 
                 sendo que cada turno (e as turmas do turno) teriam 
                 <b>{params["hours_classpresencial"]} horas presenciais</b> de aula.
-                <brCom essa carga horária de aulas presenciais por turma serão necessários <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.>
+                <brCom essa carga horária de aulas presenciais por turma serão necessários <b>{ceil(800/(params["hours_classpresencial"]))} dias letivos</b> para completar as 800 horas de carga letiva anual.
                 <br>Continue a simulação para saber quantas turmas e professores terão por turno.<br>
                 </div>
             </div>
