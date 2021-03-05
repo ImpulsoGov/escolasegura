@@ -113,7 +113,9 @@ Ação 2. Prepare um processo de tomada de decisão sobre fechamento de escolas,
 <br>
 Ação 3. Prepare o porta-voz da Comissão de Reabertura, prevista no passo 1 deste guia, para uma rotina de comunicação acerca da suspensão de atividades de turmas e em escolas à comunidade e à imprensa.<br> 
 <br>
-Ação 4. Prepare um fluxograma para atribuir responsabilidades diante de um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.<br>"""
+Ação 4. Prepare um fluxograma para atribuir responsabilidades diante de um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.
+<br><br>
+<b>Acesse nossa ferramenta para conhecer as indicações de como se preparar, agir e monitorar casos suspeitos ou confirmados de Covid-19:</b>"""
     obj9 = "Instruir e capacitar todos os envolvidos no retorno às atividades presenciais nas escolas."
     term9 = "Ter equipe e comunidade escolar alinhadas e bem informadas sobre os protocolos e procedimentos de prevenção à Covid-19."
     prat9 = """Ação 1. Instrua os gestores escolares, docentes e demais colaboradores das escolas, bem como pais e responsáveis, para que todos estejam alinhados com as novas condutas e responsabilidades, para garantir a observação do protocolo sanitário adotado para reabertura das escolas.
@@ -129,9 +131,7 @@ Ação 3. Prepare comunicados internos sobre a situação da rede e determine um
 <br><br>
 Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
 <br><br>
-Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
-<br><br>
-<b>Utilize nossa ferramenta para realizar a notificação de um ou mais casos suspeitos ou confirmados na escola:</b>"""
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas."""
     st.write(
         f"""
         <div class="conteudo" style="padding-top:50px;">
@@ -364,6 +364,42 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div style="padding-bottom: 10px;">
                                     {prat8}
                                 </div>
+                                <div class="upper-padding row">
+                                    <div class="col card-plan container" style="padding:20px;">
+                                        <div>
+                                         <div class="text-title-section minor-padding main-orange-span"> 
+                                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
+                                            <b>Ferramenta de notificação</b>
+                                        </div>
+                                        <br>
+                                        <b><i>O que é?</b></i><br>
+                                        Arquivo PDF com perguntas que podem ser utilizadas para criar formulário de notificação de casos suspeitos ou confirmados na escola.<br><br>
+                                        <div class="minor-padding button-position">
+                                            <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
+                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
+                                            </a>
+                                        </div>
+                                        </div><br>
+                                    </div>
+                                    <div class="col card-plan container" style="padding:20px;">
+                                        <div>
+                                         <div class="text-title-section minor-padding main-orange-span"> 
+                                                <img class="icon" src="data:image/png;base64,{plan_icon}" alt="Fonte: Flaticon">
+                                                <b>Plano de contingência</b>
+                                            </div>
+                                            <div>
+                                                <br>
+                                                <b><i>O que é?</b></i><br>Plano de Ação e Monitoramento na identificação de casos.
+                                                <br><br>
+                                            </div>
+                                            <div class="minor-padding button-position">
+                                                <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view">
+                                                    <button class="button"; style="border-radius: .25rem;"> acesse aqui > </button>
+                                                </a>
+                                            </div>
+                                        </div><br>
+                                    </div>
+                                </div>
                             </div>  
                         </div>
                     </li>
@@ -394,24 +430,18 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div class="title-section">
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>10. Acompanhe sua rede!
                                 </div>
-                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div style="padding-bottom: 10px;"> {obj10} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div style="padding-bottom: 10px;"> {term10} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div style="padding-bottom: 10px;"> {prat10} </div>
-                                <div class="upper-padding row">
-                                    <div class="col card-plan container" style="padding:20px;">
-                                        <div>
-                                         <div class="text-title-section minor-padding main-orange-span"> 
-                                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
-                                            <b>Ferramenta de notificação</b>
-                                        </div>
-                                        <br>
-                                        <b><i>O que é?</b></i><br>
-                                        Arquivo PDF com perguntas que podem ser utilizadas para criar formulário de notificação de casos.<br><br>
-                                        <div class="minor-padding button-position">
-                                            <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
-                                            </a>
-                                        </div>
-                                        </div><br>
-                                    </div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div style="padding-bottom: 10px;">
+                                    {obj10}
+                                </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                <div style="padding-bottom: 10px;">
+                                    {term10}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div style="padding-bottom: 10px;"> 
+                                    {prat10}
+                                </div>
                                 </div>
                             </div>  
                         </div>
