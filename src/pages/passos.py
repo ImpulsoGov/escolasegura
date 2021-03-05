@@ -74,7 +74,7 @@ Ação 7. Faça uma nova rodada de visitas de inspeção e certifique-se que as 
 <br><br>
 Ação 8. Comunique sobre o retorno. Prepare materiais informativos sobre a Covid-19 e os protocolos sanitários adotados, para que a comunidade escolar e a sociedade em geral estejam bem informadas sobre as medidas de prevenção tomadas nessa retomada. 
 <br><br>
-<b>Confira e adote os principais protocolos de prevenção da Covid-19 dentro e fora da escola:</b>"""
+<b>Quer saber quais são as principais recomendaçõe sanitárias e protocolos para um retomada segura? Clique e confira o material que criamos com as principais recomendações para da Covid-19 dentro e fora da escola:</b>"""
     obj4 = "Identificar, a partir da definição de grupos de risco para Covid-19, quantos estudantes e professores poderão retornar às atividades presenciais em cada unidade escolar."
     term4 = "Projetar a quantidade de estudantes e professores que não retornarão às salas de aula presenciais. Só assim você terá informação qualificada para avaliar o modelo de reabertura mais adequado à realidade da sua comunidade escolar. "
     prat4 = """Ação 1. Peça aos diretores das escolas que dimensionem quantos alunos de cada unidade de ensino, provavelmente, não irão retornar às salas de aula diante de uma retomada das atividades presenciais. Sugerimos que você utilize o canal de comunicação estabelecido pela Comissão de Reabertura, conforme orientado no Passo 1 deste guia, para essa comunicação.  
@@ -113,8 +113,9 @@ Ação 2. Prepare um processo de tomada de decisão sobre fechamento de escolas,
 <br>
 Ação 3. Prepare o porta-voz da Comissão de Reabertura, prevista no passo 1 deste guia, para uma rotina de comunicação acerca da suspensão de atividades de turmas e em escolas à comunidade e à imprensa.<br> 
 <br>
-Ação 4. Prepare um fluxograma para atribuir responsabilidades diante de um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.<br>
-<b>Acesse nossa ferramenta para saber como agir e monitorar casos suspeitos de Covid-19 dentro de escola:</b>"""
+Ação 4. Prepare um fluxograma para atribuir responsabilidades diante de um possível caso suspeito e comunique os procedimentos de contingência à comunidade escolar.
+<br><br>
+<b>Acesse nossa ferramenta para conhecer as indicações de como se preparar, agir e monitorar casos suspeitos ou confirmados de Covid-19:</b>"""
     obj9 = "Instruir e capacitar todos os envolvidos no retorno às atividades presenciais nas escolas."
     term9 = "Ter equipe e comunidade escolar alinhadas e bem informadas sobre os protocolos e procedimentos de prevenção à Covid-19."
     prat9 = """Ação 1. Instrua os gestores escolares, docentes e demais colaboradores das escolas, bem como pais e responsáveis, para que todos estejam alinhados com as novas condutas e responsabilidades, para garantir a observação do protocolo sanitário adotado para reabertura das escolas.
@@ -130,9 +131,7 @@ Ação 3. Prepare comunicados internos sobre a situação da rede e determine um
 <br><br>
 Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
 <br><br>
-Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
-<br><br>
-<b>Utilize nossas ferramentas para acompanhar a adequação da sua rede aos protocolos e saber como notificar casos suspeitos:</b>"""
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas."""
     st.write(
         f"""
         <div class="conteudo" style="padding-top:50px;">
@@ -144,19 +143,19 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                 <input type="radio" id="tab-3" name="flat-tabs-left" class="section-three">
                 <label for="tab-3"><i></i>3. Protocolos</label>
                 <input type="radio" id="tab-4" name="flat-tabs-left" class="section-four">
-                <label for="tab-4"><i></i>4. Rede</label>
+                <label for="tab-4"><i></i>4. Dimensionamento</label>
                 <input type="radio" id="tab-5" name="flat-tabs-left" class="section-five">
                 <label for="tab-5"><i></i>5. Modelo</label>
                 <input type="radio" id="tab-6" name="flat-tabs-left" class="section-six">
-                <label for="tab-6"><i></i>6. Material </label>
+                <label for="tab-6"><i></i>6. Pedagógico </label>
                 <input type="radio" id="tab-7" name="flat-tabs-left" class="section-seven">
-                <label for="tab-7"><i></i>7. Busca</label>
+                <label for="tab-7"><i></i>7. Pessoas</label>
                 <input type="radio" id="tab-8" name="flat-tabs-left" class="section-eight">
                 <label for="tab-8"><i></i>8. Contingência</label>
                 <input type="radio" id="tab-9" name="flat-tabs-left" class="section-nine">
                 <label for="tab-9"><i></i>9. Capacitação</label>
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
-                <label for="tab-10"><i></i>10.Rotina </label>           
+                <label for="tab-10"><i></i>10. Acompanhamento </label>           
                 <ul>
                     <li class="section-one" id="section-one">
                         <div class="grid-container">
@@ -222,20 +221,26 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div style="padding-bottom: 10px;">
                                     {prat3}
                                 </div>
-                                <div class="upper-padding">
+                                <div class="upper-padding row">
                                     <div class="col card-plan container">
                                         <div class="left-margin">
                                             <div class="text-title-section main-orange-span minor-padding"> 
                                                 <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon">
-                                                Protocolos
+                                                <b>Protocolos</b>
                                             </div>
                                             <div class="minor-padding main-black-span">
-                                                Quais são as principais <b>recomendações sanitárias</b> e protocolos para retomada?<br>
-                                                <b>Listas de orientações para planejar a estrutura sanitária nas escolas.</b>
-                                                A ferramenta fornece também rotinas a serem seguidas dentro e fora da sala de aula.<br><br>
+                                                O PDF que você encontrará aqui inclui as <b>recomendações sanitárias e protocolos</b> e podem ser utilizados com a rede para conferir sua adequação dentro das unidades, durante o transporte escolar e até mesmo nas secretarias.
                                             </div><br>
                                             <div class="button-position" style="padding-bottom: 10px;">
                                                 <a href="https://drive.google.com/file/d/1T8OsZ5PKFC5vn6QrtSJdkOlONaJjS8lc/view?usp=sharing" target="blank_">
+                                                <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
+                                                </a>
+                                            </div>
+                                            <div class="minor-padding main-black-span">
+                                                <br>Ou confira o arquivo em forma de <b>lista para verifição</b>.
+                                            </div><br>
+                                            <div class="button-position" style="padding-bottom: 10px;">
+                                                <a href="https://drive.google.com/file/d/1MH6Cpf43Eq31MKqqE39FGMK-aruCD9_c/view?usp=sharing" target="blank_">
                                                 <button class="button"; style="border-radius: .25rem;">acesse ></button><br>
                                                 </a>
                                             </div>
@@ -264,7 +269,7 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                     {prat4}
                                 </div>
                                 <div align="center" style="padding-top:15px; padding-bottom: 15px;">
-                                    <a href='{urlpath}?page=simulation' target="_self">
+                                    <a href='{urlpath}?page=simulation' target="_blank">
                                     <button class="button"; style="border-radius: 0.8rem;">Simular ></button><br>
                                     </a>
                                 </div>
@@ -291,7 +296,7 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 </div>
                                 <div>
                                 <div align="center" style="padding-top:15px; padding-bottom: 15px;">
-                                        <a href='{urlpath}?page=simulation' target="_self">
+                                        <a href='{urlpath}?page=simulation' target="_blank">
                                         <button class="button"; style="border-radius: 0.8rem;">Simular ></button><br>
                                         </a>
                                     </div>
@@ -359,18 +364,33 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div style="padding-bottom: 10px;">
                                     {prat8}
                                 </div>
-                                <div class="upper-padding">
-                                    <div class="col card-plan container">
-                                        <div class="left-margin">
+                                <div class="upper-padding row">
+                                    <div class="col card-plan container" style="padding:20px;">
+                                        <div>
+                                         <div class="text-title-section minor-padding main-orange-span"> 
+                                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
+                                            <b>Ferramenta de notificação</b>
+                                        </div>
+                                        <br>
+                                        <b><i>O que é?</b></i><br>
+                                        Arquivo PDF com perguntas que podem ser utilizadas para criar formulário de notificação de casos suspeitos ou confirmados na escola.<br><br>
+                                        <div class="minor-padding button-position">
+                                            <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
+                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
+                                            </a>
+                                        </div>
+                                        </div><br>
+                                    </div>
+                                    <div class="col card-plan container" style="padding:20px;">
+                                        <div>
                                          <div class="text-title-section minor-padding main-orange-span"> 
                                                 <img class="icon" src="data:image/png;base64,{plan_icon}" alt="Fonte: Flaticon">
-                                                Plano de contingência
+                                                <b>Plano de contingência</b>
                                             </div>
                                             <div>
                                                 <br>
-                                                <b><i>O que é?</b></i><br>É importante saber o que fazer se houver algum caso confirmado de Covid-19 em escolas 
-                                                da sua rede. Veja uma ferramenta de reporte do caso para sua escola e monitoramento da rede.
-                                                Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1BunWrThhRcVl564AZDKlut2t1d5ugM9W5YtGnQmwo6Y/copy">Aqui</a>.<br><br>
+                                                <b><i>O que é?</b></i><br>Plano de Ação e Monitoramento na identificação de casos.
+                                                <br><br>
                                             </div>
                                             <div class="minor-padding button-position">
                                                 <a href="https://drive.google.com/file/d/1L6FXolCFTGQrfz_TT9zzxh1ojR5KfWEB/view">
@@ -410,46 +430,18 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div class="title-section">
                                     <img class="square" src="https://i.imgur.com/gGIFS5N.png"><b>10. Acompanhe sua rede!
                                 </div>
-                                <div class="title-section">OBJETIVO DESTA ETAPA</div> <div style="padding-bottom: 10px;"> {obj10} </div> <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div> <div style="padding-bottom: 10px;"> {term10} </div> <div class="title-section">COLOCANDO EM PRÁTICA</div> <div style="padding-bottom: 10px;"> {prat10} </div>
-                                <div>
+                                <div class="title-section">OBJETIVO DESTA ETAPA</div>
+                                <div style="padding-bottom: 10px;">
+                                    {obj10}
                                 </div>
-                                <div class="upper-padding row">
-                                    <div class="col card-plan container">
-                                        <div>
-                                         <div class="text-title-section minor-padding main-orange-span"> 
-                                            <img class="icon" src="data:image/png;base64,{verify_icon}" alt="Fonte: Flaticon">
-                                            Ferramenta de verificação
-                                        </div><br>
-                                        <div>
-                                            <b><i>O que é?</b></i><br>
-                                            Formulário para conferir a adequação das unidades escolares aos protocolos estabelecidos e indicar orientações.
-                                            <br><br>
-                                            Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1JjXIs0M-A-RLhISYlltX4fjXL5pu8C_iKUkI_a8GhyI/copy">Aqui</a>.<br><br>
-                                        </div>
-                                        <div class="minor-padding button-position">
-                                            <a href="https://drive.google.com/file/d/1JJiVJorSxc-7gK-7uFgdqHLguBXKUzxb/view" target="_blank">
-                                                <button class="button"; style="border-radius: .25rem;">acesse aqui ></button>
-                                            </a>
-                                        </div>
-                                        </div><br>
-                                    </div>
-                                    <div class="col card-plan container">
-                                        <div>
-                                         <div class="text-title-section minor-padding main-orange-span"> 
-                                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
-                                            Ferramenta de notificação
-                                        </div>
-                                        <br>
-                                        <b><i>O que é?</b></i><br>
-                                        Ferramenta de comunicação das escolas com as Secretarias de Educação e Saúde sobre a existência de um caso ou suspeita na unidade.
-                                        <br><br>Você pode copiar o formulário <a href="https://docs.google.com/forms/d/1xh-_NI925-bWNn81PG5dKKkSa9J14NVwT3SpPIShJzo/copy">Aqui</a>.<br><br>
-                                        <div class="minor-padding button-position">
-                                            <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
-                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
-                                            </a>
-                                        </div>
-                                        </div><br>
-                                    </div>
+                                <div class="title-section">AO TÉRMINO DESTA ETAPA VOCÊ CONSEGUIRÁ</div>
+                                <div style="padding-bottom: 10px;">
+                                    {term10}
+                                </div>
+                                <div class="title-section">COLOCANDO EM PRÁTICA</div>
+                                <div style="padding-bottom: 10px;"> 
+                                    {prat10}
+                                </div>
                                 </div>
                             </div>  
                         </div>
