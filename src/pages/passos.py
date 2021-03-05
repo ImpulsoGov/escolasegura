@@ -131,7 +131,9 @@ Ação 3. Prepare comunicados internos sobre a situação da rede e determine um
 <br><br>
 Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
 <br><br>
-Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas."""
+Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
+<br><br>
+<b>Você pode utilizar este formulário como modelo para distribuir para as escolas utilizarem para informar a secretária sobre o caso suspeito ou confirmado:</b>"""
     st.write(
         f"""
         <div class="conteudo" style="padding-top:50px;">
@@ -442,6 +444,23 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div style="padding-bottom: 10px;"> 
                                     {prat10}
                                 </div>
+                                <div class="upper-padding row">
+                                    <div class="col card-plan container" style="padding:20px;">
+                                        <div>
+                                         <div class="text-title-section minor-padding main-orange-span"> 
+                                            <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
+                                            <b>Ferramenta de notificação</b>
+                                        </div>
+                                        <br>
+                                        <b><i>O que é?</b></i><br>
+                                        Arquivo PDF com perguntas que podem ser utilizadas para criar formulário de notificação de casos suspeitos ou confirmados na escola.<br><br>
+                                        <div class="minor-padding button-position">
+                                            <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
+                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
+                                            </a>
+                                        </div>
+                                        </div><br>
+                                    </div>
                                 </div>
                             </div>  
                         </div>
