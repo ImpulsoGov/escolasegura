@@ -10,8 +10,8 @@ def genTermo():
 	st.write(
 		f"""
 		<div style="text-align:center; padding-top:10px; padding-bottom:25px; background: #ff9147; margin-top:50px; margin-bottom:0px;">
-			<img class="square" src="data:image/png;base64,{verify_icon}"> 
-			<span style="color:#ffffff;"><b>Conheça nosso termo de responsabilidade</b></span>
+			<a href="{urlpath}?page=termo" target="_self" style="text-decoration: none;"><img class="square" src="data:image/png;base64,{verify_icon}"> 
+			<span style="color:#ffffff;"><b>Conheça nosso termo de responsabilidade</b></span></a>
 		</div>
 		""",
 		unsafe_allow_html=True,
