@@ -4,6 +4,7 @@ import yaml
 import time
 from pages import inicio
 import pages.about as sobre
+import pages.termo as termo
 import pages.passos as guiapassos
 import pages.simulacao as simulacao
 import pages.referencesContainer as referencias
@@ -80,6 +81,7 @@ def main():
         "guia10passos" : guiapassos,
         "simulation" : simulacao,
         "sobre" : sobre,
+        "termo" : termo,
         "referencias": referencias,
         "duvidasfrequentes" : duvidas
     }
