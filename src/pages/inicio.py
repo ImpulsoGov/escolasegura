@@ -183,7 +183,7 @@ def main():
         unsafe_allow_html=True,
     )
     
-    # tm.genTermo()
+    tm.genTermo()
     foo.genFooter()
 
 
