@@ -28,8 +28,7 @@ def main():
 
     st.write(
         f"""
-        <div class="conteudo title-section" style="padding-bottom:20px;"> 
-            <img class="square" src="https://i.imgur.com/gGIFS5N.png">
+        <div class="conteudo main-title" style="padding-top: 50px;"> 
             Como sua rede pode se preparar para a retomada das atividades presenciais? Temos 10 passos para auxiliar no processo.
         </div>
         <div class="conteudo" style="padding-bottom: 10px;">
