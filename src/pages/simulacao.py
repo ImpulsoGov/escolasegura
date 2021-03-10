@@ -744,7 +744,7 @@ def main():
             if escolas_estado_opcao=="Todas as Escolas do Estado":
                 data = pd.read_csv("pages/redeestadual.csv")
             else:
-                data = pd.read_csv("pages/estadototal.csv")
+                data = pd.read_csv("pages/redeestadual.csv")
             genSimulationEstadoResult(params, config, session_state, data)
 
     tm.genGuia()
