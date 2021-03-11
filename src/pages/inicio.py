@@ -20,49 +20,50 @@ def main():
     Parameters: 
         session_state (type): section dataset
     """
-    GOOGLE_ANALYTICS_CODE = "UA-161606940-3"
-    import pathlib
-    from bs4 import BeautifulSoup
-    TAG_MANAGER = """
-        function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5ZZ5F66');
+    if os.getenv("IS_HEROKU") == "TRUE":
+        urlpath = os.getenv("urlpath")
+    else:
+        urlpath = 'https://escolasegura.coronacidades.org/'
+        GOOGLE_ANALYTICS_CODE = "UA-161606940-3"
+        import pathlib
+        from bs4 import BeautifulSoup
+        TAG_MANAGER = """
+            function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5ZZ5F66');
+            """
+        GA_JS = (
+            """
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '%s');
         """
-    GA_JS = (
-        """
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '%s');
-    """
-        % GOOGLE_ANALYTICS_CODE
-    )
-    index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
-    soup = BeautifulSoup(index_path.read_text(), features="lxml")
-    if not soup.find(id="google-analytics-loader"):
-        script_tag_import = soup.new_tag(
-            "script",
-            src="https://www.googletagmanager.com/gtag/js?id=%s"
-            % GOOGLE_ANALYTICS_CODE,
+            % GOOGLE_ANALYTICS_CODE
         )
-        soup.head.append(script_tag_import)
-        script_tag_loader = soup.new_tag("script", id="google-analytics-loader")
-        script_tag_loader.string = GA_JS
-        soup.head.append(script_tag_loader)
-        script_tag_manager = soup.new_tag("script", id="google-tag-manager")
-        script_tag_manager.string = TAG_MANAGER
-        soup.head.append(script_tag_manager)
-        script_tag_manager_body = soup.new_tag(
-            "script",
-            src="https://www.googletagmanager.com/gtm.js?id=GTM-5ZZ5F66"
-        )
-        soup.head.append(script_tag_manager_body)
-        index_path.write_text(str(soup))
-    # urlpath = "http://localhost:8501/"
-    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
-    urlpath = 'https://escolasegura.coronacidades.org/'
+        index_path = pathlib.Path(st.__file__).parent / "static" / "index.html"
+        soup = BeautifulSoup(index_path.read_text(), features="lxml")
+        if not soup.find(id="google-analytics-loader"):
+            script_tag_import = soup.new_tag(
+                "script",
+                src="https://www.googletagmanager.com/gtag/js?id=%s"
+                % GOOGLE_ANALYTICS_CODE,
+            )
+            soup.head.append(script_tag_import)
+            script_tag_loader = soup.new_tag("script", id="google-analytics-loader")
+            script_tag_loader.string = GA_JS
+            soup.head.append(script_tag_loader)
+            script_tag_manager = soup.new_tag("script", id="google-tag-manager")
+            script_tag_manager.string = TAG_MANAGER
+            soup.head.append(script_tag_manager)
+            script_tag_manager_body = soup.new_tag(
+                "script",
+                src="https://www.googletagmanager.com/gtm.js?id=GTM-5ZZ5F66"
+            )
+            soup.head.append(script_tag_manager_body)
+            index_path.write_text(str(soup))    
     utils.localCSS("inicio.css")
     utils.localCSS("localCSS.css")
     utils.genHeroSection(
@@ -179,7 +180,7 @@ def main():
         unsafe_allow_html=True,
     )
     
-    # tm.genTermo()
+    tm.genTermo()
     foo.genFooter()
 
 

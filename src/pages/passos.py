@@ -10,13 +10,13 @@ import pages.footer as foo
 import amplitude
 
 
-
 def main():
     utils.localCSS("localCSS.css")
     he.genHeader("guia10passos")
-    # urlpath = "http://localhost:8501/"
-    # urlpath = 'https://escolasegura-staging.herokuapp.com/'
-    urlpath = 'https://escolasegura.coronacidades.org/'
+    if os.getenv("IS_HEROKU") == "TRUE":
+        urlpath = os.getenv("urlpath")
+    else:
+        urlpath = 'https://escolasegura.coronacidades.org/'
 
     protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
@@ -25,15 +25,20 @@ def main():
     notify_image = utils.load_image("imgs/monitor_notify_forms.png")
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
     plan_image = utils.load_image("imgs/monitor_plan_forms.png")
-    
-    subtitle = """Revisamos a literatura científica, protocolos e melhores práticas encontradas no Brasil e no mundo para criar 10 passos para você, gestor da educação, preparar e gerir a retomada das atividades presenciais nas escolas, diante dos desafios impostos pela Covid-19. 
-<br><br>
-Aqui, você encontra orientações que começam desde o planejamento da reabertura, com a definição dos protocolos sanitários e regras que devem ser adotados pelas escolas antes de reabrir, até a gestão da rede após a retomada, com recomendações sobre o que fazer diante de algum caso confirmado de Covid-19 dentro da unidade escolar. 
-<br><br>
-Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para estruturar uma reabertura mais segura para toda a comunidade escolar."""
-    utils.main_title(title="Como sua rede pode se preparar para a retomada das atividades presenciais? Temos 10 passos para auxiliar no processo.", subtitle=subtitle)
     st.write(
         f"""
+        <div class="conteudo main-title" style="padding-top: 50px;"> 
+            Como sua rede pode se preparar para a retomada das atividades presenciais? Temos 10 passos para auxiliar no processo.
+        </div>
+        <div class="conteudo" style="padding-bottom: 10px;">
+            Revisamos a literatura científica, protocolos e melhores práticas encontradas no Brasil e no mundo para criar 10 passos para você, gestor da educação, preparar e gerir a retomada das atividades presenciais nas escolas, diante dos desafios impostos pela Covid-19. 
+            <br><br>
+            Aqui, você encontra orientações que começam desde o planejamento da reabertura, com a definição dos protocolos sanitários e regras que devem ser adotados pelas escolas antes de reabrir, até a gestão da rede após a retomada, com recomendações sobre o que fazer diante de algum caso confirmado de Covid-19 dentro da unidade escolar. 
+            <br><br>
+            Ao longo desse processo de retomada, você pode definir prioridades de acordo com a sua realidade local, mas lembre-se de seguir todas as recomendações presentes nos 10 passos para estruturar uma reabertura mais segura para toda a comunidade escolar.
+            <br><br>
+            Acesse <a href="https://drive.google.com/file/d/1HqWKjM8uD4HM64fbFcbjS-pPD3SzWcmt/view?usp=sharing" target="blank_" style="text-decoration: none;">aqui</a> os 10 Passos em forma de lista.
+        </div>
         <div class="conteudo title-section" style="padding-bottom:20px;"> 
             <img class="square" src="https://i.imgur.com/gGIFS5N.png">
             Passos:
@@ -46,14 +51,14 @@ Ao longo desse processo de retomada, você pode definir prioridades de acordo co
     term1 = "Ter clareza sobre os papéis e responsabilidades de cada órgão dentro do processo de retomada, com um comitê estruturado para tomar decisões com agilidade, com discursos e comunicação alinhados. "
     prat1 = """Ação 1. Forme uma Comissão de Reabertura com os atores-chave presentes nos diversos órgãos que devem ser engajados nessa retomada. Além da Secretaria de Educação, a comissão pode envolver membros da Secretaria de Saúde, Secretaria de Assistência/Desenvolvimento Social e também lideranças regionais, caso sua rede conte com essa estrutura. 
 <br><br>
-Ação 2. Crie um canal para comunicaçao constante da comissão com a comunidade, em especial com diretores, funcionários de escola, professores, pais e responsáveis. Prepare uma pessoa para ser porta-voz e ponto de referência de todo o processo de retomada para a comunidade escolar e para a imprensa. 
+Ação 2. Crie um canal para comunicação constante da comissão com a comunidade, em especial com diretores, funcionários de escola, professores, pais e responsáveis. Prepare uma pessoa para ser porta-voz e ponto de referência de todo o processo de retomada para a comunidade escolar e para a imprensa. 
 <br><br>
 Ação 3. Estabeleça um plano de comunicação, definindo o que, quando, como e com qual frequência a estratégia de reabertura das atividades presenciais será comunicada."""
     obj2 = "Definir os critérios e condições sanitárias que serão considerados para o retorno das atividades presenciais nas escolas, uma vez que o cenário da Covid-19 é variável."
     term2 = "Projetar uma data de retomada das atividades presenciais, de acordo com os critérios definidos."
     prat2 = """Ação 1. Pactue com a Secretaria de Saúde sobre quais condições sanitárias, critérios e dados da Covid-19 devem ser considerados na hora de decidir sobre o retorno seguro de atividades escolares presenciais na sua rede.
 <br><br>
-Ação 2.  Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada, mesmo que parcial, das atividade presenciais e comece a preparação para o retorno. 
+Ação 2.  Com base nos critérios pactuados com a Secretaria de Saúde, defina a data de retomada, mesmo que parcial, das atividades presenciais e comece a preparação para o retorno. 
 <br><br>
 Ação 3. Articule com atores-chave externos, como sindicato de professores, líderes comunitários locais e outros atores relevantes, sobre os critérios pactuados e a data pensada para a  retomada."""
     obj3 = "Estabelecer o protocolo sanitário a ser seguido por todas as escolas da rede que retomarem as atividades presenciais, com orientações sobre adaptação de estrutura física e a necessidade de aquisição de materiais de limpeza e EPIs para prevenir o contágio da Covid-19 dentro das unidades de ensino."
@@ -131,7 +136,7 @@ Ação 3. Prepare comunicados internos sobre a situação da rede e determine um
 <br><br>
 Ação 4. Planeje e realize uma estratégia de comunicação com a imprensa sobre a situação das escolas.
 <br><br>
-Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
+Ação 5. Acompanhe também a situação epidemiológica da rede e dos casos nas escolas.
 <br><br>
 <b>Você pode utilizar este formulário como modelo para distribuir para as escolas utilizarem para informar a secretária sobre o caso suspeito ou confirmado:</b>"""
     st.write(
@@ -139,25 +144,25 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
         <div class="conteudo" style="padding-top:50px;">
             <div class="flat-tabs-left flat-tabs-orange tabs-zoom-in">
                 <input type="radio" id="tab-1" name="flat-tabs-left" class="section-one">
-                <label for="tab-1"><i></i>1. Diálogo</label>
+                <label for="tab-1">1. Diálogo</label>
                 <input type="radio" id="tab-2" name="flat-tabs-left" class="section-two">
-                <label for="tab-2"><i></i>2. Critérios</label>
+                <label for="tab-2">2. Critérios</label>
                 <input type="radio" id="tab-3" name="flat-tabs-left" class="section-three">
-                <label for="tab-3"><i></i>3. Protocolos</label>
+                <label for="tab-3">3. Protocolos</label>
                 <input type="radio" id="tab-4" name="flat-tabs-left" class="section-four">
-                <label for="tab-4"><i></i>4. Dimensionamento</label>
+                <label for="tab-4">4. Dimensionamento</label>
                 <input type="radio" id="tab-5" name="flat-tabs-left" class="section-five">
-                <label for="tab-5"><i></i>5. Modelo</label>
+                <label for="tab-5">5. Modelo</label>
                 <input type="radio" id="tab-6" name="flat-tabs-left" class="section-six">
-                <label for="tab-6"><i></i>6. Pedagógico </label>
+                <label for="tab-6">6. Pedagógico </label>
                 <input type="radio" id="tab-7" name="flat-tabs-left" class="section-seven">
-                <label for="tab-7"><i></i>7. Pessoas</label>
+                <label for="tab-7">7. Pessoas</label>
                 <input type="radio" id="tab-8" name="flat-tabs-left" class="section-eight">
-                <label for="tab-8"><i></i>8. Contingência</label>
+                <label for="tab-8">8. Contingência</label>
                 <input type="radio" id="tab-9" name="flat-tabs-left" class="section-nine">
-                <label for="tab-9"><i></i>9. Capacitação</label>
+                <label for="tab-9">9. Capacitação</label>
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
-                <label for="tab-10"><i></i>10. Acompanhamento </label>           
+                <label for="tab-10">10. Acompanhamento </label>           
                 <ul>
                     <li class="section-one" id="section-one">
                         <div class="grid-container">
@@ -231,7 +236,7 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                                 <b>Protocolos</b>
                                             </div>
                                             <div class="minor-padding main-black-span">
-                                                O PDF que você encontrará aqui inclui as <b>recomendações sanitárias e protocolos</b> e podem ser utilizados com a rede para conferir sua adequação dentro das unidades, durante o transporte escolar e até mesmo nas secretarias.
+                                                O PDF que você encontrará aqui inclui as <b>recomendações sanitárias e protocolos</b> que podem ser utilizados com a rede para conferir sua adequação dentro das unidades, durante o transporte escolar e até mesmo nas secretarias.
                                             </div><br>
                                             <div class="button-position" style="padding-bottom: 10px;">
                                                 <a href="https://drive.google.com/file/d/1T8OsZ5PKFC5vn6QrtSJdkOlONaJjS8lc/view?usp=sharing" target="blank_">
@@ -444,8 +449,8 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                 <div style="padding-bottom: 10px;"> 
                                     {prat10}
                                 </div>
-                                <div class="upper-padding row">
-                                    <div class="col card-plan container" style="padding:20px;">
+                                <div class="row">
+                                    <div class="col card-plan container" style="padding:15px;">
                                         <div>
                                          <div class="text-title-section minor-padding main-orange-span"> 
                                             <img class="icon" src="data:image/png;base64,{notify_icon}" alt="Fonte: Flaticon">
@@ -456,6 +461,20 @@ Ação 2. Acompanhe também a situação epidemiológica da rede e dos casos nas
                                         Arquivo PDF com perguntas que podem ser utilizadas para criar formulário de notificação de casos suspeitos ou confirmados na escola.<br><br>
                                         <div class="minor-padding button-position">
                                             <a href="https://drive.google.com/file/d/1-vmLPk7Cw6CBBC1aNrj9pQFt7aN-uskz/view" target="_blank">
+                                                <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
+                                            </a>
+                                        </div>
+                                        </div><br>
+                                    </div>
+                                    <div class="col card-plan container" style="padding:15px;">
+                                        <div>
+                                         <div class="text-title-section minor-padding main-orange-span"> 
+                                            <img class="icon" src="data:image/png;base64,{protocol_icon}" alt="Fonte: Flaticon"><b>Todos os Passos</b>
+                                        </div>
+                                        <br>
+                                        Gostou do conteúdo? Acesse o Guia com os 10 Passos em forma de lista abaixo e aproveite para distribuir ele para sua rede!<br><br>
+                                        <div class="minor-padding button-position">
+                                            <a https://drive.google.com/file/d/1HqWKjM8uD4HM64fbFcbjS-pPD3SzWcmt/view?usp=sharing" target="_blank">
                                                 <button class="button"; style="border-radius: .25rem;"> acesse aqui ></button>
                                             </a>
                                         </div>

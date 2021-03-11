@@ -1,17 +1,19 @@
 import streamlit as st
 import utils
+import os
 
-# urlpath = "http://localhost:8501/"
-#urlpath = 'https://escolasegura-staging.herokuapp.com/'
-urlpath = 'https://escolasegura.coronacidades.org/'
+if os.getenv("IS_HEROKU") == "TRUE":
+    urlpath = os.getenv("urlpath")
+else:
+    urlpath = 'https://escolasegura.coronacidades.org/'
 
 def genTermo():
 	verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
 	st.write(
 		f"""
 		<div style="text-align:center; padding-top:10px; padding-bottom:25px; background: #ff9147; margin-top:50px; margin-bottom:0px;">
-			<img class="square" src="data:image/png;base64,{verify_icon}"> 
-			<span style="color:#ffffff;"><b>Conheça nosso termo de responsabilidade</b></span>
+			<a href="{urlpath}?page=termo" target="_self" style="text-decoration: none;"><img class="square" src="data:image/png;base64,{verify_icon}"> 
+			<span style="color:#ffffff;"><b>Conheça nosso termo de responsabilidade</b></span></a>
 		</div>
 		""",
 		unsafe_allow_html=True,

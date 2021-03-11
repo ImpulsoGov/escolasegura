@@ -1,5 +1,6 @@
 import streamlit as st
 import utils
+import os
 
 def genHeader(active):
 
@@ -9,10 +10,11 @@ def genHeader(active):
     """
 	escola = utils.load_image("imgs/escolasegura.png")
 	header = utils.load_image("imgs/grey_header.png")
-	# urlpath = 'http://localhost:8501/'
-	# urlpath = 'https://escolasegura-staging.herokuapp.com/'
-	urlpath = 'https://escolasegura.coronacidades.org/'
-	# import pdb; pdb.set_trace()
+	if os.getenv("IS_HEROKU") == "TRUE":
+	    urlpath = os.getenv("urlpath")
+	else:
+	    urlpath = 'https://escolasegura.coronacidades.org/'
+
 	if active=="guia10passos":
 		st.write(
 			f"""
@@ -37,6 +39,7 @@ def genHeader(active):
 				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a class="active" href="{urlpath}?page=sobre">Quem Somos</a>
 				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
+				  <a href="{urlpath}?page=termo">Termos de Uso</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -51,6 +54,7 @@ def genHeader(active):
 				  <a class="active" href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
 				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
+				  <a href="{urlpath}?page=termo">Termos de Uso</a>
 				</div>
 			""",
 			unsafe_allow_html=True,
@@ -65,6 +69,22 @@ def genHeader(active):
 				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
 				  <a href="{urlpath}?page=sobre">Quem Somos</a>
 				  <a class="active" href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
+				  <a href="{urlpath}?page=termo">Termos de Uso</a>
+				</div>
+			""",
+			unsafe_allow_html=True,
+		)
+	elif active=="termo":
+		st.write(
+			f"""
+				<div class="conteudo" id="navbar">
+				  <a href="{urlpath}?page=inicio" style="padding-top:0px; padding-bottom:0px;"><img class="escola-navbar" src="data:image/png;base64,{escola}" title="logo Impulso"/></a>
+				  <a href="{urlpath}?page=inicio">Início</a>
+				  <a href="{urlpath}?page=guia10passos">Guia 10 Passos</a>
+				  <a href="{urlpath}?page=simulation">Simule o retorno</a>
+				  <a href="{urlpath}?page=sobre">Quem Somos</a>
+				  <a href="{urlpath}?page=duvidasfrequentes">Dúvidas Frequentes</a>
+				  <a class="active" href="{urlpath}?page=termo">Termos de Uso</a>
 				</div>
 			""",
 			unsafe_allow_html=True,

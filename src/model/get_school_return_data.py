@@ -22,18 +22,28 @@ def get_school_return_projections(
     ----------
         number_alunos: int 
             Número de alunos autorizados a retornar à escola.
+        number_alunos_naovoltando: int 
+            Número de alunos não autorizados a retornar à escola.
         number_professores: int
             Número de professores autorizados a voltar à escola.
+        number_professores_naovoltando: int
+            Número de professores não autorizados a voltar à escola.
         number_salas: int
             Número de salas de aula disponíveis.
+        maxalunossalas: int
+            Máximo de aulos por sala.
         hours_classpresencial: int
             Duração do tempo em aula por dia (definido por modelo ou usuário).
+        hours_classpremoto:
+            Duração do tempo em aula remota por dia (definido por modelo ou usuário), hoje colocada automáticamanete em 0.
         maxalunossalas: int
             Número máximo de alunos por turma.
-        horas_possiveis_sala: int
-            Total de horas disponíveis para aulas em um dia. Padrão: 10 = 5 horas x 2 turnos (manhã / tarde)
-        max_professores_por_turma: int
-            Máximo de Professores por Turma. Padrão: 1.
+        turnos: int
+            Total de Turnos dados em um dia.
+        professorday:
+            Máximo de horas de aula que o professor da em um dia.
+        horaaula: int
+            Duracao de uma aula.
 
     Returns
     -------
@@ -41,6 +51,18 @@ def get_school_return_projections(
             Número projetado de alunos voltando à escola.
         number_professores_retornantes : int
             Número projetado  de professores que retornam à escola.
+        limite_turmas;
+            Número de turmas voltando.
+        salasocupadas:
+            Salas ocupadas por turno.
+        salaslivres:
+            Salas Livres por turno.
+        diasletivos;
+            Dias letivos necessários para atingit 800 hroas obrigatórias anuais.
+        professoreslivres:
+            Professores não retornantes do modelo.
+        alunoslivres:
+            Alunos não retornantes do modelo.
     """
     # Maximo de turmas por limitacao dos alunos
     number_alunos = number_alunos-number_alunos_naovoltando
