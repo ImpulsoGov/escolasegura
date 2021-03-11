@@ -10,13 +10,13 @@ import pages.footer as foo
 import amplitude
 
 
-
 def main():
     utils.localCSS("localCSS.css")
     he.genHeader("guia10passos")
-    # urlpath = "http://localhost:8501/"
-    urlpath = 'https://escolasegura-staging.herokuapp.com/'
-    # urlpath = 'https://escolasegura.coronacidades.org/'
+    if os.getenv("IS_HEROKU") == "TRUE":
+        urlpath = os.getenv("urlpath")
+    else:
+        urlpath = 'https://escolasegura.coronacidades.org/'
 
     protocol_icon = utils.load_image("imgs/plan_protocol_icon.png")
     verify_icon = utils.load_image("imgs/prepare_verify_icon.png")
@@ -145,25 +145,25 @@ Ação 5. Acompanhe também a situação epidemiológica da rede e dos casos nas
         <div class="conteudo" style="padding-top:50px;">
             <div class="flat-tabs-left flat-tabs-orange tabs-zoom-in">
                 <input type="radio" id="tab-1" name="flat-tabs-left" class="section-one">
-                <label for="tab-1"><i></i>1. Diálogo</label>
+                <label for="tab-1">1. Diálogo</label>
                 <input type="radio" id="tab-2" name="flat-tabs-left" class="section-two">
-                <label for="tab-2"><i></i>2. Critérios</label>
+                <label for="tab-2">2. Critérios</label>
                 <input type="radio" id="tab-3" name="flat-tabs-left" class="section-three">
-                <label for="tab-3"><i></i>3. Protocolos</label>
+                <label for="tab-3">3. Protocolos</label>
                 <input type="radio" id="tab-4" name="flat-tabs-left" class="section-four">
-                <label for="tab-4"><i></i>4. Dimensionamento</label>
+                <label for="tab-4">4. Dimensionamento</label>
                 <input type="radio" id="tab-5" name="flat-tabs-left" class="section-five">
-                <label for="tab-5"><i></i>5. Modelo</label>
+                <label for="tab-5">5. Modelo</label>
                 <input type="radio" id="tab-6" name="flat-tabs-left" class="section-six">
-                <label for="tab-6"><i></i>6. Pedagógico </label>
+                <label for="tab-6">6. Pedagógico </label>
                 <input type="radio" id="tab-7" name="flat-tabs-left" class="section-seven">
-                <label for="tab-7"><i></i>7. Pessoas</label>
+                <label for="tab-7">7. Pessoas</label>
                 <input type="radio" id="tab-8" name="flat-tabs-left" class="section-eight">
-                <label for="tab-8"><i></i>8. Contingência</label>
+                <label for="tab-8">8. Contingência</label>
                 <input type="radio" id="tab-9" name="flat-tabs-left" class="section-nine">
-                <label for="tab-9"><i></i>9. Capacitação</label>
+                <label for="tab-9">9. Capacitação</label>
                 <input type="radio" id="tab-10" name="flat-tabs-left" class="section-ten">
-                <label for="tab-10"><i></i>10. Acompanhamento </label>           
+                <label for="tab-10">10. Acompanhamento </label>           
                 <ul>
                     <li class="section-one" id="section-one">
                         <div class="grid-container">

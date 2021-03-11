@@ -3,10 +3,12 @@ import utils
 import pages.snippet as tm
 import pages.header as he
 import pages.footer as foo
+import os
 
-# urlpath = "http://localhost:8501/"
-urlpath = 'https://escolasegura-staging.herokuapp.com/'
-# urlpath = 'https://escolasegura.coronacidades.org/'
+if os.getenv("IS_HEROKU") == "TRUE":
+    urlpath = os.getenv("urlpath")
+else:
+    urlpath = 'https://escolasegura.coronacidades.org/'
 
 def main():
     """ 

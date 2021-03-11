@@ -16,6 +16,11 @@ import matplotlib.pyplot as plt
 from math import floor, ceil
 import base64
 
+if os.getenv("IS_HEROKU") == "TRUE":
+    urlpath = os.getenv("urlpath")
+else:
+    urlpath = 'https://escolasegura.coronacidades.org/'
+
 @st.cache(suppress_st_warning=True)
 def get_data():
     """ 
@@ -102,7 +107,7 @@ def genSimulationResult(params, config):
                 Número de máscaras necessárias (1 por pessoa cada 3 horas): <b>{result["total_masks"]}</b> </br>
                 Litros de álcool em gel necessários (12ml por pessoa por dia): <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários (1 para cada 100 estudantes): <b>{result["total_thermometers"]}</b> </br>
-                <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
+                <br><br><a href="{urlpath}?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
         """,
@@ -146,7 +151,7 @@ def genSimulationEstadoResult(params, config, session_state, data):
                 Número de máscaras necessárias (1 por pessoa cada 3 horas): <b>{int(result["total_masks"])}</b> </br>
                 Litros de álcool em gel necessários (12ml por pessoa por dia): <b>{int(result["total_sanitizer"])}</b> </br>
                 Número de termômetros necessários (1 para cada 100 estudantes): <b>{int(result["total_thermometers"])}</b> </br>
-                <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
+                <br><br><a href="{urlpath}?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
         """,
@@ -590,7 +595,7 @@ def genSimulationResultMunicipio(params, config, data):
                 Litros de álcool em gel necessários: <b>{result["total_sanitizer"]}</b> </br>
                 Número de termômetros necessários: <b>{result["total_thermometers"]}</b> </br>
                 <br><br>Confira a distribuicao de professores, alunos e materiais por escola <a href='data:file/csv;base64,{b64}' download="resultadoporescola.csv" target="_self">Aqui</a>. Você consegur abrir no Google Planilhas e no Excel.
-                <br><br><a href="https://escolasegura-staging.herokuapp.com/?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
+                <br><br><a href="{urlpath}?page=sobre#embasamentosimulador" target="_self">Leia a nossa metodologia</a>.
             </div>
         </div>
         """,
