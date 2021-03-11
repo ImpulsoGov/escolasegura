@@ -25,7 +25,6 @@ def main():
     notify_image = utils.load_image("imgs/monitor_notify_forms.png")
     plan_icon = utils.load_image("imgs/monitor_plan_icon.png")
     plan_image = utils.load_image("imgs/monitor_plan_forms.png")
-
     st.write(
         f"""
         <div class="conteudo main-title" style="padding-top: 50px;"> 

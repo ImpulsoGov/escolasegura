@@ -13,6 +13,7 @@ def genHeader(active):
 	    urlpath = os.getenv("urlpath")
 	else:
 	    urlpath = 'https://escolasegura.coronacidades.org/'
+
 	if active=="guia10passos":
 		st.write(
 			f"""
