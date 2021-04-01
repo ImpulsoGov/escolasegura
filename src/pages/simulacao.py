@@ -218,7 +218,7 @@ def genQuetions(data):
     st.write(
         f"""
         <div class="conteudo" style="padding-top:5px;">
-            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a><br><br>
+            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" target="_blank">Veja aqui</a><br><br>
         </div>
         """,
         unsafe_allow_html=True,
@@ -421,7 +421,7 @@ def genMunicipioQuetions(data):
     st.write(
         f"""
         <div class="conteudo" style="padding-top:5px;">
-            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" >Veja aqui</a><br><br>
+            Quer calcular o número de alunos por sala? <a href="https://www.fe.unicamp.br/salas/" target="_blank">Veja aqui</a><br><br>
         </div>
         """,
         unsafe_allow_html=True,
