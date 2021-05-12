@@ -4,7 +4,7 @@
 
 É com essa pergunta que iniciamos o **Escola Segura**, a ferramenta de educação da **Impulso**. Queremos com ela facilitar o processo de decisão do retorno às atividades presenciais em escolas. 
 
-Todos os dados utilizados na ferramenta são abertos e estão disponíveis na nossa [API](http://datasource.coronacidades.org/br). Além disso, com nosso código aberto, incentivamos a transparência e subimissão de melhorias.
+Todos os dados utilizados na ferramenta são abertos e estão disponíveis na nossa [API](http://datasource.coronacidades.org/br). 
 
 A **Escola Segura** está disponível [aqui](https://escolasegura.coronacidades.org/). As informacões compiladas do projeto pode ser acessada [aqui](https://sites.google.com/impulsogov.org/wiki-techdados/produtos/escola-segura?authuser=1&read_current=1).
 
